@@ -9,6 +9,7 @@ import Judge from './containers/Judge/Judge'
 import { fetchUserData, authCheckState } from './store/actionCreators'
 import Wordsmiths from './containers/Wordsmiths/Wordsmiths'
 import './App.css'
+import Landing from './containers/Landing/Landing';
 
 
 class App extends Component {
@@ -19,29 +20,38 @@ class App extends Component {
 
   render() {
 
+    let app = <Landing />
+    if (this.props.authenticated) {
+      app = (
+        <div>
+          <Navbar />
+          <ReactPlayer
+            volume={this.props.volume * 1.0 / 100}
+            url={this.props.musicURL}
+            playing={this.props.playing}
+            loop
+            width="0px"
+            height="0px" />
+  
+          <Switch>
+            <Route path="/scribble" component={Scribble} ></Route>
+            <Route path="/judge" component={Judge} ></Route>
+            <Route path="/wordsmiths" component={Wordsmiths} ></Route>
+            <Route path="/hub" component={Hub} ></Route>
+            <Route path="/" component={Hub}></Route>
+          </Switch>
+        </div>
+  
+      )
+  
+    }
 
-    return (
-      <div className="App">
 
-        <Navbar />
-        <ReactPlayer
-          volume={this.props.volume * 1.0 / 100}
-          url={this.props.musicURL}
-          playing={this.props.playing}
-          loop
-          width="0px"
-          height="0px" />
-
-        <Switch>
-          <Route path="/scribble" component={Scribble} ></Route>
-          <Route path="/judge" component={Judge} ></Route>
-          <Route path="/wordsmiths" component={Wordsmiths} ></Route>
-          <Route path="/hub" component={Hub} ></Route>
-          <Route path="/" component={Hub}></Route>
-        </Switch>
-
-      </div>
-    )
+      return (
+        <div className="App">
+          {app}
+        </div>
+      )
   }
 }
 const mapStateToProps = state => {
