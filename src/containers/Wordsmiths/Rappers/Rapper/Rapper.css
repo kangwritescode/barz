@@ -1,0 +1,101 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Big+Shoulders+Display&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|PT+Sans+Narrow&display=swap");
+.rapper {
+  /* direction: rtl; */
+  /* margin-bottom: 5px; */
+  height: 45px;
+  width: 600px;
+  background-color: rgba(0, 0, 0, 0.619);
+  font-family: "Rock Salt", cursive;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.879);
+  background-color: rgba(0, 0, 0, 0.678);
+  /* border-bottom: 1px solid rgba(255, 255, 255, 0.496); */
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.267);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-animation: fade-in .1s ease-in;
+          animation: fade-in .1s ease-in;
+}
+
+.rapper:hover {
+  cursor: pointer;
+}
+
+.rapper:hover {
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.63);
+}
+
+.rapper:active {
+  border: 1px solid rgba(255, 255, 255, 0.808);
+}
+
+.rapperDetail {
+  /* border-left: 1px solid rgba(121, 121, 121, 0.315); */
+  height: 100%;
+  width: 117px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.rapper #votes {
+  width: 117px;
+  font-family: "Press Start 2P", cursive;
+  font-size: 15px;
+  border-right: 1px solid rgba(255, 255, 255, 0.089);
+}
+
+.rapper #username {
+  /* letter-spacing: .8px; */
+  font-family: "Open Sans Condensed", sans-serif;
+  font-size: 14px;
+  border-right: 1px solid rgba(255, 255, 255, 0.089);
+}
+
+.rapper #coast {
+  font-family: "Open Sans Condensed", sans-serif;
+  font-size: 14px;
+  border-right: 1px solid rgba(255, 255, 255, 0.089);
+}
+
+.rapper #gender {
+  font-family: "Open Sans Condensed", sans-serif;
+  font-size: 14px;
+}
+
+.rapper #location {
+  font-family: "Open Sans Condensed", sans-serif;
+  font-size: 14px;
+  border-right: 1px solid rgba(255, 255, 255, 0.089);
+}
+
+#lighter {
+  background-color: rgba(20, 12, 0, 0.623);
+}
+
+.rapper-detail-font {
+  font-family: "Rock Salt", cursive;
+  letter-spacing: 0.8px;
+}
+/*# sourceMappingURL=Rapper.css.map */

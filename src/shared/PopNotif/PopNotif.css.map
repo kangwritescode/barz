@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,UAAU,CAAC;EACP,QAAQ,EAAE,QAAQ;EAClB,MAAM,EAAE,GAAG;EACX,KAAK,EAAE,GAAG;EACV,GAAG,EAAE,GAAG;EACR,gBAAgB,EAAE,KAAK;CAC1B",
+    "sources": [
+        "PopNotif.scss"
+    ],
+    "names": [],
+    "file": "PopNotif.css"
+}

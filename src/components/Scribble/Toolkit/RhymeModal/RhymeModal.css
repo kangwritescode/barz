@@ -1,0 +1,273 @@
+@import url("https://fonts.googleapis.com/css?family=Beth+Ellen|Noto+Sans&display=swap");
+#rhyme-modal-backdrop {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: 500;
+  background-color: rgba(0, 0, 0, 0.61);
+  -webkit-animation: modal-fade-in .1s ease-in;
+          animation: modal-fade-in .1s ease-in;
+}
+
+@-webkit-keyframes modal-fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes modal-fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#rhyme-modal-body::-webkit-scrollbar {
+  width: 5px;
+}
+
+#rhyme-modal-body::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.rhyme-modal-container {
+  position: fixed;
+  left: 45%;
+  top: 55%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  height: 25em;
+  width: auto;
+  min-width: 25em;
+  z-index: 999;
+  border-radius: .5em;
+  /* padding-right: 3em; */
+  /* padding-top: 2em; */
+  /* padding-bottom: 2em;  */
+  overflow: auto;
+  background-color: #0f0f0f;
+  border: 0.1em solid rgba(255, 255, 255, 0.082);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: right;
+      -ms-flex-align: right;
+          align-items: right;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  animation: dict-body-fade-in .2s ease-in;
+  -webkit-animation: dict-body-fade-in .2s ease-in;
+}
+
+.rhyme-modal-container #word-title {
+  padding-bottom: .1em;
+}
+
+#rhyme-modal-body {
+  font-family: 'Noto Sans', sans-serif;
+  position: relative;
+  z-index: inherit;
+  width: auto;
+  height: 100%;
+  color: #e4a700;
+  overflow: auto;
+  padding-left: 3em;
+  padding-right: 2em;
+}
+
+#rhyme-sugg-modal-body {
+  position: fixed;
+  left: 17%;
+  bottom: 25%;
+  z-index: 501;
+  height: auto;
+  width: auto;
+  background-color: #080808;
+  border: 0.1em solid rgba(255, 255, 255, 0.048);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 3em;
+  overflow: auto;
+  border-radius: 0.5em;
+  animation: dict-body-fade-in 0.2s ease-in;
+  -webkit-animation: dict-body-fade-in 0.2s ease-in;
+}
+
+.column {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  width: auto;
+  padding-right: 1em;
+}
+
+.rhyme-word {
+  position: relative;
+  margin-right: .4em;
+  margin-bottom: .1em;
+}
+
+.rhyme-word:hover {
+  cursor: pointer;
+  background-color: #e2e2e2;
+  color: black;
+}
+
+.columns-container {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: baseline;
+      -ms-flex-pack: baseline;
+          justify-content: baseline;
+  margin-top: 1em;
+}
+
+.notification {
+  position: absolute;
+  width: 10.5em;
+  height: 2em;
+  left: -3em;
+  background-color: white;
+  border-radius: .2em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  z-index: 700;
+  top: -2.7em;
+  opacity: 0;
+  color: black;
+  pointer-events: none;
+}
+
+#notification-tail {
+  position: absolute;
+  left: 3.2em;
+  bottom: -.2em;
+  height: .1em;
+  width: .1em;
+  z-index: 699;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  border-right: .7em solid white;
+  border-bottom: .7em solid white;
+  background-color: rgba(0, 128, 0, 0);
+}
+
+.show-copy-notification {
+  -webkit-animation: show-copy-pop-up 2s ease-in-out;
+          animation: show-copy-pop-up 2s ease-in-out;
+}
+
+#close-rhyme-modal-wrapper {
+  position: relative;
+  height: 2.5em;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+#close-rhyme-modal {
+  position: relative;
+  z-index: 1000;
+  color: #e2e2e2;
+  cursor: pointer;
+  right: 1em;
+}
+
+#close-rhyme-modal:hover {
+  cursor: pointer;
+}
+
+#close-rhyme-sugg-modal {
+  position: absolute;
+  color: #e0e0e0;
+  top: .6em;
+  right: .7em;
+  cursor: pointer;
+}
+
+@-webkit-keyframes show-copy-pop-up {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes show-copy-pop-up {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+/*# sourceMappingURL=RhymeModal.css.map */

@@ -1,0 +1,147 @@
+@mixin fixed-cover {
+     position: fixed;
+     top: 0px;
+     left: 0px;
+     right: 0px;
+     width: 0px;
+     height: 100%;
+     width: 100%;
+}
+
+@mixin flex-centered($direction) {
+     display: flex;
+     flex-direction: $direction;
+     align-items: center;
+     justify-content: center;
+}
+
+@mixin cool-font {
+     background-image: url(https://media.giphy.com/media/26BROrSHlmyzzHf3i/giphy.gif);
+     background-size: cover;
+     color: transparent;
+     background-clip: text;
+     -moz-background-clip: text;
+     -webkit-background-clip: text;
+     line-height: 2.4em;
+}
+
+.pro-spotlight-wrapper {
+     position: relative;
+     z-index: 300;
+     @include fixed-cover;
+     @include flex-centered(column);
+}
+
+.backdrop {
+     @include fixed-cover;
+     z-index: 500;
+     background-color: rgba(0, 0, 0, 0.719);
+     animation: pro-fade .3s ease-in;
+}
+
+.body {
+     position: absolute;
+     z-index: 501;
+     height: 30em;
+     width: 40em;
+     background-color: rgb(3, 3, 3);
+     color: rgb(212, 212, 212);
+     font-family: "permanent marker";
+     text-align: center;
+     border-radius: .5em;
+     font-size: 1.3em;
+     animation: pro-fade 2s ease-in;
+     
+     @include flex-centered(column);
+
+     .section-one {
+          @include cool-font;
+          margin-block-end: 0.4em;
+          #pro-line-1 {
+               animation: text-in 1s ease-in;
+          }
+          #pro-line-2 {
+               animation: text-in 3s ease-in;
+          }
+          #pro-line-3 {
+               animation: text-in 5s ease-in;
+          }
+          #pro-line-4 {
+               animation: text-in 7s ease-in;
+          }
+     }
+     .section-two {
+          @include cool-font;
+          margin-block-start: 0.4em;
+          #pro-line-5 {
+               animation: text-in 9s ease-in;
+          }
+          #pro-line-6 {
+               animation: text-in 11s ease-in;
+          }
+          #pro-line-7 {
+               animation: text-in 13s ease-in;
+          }
+          #pro-line-8 {
+               animation: text-in 15s ease-in;
+          }
+     }
+
+     .artist {
+          opacity: 0;
+          animation: pro-fade 5s ease-in forwards;
+          animation-delay: 8s;
+
+     }
+     .dash {
+          opacity: 0;
+          animation: pro-fade 5s ease-in forwards;
+          animation-delay: 9s;
+     }
+     .song {
+          opacity: 0;
+          animation: pro-fade 5s ease-in forwards;
+          animation-delay: 10s;
+     }
+     .date {
+          opacity: 0;
+          animation: pro-fade 5s ease-in forwards;
+          animation-delay: 11s;
+
+     }
+}
+
+@keyframes text-in {
+     0% {
+          color: rgb(0, 0, 0);
+     }
+     100% {
+          color: rgba(0, 0, 0, 0);
+     }
+}
+
+@keyframes pro-fade {
+     0% {
+          opacity: 0;
+     }
+     100% {
+          opacity: 1;
+     }
+}
+
+@keyframes pro-transform {
+     0% {
+          transform: scale(.97);
+     }
+     100% {
+          transform: scale(1);
+     }
+}
+@keyframes letter-widen {
+     0% {
+          letter-spacing: .1em;
+     }
+     100% {
+          letter-spacing: .13em;
+     }
+}

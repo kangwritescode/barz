@@ -1,0 +1,23 @@
+.post-comments {
+    display: flex;
+    flex-direction: column-reverse;
+    overflow: auto;
+    max-height: 18em;
+    
+    .filler-block {
+        height: 2em;
+    }
+    
+}
+.loading {
+    opacity: 0;
+}
+.done-loading {
+    opacity: 1;
+    transition: all .3s ease-in;
+}
+
+::-webkit-scrollbar {
+    width: 0px;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}

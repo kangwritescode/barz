@@ -1,0 +1,217 @@
+#delete-comment-wrapper {
+  position: fixed;
+  top: 0em;
+  left: 0em;
+  right: 0em;
+  bottom: 0em;
+  z-index: 900;
+  /* border: 2px solid white; */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-animation: fade-in .2s;
+          animation: fade-in .2s;
+}
+
+#delete-comment-backdrop {
+  position: fixed;
+  top: 0em;
+  left: 0em;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.466);
+  position: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#delete-comment-body {
+  padding-top: .8em;
+  position: fixed;
+  height: auto;
+  width: auto;
+  padding: 3.5em;
+  padding-bottom: 2.5em;
+  background-color: #ececec;
+  border-radius: .3em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  -webkit-animation: drop-in .1s ease-in;
+          animation: drop-in .1s ease-in;
+}
+
+@-webkit-keyframes drop-in {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(1.3);
+            transform: scale(1.3);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes drop-in {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(1.3);
+            transform: scale(1.3);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+#close-delete-comment-x {
+  position: absolute;
+  right: .5em;
+  top: .5em;
+  cursor: pointer;
+}
+
+#delete-comment-header {
+  font-size: 2em;
+  letter-spacing: .05em;
+}
+
+#delete-comment-question {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: .5em;
+}
+
+#delete-comment-button-container {
+  margin-top: 2.5em;
+  display: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.delete-comment-button {
+  position: relative;
+  margin-top: .5em;
+  border-radius: .1em;
+  height: 2.1em;
+  width: 6.5em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-left: .4em;
+  margin-right: .4em;
+  cursor: pointer;
+}
+
+#cancel-button {
+  background-color: grey;
+}
+
+#delete-button {
+  background-color: #2c0101;
+  color: white;
+}
+
+#cancel-button:hover {
+  background-color: #8d8d8d;
+}
+
+#delete-button:hover {
+  background-color: #410202;
+}
+
+#cancel-button:active {
+  background-color: #a3a3a3;
+}
+
+#delete-button:active {
+  background-color: #500606;
+}
+
+#delete-comment-spinner {
+  position: absolute;
+  left: 9.6em;
+  top: -10em;
+  width: 40px;
+  height: 40px;
+  margin: 100px auto;
+  background-color: #e2e2e2;
+  border-radius: 100%;
+  -webkit-animation: sk-scaleout 1s infinite ease-in-out;
+  animation: sk-scaleout 1s infinite ease-in-out;
+}
+
+@-webkit-keyframes sk-scaleout {
+  0% {
+    -webkit-transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes sk-scaleout {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+/*# sourceMappingURL=DeleteComment.css.map */

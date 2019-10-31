@@ -1,0 +1,105 @@
+@mixin flex-center($direction) {
+     display: flex;
+     align-items: center;
+     flex-direction: $direction;
+}
+
+@mixin header {
+     position: relative;
+     min-height: 2.4em;
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: center;
+     color: rgb(221, 221, 221);
+     background-color: rgba(0, 0, 0, 0.884);
+     font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+     font-size: 0.95em;
+     letter-spacing: 0.2em;
+     border-bottom: 0.1em solid rgb(165, 165, 165);
+}
+
+.many-view-layout {
+     position: fixed;
+     top: 5.3em;
+     left: 0em;
+     right: 0em;
+     bottom: 0em;
+     overflow: auto;
+     @include flex-center(column);
+}
+
+.many-view {
+     position: relative;
+     top: 3.5em;
+     display: flex;
+     flex-direction: row;
+     .many-view__posts {
+          position: relative;
+          // border: 1px solid pink;
+          height: auto;
+          margin-right: 1.5em;
+          @include flex-center(column);
+     }
+     .many-view__widgets {
+          padding-top: 0.9em;
+          width: 17em;
+          position: relative;
+          .artist-spotlight {
+               position: relative;
+               height: 12em;
+               background-color: rgba(0, 0, 0, 0.685);
+               overflow: hidden;
+               margin-top: 1.5em;
+               cursor: pointer;
+               .artist-spotlight__header {
+                    @include header();
+               }
+               .img-wrapper {
+                    opacity: 0.5;
+                    img {
+                         position: relative;
+                         top: 0.2em;
+                         height: 10em;
+                         object-fit: contain;
+                         &:hover {
+                              opacity: 0.5;
+                              transition: all 10s ease-in;
+                         }
+                    }
+               }
+               &:hover .img-wrapper {
+                    transition: all .3s ease-in;
+                    opacity: .7;
+               }
+               
+               .text {
+                    text-align: right;
+                    position: absolute;
+                    right: 2.2em;
+                    color: rgba(255, 255, 255, 0.479);
+                    top: 5.9em;
+                    font-family: "permanent marker";
+                    font-size: 0.8em;
+                    
+               }
+               &:hover .text {
+                    color: rgba(255, 255, 255, 0.788);
+                    transition: all .3s ease-in;
+               }
+          }
+          .tv {
+               .tv__header {
+                    @include header();
+               }
+          }
+          .turntable-wrapper {
+               position: sticky;
+               top: 1.5em;
+               margin-top: 1.5em;
+               width: 100%;
+               height: 155px;
+          }
+     }
+}

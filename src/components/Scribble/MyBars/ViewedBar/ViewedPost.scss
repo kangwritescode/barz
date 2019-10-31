@@ -1,0 +1,330 @@
+@import url("https://fonts.googleapis.com/css?family=Caveat+Brush|Sedgwick+Ave|Zeyada&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Sedgwick+Ave+Display&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Permanent+Marker|Sedgwick+Ave+Display&display=swap");
+
+@mixin flex-centered($direction) {
+     display: flex;
+     flex-direction: $direction;
+     align-items: center;
+     justify-content: center;
+     font-size: 1rem;
+}
+
+#viewed-post-wrapper {
+     position: fixed;
+     top: 0rem;
+     left: 0rem;
+     right: 0rem;
+     bottom: 0rem;
+     z-index: 501;
+     /* border: 2px solid white; */
+     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+          "Droid Sans", "Helvetica Neue", sans-serif;
+     -webkit-font-smoothing: antialiased;
+     color: black;
+     cursor: default;
+     @include flex-centered(column);
+
+     #viewed-post-backdrop {
+          position: fixed;
+          top: 0rem;
+          left: 0rem;
+          height: 100%;
+          width: 100%;
+          background-color: rgba(0, 0, 0, 0.842);
+          z-index: 500;
+
+          @include flex-centered(column);
+          animation: fade-in 0.1s;
+     }
+}
+
+#four-date-likes-comments-wrapper {
+     position: relative;
+     z-index: 801;
+     animation: wrapper-fade-in 0.4s;
+     display: table-row;
+     box-sizing: content-box;
+     $border-color: rgb(219, 219, 219);
+
+     .cell-one {
+          display: table-cell;
+          vertical-align: middle;
+          background-color: rgb(1, 17, 26);
+
+          #four-bars {
+               position: relative;
+               z-index: 501;
+               height: 100%;
+               width: 35rem;
+               color: rgb(238, 238, 238);
+               @include flex-centered(column);
+
+               p {
+                    padding: 2.5rem 2.5rem 1rem 2.5rem;
+                    line-height: 2.2rem;
+                    text-align: center;
+                    font-size: 1.1rem;
+                    font-family: "permanent marker";
+               }
+               .bars-footer {
+                    margin-top: 0.8rem;
+                    line-height: 1.1rem;
+                    .username {
+                         color: lightblue;
+                         font-size: 1.2rem;
+                         font-family: "permanent marker";
+                    }
+                    .date-posted {
+                         position: relative;
+                         font-family: "permanent marker";
+                         color: rgb(184, 204, 211);
+                         font-size: 0.8rem;
+                         text-align: center;
+                    }
+               }
+          }
+     }
+     .cell-two {
+          position: relative;
+          display: table-cell;
+          background-color: rgb(236, 236, 236);
+          vertical-align: bottom;
+          max-height: 20em;
+          .dots-block {
+               background-color: rgb(236, 236, 236);
+               width: 100%;
+               top: 0px;
+               position: absolute;
+               min-height: 20px;
+               border-bottom: 1px solid $border-color;
+               display: flex;
+               flex-direction: column;
+               align-items: flex-end;
+               justify-content: center;
+               z-index: 99;
+               #three-dots {
+                    position: relative;
+                    right: 3px;
+                    height: auto;
+                    z-index: 600;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-end;
+                    // padding-top: .4rem;
+                    // padding-right: .4rem;
+
+                    &:hover {
+                         cursor: pointer;
+                    }
+
+                    .dot {
+                         position: relative;
+                         height: 5px;
+                         width: 5px;
+                         margin: 0.1rem;
+                         border-radius: 50%;
+                         background-color: rgb(31, 31, 31);
+                    }
+                    .post-drop-menu {
+                         position: absolute;
+                         background-color: rgb(236, 236, 236);
+                         box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.507);
+
+                         top: 1rem;
+                         z-index: 601;
+                         border-radius: 0.2rem;
+
+                         display: none;
+
+                         .post-drop-item {
+                              @include flex-centered(column);
+                              margin: 0.22rem;
+                              font-family: "Open Sans", sans-serif;
+                              font-size: 0.6rem;
+                              letter-spacing: 0.05rem;
+                              color: rgb(61, 61, 61);
+
+                              width: 8rem;
+                              height: 1.5rem;
+                              background-color: rgb(219, 219, 219);
+                              cursor: pointer;
+                              // animation: stretch-down .01s ease-in;
+                              &:hover {
+                                   background-color: rgb(207, 207, 207);
+                              }
+                         }
+                         #delete-post {
+                              color: rgb(173, 0, 0);
+                         }
+                    }
+                    .post-drop-menu-show {
+                         display: block;
+                    }
+               }
+          }
+          .likes-comments-wrapper {
+               position: relative;
+               display: flex;
+               flex-direction: column;
+               justify-content: flex-end;
+               width: 17rem;
+
+               .comments {
+                    height: 100%;
+               }
+
+               .post-comment {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: space-around;
+                    box-sizing: content-box;
+                    padding: 0.5rem 0rem 0.5rem 0rem;
+                    .img-wrapper {
+                         @include flex-centered(row);
+                         position: relative;
+                         left: 0.5rem;
+                         img {
+                              height: 1.5rem;
+                              border-radius: 50%;
+                         }
+                    }
+
+                    .comment-input {
+                         position: relative;
+                         background-color: rgba(0, 0, 0, 0.055);
+                         width: 14em;
+                         // margin: 0rem .4rem 0rem .9rem;
+                         padding: 0.6rem 0.2rem 0.5rem 0.8rem;
+                         font-size: 0.7rem;
+                         border-radius: 2rem;
+                         border: none;
+                         vertical-align: middle;
+                         resize: none;
+                         min-height: 0.9rem;
+                         left: 0.3rem;
+
+                         &:focus {
+                              outline: none;
+                         }
+                    }
+                    button {
+                         background-color: transparent;
+                         border: none;
+                         font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+                         letter-spacing: 0.1rem;
+                         font-size: 0.7rem;
+                         //  text-shadow: 1.2px 1.2px rgb(207, 207, 207);
+                    }
+               }
+          }
+     }
+}
+
+.lds-default {
+     display: inline-block;
+     position: relative;
+     z-index: 600;
+     width: 64px;
+     height: 64px;
+}
+.lds-default div {
+     position: absolute;
+     z-index: 600;
+     width: 5px;
+     height: 5px;
+     background: #fff;
+     border-radius: 50%;
+     animation: lds-default 1.2s linear infinite;
+}
+.lds-default div:nth-child(1) {
+     animation-delay: 0s;
+     top: 29px;
+     left: 53px;
+}
+.lds-default div:nth-child(2) {
+     animation-delay: -0.1s;
+     top: 18px;
+     left: 50px;
+}
+.lds-default div:nth-child(3) {
+     animation-delay: -0.2s;
+     top: 9px;
+     left: 41px;
+}
+.lds-default div:nth-child(4) {
+     animation-delay: -0.3s;
+     top: 6px;
+     left: 29px;
+}
+.lds-default div:nth-child(5) {
+     animation-delay: -0.4s;
+     top: 9px;
+     left: 18px;
+}
+.lds-default div:nth-child(6) {
+     animation-delay: -0.5s;
+     top: 18px;
+     left: 9px;
+}
+.lds-default div:nth-child(7) {
+     animation-delay: -0.6s;
+     top: 29px;
+     left: 6px;
+}
+.lds-default div:nth-child(8) {
+     animation-delay: -0.7s;
+     top: 41px;
+     left: 9px;
+}
+.lds-default div:nth-child(9) {
+     animation-delay: -0.8s;
+     top: 50px;
+     left: 18px;
+}
+.lds-default div:nth-child(10) {
+     animation-delay: -0.9s;
+     top: 53px;
+     left: 29px;
+}
+.lds-default div:nth-child(11) {
+     animation-delay: -1s;
+     top: 50px;
+     left: 41px;
+}
+.lds-default div:nth-child(12) {
+     animation-delay: -1.1s;
+     top: 41px;
+     left: 50px;
+}
+@keyframes lds-default {
+     0%,
+     20%,
+     80%,
+     100% {
+          transform: scale(1);
+     }
+     50% {
+          transform: scale(1.5);
+     }
+}
+
+@keyframes fade-in {
+     0% {
+          opacity: 0;
+     }
+     100% {
+          opacity: 1;
+     }
+}
+@keyframes wrapper-fade-in {
+     0% {
+          transform: scale(1.1);
+          opacity: 0;
+     }
+     100% {
+          transform: scale(1);
+          opacity: 1;
+     }
+}

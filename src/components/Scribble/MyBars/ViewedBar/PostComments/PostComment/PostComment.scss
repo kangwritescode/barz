@@ -1,0 +1,101 @@
+.posted-comment {
+     position: relative;
+     display: flex;
+     padding-top: 0.5em;
+     padding-right: 1em;
+     .posted-comment__img-container {
+          text-align: center;
+          min-width: 2.5em;
+          img {
+               height: 22px;
+               width: 22px;
+               border-radius: 50%;
+          }
+     }
+     .posted-comment__content {
+          font-size: 0.8em;
+          padding: 0em 0em 0.6em 0em;
+          word-wrap: break-word;
+          width: 75%;
+
+          .posted-comment__content__date {
+               margin-top: 0.2em;
+               color: grey;
+          }
+     }
+     .posted-comment__dots-container {
+          position: absolute;
+          right: 0px;
+          height: 100%;
+          width: 2.8em;
+          opacity: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          background-image: linear-gradient(to right, rgba(236, 236, 236, 0.747), rgb(236, 236, 236));
+          font-size: 0.9em;
+          color: rgb(133, 0, 0);
+
+          .posted-comment__dots {
+               cursor: pointer;
+               position: relative;
+               top: -25%;
+               display: flex;
+               flex-direction: row;
+               align-items: center;
+               justify-content: center;
+               padding: 5px;
+
+               .delete-comment-drop-menu {
+                    position: absolute;
+                    background-color: rgb(236, 236, 236);
+                    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.507);
+
+                    top: -.6em;
+                    z-index: 2;
+                    border-radius: 0.2em;
+                    left: -4.18em;
+                    display: none;
+
+                    .delete-comment-drop-menu-item {
+                         display: flex;
+                         flex-direction: column;
+                         align-items: center;
+                         justify-content: center;
+                         margin: 0.3em;
+                         font-family: "Open Sans", sans-serif;
+                         font-size: 0.6em;
+                         letter-spacing: 0.1em;
+                         color: rgb(153, 0, 0);
+
+                         width: 6em;
+                         height: 3em;
+                         background-color: rgb(219, 219, 219);
+                         cursor: pointer;
+                         // animation: stretch-down .01s ease-in;
+                         &:hover {
+                              background-color: rgb(207, 207, 207);
+                         }
+                    }
+                    #delete-post {
+                         color: rgb(173, 0, 0);
+                    }
+               }
+               .delete-comment-drop-menu-show {
+                    display: block;
+               }
+               .posted-comment__dot {
+                    pointer-events: none;
+                    height: 3px;
+                    width: 3px;
+                    margin: 1px;
+                    border-radius: 50%;
+                    background: rgb(77, 77, 77);
+               }
+          }
+     }
+     &:hover .posted-comment__dots-container {
+          opacity: 1;
+     }
+}

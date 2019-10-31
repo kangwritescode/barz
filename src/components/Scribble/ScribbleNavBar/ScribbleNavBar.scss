@@ -1,0 +1,25 @@
+.ScribbleNavBar {
+    position: fixed;
+    top: 50px;
+    height: 35px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.274);
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#scribble-nav-item-container {
+    position: relative;
+    height: 100%;
+    width: 35%;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    letter-spacing: 1.2px;
+    color: rgb(201, 201, 201);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}

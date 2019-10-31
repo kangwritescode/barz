@@ -1,0 +1,208 @@
+@import url("https://fonts.googleapis.com/css?family=Beth+Ellen|Noto+Sans&display=swap");
+#thes-modal-backdrop {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: 500;
+  background-color: rgba(0, 0, 0, 0.61);
+  -webkit-animation: modal-fade-in .1s ease-in;
+          animation: modal-fade-in .1s ease-in;
+}
+
+#thes-modal-body {
+  position: fixed;
+  left: 15%;
+  bottom: 15%;
+  z-index: 501;
+  height: 25em;
+  width: 33em;
+  background-color: #0f0f0f;
+  border: 0.1em solid rgba(255, 255, 255, 0.082);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  /* padding-top: 2em;
+    padding-left: 3em;
+    padding-right: 3em; */
+  /* padding-bottom: 5em; */
+  overflow: hidden;
+  border-radius: .5em;
+  animation: dict-body-fade-in .2s ease-in;
+  -webkit-animation: dict-body-fade-in .2s ease-in;
+}
+
+#thes-content {
+  overflow: auto;
+  width: 87%;
+  padding-right: 1em;
+}
+
+#thes-sugg-modal-body {
+  position: fixed;
+  left: 17%;
+  bottom: 25%;
+  z-index: 501;
+  height: auto;
+  width: auto;
+  background-color: #080808;
+  border: 0.1em solid rgba(255, 255, 255, 0.048);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 3em;
+  overflow: auto;
+  border-radius: 0.5em;
+  animation: dict-body-fade-in 0.2s ease-in;
+  -webkit-animation: dict-body-fade-in 0.2s ease-in;
+}
+
+#thes-content::-webkit-scrollbar {
+  width: 5px;
+}
+
+#thes-content::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* 
+font-family: 'Beth Ellen', cursive;
+font-family: 'Noto Sans', sans-serif; */
+#word-title {
+  font-family: 'Rock Salt', cursive;
+  color: #f0f0f0;
+  font-size: 2em;
+  position: relative;
+}
+
+#line-divider {
+  position: relative;
+  border: 0.07em solid rgba(255, 255, 255, 0.534);
+  width: 92.3%;
+  top: -.6em;
+}
+
+#word-type {
+  font-family: 'Beth Ellen', cursive;
+  font-size: 1.3em;
+  color: #007194;
+  position: relative;
+}
+
+#definitions-list {
+  font-family: 'Noto Sans', sans-serif;
+  font-size: .8em;
+  margin-top: 0em;
+  color: #f1f1f1;
+}
+
+#short-def {
+  margin-top: .5em;
+}
+
+#thes-def {
+  padding-top: 1em;
+  font-family: 'Noto Sans', sans-serif;
+  color: #929292;
+  font-size: .8em;
+  padding-bottom: 1em;
+}
+
+#thes-def-type {
+  color: #009474;
+  font-size: 1.6em;
+}
+
+#defs-enumerated {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color: white;
+  font-size: .5em;
+}
+
+#the-synonyms {
+  position: relative;
+  width: 100%;
+  color: white;
+}
+
+#body-section-container {
+  width: 93%;
+}
+
+#a-syn-list {
+  color: #e7e7e7;
+  line-height: 1.4;
+  padding-bottom: .25em;
+}
+
+#dotted-bottom {
+  border-bottom: 0.1em dotted rgba(255, 255, 255, 0.192);
+}
+
+#type-divider {
+  position: relative;
+  width: 100%;
+  /* border-bottom: .07em solid rgba(255, 255, 255, 0.404); */
+  /* padding-top: 1.5em; */
+  margin-bottom: 1em;
+}
+
+#hacky-space-filler {
+  position: relative;
+  height: 2em;
+}
+
+#thes-close-wrapper {
+  position: relative;
+  width: 100%;
+  height: 3em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+#close-thes-modal {
+  position: relative;
+  right: .6em;
+  top: .5em;
+  color: #dfdfdf;
+  cursor: pointer;
+}
+
+#close-thes-modal:hover {
+  cursor: pointer;
+}
+
+#close-thes-sugg-modal {
+  position: absolute;
+  color: #e0e0e0;
+  top: .6em;
+  right: .7em;
+  cursor: pointer;
+}
+/*# sourceMappingURL=ThesModal.css.map */

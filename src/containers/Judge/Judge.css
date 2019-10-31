@@ -1,0 +1,22 @@
+.JudgeContainer {
+  /* position: absolute;
+    overflow: hidden;
+    z-index: 5;
+    bottom: 0px;
+    top: 85px;
+    left: 0px;
+    right: 0px;
+    display: flex;
+    border: 2px solid pink; */
+}
+
+#judgeOverlay {
+  z-index: 0;
+  position: fixed;
+  background: rgba(36, 24, 3, 0.564);
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+}
+/*# sourceMappingURL=Judge.css.map */

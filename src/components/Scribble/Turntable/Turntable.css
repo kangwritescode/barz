@@ -1,0 +1,167 @@
+.turntable {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.664);
+  color: #8b8b8b;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.turntable #vinyl {
+  position: relative;
+  right: -1.8em;
+  height: 8em;
+  width: 8em;
+  border-radius: 100em;
+  background-color: lightgray;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.turntable #glare {
+  position: relative;
+  height: 7.2em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.spinning {
+  -webkit-animation: play 1.3s linear infinite;
+          animation: play 1.3s linear infinite;
+}
+
+.turntable #inner-vinyl {
+  position: absolute;
+  height: 1.8em;
+  width: 1.8em;
+  border-radius: 100em;
+  border: 0.4em solid black;
+}
+
+.turntable #dot {
+  position: absolute;
+  height: 0.5em;
+  width: 0.5em;
+  border-radius: 1005em;
+  background-color: black;
+}
+
+.turntable .arm-container {
+  position: relative;
+  right: -.8em;
+}
+
+.record-stop {
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+  -webkit-transition: all 1s;
+  transition: all 1s;
+}
+
+.record-play {
+  -webkit-transition: all 1s;
+  transition: all 1s;
+  -webkit-transform: rotate(30deg) translate(-1.5em, 0.3em);
+          transform: rotate(30deg) translate(-1.5em, 0.3em);
+}
+
+@-webkit-keyframes play {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes play {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+#buttons-container {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  left: -0.1em;
+}
+
+#buttons-container .button {
+  position: relative;
+  border-radius: 50%;
+  height: 1.2em;
+  width: 1.2em;
+  bottom: -2em;
+  margin-top: .45em;
+  background-color: #dadada;
+}
+
+#click-space {
+  position: absolute;
+  z-index: 100;
+  height: 3em;
+  width: 3em;
+  height: 100%;
+  width: 77%;
+  right: 0em;
+  cursor: pointer;
+}
+
+#buttons-container #button-active {
+  background-color: rgba(255, 255, 255, 0.473);
+}
+/*# sourceMappingURL=Turntable.css.map */

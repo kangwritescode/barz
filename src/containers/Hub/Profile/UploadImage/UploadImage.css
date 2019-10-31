@@ -1,0 +1,305 @@
+.ul-img-backdrop {
+  position: fixed;
+  z-index: 500;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.541);
+}
+
+.upload-photo-success-msg {
+  height: auto;
+  width: auto;
+  padding: 12px;
+  border-radius: 2%;
+  background-color: rgba(1, 41, 13, 0.459);
+  z-index: 11;
+  top: -60px;
+  position: absolute;
+  color: #d8d8d8;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 10pt;
+  -webkit-animation: scale-and-fade-in-out 2s;
+          animation: scale-and-fade-in-out 2s;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+  opacity: 0;
+}
+
+#green {
+  background-color: rgba(0, 31, 0, 0.575);
+}
+
+#UploadImage {
+  position: absolute;
+  height: 20em;
+  width: 23em;
+  left: 50%;
+  top: 50%;
+  padding-bottom: 1em;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.945);
+  border: 0.04em solid rgba(255, 255, 255, 0.445);
+  border-radius: 2%;
+  z-index: 999;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  /* border: 1px solid rgb(121, 121, 121); */
+  -webkit-animation: ul-img-fade-in 0.1s ease-in;
+  animation: ul-img-fade-in 0.1s ease-in;
+}
+
+#UploadImage > h1 {
+  color: #f3f3f3;
+  font-size: 2.5em;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+
+#UploadImage > img {
+  position: relative;
+  height: 3em;
+}
+
+#closeUploadImage {
+  height: 10px;
+  width: 10px;
+  color: #dbdbdb;
+  position: absolute;
+  right: 9px;
+  top: 6px;
+  z-index: 50;
+}
+
+#closeUploadImage:hover {
+  cursor: pointer;
+}
+
+#UploadButtons {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 2em;
+  width: 100%;
+  margin-top: 2.8em;
+}
+
+#UploadButtons button {
+  position: relative;
+  /* border: 1px solid yellow; */
+  display: inline-block;
+  background-color: transparent;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 12px;
+  height: 2.9em;
+  width: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 1em;
+  color: #cacaca;
+  border: 0.1em solid #cacaca;
+}
+
+#uploadIMG {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: #e2e2e2;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 12px;
+  border: 0.1em solid #999999;
+  height: 100%;
+  width: 100px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 1em;
+  color: #cacaca;
+  border: 0.1em solid #cacaca;
+}
+
+#uploadIMG:hover,
+#UploadButtons button:hover {
+  cursor: pointer;
+  color: #e2e2e2;
+  border: 0.1em solid #e4e4e4;
+}
+
+#uploadIMG:active,
+#UploadButtons button:active {
+  cursor: pointer;
+  color: white;
+  border: 0.1em solid white;
+}
+
+#IMG_Border {
+  position: relative;
+  border: 2px solid #5b5b5b;
+  height: 5em;
+  width: 5em;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  overflow: hidden;
+  margin-top: 0.7em;
+  margin-bottom: .2em;
+}
+
+#uploadIMGPresent {
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 5em;
+  width: 5em;
+  border-radius: 50%;
+}
+
+.hidden {
+  display: none;
+}
+
+#failed {
+  background-color: rgba(41, 1, 1, 0.5);
+}
+
+#dotdotLoader,
+#dotdotLoader:before,
+#dotdotLoader:after {
+  border-radius: 50%;
+  width: 2.5em;
+  height: 2.5em;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation: load7 1.8s infinite ease-in-out;
+  animation: load7 1.8s infinite ease-in-out;
+}
+
+#dotdotLoader {
+  color: #eaeaea;
+  font-size: 10px;
+  margin: 80px auto;
+  position: absolute;
+  top: -160px;
+  z-index: 999;
+  text-indent: -9999em;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+#dotdotLoader:before,
+#dotdotLoader:after {
+  content: "";
+  position: absolute;
+  top: 0;
+}
+
+#dotdotLoader:before {
+  left: -3.5em;
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+#dotdotLoader:after {
+  left: 3.5em;
+}
+
+@-webkit-keyframes load7 {
+  0%,
+  80%,
+  100% {
+    -webkit-box-shadow: 0 2.5em 0 -1.3em;
+            box-shadow: 0 2.5em 0 -1.3em;
+  }
+  40% {
+    -webkit-box-shadow: 0 2.5em 0 0;
+            box-shadow: 0 2.5em 0 0;
+  }
+}
+
+@keyframes load7 {
+  0%,
+  80%,
+  100% {
+    -webkit-box-shadow: 0 2.5em 0 -1.3em;
+            box-shadow: 0 2.5em 0 -1.3em;
+  }
+  40% {
+    -webkit-box-shadow: 0 2.5em 0 0;
+            box-shadow: 0 2.5em 0 0;
+  }
+}
+
+.ul-img-backdrop {
+  -webkit-animation: ul-img-fade-in 0.1s ease-in;
+  animation: ul-img-fade-in 0.1s ease-in;
+}
+
+@-webkit-keyframes ul-img-fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes ul-img-fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/*# sourceMappingURL=UploadImage.css.map */

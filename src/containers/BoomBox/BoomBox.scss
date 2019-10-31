@@ -1,0 +1,27 @@
+.BoomBox {
+    position: relative;
+    height: 1px;
+    margin-top: 20px;
+    top: 20px;
+
+    /* border: 2px solid black; */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+.StationContainer {
+    height: 1px;
+    /* border: 2px solid yellow; */
+    padding-top: 10px; 
+    position: relative;
+    right: 18px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+}
+

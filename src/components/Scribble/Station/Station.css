@@ -1,0 +1,72 @@
+.Station {
+  margin: 8px;
+}
+
+.Station img {
+  background: transparent;
+  display: block;
+  opacity: .5;
+}
+
+.Station img:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+  cursor: pointer;
+  opacity: 1;
+}
+
+.Station img:active {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+.Station #dilla {
+  height: 110px;
+}
+
+.Station #boombap {
+  height: 100px;
+  position: relative;
+  bottom: 8px;
+}
+
+.Station #lofi {
+  height: 58px;
+  position: relative;
+  bottom: 9px;
+}
+
+.Station #chillhop {
+  height: 48px;
+  position: relative;
+  bottom: 10px;
+  left: 25px;
+}
+
+@media (min-width: 600px) and (min-height: 600px) {
+  .Station #dilla {
+    height: 130px;
+    margin-top: 20px;
+    margin-left: 3px;
+    margin-right: 3px;
+  }
+  .Station #boombap {
+    height: 120px;
+    margin-top: 20px;
+    margin-left: 3px;
+    margin-right: 3px;
+  }
+  .Station #lofi {
+    height: 78px;
+    margin-top: 20px;
+    margin-left: 3px;
+    margin-right: 3px;
+  }
+  .Station #chillhop {
+    margin-top: 20px;
+    height: 68px;
+    margin-left: 3px;
+    margin-right: 3px;
+  }
+}
+/*# sourceMappingURL=Station.css.map */

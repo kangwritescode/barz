@@ -1,0 +1,125 @@
+.WordNavItem {
+    position: relative;
+    z-index: 100;
+    margin: 2px;
+    width: auto;
+    padding-left: 12px; 
+    padding-right: 15px;
+    height: 27.5px;
+    /* border: 1px solid white; */
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    background-color: rgba(250, 235, 215, 0.05);
+
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}
+
+.WordNavItemContainer {
+    /* border: 1px solid pink; */
+    height: 90%;
+    display: block;
+    
+}
+
+.WordNavItem:hover {
+    cursor: pointer;
+    background-color: rgba(250, 235, 215, 0.105);
+}
+.WordNavItem:active {
+    cursor: pointer;
+    background-color: rgba(250, 235, 215, 0.185);
+}
+
+.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    color: white;
+    pointer-events: none;
+}
+
+.arrow {
+    border: solid rgb(255, 255, 255);
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 2px;
+    position: relative;
+    bottom: 1px;
+    left: 5px;
+    color: white;
+    pointer-events: none;
+
+}
+
+.dropdown {
+
+    /* border: 1px solid yellow; */
+    position: absolute;
+    list-style-type: decimal;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    /* padding-left: 2px; */
+    /* padding-right: 15px; */
+    display: none;
+    z-index: 999;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: rgba(0, 0, 0, 0.804);
+
+    border-radius: 4px;
+    max-height: 400PX;
+    overflow: auto;
+    /* max-width: 90%;*/
+    overflow-x: hidden; 
+
+}
+.dropdown::-webkit-scrollbar {
+    width: 5px;
+  }
+
+.dropdown::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+
+
+
+.dropdown .item {
+    /* border: 1px solid blue; */
+    width: 121px;
+    height: 27.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(250, 235, 215, 0.057);
+    margin: 4px;
+    position: relative;
+
+
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}
+
+.dropdown .item:hover {
+    cursor: pointer;
+    background-color: rgba(152, 152, 152, 0.18);
+
+}
+.dropdown .item:active {
+    cursor: pointer;
+    background-color: rgba(250, 235, 215, 0.185);
+
+}
+
+.show {
+    display: block;
+}
+

@@ -1,0 +1,56 @@
+$border-color: rgb(219, 219, 219);
+
+@mixin flex-centered($direction) {
+     display: flex;
+     flex-direction: $direction;
+     align-items: center;
+     justify-content: center;
+}
+.likes {
+     min-height: 2.4em;
+     border-top: 1px solid $border-color;
+     border-bottom: 1px solid $border-color;
+     @include flex-centered(row);
+     font-family: "permanent marker";
+
+     .fire-icon-container {
+          width: 1.9em;
+          height: 100%;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: flex-end;
+          cursor: pointer;
+
+          .likes-icon {
+               font-size: 1.2em;
+               color: rgb(150, 150, 150);
+          }
+          .lit-up {
+               color: red;
+          }
+     }
+
+     .total-score {
+          @include flex-centered(row);
+          border-right: 1px solid $border-color;
+          color: rgba(0, 0, 0, 0.774);
+          height: 80%;
+          width: 52%;
+          font-size: 0.9em;
+          letter-spacing: 0.08em;
+          position: relative;
+          right: 0.3em;
+          cursor: pointer;
+     }
+     .fans {
+          font-size: 0.9em;
+          color: rgba(0, 0, 0, 0.774);
+          letter-spacing: 0.06em;
+          height: 80%;
+          width: 36%;
+          padding-right: 0.2em;
+          cursor: pointer;
+          @include flex-centered(column);
+     }
+}

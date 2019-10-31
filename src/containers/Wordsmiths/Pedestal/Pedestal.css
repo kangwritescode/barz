@@ -1,0 +1,396 @@
+.Pedestal {
+  position: relative;
+  /* border: 1px solid rgb(167, 167, 167); */
+  background-color: rgba(0, 0, 0, 0.664);
+  border: 1px solid rgba(255, 255, 255, 0.137);
+  border-radius: 3px;
+  height: 330px;
+  display: block;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  color: rgba(255, 255, 255, 0.836);
+  font-family: "Rock Salt", cursive;
+  font-size: 10px;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.Pedestal .fetching {
+  opacity: 0;
+  /* transform: scale(.9); */
+  -webkit-transition: all .1s ease-in;
+  transition: all .1s ease-in;
+}
+
+#Pedestal-Header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.548);
+  font-size: 20px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  letter-spacing: 1.3px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.39);
+}
+
+.spotlight-block {
+  position: relative;
+  height: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  opacity: 1;
+  /* transform: scale(1); */
+  -webkit-transition: all .1s ease-in;
+  transition: all .1s ease-in;
+}
+
+.Pedestal .fetching {
+  opacity: 0;
+  /* transform: scale(.9); */
+  -webkit-transition: all .1s ease-in;
+  transition: all .1s ease-in;
+}
+
+.spotlight-username {
+  position: relative;
+  top: -22px;
+  font-size: 28px;
+  letter-spacing: 1px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.spotlight-details {
+  position: relative;
+  top: -20px;
+  letter-spacing: 1px;
+  font-size: 13px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.spotlight-photo-container {
+  position: absolute;
+  z-index: 998;
+  height: 70px;
+  width: 70px;
+  bottom: -32px;
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.spotlight-photo {
+  z-index: 999;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+#spotlight-block-one {
+  position: relative;
+  height: 135px;
+  background-color: rgba(0, 0, 56, 0.144);
+}
+
+#spotlight-block-two {
+  position: relative;
+  height: 100px;
+  background-color: rgba(255, 255, 255, 0.051);
+}
+
+#spotlight-block-three {
+  position: relative;
+  height: 43px;
+  bottom: 0px;
+  background-color: rgba(255, 255, 255, 0.09);
+}
+
+.spotlight-stats-container {
+  position: relative;
+  top: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: 72%;
+}
+
+.stat-holder {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.handle-and-pop-wrapper {
+  position: relative;
+}
+
+.spotlight-handles-container {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  width: 100%;
+}
+
+.handle-container {
+  position: relative;
+  height: 23px;
+  width: 23px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.233);
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  opacity: .4;
+}
+
+.handle-container:hover {
+  cursor: pointer;
+  opacity: .6;
+}
+
+.stat {
+  letter-spacing: 1px;
+}
+
+.stat-value {
+  font-size: 12px;
+  font-family: 'Rock Salt';
+}
+
+.spotlight-fb {
+  background-color: #0000a5;
+  position: relative;
+  top: -1px;
+  height: 26px;
+  width: 27px;
+}
+
+.spotlight-ig {
+  position: relative;
+  height: 25px;
+  width: 25px;
+  background-image: -webkit-gradient(linear, left top, right bottom, from(#8a3ab9), color-stop(#bc2a8d), to(#FFDC80));
+  background-image: linear-gradient(to bottom right, #8a3ab9, #bc2a8d, #FFDC80);
+}
+
+.spotlight-yt {
+  background-color: black;
+  position: relative;
+  height: 23px;
+  width: 23x;
+}
+
+.spotlight-sc {
+  background-color: #0000a5;
+  position: relative;
+  height: 26px;
+  width: 27px;
+}
+
+.lds-ellipsis {
+  display: inline-block;
+  position: absolute;
+  left: 90px;
+  top: 66px;
+  width: 64px;
+  height: 64px;
+  opacity: 0;
+  -webkit-animation: ellipsis-in .3s ease-in .4s forwards;
+          animation: ellipsis-in .3s ease-in .4s forwards;
+}
+
+@-webkit-keyframes ellipsis-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes ellipsis-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.lds-ellipsis div {
+  position: absolute;
+  top: 27px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #fff;
+  -webkit-animation-timing-function: cubic-bezier(0, 1, 1, 0);
+          animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.lds-ellipsis div:nth-child(1) {
+  left: 6px;
+  -webkit-animation: lds-ellipsis1 0.6s infinite;
+          animation: lds-ellipsis1 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(2) {
+  left: 6px;
+  -webkit-animation: lds-ellipsis2 0.6s infinite;
+          animation: lds-ellipsis2 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(3) {
+  left: 26px;
+  -webkit-animation: lds-ellipsis2 0.6s infinite;
+          animation: lds-ellipsis2 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(4) {
+  left: 45px;
+  -webkit-animation: lds-ellipsis3 0.6s infinite;
+          animation: lds-ellipsis3 0.6s infinite;
+}
+
+@-webkit-keyframes lds-ellipsis1 {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes lds-ellipsis1 {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@-webkit-keyframes lds-ellipsis3 {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+}
+
+@keyframes lds-ellipsis3 {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+}
+
+@-webkit-keyframes lds-ellipsis2 {
+  0% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  100% {
+    -webkit-transform: translate(19px, 0);
+            transform: translate(19px, 0);
+  }
+}
+
+@keyframes lds-ellipsis2 {
+  0% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  100% {
+    -webkit-transform: translate(19px, 0);
+            transform: translate(19px, 0);
+  }
+}
+/*# sourceMappingURL=Pedestal.css.map */

@@ -1,0 +1,230 @@
+@import url("https://fonts.googleapis.com/css?family=Beth+Ellen|Noto+Sans&display=swap");
+#dict-modal-backdrop {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: 500;
+  background-color: rgba(0, 0, 0, 0.61);
+  -webkit-animation: modal-fade-in 0.1s ease-in;
+          animation: modal-fade-in 0.1s ease-in;
+}
+
+#dict-modal-body {
+  position: fixed;
+  left: 15%;
+  bottom: 15%;
+  z-index: 501;
+  height: 25em;
+  width: 28em;
+  background-color: #080808;
+  border: 0.1em solid rgba(255, 255, 255, 0.048);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  /* padding-bottom: 5em; */
+  border-radius: 0.5em;
+  animation: dict-body-fade-in 0.2s ease-in;
+  -webkit-animation: dict-body-fade-in 0.2s ease-in;
+}
+
+#dict-modal-body-content {
+  position: relative;
+  width: 25em;
+  height: 100%;
+  overflow: auto;
+}
+
+#dict-sugg-modal-body {
+  position: fixed;
+  left: 17%;
+  bottom: 25%;
+  z-index: 501;
+  height: auto;
+  width: auto;
+  background-color: #080808;
+  border: 0.1em solid rgba(255, 255, 255, 0.048);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 3em;
+  overflow: auto;
+  border-radius: 0.5em;
+  animation: dict-body-fade-in 0.2s ease-in;
+  -webkit-animation: dict-body-fade-in 0.2s ease-in;
+}
+
+#dict-modal-body-content::-webkit-scrollbar {
+  width: 5px;
+}
+
+#dict-modal-body-content::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+@keyframes dict-body-fade-in {
+  0% {
+    opacity: 0;
+    /* transform: scale(1.2); */
+  }
+  100% {
+    opacity: 1;
+    /* transform: scale(1); */
+  }
+}
+
+@-webkit-keyframes dict-body-fade-in {
+  0% {
+    opacity: 0;
+    /* transform: scale(1.2); */
+  }
+  100% {
+    opacity: 1;
+    /* transform: scale(1); */
+  }
+}
+
+/* 
+font-family: 'Beth Ellen', cursive;
+font-family: 'Noto Sans', sans-serif; */
+#word-title {
+  font-family: "Rock Salt", cursive;
+  color: #f0f0f0;
+  font-size: 2em;
+  position: relative;
+}
+
+#dict-line-divider {
+  position: relative;
+  border: 0.07em solid rgba(255, 255, 255, 0.534);
+  width: 85%;
+  top: -0.6em;
+}
+
+#word-type {
+  font-family: "Beth Ellen", cursive;
+  font-size: 1.3em;
+  color: #007194;
+  position: relative;
+}
+
+#definitions-list {
+  font-family: "Noto Sans", sans-serif;
+  font-size: 0.8em;
+  margin-top: 0em;
+  color: #f1f1f1;
+}
+
+#short-def {
+  margin-top: 0.5em;
+}
+
+#definitions-container {
+  width: 90%;
+}
+
+.close-dict-modal-wrapper {
+  position: relative;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  height: 2em;
+}
+
+#close-dict-modal {
+  position: relative;
+  color: #d1d1d1;
+  cursor: pointer;
+  right: .7em;
+  top: .7em;
+}
+
+#close-dict-modal:hover {
+  cursor: pointer;
+}
+
+#suggestions-wrapper {
+  position: relative;
+  top: 0em;
+  bottom: 0em;
+  left: 0em;
+  right: 0em;
+  height: 100%;
+  width: 100%;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#sorry {
+  font-family: 'rock salt', cursive;
+  font-size: 1.2em;
+}
+
+#wrong-word {
+  color: #055c8f;
+}
+
+#did-you-mean {
+  font-family: 'rock salt', cursive;
+}
+
+#close-dict-sugg-modal {
+  position: absolute;
+  color: #e0e0e0;
+  top: .6em;
+  right: .7em;
+  cursor: pointer;
+}
+
+/* 
+
+<div id="suggestions-wrapper">
+<div id="sorry">Sorry, nothing for '{this.props.theWord}'.</div>
+<div id='did-you-mean'>Did you mean:</div>
+<div id='suggestions-list'>
+    {response.map(word => {
+        return <span>{word} </span>
+    })}
+</div>
+</div> */
+/*# sourceMappingURL=DictModal.css.map */

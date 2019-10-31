@@ -1,0 +1,259 @@
+@import url("https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Beth+Ellen|Noto+Sans&display=swap");
+.my-bars {
+  position: relative;
+  height: 100%;
+  width: 39em;
+  border-radius: 0.3em;
+  background-color: rgba(0, 0, 0, 0.568);
+  border: 0.1em solid rgba(255, 255, 255, 0.055);
+  overflow: hidden;
+}
+
+#mybars-compressed {
+  width: 4em;
+  -webkit-transition: width 0.5s;
+  transition: width 0.5s;
+}
+
+#mybars-expanded {
+  width: 42em;
+  -webkit-transition: width 0.5s;
+  transition: width 0.5s;
+}
+
+.my-bars-widget-header {
+  position: relative;
+  height: 2em;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.705);
+  border-bottom: 0.1em solid rgba(255, 255, 255, 0.63);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  color: white;
+  font-size: 1.1em;
+  letter-spacing: 0.14em;
+}
+
+#my-bars-header-compressed {
+  height: 2em;
+  background-color: rgba(0, 0, 0, 0.705);
+  color: white;
+  font-size: 1.1em;
+  -webkit-transition: height 0.5s;
+  transition: height 0.5s;
+}
+
+#my-bars-header-expanded {
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.24);
+  color: rgba(255, 255, 255, 0.568);
+  font-size: 0.7em;
+  -webkit-transition: height 0.8s;
+  transition: height 0.8s;
+  -webkit-transition-delay: 0.1s;
+          transition-delay: 0.1s;
+}
+
+#my-bars-header-expanded:hover {
+  background-color: rgba(0, 0, 0, 0.473);
+  color: rgba(255, 255, 255, 0.856);
+  cursor: pointer;
+}
+
+.a-post {
+  position: relative;
+  margin: 1.2em;
+  height: 9.5em;
+  width: 9.5em;
+  background-color: rgba(1, 14, 20, 0.459);
+  color: rgba(255, 255, 255, 0.685);
+  padding: 2em;
+  font-size: 0.8em;
+  font-family: "Noto Sans", sans-serif;
+  overflow: hidden;
+  border-radius: 0.4em;
+  line-height: 1.5em;
+  letter-spacing: 0.1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.a-post p {
+  width: 9.5em;
+  vertical-align: middle;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+.a-post:hover {
+  cursor: pointer;
+}
+
+.a-post:hover #likes-overlay {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#likes-overlay {
+  z-index: 100;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: none;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: rgba(0, 0, 0, 0.521);
+  color: white;
+  font-size: 1.3em;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  pointer-events: none;
+}
+
+.posts-container {
+  position: relative;
+  width: auto;
+  padding-top: 1em;
+  padding-bottom: 2em;
+  top: 0em;
+  left: 0em;
+  right: 0em;
+  height: calc(100% - 6em);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  overflow: auto;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.posts-container div:nth-last-child(2n + 0) {
+  background-color: rgba(1, 14, 20, 0.459);
+}
+
+.posts-container div:nth-last-child(2n + 1) {
+  background-color: rgba(2, 24, 34, 0.459);
+}
+
+.posts-container::-webkit-scrollbar {
+  width: 0.35em;
+}
+
+.posts-container::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+#the-date {
+  background-color: rgba(255, 0, 0, 0);
+  color: #e4af00;
+  font-family: "Permanent Marker", cursive;
+  font-size: 1.22em;
+  letter-spacing: 0.001em;
+}
+
+#month-header {
+  position: relative;
+  /* bottom: -2em; */
+  padding-top: 1.5em;
+  padding-bottom: .2em;
+  width: 86%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: transparent;
+  font-family: 'beth ellen', cursive;
+  font-size: 1.1em;
+  letter-spacing: .1em;
+  color: #dbdbdb;
+  -webkit-box-pack: baseline;
+      -ms-flex-pack: baseline;
+          justify-content: baseline;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  /* border: 1px solid pink; */
+}
+
+#my-bars-flame {
+  position: relative;
+  margin-right: .2em;
+}
+
+#posts-container-opaque {
+  opacity: 1;
+  -webkit-transition: opacity .5s;
+  transition: opacity .5s;
+  -webkit-transition-delay: .5s;
+          transition-delay: .5s;
+}
+
+#posts-container-transparent {
+  opacity: 0;
+  -webkit-transition: all .1s;
+  transition: all .1s;
+}
+
+#opening-post-spinner {
+  position: absolute;
+  z-index: 999;
+  top: -6.5em;
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  margin: 100px auto;
+  border-radius: 100%;
+  -webkit-animation: sk-scaleout 1s infinite ease-in-out;
+  animation: sk-scaleout 1s infinite ease-in-out;
+}
+
+@-webkit-keyframes sk-scaleout {
+  0% {
+    -webkit-transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes sk-scaleout {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+/*# sourceMappingURL=MyBars.css.map */

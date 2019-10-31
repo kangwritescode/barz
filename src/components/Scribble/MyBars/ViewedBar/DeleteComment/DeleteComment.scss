@@ -1,0 +1,165 @@
+#delete-comment-wrapper {
+    position: fixed;
+    top: 0em;
+    left: 0em;
+    right: 0em;
+    bottom: 0em;
+    z-index: 900;
+    /* border: 2px solid white; */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: fade-in .2s;
+}
+#delete-comment-backdrop {
+  position: fixed;
+  top: 0em;
+  left: 0em;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.466);
+
+  position: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#delete-comment-body {
+    padding-top: .8em;
+    position: fixed;
+    height: auto;
+    width: auto;
+    padding: 3.5em;
+    padding-bottom: 2.5em;
+    background-color: rgb(236, 236, 236);
+    border-radius: .3em;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    animation: drop-in .1s ease-in;
+}
+
+@keyframes drop-in {
+    0% {
+        opacity: 0;
+        transform: scale(1.3);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+#close-delete-comment-x {
+    position: absolute;
+    right: .5em;
+    top: .5em;
+    cursor: pointer;
+}
+
+#delete-comment-header {
+    font-size: 2em;
+    letter-spacing: .05em;
+}
+
+#delete-comment-question {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: .5em;
+}
+#delete-comment-button-container {
+    margin-top: 2.5em;
+    display: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-comment-button {
+    position: relative;
+    margin-top: .5em;
+    border-radius: .1em;
+    height: 2.1em;
+    width: 6.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: .4em;
+    margin-right: .4em;
+    cursor: pointer;
+}
+
+#cancel-button {
+    background-color: grey;
+
+}
+#delete-button {
+    background-color: rgb(44, 1, 1);
+    color: white;
+}
+
+#cancel-button:hover {
+    background-color: rgb(141, 141, 141);
+
+}
+#delete-button:hover {
+    background-color: rgb(65, 2, 2);
+}
+
+#cancel-button:active {
+    background-color: rgb(163, 163, 163);
+
+}
+#delete-button:active {
+    background-color: rgb(80, 6, 6);
+}
+
+
+
+
+
+#delete-comment-spinner {
+    
+    position: absolute;
+    left: 9.6em;
+    top: -10em;
+    width: 40px;
+    height: 40px;
+    margin: 100px auto;
+    background-color: rgb(226, 226, 226);
+    border-radius: 100%;
+    -webkit-animation: sk-scaleout 1s infinite ease-in-out;
+    animation: sk-scaleout 1s infinite ease-in-out;
+  }
+  
+  @-webkit-keyframes sk-scaleout {
+    0% {
+      -webkit-transform: scale(0);
+    }
+    100% {
+      -webkit-transform: scale(1);
+      opacity: 0;
+    }
+  }
+  
+  @keyframes sk-scaleout {
+    0% {
+      -webkit-transform: scale(0);
+      transform: scale(0);
+    }
+    100% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+      opacity: 0;
+    }
+  }
+  

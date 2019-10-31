@@ -1,0 +1,27 @@
+* {
+  /* border: 1px solid white; */
+}
+
+.App {
+  /* position: absolute;
+  height: 100%;
+  width: 100%; */
+}
+
+.ReactAudioPlayer {
+  z-index: 0;
+}
+
+.Circle {
+  border-radius: 50%;
+}
+
+.AlignCenterVerticle {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  justify-content: center;
+}
+
+

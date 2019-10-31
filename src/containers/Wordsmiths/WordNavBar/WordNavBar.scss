@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css?family=Alike+Angular|Press+Start+2P&display=swap');
+.WordNavBar {
+    position: fixed;
+    top: 6.2em;
+    height: 35px;
+    width: 100%;
+    right: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.242);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.845);
+    font-family: 'Alike Angular', serif;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 8px;
+    z-index: 999;
+
+}
+
+.WordNavSectionContainer {
+    width: auto;
+    height: inherit;
+    /* border: 1px solid white; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.SortContainer {
+    width: auto;
+    margin-right: 20px;
+    height: inherit;
+    /* border: 1px solid pink; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.FilterContainer {
+    margin-left: 20px;
+    width: auto;
+    height: inherit;
+    /* border: 1px solid blue; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.ConsiderContainer {
+    margin-left: 20px;
+    margin-right: 20px;
+    width: auto;
+    height: inherit;
+    /* border: 1px solid blue; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#sort {
+    color: rgba(250, 250, 250, 0.872);
+
+}
+
+#filter {
+    color: rgba(255, 255, 255, 0.872);
+}
+
+
+
+
+
+
+@media screen and ( max-width : 38em ) {
+    .FilterContainer {
+        display: none;
+    }
+}

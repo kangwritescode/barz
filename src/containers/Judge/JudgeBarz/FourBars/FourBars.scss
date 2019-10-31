@@ -1,0 +1,371 @@
+
+.toJudge {
+    position: relative;
+    z-index: 40;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  
+  .judge-content-container {
+    position: fixed;
+    top: 5em;
+    left: 0em;
+    right: 0em;
+    bottom: 0em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  
+  .judge-lines {
+    position: relative;
+    padding-top: 1em;
+    height: 35em;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    transition: all .3s;
+    /* border: 1px solid yellow; */
+  }
+  
+  #judgeErrMsg {
+    height: auto;
+    width: auto;
+    padding: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    border-radius: 0.2em;
+    background-color: rgba(51, 2, 2, 0.527);
+    z-index: 11;
+    /* top: 2em; */
+    position: absolute;
+    color: rgb(216, 216, 216);
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    font-size: 1.5em;
+    animation: scale-and-fade-in-out 2s;
+    animation-timing-function: ease-in-out;
+    opacity: 0;
+  }
+  
+  .judge-line {
+    /* border: 1px solid rgb(0, 0, 0); */
+    position: relative;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.434);
+    /* margin: 30px; */
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: center;
+    font-family: "Rock Salt", cursive;
+    font-size: 1em;
+    letter-spacing: -1.2px;
+    word-spacing: 2px;
+    color: #000000f7;
+    font-weight: normal;
+    font-variant: normal;
+  
+    -webkit-backface-visibility: hidden;
+     -moz-backface-visibility: hidden;
+     backface-visibility: hidden;
+     -webkit-perspective: 1000;
+     -moz-perspective: 1000;
+     perspective: 1000;
+  }
+  .judge-buttons {
+    transition: all .3s;
+    top: -1.3em;
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    /* border: 1px solid yellow; */
+    width: 400px;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  #pop-in-left {
+    transform: translateX(0px);
+    animation: pop-in-left 0.5s ease;
+  }
+  
+  #pop-out-right {
+    transform: translateX(0px);
+    animation: pop-out-right 0.7s ease;
+  }
+  
+  #pop-in-right {
+    transform: translateX(0px);
+    animation: pop-in-right 0.5s ease;
+  }
+  
+  #pop-out-left {
+    transform: translateX(0px);
+    animation: pop-out-left 0.7s ease;
+  }
+  
+  @keyframes pop-in-left {
+    0% {
+      transform: translateX(505px);
+      opacity: 0;
+    }
+    70% {
+      transform: translateX(-5px);
+    }
+    100% {
+      transform: translateX(0px);
+    }
+  }
+  @keyframes pop-out-left {
+    0% {
+      transform: translateX(0px);
+      opacity: 1;
+    }
+    40% {
+      transform: translateX(5px);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(-550px);
+      opacity: 0;
+    }
+  }
+  
+  @keyframes pop-in-right {
+    0% {
+      transform: translateX(-505px);
+      opacity: 0;
+    }
+    70% {
+      transform: translateX(5px);
+    }
+    100% {
+      transform: translateX(0px);
+    }
+  }
+  @keyframes pop-out-right {
+    0% {
+      transform: translateX(0px);
+      opacity: 1;
+    }
+    40% {
+      transform: translateX(-5px);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(550px);
+      opacity: 0;
+    }
+  }
+  
+  #judgeFire {
+    border-top: 1px solid black;
+    width: 38%;
+    height: 40px;
+    margin-right: 22px;
+    text-align: center;
+  }
+  
+  #judgeFire:hover {
+    cursor: pointer;
+  }
+  
+  #next-button {
+    border-top: 1px solid black;
+    width: 38%;
+    height: 40px;
+    margin-left: 22px;
+    text-align: center;
+  }
+  
+  #next-button:hover {
+    cursor: pointer;
+  }
+  
+  #divider-line {
+    width: 1px;
+    height: 35px;
+    margin-top: 10px;
+    border-left: 1px solid black;
+  }
+  
+  .judgeItems {
+    border: 1px solid yellow;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .judge-button {
+    display: inline-block;
+    height: 70px;
+    width: 70px;
+    top: -15px;
+    right: -135px;
+    border-radius: 50%;
+    border: 0px;
+    background-color: rgba(0, 0, 0, 0.247);
+  }
+  
+  #the-next-button {
+    display: inline-block;
+    justify-content: space-around;
+    text-align: center;
+  }
+  
+  #next-icon {
+    position: relative;
+    font-size: 30pt;
+    bottom: 4px;
+    left: 1px;
+  }
+  #prev-icon {
+    position: relative;
+    font-size: 30pt;
+    bottom: 4px;
+    left: -1px;
+  }
+  
+  #flame {
+    font-size: 20px;
+  }
+  #trash-icon {
+    font-size: 17px;
+  }
+  #fire-button:active {
+    color: orange;
+  }
+  #trash-button:hover {
+    background-color: rgba(0, 0, 0, 0.386);
+  }
+  #trash-button:active {
+    color: rgb(128, 0, 0);
+  }
+  #the-next-button:hover {
+    background-color: rgba(0, 0, 0, 0.386);
+    color: rgba(255, 255, 255, 0.537);
+  }
+  #prev-button:hover {
+    background-color: rgba(0, 0, 0, 0.386);
+    color: rgba(255, 255, 255, 0.537);
+  }
+  
+  #fire-button {
+    animation: fadeInOne 0.95s linear;
+  }
+  #the-next-button {
+    animation: fadeInOne 0.9s linear;
+    color: #ffffff27;
+  }
+  #prev-button {
+    animation: fadeInOne 0.8s linear;
+    color: #ffffff27;
+  }
+  #trash-button {
+    animation: fadeInOne 0.85s linear;
+  }
+  
+  #fire-button:active {
+    transform: scale(0.96);
+  }
+  #trash-button:active {
+    transform: scale(0.96);
+  }
+  #the-next-button:active {
+    transform: scale(0.96);
+  }
+  #prev-button:active {
+    transform: scale(0.96);
+  }
+  
+  @keyframes fadeInOne {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+    70% {
+      transform: scale(0);
+      opacity: 0;
+    }
+    90% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  .lit-up {
+    color: orange;
+  }
+  .lit-trash {
+    color: rgb(128, 0, 0);
+  }
+  
+  .filter-null-msg {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    letter-spacing: 2px;
+    height: auto;
+    width: auto;
+    border-radius: 4%;
+    padding: 20px;
+    font-size: 20px;
+    background-color: rgba(0, 0, 0, 0.493);
+    color: rgba(199, 199, 199, 0.795);
+    animation: null-pop-in 0.7s ease-in;
+  }
+  
+  @keyframes null-pop-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+
+#judge-buttons-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+  }
+  
+  .hidden {
+    opacity: 0;
+  }
+  
+  @media screen and (max-width: 44em) {
+    .judge-line {
+      font-size: 0.8em;
+      transition: all .3s;
+    }
+    .judge-button {
+      display: inline-block;
+      height: 5.2em;
+      width: 5.2em;
+      transition: width, height .3s;
+  
+    }
+    .judge-buttons {
+      width: 20em;
+      transition: width, height .3s;
+  
+    }
+    
+  
+  }
+  

@@ -1,0 +1,63 @@
+.ButtonContainer {
+  height: auto;
+  width: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  /* border: 1pt solid black; */
+  position: relative;
+  margin-right: 10px;
+  /* cursor: pointer; */
+}
+
+.ButtonContainer button {
+  background-color: rgba(240, 248, 255, 0);
+  padding: 0;
+  border: none;
+  background: none;
+  /* relating to font */
+  font-family: Impact, Charcoal, sans-serif;
+  font-size: 20px;
+  letter-spacing: -0.8px;
+  word-spacing: 0.6px;
+  color: #000000;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+  cursor: pointer;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+
+button:focus {
+  outline: 0;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+@media (min-width: 546px) {
+  .ButtonContainer button {
+    font-size: 25px;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+  }
+}
+
+@media (min-width: 630px) {
+  .ButtonContainer button {
+    font-size: 30px;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+  }
+}
+/*# sourceMappingURL=NavItem.css.map */

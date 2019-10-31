@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,eAAe,CAAC;EACZ;;;;;;;;8BAQ0B;CAC7B;;AAID,AAAA,aAAa,CAAC;EACV,OAAO,EAAE,CAAC;EACV,QAAQ,EAAE,KAAK;EACf,UAAU,EAAE,sBAAsB;EAClC,IAAI,EAAE,GAAG;EACT,KAAK,EAAE,GAAG;EACV,GAAG,EAAE,GAAG;EACR,MAAM,EAAE,GAAG;CACZ",
+    "sources": [
+        "Judge.scss"
+    ],
+    "names": [],
+    "file": "Judge.css"
+}

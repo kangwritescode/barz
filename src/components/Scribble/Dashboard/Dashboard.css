@@ -1,0 +1,19 @@
+.Dashboard {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  top: 50px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+}
+/*# sourceMappingURL=Dashboard.css.map */
