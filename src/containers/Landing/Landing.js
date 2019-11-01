@@ -6,7 +6,7 @@ import RegForm from './RegForm/RegForm'
 
 export default function Landing() {
 
-    var [isReg, updateReg] = useState(false)
+    var [isReg, updateReg] = useState(true)
 
     // header-text 
     var blurOne = isReg ? 'blurOne' : null
@@ -19,7 +19,7 @@ export default function Landing() {
 
     var regForm = null;
     if (isReg) {
-        regForm = <RegForm />
+        regForm = <RegForm updateReg={updateReg}/>
     }
 
     return (

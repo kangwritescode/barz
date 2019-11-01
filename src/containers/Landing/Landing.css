@@ -237,8 +237,6 @@
 
 .content .header-wrapper .register-text-hidden {
   opacity: 0;
-  -webkit-transition: opacity 0.1s ease-in;
-  transition: opacity 0.1s ease-in;
 }
 
 .content .scribble-tut {
