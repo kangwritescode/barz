@@ -1,0 +1,84 @@
+.splash-navbar {
+  position: absolute;
+  z-index: 5;
+  top: 0em;
+  height: 4.5em;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.822);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.splash-navbar .logo {
+  position: relative;
+  z-index: 2;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  letter-spacing: 0.05em;
+  font-size: 2.8em;
+  left: 1.5em;
+}
+
+.splash-navbar .sign-in {
+  position: relative;
+  z-index: 1;
+  right: 3em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.splash-navbar .sign-in input {
+  background: black;
+  border: 1px solid rgba(255, 255, 255, 0.575);
+  border-radius: 5em;
+  height: 2.2em;
+  margin-right: 1.4em;
+  color: rgba(255, 255, 255, 0.877);
+  padding-left: 1.3em;
+  padding-bottom: .2em;
+}
+
+.splash-navbar .sign-in input:focus {
+  outline: none;
+}
+
+.splash-navbar .sign-in .log-in {
+  color: rgba(255, 255, 255, 0.664);
+  background: black;
+  border: 1px solid rgba(255, 255, 255, 0.603);
+  border-radius: 5em;
+  height: 2.6em;
+  width: 7em;
+}
+
+.splash-navbar .sign-in .pass-input-wrapper {
+  position: relative;
+}
+
+.splash-navbar .sign-in .pass-input-wrapper .forgot-password {
+  position: absolute;
+  cursor: pointer;
+  left: 1.1em;
+  bottom: -1.6em;
+  font-size: 7pt;
+  color: rgba(255, 255, 255, 0.342);
+}
+
+.splash-navbar .sign-in .pass-input-wrapper .forgot-password:hover {
+  color: rgba(255, 255, 255, 0.575);
+}
+
+.splash-navbar .sign-in .pass-input-wrapper .forgot-password:active {
+  color: rgba(255, 255, 255, 0.767);
+}
+/*# sourceMappingURL=LandingNav.css.map */
