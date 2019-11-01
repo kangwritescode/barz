@@ -138,14 +138,23 @@
   cursor: pointer;
 }
 
+.content .header-wrapper .register .close-regForm {
+  position: absolute;
+  top: 0.5em;
+  right: 1em;
+  color: rgba(255, 255, 255, 0.562);
+  font-family: "permanent marker";
+  font-size: 1.5em;
+}
+
 .content .header-wrapper .register:hover {
   border: 1px solid rgba(255, 255, 255, 0.637);
-  color: rgba(255, 255, 255, 0.699);
+  color: rgba(255, 255, 255, 0.767);
 }
 
 .content .header-wrapper .register:active {
   border: 1px solid rgba(255, 255, 255, 0.863);
-  color: rgba(255, 255, 255, 0.904);
+  color: white;
 }
 
 .content .header-wrapper .register:hover:before {
@@ -188,12 +197,26 @@
   position: relative;
   background-color: rgba(0, 0, 0, 0.856);
   width: 35em;
-  height: 37em;
+  height: 34em;
   border-radius: 2em;
-  color: rgba(255, 255, 255, 0);
+  border: 1px solid rgba(255, 255, 255, 0.377);
   top: -2em;
   -webkit-transition: color 0.3s ease-in, width 0.8s ease-in-out, height 0.8s ease-in-out 0.4s, top 0.7s ease-in;
   transition: color 0.3s ease-in, width 0.8s ease-in-out, height 0.8s ease-in-out 0.4s, top 0.7s ease-in;
+  cursor: default;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .content .header-wrapper .expanded:before {
@@ -204,9 +227,18 @@
   display: none;
 }
 
-.content .header-wrapper .expanded:hover,
-.content .header-wrapper .expanded :active {
-  color: rgba(255, 255, 255, 0);
+.content .header-wrapper .expanded:hover {
+  border: 1px solid rgba(255, 255, 255, 0.377);
+}
+
+.content .header-wrapper .expanded:active {
+  border: 1px solid rgba(255, 255, 255, 0.377);
+}
+
+.content .header-wrapper .register-text-hidden {
+  opacity: 0;
+  -webkit-transition: opacity 0.1s ease-in;
+  transition: opacity 0.1s ease-in;
 }
 
 .content .scribble-tut {

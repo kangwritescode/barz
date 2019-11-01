@@ -99,13 +99,22 @@ $break-small: 48em;
                padding-top: 0.637em;
                cursor: pointer;
 
+               .close-regForm {
+                    position: absolute;
+                    top: 0.5em;
+                    right: 1em;
+                    color: rgba(255, 255, 255, 0.562);
+                    font-family: "permanent marker";
+                    font-size: 1.5em;
+               }
+
                &:hover {
                     border: 1px solid rgba(255, 255, 255, 0.637);
-                    color: rgba(255, 255, 255, 0.699);
+                    color: rgba(255, 255, 255, 0.767);
                }
                &:active {
                     border: 1px solid rgba(255, 255, 255, 0.863);
-                    color: rgba(255, 255, 255, 0.904);
+                    color: rgb(255, 255, 255);
                }
                &:hover:before {
                     opacity: 1;
@@ -154,21 +163,29 @@ $break-small: 48em;
                position: relative;
                background-color: rgba(0, 0, 0, 0.856);
                width: 35em;
-               height: 37em;
+               height: 34em;
                border-radius: 2em;
-               color: rgba(255, 255, 255, 0);
+               border: 1px solid rgba(255, 255, 255, 0.377);
                top: -2em;
                transition: color 0.3s ease-in, width 0.8s ease-in-out, height 0.8s ease-in-out 0.4s, top 0.7s ease-in;
+               cursor: default;
+               @include flex-centered(column);
                &:before {
                     display: none;
                }
                &:after {
                     display: none;
                }
-               &:hover,
-               :active {
-                    color: rgba(255, 255, 255, 0);
+               &:hover {
+                    border: 1px solid rgba(255, 255, 255, 0.377);
                }
+               &:active {
+                    border: 1px solid rgba(255, 255, 255, 0.377);
+               }
+          }
+          .register-text-hidden {
+               opacity: 0;
+               transition: opacity 0.1s ease-in;
           }
      }
 
