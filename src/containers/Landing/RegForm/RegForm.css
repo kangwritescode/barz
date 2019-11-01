@@ -12,10 +12,19 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  color: white;
+  color: rgba(255, 255, 255, 0.87);
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   height: 100%;
   width: 100%;
+}
+
+.reg-form #reg-form-close {
+  position: absolute;
+  top: 1.2em;
+  right: 1.2em;
+  font-size: 1.3em;
+  color: rgba(255, 255, 255, 0.575);
+  cursor: pointer;
 }
 
 .reg-form .reg-header {
@@ -23,16 +32,32 @@
   color: rgba(255, 255, 255, 0.904);
   -webkit-margin-before: 0em;
           margin-block-start: 0em;
-  -webkit-margin-after: 0.2em;
-          margin-block-end: 0.2em;
+  -webkit-margin-after: 1em;
+          margin-block-end: 1em;
+}
+
+.reg-form .reg-detail {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  letter-spacing: .05em;
+  width: 19.6em;
+  top: -.2em;
 }
 
 .reg-form input {
-  background-color: black;
+  background-color: transparent;
   height: 2.5em;
-  width: 20em;
+  width: 18em;
   border-radius: 0.2em;
-  margin: 0.6em 0em;
+  margin: 0.64em 0em;
   border: 1px solid rgba(255, 255, 255, 0.582);
   padding: 0.3em 1em;
   color: white;
@@ -40,5 +65,15 @@
 
 .reg-form input:focus {
   outline: none;
+}
+
+.reg-form .continue-button {
+  background-color: transparent;
+  height: 3.3em;
+  width: 20.1em;
+  border-radius: 0.2em;
+  margin: 0.6em 0em;
+  border: 1px solid rgba(255, 255, 255, 0.432);
+  color: rgba(255, 255, 255, 0.438);
 }
 /*# sourceMappingURL=RegForm.css.map */
