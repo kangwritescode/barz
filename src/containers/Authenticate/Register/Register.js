@@ -31,8 +31,6 @@ class Register extends Component {
         var storage = firebase.storage()
         storage.ref('mysteryman/mysteryman.png').getDownloadURL()
             .then(url => {
-
-
                 var xhr = new XMLHttpRequest();
                 xhr.responseType = 'blob';
                 xhr.onload = event => {
@@ -84,7 +82,7 @@ class Register extends Component {
         }
         catch (err) {
             this.props.loginErrMsgHandler(err.message, false)
-            
+
             switch (err.code) {
                 case 'auth/invalid-email':
                     this.setState({
@@ -115,8 +113,8 @@ class Register extends Component {
                 default:
                     this.toggleProcessing(false)
                     break;
-                
-                
+
+
 
 
             }
@@ -133,7 +131,6 @@ class Register extends Component {
             .catch(err => {
                 throw err
             })
-
     }
 
 
@@ -182,32 +179,32 @@ class Register extends Component {
 
 
         return (
-                <form className="register-container">
-                   {this.state.processing ?  <div id='reg-dot-spinner'/> : null}
-                    <h1>Sign Up</h1>
-                    <input
-                        id={this.state.badField === "email" ? "Username-bad" : "Username"}
-                        type="email"
-                        placeholder={'email'}
-                        value={this.state.userInput}
-                        autoCorrect="off"
-                        spellCheck='false'
-                        autoComplete="off"
-                        onChange={(event) => this.userInputHandler(event)}></input>
-                    <input
-                        id={this.state.badField === "password" ? "Password-bad" : "Password"}
-                        type="password"
-                        placeholder={'password'}
-                        autoCorrect="off"
-                        spellCheck='false'
-                        value={this.state.encryptInput}
-                        onChange={event => this.passInputHandler(event)}
-                        autoComplete="off"></input>
-                    <button className={formIsValid && !this.state.processing ? 'reg-valid' : 'reg-invalid'} onClick={event => this.signUpHandler(event)} disabled={(!formIsValid || this.state.processing) ? true : false}>Create Account</button>
-                    <div className="BottomButtons">
-                        <button id="GoBack" onClick={event => this.props.toggleProcess('signup', event)}>Go Back</button>
-                    </div>
-                </form>
+            <form className="register-container">
+                {this.state.processing ? <div id='reg-dot-spinner' /> : null}
+                <h1>Sign Up</h1>
+                <input
+                    id={this.state.badField === "email" ? "Username-bad" : "Username"}
+                    type="email"
+                    placeholder={'email'}
+                    value={this.state.userInput}
+                    autoCorrect="off"
+                    spellCheck='false'
+                    autoComplete="off"
+                    onChange={(event) => this.userInputHandler(event)}></input>
+                <input
+                    id={this.state.badField === "password" ? "Password-bad" : "Password"}
+                    type="password"
+                    placeholder={'password'}
+                    autoCorrect="off"
+                    spellCheck='false'
+                    value={this.state.encryptInput}
+                    onChange={event => this.passInputHandler(event)}
+                    autoComplete="off"></input>
+                <button className={formIsValid && !this.state.processing ? 'reg-valid' : 'reg-invalid'} onClick={event => this.signUpHandler(event)} disabled={(!formIsValid || this.state.processing) ? true : false}>Create Account</button>
+                <div className="BottomButtons">
+                    <button id="GoBack" onClick={event => this.props.toggleProcess('signup', event)}>Go Back</button>
+                </div>
+            </form>
         )
     }
 }

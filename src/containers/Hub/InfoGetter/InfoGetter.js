@@ -154,7 +154,7 @@ class InfoGetter extends Component {
             // new profile information
 
             var username = this.state.username.toLowerCase()
-            console.log('lowercase username')
+            
             const toUpload = {
                 username: username,
                 address: {

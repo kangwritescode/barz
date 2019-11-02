@@ -6,7 +6,11 @@ import RegForm from './RegForm/RegForm'
 
 export default function Landing() {
 
+    // state
     var [isReg, updateReg] = useState(true)
+    var [showErr, setShowErr] = useState(false)
+    var [errMsg, setErrMsg] = useState('nuuu buggy buggy')
+
 
     // header-text 
     var blurOne = isReg ? 'blurOne' : null
@@ -19,11 +23,16 @@ export default function Landing() {
 
     var regForm = null;
     if (isReg) {
-        regForm = <RegForm updateReg={updateReg}/>
+        regForm = (
+        <RegForm 
+            updateReg={updateReg} 
+            setErrMsg={setErrMsg}
+            setShowErr={setShowErr}/>
+        )
     }
 
     return (
-        
+
         <div className='landing'>
             <div className='splash-video-overlay'></div>
             <video className="splash-video" src={splashVid} autoPlay={true} loop={true} playsInline={true} muted />
@@ -36,6 +45,7 @@ export default function Landing() {
                         <span className={`header-word ${blurThree}`}>Compete. </span>
                     </div>
                     <div className={`register ${registerBody}`} onClick={() => !isReg ? updateReg(!isReg) : null}>
+                        {showErr ? <div className={`error-msg`} onAnimationEnd={() => setShowErr(false)}>{errMsg}</div> : null}
                         <span className={regText}>Sign Up</span>
                         {regForm}
                     </div>

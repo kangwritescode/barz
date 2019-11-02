@@ -1,197 +1,236 @@
 @mixin flex-centered($direction) {
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     flex-direction: $direction;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: $direction;
 }
 
 @keyframes glowing {
-     0% {
-          background-position: 0 0;
-     }
-     50% {
-          background-position: 400% 0;
-     }
-     100% {
-          background-position: 0 0;
-     }
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 400% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
 }
 
 $break-small: 48em;
 
 .landing {
-     color: rgba(255, 255, 255, 0.836);
+    color: rgba(255, 255, 255, 0.836);
 }
 
 .splash-video {
-     position: fixed;
-     z-index: 1;
-     height: 80vh;
-     display: block;
+    position: fixed;
+    z-index: 1;
+    height: 80vh;
+    display: block;
 }
 .splash-video-overlay {
-     position: relative;
-     z-index: 2;
-     top: 4.5em;
-     height: calc(80vh - 4.5em);
-     width: 100vw;
-     background-color: rgba(0, 0, 0, 0.466);
+    position: relative;
+    z-index: 2;
+    top: 4.5em;
+    height: calc(80vh - 4.5em);
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.466);
 }
 
 .content {
-     position: absolute;
-     top: 4.5em;
-     z-index: 5;
-     overflow: hidden;
+    position: absolute;
+    top: 4.5em;
+    z-index: 5;
+    overflow: hidden;
 
-     .header-wrapper {
-          position: relative;
-          height: calc(80vh - 4.5em);
-          width: 100vw;
-          @include flex-centered(column);
-          .header-text {
-               position: relative;
-               font-family: "permanent marker";
-               color: rgb(212, 212, 212);
-               letter-spacing: 0.02em;
-               font-size: 2.9em;
+    .header-wrapper {
+        position: relative;
+        height: calc(80vh - 4.5em);
+        width: 100vw;
+        @include flex-centered(column);
+        .header-text {
+            position: relative;
+            font-family: "permanent marker";
+            color: rgb(212, 212, 212);
+            letter-spacing: 0.02em;
+            font-size: 2.9em;
 
-               .header-word {
-                    position: relative;
-                    margin: 0em 0.2em;
-                    filter: blur(0px);
-                    display: inline-block;
-                    //  transition: all 2s ease-in, font-size 0.5s ease-in;
-               }
+            .header-word {
+                position: relative;
+                margin: 0em 0.2em;
+                filter: blur(0px);
+                display: inline-block;
+                //  transition: all 2s ease-in, font-size 0.5s ease-in;
+            }
 
-               @mixin blurred($delay) {
-                    position: relative;
-                    filter: blur(100px);
-                    transform: translateY(-200px) rotate(45deg) translateX(0em);
-                    transition: all 1s ease-in;
-                    transition-delay: $delay;
-               }
-               .blurOne {
-                    @include blurred(0);
-               }
-               .blurTwo {
-                    @include blurred(0.1s);
-               }
-               .blurThree {
-                    @include blurred(0.2s);
-               }
-          }
+            @mixin blurred($delay) {
+                position: relative;
+                filter: blur(100px);
+                transform: translateY(-200px) rotate(45deg) translateX(0em);
+                transition: all 1s ease-in;
+                transition-delay: $delay;
+            }
+            .blurOne {
+                @include blurred(0);
+            }
+            .blurTwo {
+                @include blurred(0.1s);
+            }
+            .blurThree {
+                @include blurred(0.2s);
+            }
+        }
 
-          .register {
-               position: relative;
-               top: 1em;
-               z-index: 1;
-               background-color: rgb(3, 3, 3);
-               font-size: 0.7em;
-               bottom: -3em;
-               border: 1px solid rgba(255, 255, 255, 0.377);
-               color: rgba(255, 255, 255, 0.445);
-               text-align: center;
-               vertical-align: middle;
-               width: 10em;
-               height: 2em;
-               border-radius: 10em;
-               padding-top: 0.637em;
-               cursor: pointer;
+        .register {
+            position: relative;
+            top: 1em;
+            z-index: 1;
+            background-color: rgb(3, 3, 3);
+            font-size: 0.7em;
+            bottom: -3em;
+            border: 1px solid rgba(255, 255, 255, 0.377);
+            color: rgba(255, 255, 255, 0.445);
+            text-align: center;
+            vertical-align: middle;
+            width: 10em;
+            height: 2em;
+            border-radius: 10em;
+            padding-top: 0.637em;
+            cursor: pointer;
 
-               .close-regForm {
-                    position: absolute;
-                    top: 0.5em;
-                    right: 1em;
-                    color: rgba(255, 255, 255, 0.562);
-                    font-family: "permanent marker";
-                    font-size: 1.5em;
-               }
+            .close-regForm {
+                position: absolute;
+                top: 0.5em;
+                right: 1em;
+                color: rgba(255, 255, 255, 0.562);
+                font-family: "permanent marker";
+                font-size: 1.5em;
+            }
 
-               &:hover {
-                    border: 1px solid rgba(255, 255, 255, 0.637);
-                    color: rgba(255, 255, 255, 0.767);
-               }
-               &:active {
-                    border: 1px solid rgba(255, 255, 255, 0.863);
-                    color: rgb(255, 255, 255);
-               }
-               &:hover:before {
-                    opacity: 1;
-               }
+            &:hover {
+                border: 1px solid rgba(255, 255, 255, 0.637);
+                color: rgba(255, 255, 255, 0.767);
+            }
+            &:active {
+                border: 1px solid rgba(255, 255, 255, 0.863);
+                color: rgb(255, 255, 255);
+            }
+            &:hover:before {
+                opacity: 1;
+            }
 
-               &:before {
-                    content: "";
-                    background: linear-gradient(
-                         45deg,
-                         #ff0000,
-                         #ff7300,
-                         #fffb00,
-                         #48ff00,
-                         #00ffd5,
-                         #002bff,
-                         #7a00ff,
-                         #ff00c8,
-                         #ff0000
-                    );
-                    position: absolute;
-                    top: 0px;
-                    left: 3px;
-                    background-size: 400%;
-                    z-index: -1;
-                    filter: blur(5px);
-                    width: calc(96%);
-                    height: calc(96%);
-                    animation: glowing 20s linear infinite;
-                    opacity: 0;
-                    transition: opacity 0.3s ease-in-out;
-                    border-radius: 10px;
-               }
-               &:after {
-                    z-index: -1;
-                    content: "";
-                    position: absolute;
-                    width: 100%;
-                    height: 100%;
-                    background: rgb(8, 8, 8);
-                    left: 0;
-                    top: 0;
-                    border-radius: 10em;
-               }
-          }
-          .expanded {
-               position: relative;
-               background-color: rgba(0, 0, 0, 0.856);
-               width: 32em;
-               height: 29em;
-               border-radius: 2em;
-               border: 1px solid rgba(255, 255, 255, 0.377);
-               top: -2em;
-               transition: color 0.3s ease-in, width 0.8s ease-in-out, height 0.8s ease-in-out 0.4s, top 0.7s ease-in;
-               cursor: default;
-               @include flex-centered(column);
-               &:before {
-                    display: none;
-               }
-               &:after {
-                    display: none;
-               }
-               &:hover {
-                    border: 1px solid rgba(255, 255, 255, 0.377);
-               }
-               &:active {
-                    border: 1px solid rgba(255, 255, 255, 0.377);
-               }
-          }
-          .register-text-hidden {
-               opacity: 0;
-          }
-     }
+            &:before {
+                content: "";
+                background: linear-gradient(
+                    45deg,
+                    #ff0000,
+                    #ff7300,
+                    #fffb00,
+                    #48ff00,
+                    #00ffd5,
+                    #002bff,
+                    #7a00ff,
+                    #ff00c8,
+                    #ff0000
+                );
+                position: absolute;
+                top: 0px;
+                left: 3px;
+                background-size: 400%;
+                z-index: -1;
+                filter: blur(5px);
+                width: calc(96%);
+                height: calc(96%);
+                animation: glowing 20s linear infinite;
+                opacity: 0;
+                transition: opacity 0.3s ease-in-out;
+                border-radius: 10px;
+            }
+            &:after {
+                z-index: -1;
+                content: "";
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: rgb(8, 8, 8);
+                left: 0;
+                top: 0;
+                border-radius: 10em;
+            }
+        }
+        .expanded {
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.856);
+            width: 32em;
+            height: 29em;
+            border-radius: 2em;
+            border: 1px solid rgba(255, 255, 255, 0.377);
+            top: -2em;
+            transition: color 0.3s ease-in, width 0.8s ease-in-out, height 0.8s ease-in-out 0.4s, top 0.7s ease-in;
+            cursor: default;
+            @include flex-centered(column);
+            &:before {
+                display: none;
+            }
+            &:after {
+                display: none;
+            }
+            &:hover {
+                border: 1px solid rgba(255, 255, 255, 0.377);
+            }
+            &:active {
+                border: 1px solid rgba(255, 255, 255, 0.377);
+            }
+            .error-msg {
+                color: rgba(255, 255, 255, 0.911);
+                position: absolute;
+                font-size: 1.2em;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+                    "Open Sans", "Helvetica Neue", sans-serif;
+                top: -5em;
+                padding: 0.7em 3em;
+                width: auto;
+                background-color: rgba(44, 0, 0, 0.685);
+                border-radius: 0.5em;
+                transform: scale(0);
+                animation: error 4s ease-in-out;
 
-     .scribble-tut {
-          position: relative;
-          height: 50em;
-          width: 100vw;
-          background-color: rgb(29, 29, 29);
-     }
+                @keyframes error {
+                    0% {
+                        opacity: 0;
+                        transform: scale(0);
+                    }
+                    10% {
+                         transform: scale(1.1);
+                    }
+                    15% {
+                        opacity: 1;
+                        transform: scale(1);
+                    }
+                    85% {
+                        opacity: 1;
+                        transform: scale(1);
+                    }
+                    90% {
+                         transform: scale(1.1);
+                    }
+                    100% {
+                        opacity: 0;
+                        transform: scale(0);
+                    }
+                }
+            }
+        }
+        .register-text-hidden {
+            opacity: 0;
+        }
+    }
+
+    .scribble-tut {
+        position: relative;
+        height: 50em;
+        width: 100vw;
+        background-color: rgb(29, 29, 29);
+    }
 }

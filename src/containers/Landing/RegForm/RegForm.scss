@@ -4,6 +4,7 @@
     align-items: center;
     justify-content: center;
 }
+
 .reg-form {
     @include flex-centered(column);
     color: rgba(255, 255, 255, 0.87);
@@ -11,7 +12,7 @@
     height: 100%;
     width: 100%;
     opacity: 0;
-    animation: fade-in .3s ease-in 1.2s forwards;
+    animation: fade-in 0.3s ease-in 1.2s forwards;
 
     #reg-form-close {
         position: absolute;
@@ -41,8 +42,23 @@
         width: 20.1em;
         border-radius: 0.2em;
         margin: 0.6em 0em;
-        border: 1px solid rgba(255, 255, 255, 0.432);
+        border: 1px solid rgba(209, 209, 209, 0.432);
         color: rgba(255, 255, 255, 0.438);
+    }
+    .valid {
+        $valid-color: rgba(255, 255, 255, 0.726);
+        border-color: $valid-color;
+        color: $valid-color;
+        &:hover {
+            $valid-hover-color: rgba(255, 255, 255, 0.842);
+            border-color: $valid-hover-color;
+            color: $valid-hover-color;
+        }
+        &:active {
+            $valid-active-color: rgba(255, 255, 255, 0.959);
+            border-color: $valid-active-color;
+            color: $valid-active-color;
+        }
     }
     .large-input {
         background-color: transparent;
@@ -60,12 +76,18 @@
     }
     .account-wrapper {
         @include flex-centered(column);
+        .invalid {
+            outline: 1px solid rgba(255, 0, 0, 0.685);
+        }
     }
 
     .profile-wrapper {
         @include flex-centered(column);
+        .invalid {
+            outline: 1px solid rgba(255, 0, 0, 0.685);
+        }
         .zip-sex-wrapper {
-             display: none;
+            display: none;
             @include flex-centered(row);
             justify-content: space-evenly;
             width: 21.2em;
@@ -81,15 +103,25 @@
             }
             .sex-button {
                 background-color: transparent;
-                height: 2.5em;
-                width: 2em;
+                height: 3.4em;
+                width: 4.3em;
                 border-radius: 0.2em;
                 margin: 0.64em 0em;
                 border: 1px solid rgba(255, 255, 255, 0.582);
                 padding: 0.3em 1em;
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+                    "Open Sans", "Helvetica Neue", sans-serif;
                 color: rgba(255, 255, 255, 0.603);
+                cursor: pointer;
+                &:hover {
+                    cursor: pointer;
+                }
                 @include flex-centered(column);
+            }
+            .focused-sex {
+                 $focused-sex-color: rgba(255, 255, 255, 0.884);
+                 color: $focused-sex-color;
+                 border-color: $focused-sex-color;
             }
         }
     }
@@ -99,12 +131,11 @@
     }
 }
 
-
 @keyframes fade-in {
-     0% {
-          opacity: 0;
-     }
-     100% {
-          opacity: 1;
-     }
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
