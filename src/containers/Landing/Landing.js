@@ -6,11 +6,15 @@ import RegForm from './RegForm/RegForm'
 
 export default function Landing() {
 
-    // state
+    // ui state
     var [isReg, updateReg] = useState(true)
     var [showErr, setShowErr] = useState(false)
-    var [errMsg, setErrMsg] = useState('nuuu buggy buggy')
+    var [errMsg, setErrMsg] = useState('')
+    var [errSentiment, setErrSentiment] = useState(false)
 
+    // login
+    var [email, setEmail] = useState('')
+    var [password, setPassword] = useState('')
 
     // header-text 
     var blurOne = isReg ? 'blurOne' : null
@@ -27,7 +31,10 @@ export default function Landing() {
         <RegForm 
             updateReg={updateReg} 
             setErrMsg={setErrMsg}
-            setShowErr={setShowErr}/>
+            setShowErr={setShowErr}
+            setErrSentiment={setErrSentiment}
+            setEmail={setEmail}
+            setPassword={setPassword}/>
         )
     }
 
@@ -36,7 +43,11 @@ export default function Landing() {
         <div className='landing'>
             <div className='splash-video-overlay'></div>
             <video className="splash-video" src={splashVid} autoPlay={true} loop={true} playsInline={true} muted />
-            <LandingNav />
+            <LandingNav 
+                email={email}
+                setEmail={setEmail}
+                password={password}
+                setPassword={setPassword}/>
             <div className='content'>
                 <div className='header-wrapper'>
                     <div className={`header-text`}>
@@ -45,7 +56,7 @@ export default function Landing() {
                         <span className={`header-word ${blurThree}`}>Compete. </span>
                     </div>
                     <div className={`register ${registerBody}`} onClick={() => !isReg ? updateReg(!isReg) : null}>
-                        {showErr ? <div className={`error-msg`} onAnimationEnd={() => setShowErr(false)}>{errMsg}</div> : null}
+                        {showErr && isReg ? <div className={`error-msg ${errSentiment ? 'positive-msg' : null}`} onAnimationEnd={() => {setShowErr(false); setErrSentiment(false);}}>{errMsg}</div> : null}
                         <span className={regText}>Sign Up</span>
                         {regForm}
                     </div>

@@ -53,9 +53,9 @@
 }
 
 .splash-navbar .sign-in .log-in {
-  color: rgba(255, 255, 255, 0.664);
+  color: rgba(255, 255, 255, 0.466);
   background: rgba(0, 0, 0, 0);
-  border: 1px solid rgba(255, 255, 255, 0.603);
+  border: 1px solid rgba(255, 255, 255, 0.404);
   border-radius: 5em;
   height: 2.8em;
   width: 7em;

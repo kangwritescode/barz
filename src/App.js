@@ -21,7 +21,7 @@ class App extends Component {
   render() {
 
     let app = <Landing />
-    if (this.props.authenticated) {
+    if (!this.props.authenticated) {
       app = (
         <div>
           <Navbar />

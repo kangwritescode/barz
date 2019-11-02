@@ -8,19 +8,27 @@ import { errorCreater } from '../../../shared/errorCreator'
 
 function RegForm(props) {
 
-    //state
-    var [step, setStep] = useState('account')
+    // State
 
+    // data 
+    var [allEmails, setAllEmails] = useState([])
+    var [allUsernames, setAllUsernames] = useState([])
+    var [mysteryManBlob, setMysteryManBlob] = useState(null)
+
+    // ui
+    var [step, setStep] = useState('account')
+    var [spinning, setSpinner] = useState(false)
+
+    //profile
     var [email, setEmail] = useState('')
     var [password, setPass] = useState('')
     var [username, setUsername] = useState('')
     var [zipcode, setZipcode] = useState('')
-    var [gender, pickGender] = useState(null)
+    var [gender, pickGender] = useState('')
 
-    var [allEmails, setAllEmails] = useState([])
-    var [allUsernames, setAllUsernames] = useState([])
+   
 
-    var [mysteryManBlob, setMysteryManBlob] = useState(null)
+    
 
     // on mounting
     useEffect(() => {
@@ -49,7 +57,7 @@ function RegForm(props) {
         return axios.get('https://www.zipcodeapi.com/rest/js-zF10dQxfazt7cMgYnzZphQk7jEzBwBYPb781ubkqZokAXEvUzbinxdGT5rzVrkmB/info.json/' + zipcode + '/degrees')
             .then(res => { return res.data })
             .catch(err => {
-                throw err
+                throw errorCreater("Sorry, we're having trouble processing that ZIP Code.")
             })
     }
     const createAuthUser = async (userInput, password) => {
@@ -122,7 +130,7 @@ function RegForm(props) {
     const filterAndSetUsername = (value) => {
         const regex = new RegExp(/^[A-Za-z0-9_]+$/)
         if (regex.test(value) || value === '') {
-            setUsername(value)
+            setUsername(value.toLowerCase())
         } else {
             return
         }
@@ -161,34 +169,64 @@ function RegForm(props) {
     }
 
     // auth functions
-    const firstStep = () => {
-        if (allEmails.includes(email)) {
-            props.setErrMsg('An account with that email already exists.')
-            props.setShowErr(true)
-        } else {
-            setStep('profile')
+    const firstStep = async () => {
+        setSpinner(true)
+        try {
+            await fetchEmailsAndUsernames()
+            if (allEmails.includes(email)) {
+                throw errorCreater('The email address is already in use by another account.')
+            } else {
+                setSpinner(false)
+                setStep('profile')
+            }
+        }
+        
+        catch (err) {
+            setSpinner(false)
+            notifyWithErr(err.message)
         }
     }
+    
+
 
     const submit = async (event) => {
         event.preventDefault()
+        setSpinner(true)
 
         try {
             // username check
+            await fetchEmailsAndUsernames()
             if (allUsernames.includes(username)) {
                 throw errorCreater('That username is taken.')
+            }
+            if (allEmails.includes(email)) {
+                throw errorCreater('The email address is already in use by another account.')
             }
             // zipcode check
             const address = await fetchAddressFromZipcode(zipcode)
             let [emailFire, uid] = await createAuthUser(email, password)
-            console.log("poopity scoop")
             const photoRef = await uploadMysteryMan(uid)
             await createFirebaseUser(emailFire, uid, address, photoRef.location.path)
-            notifyWithErr('Profile Created Successfully')
+            
+            // success!
+
+            props.setErrSentiment(true)
+            notifyWithErr('Profile Created Successfully!')
+            setSpinner(false)
+            setUsername('')
+            setZipcode('')
+            pickGender('')
+            props.setEmail(email)
+            props.setPassword(password)
+            setEmail('')
+            setPass('')
+            
+
+
         }
         catch (err) {
-            console.log(err)
             notifyWithErr(err.message)
+            setSpinner(false)
         }
     }
     const notifyWithErr = (msg) => {
@@ -199,26 +237,27 @@ function RegForm(props) {
     // validate values (account)
     const isInvalidEmail = email && !validateEmail(email) ? 'invalid' : null
     const isInvalidPass = password && !validatePassword(password) ? 'invalid' : null
-    const isValidContinue = email && password && !isInvalidEmail && !isInvalidPass ? 'valid' : null
+    const isValidContinue = email && password && !isInvalidEmail && !isInvalidPass && !spinning ? 'valid' : null
 
 
     // validate values (profile)
     const isInvalidUsername = username && !validateUsername(username) ? 'invalid' : null
     const isInvalidZipcode = zipcode && !validateZipcode(zipcode) ? 'invalid' : null
-    const maleSelected = gender === 'male' ? 'focused-sex' : null
-    const femaleSelected = gender === 'female' ? 'focused-sex' : null
+    const maleSelected = gender === 'Male' ? 'focused-sex' : null
+    const femaleSelected = gender === 'Female' ? 'focused-sex' : null
     const isValidSubmit = (
         username &&
         zipcode &&
         gender &&
         validateUsername(username) &&
-        validateZipcode(zipcode)
+        validateZipcode(zipcode) &&
+        !spinning
     ) ? 'valid' : null
 
 
     // form
     var form = (
-        <div className='account-wrapper'>
+        <div className={`account-wrapper`}>
             <div className='reg-detail'>Account Info</div>
             <input
                 className={`large-input ${isInvalidEmail}`}
@@ -243,7 +282,8 @@ function RegForm(props) {
     )
     if (step === 'profile') {
         form = (
-            <div className='profile-wrapper'>
+            <div className={`profile-wrapper`}>
+                <i className="fas fa-chevron-left" id='reg-form-back' onClick={() => setStep('account')}></i>
                 <div className='reg-detail'>Profile Info</div>
                 <input
                     className={`large-input ${isInvalidUsername}`}
@@ -270,7 +310,8 @@ function RegForm(props) {
     }
     return (
         <form className='reg-form'>
-            <i className="fa fa-close" id='reg-form-close' onClick={() => props.updateReg(false)}></i>
+            {spinning ? <div className='reg-form-spinner'></div> : null}
+            <i className="fa fa-close" id='reg-form-close' onClick={() => {props.updateReg(false); props.setShowErr(false)}}></i>
             <h1 className='reg-header'>Sign Up</h1>
             {form}
         </form>

@@ -90,7 +90,7 @@ class SignIn extends Component {
                 // now's date
                 var expirationDate = new Date()
                 // now's date + 1 hour
-                expirationDate.setHours(expirationDate.getHours() + 12)
+                expirationDate.setHours(expirationDate.getHours() + 100)
                 localStorage.setItem('token', successObj.user.refreshToken)
                 localStorage.setItem('expirationDate', expirationDate)
                 localStorage.setItem('uid', successObj.user.uid)
