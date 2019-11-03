@@ -1,20 +1,13 @@
 @import url("https://fonts.googleapis.com/css?family=Permanent+Marker|Sedgwick+Ave+Display&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 .many-post {
   position: relative;
-  background-color: rgba(0, 0, 0, 0.712);
-  border-radius: 0.2em;
-  width: 33em;
-  height: 14rem;
+  background-color: rgba(0, 0, 0, 0.856);
+  border-radius: 1.2em;
   margin: 1em;
-  font-size: .9rem;
-  font-family: 'rock salt', cursive;
+  font-size: 0.9rem;
+  font-family: "permanent marker";
   color: rgba(255, 255, 255, 0.829);
-}
-
-.many-post:nth-child(2n + 2) {
-  background-color: rgba(1, 8, 14, 0.685);
-  font-family: 'permanent marker';
-  color: rgba(255, 255, 255, 0.822);
 }
 
 .many-post:hover {
@@ -22,17 +15,20 @@
 }
 
 .many-post header {
+  position: relative;
+  top: 0em;
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  height: 2.5em;
+  height: 3.2em;
   color: white;
-  border-top-left-radius: 0.2em;
-  border-top-right-radius: 0.2em;
-  background-color: rgba(255, 255, 255, 0.089);
+  border-top-left-radius: 1.2em;
+  border-top-right-radius: 1.2em;
+  background-color: rgba(255, 255, 255, 0.144);
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -44,8 +40,8 @@
 }
 
 .many-post header .many-post-details img {
-  height: 1.3em;
-  width: 1.3em;
+  height: 1.8em;
+  width: 1.8em;
   overflow: hidden;
   border-radius: 50%;
   margin-right: 0.5em;
@@ -60,7 +56,10 @@
           margin-block-start: 0em;
   -webkit-margin-after: 0em;
           margin-block-end: 0em;
-  font-size: 0.7em;
+  font-size: 1.2em;
+  color: rgba(228, 228, 228, 0.973);
+  letter-spacing: 0.05em;
+  font-family: "permanent marker";
 }
 
 .many-post header .many-post-details .many-post-name-date-container p {
@@ -69,6 +68,18 @@
   -webkit-margin-after: 0em;
           margin-block-end: 0em;
   font-size: 0.01rem;
+  position: relative;
+  top: -0.2em;
+}
+
+.many-post header .many-post-region {
+  font-family: 'permanent marker';
+  font-size: 1.2em;
+}
+
+.many-post header #orange {
+  color: orange;
+  letter-spacing: .3em;
 }
 
 .many-post header .many-post-misc {
@@ -79,12 +90,13 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-right: 0.8em;
+  right: 1.5em;
+  font-family: "Roboto", sans-serif;
 }
 
 .many-post header .many-post-misc img {
-  height: 1em;
-  width: 1em;
+  height: 1.4em;
+  width: 1.4em;
   margin-left: 0.5em;
 }
 
@@ -92,12 +104,16 @@
   margin-right: 0.1em;
 }
 
+.many-post header .many-post-misc .manyFlame {
+  margin-left: 1em;
+}
+
 .many-post .many-post-body {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  height: calc(100% - 2.5em);
+  height: auto;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -112,15 +128,52 @@
 }
 
 .many-post .many-post-body p {
+  font-size: 1.4em;
+  padding: 1em;
   -webkit-margin-before: 0px;
           margin-block-start: 0px;
   -webkit-margin-after: 0px;
           margin-block-end: 0px;
-  width: 80%;
-  height: auto;
+  width: 23em;
+  min-height: 10em;
   max-height: 8em;
   overflow: hidden;
-  text-align: center;
-  line-height: 2.2em;
+  text-align: left;
+}
+
+.many-post .vote-box {
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.144);
+  bottom: 0em;
+  height: 2.7em;
+  width: 100%;
+  border-bottom-left-radius: 1.2em;
+  border-bottom-right-radius: 1.2em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.many-post .vote-box .vote-button {
+  display: inline-block;
+  width: 48%;
+  height: 80%;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.24);
+  font-size: 1.1em;
+}
+
+.many-post .vote-box .dislike-button {
+  border-bottom-left-radius: 1em;
+}
+
+.many-post .vote-box .like-button {
+  border-bottom-right-radius: 1em;
 }
 /*# sourceMappingURL=ManyPost.css.map */

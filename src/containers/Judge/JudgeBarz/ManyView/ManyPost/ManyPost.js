@@ -33,7 +33,7 @@ class ManyPost extends Component {
             });
     }
 
-    
+
     fetchScore = () => {
         var db = firebase.firestore()
         db.collection('postVotes').where('pid', '==', this.props.pid).onSnapshot(snap => {
@@ -54,7 +54,6 @@ class ManyPost extends Component {
         var db = firebase.firestore()
         db.collection('postComments').where('pid', '==', this.props.pid).onSnapshot(snap => {
             const count = snap.size
-            console.log(count)
             this.setState({
                 ...this.state,
                 commentsCount: count
@@ -71,7 +70,7 @@ class ManyPost extends Component {
         const date = verboseDate.slice(4, verboseDate.length)
 
         // content
-        var content = this.props.content.lineOne + ' / ' + this.props.content.lineTwo
+        var content = this.props.content.lineOne + ' / ' + this.props.content.lineTwo + ' / ' + this.props.content.lineThree + ' / ' + this.props.content.lineFour
 
         // votes 
         var score = this.state.score
@@ -79,29 +78,50 @@ class ManyPost extends Component {
         // comments count
         const commentsCount = this.state.commentsCount
 
+        // dict {coast: color}
+        const colorDict = {
+            'West': 'orange',
+            'East': 'green',
+            'South': 'blue',
+            'Midwest': 'purple',
+        }
+
+        const coastColor = colorDict[this.props.address.region]
+
 
 
         return (
             <div className='many-post' onClick={() => this.props.toggleModal('showPost', true, this.props.pid)}>
                 <header>
                     <div className='many-post-details'>
-                        <img className='many-post-pic' src={this.state.photoURL}></img>
+                        <img className='many-post-pic' src={this.state.photoURL} alt='pic'></img>
                         <div className='many-post-name-date-container'>
                             <h6>{this.props.username}</h6>
                             <p>{date}</p>
                         </div>
                     </div>
+                    <div className='many-post-region' id={coastColor}>
+                        {this.props.address.region.toLowerCase()}
+                    </div>
                     <div className='many-post-misc'>
-                        <img className='manyComment' src={manyComment} />
+                        <img className='manyComment' src={manyComment} alt='pic' />
                         {commentsCount}
-                        <img className='manyFlame' src={manyFlame} />
+                        <img className='manyFlame' src={manyFlame} alt='pic' />
                         {score}
                     </div>
                 </header>
                 <div className='many-post-body'>
-                    <p>{content + '...'}</p>
+                    <p>{content}</p>
                 </div>
+                <div className='vote-box'>
+                    <button className='vote-button dislike-button'>
+                        <i className="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                    <button className='vote-button like-button'>
+                        <i className="fas fa-fire"></i>
+                    </button>
 
+                </div>
             </div>
         )
     }

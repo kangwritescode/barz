@@ -7,7 +7,7 @@ import RegForm from './RegForm/RegForm'
 export default function Landing() {
 
     // ui state
-    var [isReg, updateReg] = useState(true)
+    var [isReg, updateReg] = useState(false)
     var [showErr, setShowErr] = useState(false)
     var [errMsg, setErrMsg] = useState('')
     var [errSentiment, setErrSentiment] = useState(false)

@@ -20,14 +20,12 @@ class App extends Component {
 
   render() {
 
-    let app = <Landing />
-    if (!this.props.authenticated) {
-      app = (
+    let app = (
         <div>
           <Navbar />
           <ReactPlayer
             volume={this.props.volume * 1.0 / 100}
-            url={this.props.musicURL}
+            url={this.props.musicURL}a
             playing={this.props.playing}
             loop
             width="0px"
@@ -44,7 +42,7 @@ class App extends Component {
   
       )
   
-    }
+    
 
 
       return (

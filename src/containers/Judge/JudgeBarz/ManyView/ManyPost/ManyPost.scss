@@ -1,97 +1,136 @@
 @import url("https://fonts.googleapis.com/css?family=Permanent+Marker|Sedgwick+Ave+Display&display=swap");
-
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 .many-post {
-     position: relative;
-     background-color: rgba(0, 0, 0, 0.712);
-     border-radius: 0.2em;
-     width: 33em;
-     height: 14rem;
-     margin: 1em;
-     font-size: .9rem;
-     font-family: 'rock salt', cursive;
-     color: rgba(255, 255, 255, 0.829);
-     &:nth-child(2n + 2) {
-          background-color: rgba(1, 8, 14, 0.685);
-          font-family: 'permanent marker';
-          color: rgba(255, 255, 255, 0.822);
-     }
-     &:hover {
-          cursor: pointer;
-     }
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.856);
+    border-radius: 1.2em;
+    margin: 1em;
+    font-size: 0.9rem;
+    font-family: "permanent marker";
+    color: rgba(255, 255, 255, 0.829);
+    &:hover {
+        cursor: pointer;
+    }
 
-     header {
-            
-          display: flex;
-          justify-content: space-between;
-          height: 2.5em;
-          color:white;
-          border-top-left-radius: 0.2em;
-          border-top-right-radius: 0.2em;
-          background-color: rgba(255, 255, 255, 0.089);
-          align-items: center;
-          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
-          "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    $bar-colors: rgba(255, 255, 255, 0.144);
 
+    header {
+        position: relative;
+        top: 0em;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        height: 3.2em;
+        color: white;
+        border-top-left-radius: 1.2em;
+        border-top-right-radius: 1.2em;
+        background-color: $bar-colors;
+        align-items: center;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+            "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 
-          .many-post-details {
-               margin-left: 0.9em;
-               img {
-                    height: 1.3em;
-                    width: 1.3em;
-                    overflow: hidden;
-                    border-radius: 50%;
-                    margin-right: 0.5em;
-               }
-               .many-post-name-date-container {
-                    display: inline-block;
-                    h6 {
-                         margin-block-start: 0em;
-                         margin-block-end: 0em;
-                         font-size: 0.7em;
-                    }
-                    p {
-                         margin-block-start: 0em;
-                         margin-block-end: 0em;
-                         font-size: 0.01rem;
-                    }
-               }
-          }
+        .many-post-details {
+            margin-left: 0.9em;
+            img {
+                height: 1.8em;
+                width: 1.8em;
+                overflow: hidden;
+                border-radius: 50%;
+                margin-right: 0.5em;
+            }
+            .many-post-name-date-container {
+                display: inline-block;
+                h6 {
+                    margin-block-start: 0em;
+                    margin-block-end: 0em;
+                    font-size: 1.2em;
+                    color: rgba(228, 228, 228, 0.973);
+                    letter-spacing: 0.05em;
+                    font-family: "permanent marker";
+                }
+                p {
+                    margin-block-start: 0em;
+                    margin-block-end: 0em;
+                    font-size: 0.01rem;
+                    position: relative;
+                    top: -0.2em;
+                }
+            }
+        }
+        .many-post-region {
+            font-family: 'permanent marker';
+            font-size: 1.2em;
+        }
+        #orange {
+            color: orange;
+            letter-spacing: .3em;
+        }
+        .many-post-misc {
+            position: relative;
+            display: flex;
+            align-items: center;
+            right: 1.5em;
+            font-family: "Roboto", sans-serif;
 
-          .many-post-misc {
-               position: relative;
-               display: flex;
-               align-items: center;
-               margin-right: 0.8em;
+            img {
+                height: 1.4em;
+                width: 1.4em;
+                margin-left: 0.5em;
+            }
+            .manyComment {
+                margin-right: 0.1em;
+            }
+            .manyFlame {
+                margin-left: 1em;
+            }
+        }
+    }
+    .many-post-body {
+        position: relative;
+        display: flex;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
 
-               img {
-                    height: 1em;
-                    width: 1em;
-                    margin-left: 0.5em;
-               }
-               .manyComment {
-                    margin-right: 0.1em;
-               }
-          }
-     }
-     .many-post-body {
-          position: relative;
-          // z-index: -999;
-          display: flex;
-          height: calc(100% - 2.5em);
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-
-          p {
-               margin-block-start: 0px;
-               margin-block-end: 0px;
-               width: 80%;
-               height: auto;
-               max-height: 8em;
-               overflow: hidden;
-               text-align: center;
-               line-height: 2.2em;
-          }
-     }
+        p {
+            font-size: 1.4em;
+            padding: 1em;
+            margin-block-start: 0px;
+            margin-block-end: 0px;
+            width: 23em;
+            min-height: 10em;
+            max-height: 8em;
+            overflow: hidden;
+            text-align: left;
+            // line-height: 2.2em;
+        }
+    }
+    .vote-box {
+        position: relative;
+        background-color: $bar-colors;
+        bottom: 0em;
+        height: 2.7em;
+        width: 100%;
+        border-bottom-left-radius: 1.2em;
+        border-bottom-right-radius: 1.2em;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        .vote-button {
+            display: inline-block;
+            width: 48%;
+            height: 80%;
+            border: none;
+            background-color: rgba(0, 0, 0, 0.24);
+            font-size: 1.1em;
+        }
+        .dislike-button {
+            border-bottom-left-radius: 1em;
+        }
+        .like-button {
+            border-bottom-right-radius: 1em;
+        }
+    }
 }

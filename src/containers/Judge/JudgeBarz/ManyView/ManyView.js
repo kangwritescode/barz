@@ -9,6 +9,8 @@ import ViewedPost from '../../../../components/Scribble/MyBars/ViewedBar/ViewedP
 import timeDict from '../../../Wordsmiths/WordSmithsTools/timeDict'
 import ReactPlayer from 'react-player'
 import Turntable from '../../../../components/Scribble/Turntable/Turntable'
+import PostLikes from '../../../../components/Scribble/MyBars/ViewedBar/PostLikes/PostLikes'
+import Commenter from './Commenter/Commenter'
 
 class ManyView extends Component {
 
@@ -215,37 +217,8 @@ class ManyView extends Component {
                     <div className='many-view__posts'>
                         {manyPosts}
                     </div>
-                    <div className='many-view__widgets'>
-                        <div className='tv'>
-                            <div className='tv__header'>
-                                <div>BARZ.TV</div>
-                            </div>
-                            <ReactPlayer
-                                controls
-                                volume={.8}
-                                url={'https://www.youtube.com/watch?v=vH6lAFxnYkM'}
-                                playing={false}
-                                width="100%"
-                                height="12em" />
-                        </div>
-                        <div className='artist-spotlight' onClick={() => this.props.togglePro(true)}>
-                            <div className='artist-spotlight__header'>
-                                <div>PRO.SPOTLIGHT</div>
-                            </div>
-                            <div className='img-wrapper'>
-                                <img alt='earl' src={earl}></img>
-                            </div>
-                            <div className='text'>
-                                "It's the blackest <br />
-                                piece of trash they  <br />
-                                done seen in   <br />
-                                a RV park..."
-                            </div>
-                        </div>
-                        <div className='turntable-wrapper'>
-                            <Turntable />
-                        </div>
-
+                    <div className='many-view__modules'>
+                        <Commenter />
                     </div>
                 </div>
             </div>
