@@ -73,7 +73,7 @@ class PostLikes extends Component {
                     {this.state.votes} total pt{this.state.votes === 1 ? null : 's'}.
                 </div>
                 <div className='fans'>
-                    {this.state.noOfVoters} {this.state.noOfVoters === 1 ? 'fan' : 'fans'}
+                    {this.state.noOfVoters} {this.state.noOfVoters === 1 ? 'like' : 'likes'}
                 </div>
 
             </div>

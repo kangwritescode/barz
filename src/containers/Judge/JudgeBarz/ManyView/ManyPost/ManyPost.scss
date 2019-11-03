@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 .many-post {
     position: relative;
-    background-color: rgba(0, 0, 0, 0.856);
+    background-color: rgba(0, 0, 0, 0.74);
     border-radius: 1.2em;
     margin: 1em;
     font-size: 0.9rem;
@@ -20,7 +20,7 @@
         width: 100%;
         display: flex;
         justify-content: space-between;
-        height: 3.2em;
+        height: 2.65em;
         color: white;
         border-top-left-radius: 1.2em;
         border-top-right-radius: 1.2em;
@@ -32,8 +32,8 @@
         .many-post-details {
             margin-left: 0.9em;
             img {
-                height: 1.8em;
-                width: 1.8em;
+                height: 1.7em;
+                width: 1.7em;
                 overflow: hidden;
                 border-radius: 50%;
                 margin-right: 0.5em;
@@ -43,7 +43,7 @@
                 h6 {
                     margin-block-start: 0em;
                     margin-block-end: 0em;
-                    font-size: 1.2em;
+                    font-size: 1em;
                     color: rgba(228, 228, 228, 0.973);
                     letter-spacing: 0.1em;
                     font-family: "permanent marker";
@@ -51,7 +51,7 @@
                 p {
                     margin-block-start: 0em;
                     margin-block-end: 0em;
-                    font-size: 0.01rem;
+                    font-size: 8px;
                     position: relative;
                     top: -0.2em;
                 }
@@ -59,7 +59,7 @@
         }
         .many-post-region {
             font-family: 'permanent marker';
-            font-size: 1.2em;
+            font-size: 1em;
             position: relative;
             left: -.9em;
             letter-spacing: .22em;
