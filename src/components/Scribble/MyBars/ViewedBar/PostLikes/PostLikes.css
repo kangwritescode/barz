@@ -1,7 +1,7 @@
 .likes {
+  position: relative;
   min-height: 2.4em;
-  border-top: 1px solid #dbdbdb;
-  border-bottom: 1px solid #dbdbdb;
+  border-top: 1px solid #cecece;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -15,30 +15,33 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  width: 100%;
   font-family: "permanent marker";
 }
 
 .likes .fire-icon-container {
-  width: 1.9em;
-  height: 100%;
+  width: 3.6em;
+  height: 80%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
+  border-right: 1px solid #cecece;
+  display: flex;
+  -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   cursor: pointer;
 }
 
 .likes .fire-icon-container .likes-icon {
-  font-size: 1.2em;
+  font-size: 1.1em;
   color: #969696;
 }
 
@@ -60,14 +63,13 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  border-right: 1px solid #dbdbdb;
+  border-right: 1px solid #cecece;
   color: rgba(0, 0, 0, 0.774);
   height: 80%;
   width: 52%;
-  font-size: 0.9em;
+  font-size: 0.8em;
   letter-spacing: 0.08em;
   position: relative;
-  right: 0.3em;
   cursor: pointer;
 }
 

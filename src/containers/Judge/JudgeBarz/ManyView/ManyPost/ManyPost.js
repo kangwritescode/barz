@@ -80,7 +80,7 @@ class ManyPost extends Component {
 
         // dict {coast: color}
         const colorDict = {
-            'West': 'orange',
+            'West': 'yellow',
             'East': 'green',
             'South': 'blue',
             'Midwest': 'purple',
@@ -91,7 +91,7 @@ class ManyPost extends Component {
 
 
         return (
-            <div className='many-post' onClick={() => this.props.toggleModal('showPost', true, this.props.pid)}>
+            <div className='many-post' onClick={() => this.props.selectPost(this.props.pid)}>
                 <header>
                     <div className='many-post-details'>
                         <img className='many-post-pic' src={this.state.photoURL} alt='pic'></img>
@@ -111,7 +111,7 @@ class ManyPost extends Component {
                     </div>
                 </header>
                 <div className='many-post-body'>
-                    <p>{content}</p>
+                    <p>{`"${content}"`}</p>
                 </div>
                 <div className='vote-box'>
                     <button className='vote-button dislike-button'>

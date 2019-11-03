@@ -7,7 +7,11 @@
       -ms-flex-direction: column-reverse;
           flex-direction: column-reverse;
   overflow: auto;
-  max-height: 18em;
+  max-height: 12.68em;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+  padding-left: .5em;
+  width: 100%;
 }
 
 .post-comments .filler-block {

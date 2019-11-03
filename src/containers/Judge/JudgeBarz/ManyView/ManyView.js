@@ -18,8 +18,8 @@ class ManyView extends Component {
         submissions: [],
         votes: {},
         comments: [],
-
-
+        postSelected: false,
+        selectedPost: null
     }
 
     componentDidMount = () => {
@@ -34,7 +34,7 @@ class ManyView extends Component {
         db.collection('postComments').onSnapshot((snapshot) => {
             var comments = []
             for (var comment of snapshot.docs) {
-                var comment = {
+                comment = {
                     ...comment.data(),
                     cid: comment.id
                 }
@@ -72,7 +72,10 @@ class ManyView extends Component {
         const votes = {}
         db.collection('postVotes').onSnapshot(querySnapshot => {
             querySnapshot.forEach((doc) => {
-                var vote = { ...doc.data() }
+                var vote = { 
+                    ...doc.data(),
+                    vid: doc.id 
+                }
                 votes[doc.id] = vote
             })
             this.setState({
@@ -100,7 +103,7 @@ class ManyView extends Component {
     }
 
     sort_submissions = (submissions) => {
-        var submissions = [...submissions]
+        submissions = [...submissions]
         switch (this.props.sort) {
             case 'Newest':
                 submissions = submissions.sort((a, b) => {
@@ -137,7 +140,7 @@ class ManyView extends Component {
     }
 
     filter_submissions = (submissions) => {
-        var submissions = [...submissions]
+        submissions = [...submissions]
 
         // Voted / Unvoted filter
         if (this.props.filter !== 'All Posts') {
@@ -190,6 +193,15 @@ class ManyView extends Component {
     }
 
 
+    selectPost = (pid) => {
+        var post = this.state.submissions.filter(submission => submission.pid === pid)
+        post = post[0]
+        this.setState({
+            postSelected: true,
+            selectedPost: post
+        })
+    }
+
 
     render() {
 
@@ -198,13 +210,13 @@ class ManyView extends Component {
         submissions = this.filter_submissions(submissions)
         var manyPosts = null
         if (submissions.length > 0) {
-            var manyPosts = submissions.map((submission, index) => {
+            manyPosts = submissions.map((submission, index) => {
 
                 return (
                     <ManyPost
                         key={submission.pid}
                         index={index}
-                        toggleModal={this.props.toggleModal}
+                        selectPost={this.selectPost}
                         {...submission} />
                 )
             })
@@ -218,7 +230,10 @@ class ManyView extends Component {
                         {manyPosts}
                     </div>
                     <div className='many-view__modules'>
-                        <Commenter />
+                        <Commenter
+                            selectedPost={this.state.selectedPost} 
+                            postSelected={this.state.postSelected}
+                            comments={this.state.comments}/>
                     </div>
                 </div>
             </div>

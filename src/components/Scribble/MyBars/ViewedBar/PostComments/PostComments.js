@@ -7,11 +7,16 @@ import PostComment from './PostComment/PostComment'
 
 function PostComments(props) {
 
-    // const [loading, toggleLoader] = useState(false)
+    var comments = props.comments.filter(comment => comment.pid === props.viewedPost.pid)
+    comments = comments.sort((a, b) => {
+        if (a.date < b.date) {
+            return -1
+        } return 1
+    })
 
     var display = (<div>
         <div className='filler-block'></div>
-        {props.comments.map((comment, index) => {
+        {comments.map((comment, index) => {
             return (
                 <PostComment
                     viewedPost={props.viewedPost}

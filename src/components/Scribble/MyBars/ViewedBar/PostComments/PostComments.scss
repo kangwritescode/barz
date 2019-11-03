@@ -2,7 +2,10 @@
     display: flex;
     flex-direction: column-reverse;
     overflow: auto;
-    max-height: 18em;
+    max-height: 12.68em;
+    box-sizing: content-box;
+    padding-left: .5em;
+    width: 100%;
     
     .filler-block {
         height: 2em;

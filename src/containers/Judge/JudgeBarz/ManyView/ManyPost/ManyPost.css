@@ -7,7 +7,7 @@
   margin: 1em;
   font-size: 0.9rem;
   font-family: "permanent marker";
-  color: rgba(255, 255, 255, 0.829);
+  color: rgba(255, 255, 255, 0.753);
 }
 
 .many-post:hover {
@@ -58,7 +58,7 @@
           margin-block-end: 0em;
   font-size: 1.2em;
   color: rgba(228, 228, 228, 0.973);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
   font-family: "permanent marker";
 }
 
@@ -75,11 +75,25 @@
 .many-post header .many-post-region {
   font-family: 'permanent marker';
   font-size: 1.2em;
+  position: relative;
+  left: -.9em;
+  letter-spacing: .22em;
 }
 
-.many-post header #orange {
-  color: orange;
-  letter-spacing: .3em;
+.many-post header #yellow {
+  color: #ece801;
+}
+
+.many-post header #green {
+  color: #00ec62;
+}
+
+.many-post header #blue {
+  color: #007dd1;
+}
+
+.many-post header #purple {
+  color: #6600c5;
 }
 
 .many-post header .many-post-misc {
@@ -128,17 +142,16 @@
 }
 
 .many-post .many-post-body p {
-  font-size: 1.4em;
-  padding: 1em;
+  font-size: 1.5em;
+  padding: 2em;
   -webkit-margin-before: 0px;
           margin-block-start: 0px;
   -webkit-margin-after: 0px;
           margin-block-end: 0px;
-  width: 23em;
-  min-height: 10em;
-  max-height: 8em;
-  overflow: hidden;
+  width: 21em;
+  min-height: 2em;
   text-align: left;
+  line-height: 1.5em;
 }
 
 .many-post .vote-box {

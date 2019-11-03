@@ -1,5 +1,7 @@
 .Commenter {
-  position: relative;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 2em;
   width: 20em;
   height: 15em;
   border-radius: 1em;
@@ -19,6 +21,11 @@
           justify-content: flex-end;
 }
 
+.Commenter .comments-and-likes {
+  position: relative;
+  width: 100%;
+}
+
 .Commenter .header {
   position: absolute;
   top: 0em;
@@ -29,13 +36,21 @@
 
 .Commenter .select-a-post {
   position: absolute;
-  font-family: 'permanent marker';
-  color: #3d3d3d;
+  display: inline-block;
+  font-family: "permanent marker";
+  color: #4b4b4b;
   top: 3.1em;
 }
 
+.Commenter .hidden {
+  color: rgba(75, 75, 75, 0);
+  -webkit-transition: all .1s ease-out;
+  transition: all .1s ease-out;
+  pointer-events: none;
+}
+
 .Commenter .post-comment {
-  position: absolute;
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -111,5 +126,11 @@
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   letter-spacing: 0.1rem;
   font-size: 0.7rem;
+}
+
+.expanded {
+  height: 20em;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
 }
 /*# sourceMappingURL=Commenter.css.map */

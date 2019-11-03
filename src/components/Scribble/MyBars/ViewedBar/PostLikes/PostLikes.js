@@ -13,39 +13,51 @@ class PostLikes extends Component {
     state = {
         votes: 0,
         noOfVoters: 0,
-        myVote: 0
+        myVote: 0,
+        votesListener: null
     }
-    componentDidMount() {
-        this.fetchInfo()
 
+    componentDidUpdate = (prevProps, prevState) => {
+        if (prevProps.viewedPost !== this.props.viewedPost) {
+            if (this.state.votesListener) {
+                this.state.votesListener()
+            }
+            this.fetchInfo()
+        }
+    }
+    componentWillUnmount = () => {
+        this.state.votesListener()
     }
     fetchInfo = () => {
         const db = firebase.firestore()
-        db.collection('postVotes').where('pid', '==', this.props.viewedPost.pid).get()
-            .then(snapshot => {
-                var votes = 0
-                const voters = new Set()
-                var myVote = 0
-                // for every vote of this post
-                snapshot.docs.forEach(like => {
-                    var vote = like.data()
-                    if (vote.value === 1 || vote.value === -1) {
-                        myVote = this.props.uid === vote.voterID ? Math.max(vote.value, 0) : 0
-                        votes += Math.max(vote.value, 0)
-                        voters.add(vote.voterID)
-                    }
+        var votesListener = db.collection('postVotes').where('pid', '==', this.props.viewedPost.pid).onSnapshot(snapshot => {
+            var votes = 0
+            const voters = new Set()
+            var myVote = 0
+            // for every vote of this post
+            snapshot.docs.forEach(like => {
+                var vote = like.data()
+                if (vote.value === 1 || vote.value === -1) {
+                    myVote = this.props.uid === vote.voterID ? Math.max(vote.value, 0) : 0
+                    votes += Math.max(vote.value, 0)
+                    voters.add(vote.voterID)
+                }
 
-                })
-                votes = votes < 0 ? 0 : votes
-                var noOfVoters = voters.size
-                console.log(myVote)
-                this.setState({
-                    ...this.state,
-                    myVote: myVote,
-                    votes: votes,
-                    noOfVoters: noOfVoters
-                })
             })
+            votes = votes < 0 ? 0 : votes
+            var noOfVoters = voters.size
+            console.log(myVote)
+            this.setState({
+                ...this.state,
+                myVote: myVote,
+                votes: votes,
+                noOfVoters: noOfVoters
+            })
+        })
+        this.setState({
+            ...this.state,
+            votesListener: votesListener
+        })
     }
 
     render() {
