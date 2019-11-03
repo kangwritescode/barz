@@ -47,6 +47,17 @@
 
 .many-view .many-view__modules {
   position: relative;
-  top: .93em;
+}
+
+.many-view .many-view__modules .sticky-wrapper {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 4.38em;
+  width: 18.2em;
+}
+
+.many-view .many-view__modules .sticky-wrapper .turntable-wrapper {
+  margin-top: 1.8em;
+  height: 10em;
 }
 /*# sourceMappingURL=ManyView.css.map */

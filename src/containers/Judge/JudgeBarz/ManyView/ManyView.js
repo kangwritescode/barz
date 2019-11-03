@@ -11,8 +11,21 @@ import ReactPlayer from 'react-player'
 import Turntable from '../../../../components/Scribble/Turntable/Turntable'
 import PostLikes from '../../../../components/Scribble/MyBars/ViewedBar/PostLikes/PostLikes'
 import Commenter from './Commenter/Commenter'
+import Community from './Community/Community'
 
 class ManyView extends Component {
+
+    static defaultProps = {
+        closesCommenter: [
+            "many-view__posts",
+            "many-view",
+            "many-view__modules",
+            "sticky-wrapper",
+            "Community",
+            'many-view-layout'
+        ]
+
+    }
 
     state = {
         submissions: [],
@@ -26,7 +39,24 @@ class ManyView extends Component {
         this.fetchSubmissions()
         this.fetchVotes()
         this.fetchSubmissionComments()
+        document.addEventListener('click', this.toggleCommenter)
     }
+
+    toggleCommenter = (event) => {
+        this.props.closesCommenter.forEach(className => {
+            if (event.target.classList.contains(className)) {
+                this.setState({
+                    ...this.state,
+                    postSelected: false
+                })
+            }
+        });
+        
+    }
+
+
+
+
 
 
     fetchSubmissionComments = () => {
@@ -72,9 +102,9 @@ class ManyView extends Component {
         const votes = {}
         db.collection('postVotes').onSnapshot(querySnapshot => {
             querySnapshot.forEach((doc) => {
-                var vote = { 
+                var vote = {
                     ...doc.data(),
-                    vid: doc.id 
+                    vid: doc.id
                 }
                 votes[doc.id] = vote
             })
@@ -222,7 +252,6 @@ class ManyView extends Component {
             })
         }
 
-
         return (
             <div className='many-view-layout'>
                 <div className='many-view'>
@@ -230,10 +259,18 @@ class ManyView extends Component {
                         {manyPosts}
                     </div>
                     <div className='many-view__modules'>
-                        <Commenter
-                            selectedPost={this.state.selectedPost} 
-                            postSelected={this.state.postSelected}
-                            comments={this.state.comments}/>
+                        <div className='sticky-wrapper'>
+                            <Commenter
+                                selectedPost={this.state.selectedPost}
+                                postSelected={this.state.postSelected}
+                                comments={this.state.comments} />
+                            <Community submissions={this.state.submissions} />
+                            <div className='turntable-wrapper'>
+                                <Turntable />
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
             </div>

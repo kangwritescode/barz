@@ -26,7 +26,9 @@ class PostLikes extends Component {
         }
     }
     componentWillUnmount = () => {
-        this.state.votesListener()
+        if (this.state.votesListener) {
+            this.state.votesListener()
+        }
     }
     fetchInfo = () => {
         const db = firebase.firestore()

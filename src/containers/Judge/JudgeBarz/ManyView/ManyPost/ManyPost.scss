@@ -7,7 +7,7 @@
     margin: 1em;
     font-size: 0.9rem;
     font-family: "permanent marker";
-    color: rgba(255, 255, 255, 0.753);
+    color: rgba(255, 255, 255, 0.651);
     &:hover {
         cursor: pointer;
     }
@@ -65,16 +65,16 @@
             letter-spacing: .22em;
         }
         #yellow {
-            color: rgb(236, 232, 1);
+            color: rgba(236, 232, 0, 0.733);
         }
         #green {
-            color: rgb(0, 236, 98);
+            color: rgb(0, 236, 0.705);
         }
         #blue {
-            color: rgb(0, 125, 209);
+            color: rgba(0, 125, 209, 0.705);
         }
         #purple {
-            color: rgb(102, 0, 197);
+            color: rgb(102, 0, 0.705);
         }
         .many-post-misc {
             position: relative;
@@ -110,7 +110,7 @@
             padding: 2em;
             margin-block-start: 0px;
             margin-block-end: 0px;
-            width: 21em;
+            width: 18em;
             min-height: 2em;
             text-align: left;
             line-height: 1.5em;

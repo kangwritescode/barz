@@ -91,7 +91,7 @@ class ManyPost extends Component {
 
 
         return (
-            <div className='many-post' onClick={() => this.props.selectPost(this.props.pid)}>
+            <div className='many-post' id={this.props.pid} onClick={() => this.props.selectPost(this.props.pid)}>
                 <header>
                     <div className='many-post-details'>
                         <img className='many-post-pic' src={this.state.photoURL} alt='pic'></img>

@@ -1,11 +1,10 @@
 .Commenter {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 2em;
-  width: 20em;
+  position: relative;
+  width: 18.2em;
   height: 15em;
   border-radius: 1em;
   background-color: rgba(255, 255, 255, 0.863);
+  margin-top: .9em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -19,6 +18,8 @@
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
 }
 
 .Commenter .comments-and-likes {
@@ -40,6 +41,8 @@
   font-family: "permanent marker";
   color: #4b4b4b;
   top: 3.1em;
+  -webkit-transition: all .1s ease-out;
+  transition: all .1s ease-out;
 }
 
 .Commenter .hidden {
@@ -105,7 +108,7 @@
 .Commenter .post-comment .comment-input {
   position: relative;
   background-color: rgba(0, 0, 0, 0.055);
-  width: 17em;
+  width: 15em;
   padding: 0.6rem 0.2rem 0.5rem 0.8rem;
   font-size: 0.7rem;
   border-radius: 2rem;
