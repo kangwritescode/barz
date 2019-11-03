@@ -88,7 +88,7 @@ function PostComment(props) {
                         className={`delete-comment-drop-menu`}
                         id={data.cid}
                         onMouseLeave={(event) => { closeDropdowns(event) }}>
-                        <div className="delete-comment-drop-menu-item" id="delete-post" onClick={() => props.toggleModal(true, data.cid)}>
+                        <div className="delete-comment-drop-menu-item" id="delete-post" onClick={() => props.toggleDeleteCommentModal(true, data.cid)}>
                             Delete
                         </div>
                     </div>

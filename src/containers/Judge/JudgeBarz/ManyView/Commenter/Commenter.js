@@ -1,5 +1,9 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import david from '../../../../../assets/davidFace.png'
+import firebase from 'firebase'
+import { connect } from 'react-redux'
+import 'firebase/firestore'
+import scrollToElement from 'scroll-to-element'
 import './Commenter.css'
 import TextareaAutosize from 'react-autosize-textarea/lib'
 import PostLikes from '../../../../../components/Scribble/MyBars/ViewedBar/PostLikes/PostLikes'
@@ -7,39 +11,87 @@ import PostComments from '../../../../../components/Scribble/MyBars/ViewedBar/Po
 
 var Commenter = (props) => {
 
-    console.log(props)
+    const [input, setInput] = useState('')
+
+
+    useEffect(() => {
+        setInput('')
+    }, [props.selectedPost])
+
+    // firebase
+    const addComment = () => {
+        var db = firebase.firestore()
+        db.collection('postComments').add({
+            comment: input,
+            date: new Date(),
+            photoRef: props.photoRef,
+            pid: props.selectedPost.pid,
+            receiverUsername: props.selectedPost.username,
+            receiverUID: props.selectedPost.uid,
+            uid: props.uid,
+            username: props.username
+        })
+            .then(() => {
+                setInput('')
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
+    // ui 
     var isExpanded = props.postSelected ? 'expanded' : null
     var isHidden = props.postSelected ? 'hidden' : null
+
     var commentsAndLikes = null
+
     if (props.postSelected) {
         commentsAndLikes = (
             <div className='comments-and-likes'>
-                <PostComments viewedPost={props.selectedPost} comments={props.comments} />
+                <PostComments 
+                    viewedPost={props.selectedPost} 
+                    comments={props.comments}
+                    toggleDeleteCommentModal={props.toggleDeleteCommentModal} />
                 <PostLikes viewedPost={props.selectedPost} />
             </div>
 
         )
     }
-
-
     return (
-        <div className={`Commenter ${isExpanded}`}>
+        <div className='commenter-wrapper'>
             <div className='header'></div>
-            <h2 className={`select-a-post ${isHidden}`}>Select a Post!</h2>
-            {commentsAndLikes}
-            <form className='post-comment'>
-                <div className='img-wrapper'><img alt='alt' src={david} className='comment-user-img'></img></div>
-                <TextareaAutosize
-                    placeholder='Thoughts...'
-                    disabled
-                    maxLength='200'
-                    className='comment-input'
-                    spellCheck="false">
-                </TextareaAutosize>
-                <button disabled onClick={event => event.preventDefault()}>Post</button>
-            </form>
+            <div className={`commenter-body ${isExpanded}`}>
+                <h2 className={`select-a-post ${isHidden}`}>Select a Post</h2>
+                {commentsAndLikes}
+                <form className='post-comment'>
+                    <div className='img-wrapper'><img alt='alt' src={david} className='comment-user-img'></img></div>
+                    <TextareaAutosize
+                        disabled={!props.postSelected}
+                        placeholder='Thoughts...'
+                        value={input}
+                        onChange={event => setInput(event.target.value)}
+                        maxLength='200'
+                        className='comment-input'
+                        spellCheck="false">
+                    </TextareaAutosize>
+                    <button className={(!props.postSelected || input === '') ? 'disabled' : null}
+                        disabled={!props.postSelected || input === '' ? true : false}
+                        onClick={event => { event.preventDefault(); addComment() }}>Post</button>
+                </form>
+            </div>
         </div>
+
     )
 }
 
-export default Commenter
+const mapStateToProps = state => {
+    return {
+        uid: state.uid,
+        username: state.username,
+        state: state.address.state,
+        photoRef: state.photoRef,
+        handles: state.handles,
+    }
+}
+
+export default connect(mapStateToProps, null)(Commenter)

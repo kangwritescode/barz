@@ -7,13 +7,25 @@
 }
 $border-color: rgb(206, 206, 206);
 
-.Commenter {
+.commenter-wrapper {
+    width: 18.2;
+}
+.header {
     position: relative;
-    width: 18.2em;
-    height: 15em;
-    border-radius: 1em;
-    background-color: rgba(255, 255, 255, 0.836);
-    margin-top: .9em;
+    background-color: inherit;
+    border-radius: 1em 1em 0em 0em;
+    background-color: rgba(255, 255, 255, 0.829);
+    border-bottom: 1px solid rgb(206, 206, 206);
+    height: 1.5em;
+}
+
+.commenter-body {
+    position: relative;
+    width: 100%;
+    height: 11em;
+    border-radius: 0em 0em 1em 1em;
+    background-color: rgba(255, 255, 255, 0.829);
+    overflow: hidden;
 
     display: flex;
     flex-direction: column;
@@ -24,14 +36,17 @@ $border-color: rgb(206, 206, 206);
     .comments-and-likes {
         position: relative;
         width: 100%;
-    }
-    .header {
-        position: absolute;
-        top: 0em;
-        width: 100%;
-        height: 1.7em;
-        border-bottom: 1px solid $border-color;
+        animation: fade-in .3s ease-in .3s forwards;
+        opacity: 0;
 
+        @keyframes fade-in {
+            0% {
+                opacity: 0
+            }
+            100% {
+                opacity: 1
+            }
+        }
     }
 
     .select-a-post {
@@ -39,7 +54,8 @@ $border-color: rgb(206, 206, 206);
         display: inline-block;
         font-family: "permanent marker";
         color: rgb(75, 75, 75);
-        top: 3.1em;
+        font-size: 1.3em;
+        top: 1.7em;
         transition: all .1s ease-out;
     }
     .hidden {
@@ -93,12 +109,27 @@ $border-color: rgb(206, 206, 206);
             }
         }
         button {
+            height: 2.8em;
             background-color: transparent;
+            border-radius: 1em;
             border: none;
             font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
             letter-spacing: 0.1rem;
             font-size: 0.7rem;
+            color: black;
             //  text-shadow: 1.2px 1.2px rgb(207, 207, 207);
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.034);
+            }
+            &:active {
+                background-color: rgba(0, 0, 0, 0.075);
+            }
+        }
+        .disabled {
+            color: rgb(109, 109, 109);
+            &:hover {
+                background-color: transparent;
+            }
         }
     }
 }

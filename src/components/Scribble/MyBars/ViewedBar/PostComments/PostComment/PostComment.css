@@ -49,8 +49,8 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background-image: -webkit-gradient(linear, left top, right top, from(rgba(236, 236, 236, 0.747)), to(#ececec));
-  background-image: linear-gradient(to right, rgba(236, 236, 236, 0.747), #ececec);
+  background-image: -webkit-gradient(linear, left top, right top, from(rgba(236, 236, 236, 0.151)), to(rgba(236, 236, 236, 0.747)));
+  background-image: linear-gradient(to right, rgba(236, 236, 236, 0.151), rgba(236, 236, 236, 0.747));
   font-size: 0.9em;
   color: #850000;
 }

@@ -4,14 +4,12 @@ import { connect } from 'react-redux'
 import 'firebase/firestore'
 import './ManyView.css'
 import ManyPost from './ManyPost/ManyPost'
-import earl from '../../../../assets/artistSpotlight/earl-spotlight.png'
-import ViewedPost from '../../../../components/Scribble/MyBars/ViewedBar/ViewedPost'
 import timeDict from '../../../Wordsmiths/WordSmithsTools/timeDict'
-import ReactPlayer from 'react-player'
 import Turntable from '../../../../components/Scribble/Turntable/Turntable'
-import PostLikes from '../../../../components/Scribble/MyBars/ViewedBar/PostLikes/PostLikes'
 import Commenter from './Commenter/Commenter'
 import Community from './Community/Community'
+import DeleteComment from '../../../../components/Scribble/MyBars/ViewedBar/DeleteComment/DeleteComment'
+
 
 class ManyView extends Component {
 
@@ -32,7 +30,9 @@ class ManyView extends Component {
         votes: {},
         comments: [],
         postSelected: false,
-        selectedPost: null
+        selectedPost: null,
+        showDeleteComment: false,
+        cid: null
     }
 
     componentDidMount = () => {
@@ -50,13 +50,15 @@ class ManyView extends Component {
                     postSelected: false
                 })
             }
-        });
-        
+        });   
     }
-
-
-
-
+    toggleDeleteCommentModal = (bool, cid) => {
+        this.setState({
+            ...this.state,
+            showDeleteComment: bool,
+            cid: cid
+        })
+    }
 
 
     fetchSubmissionComments = () => {
@@ -226,6 +228,9 @@ class ManyView extends Component {
     selectPost = (pid) => {
         var post = this.state.submissions.filter(submission => submission.pid === pid)
         post = post[0]
+        // scrollToElement('#scrollTo' + pid)
+        // var elem = document.querySelector('.scrollTo' + pid)
+        // document.getElementById('scrollTo' + pid).scrollIntoView();
         this.setState({
             postSelected: true,
             selectedPost: post
@@ -254,6 +259,7 @@ class ManyView extends Component {
 
         return (
             <div className='many-view-layout'>
+                {this.state.showDeleteComment ? <DeleteComment cid={this.state.cid} toggleDeleteCommentModal={this.toggleDeleteCommentModal}/> : null}
                 <div className='many-view'>
                     <div className='many-view__posts'>
                         {manyPosts}
@@ -263,14 +269,13 @@ class ManyView extends Component {
                             <Commenter
                                 selectedPost={this.state.selectedPost}
                                 postSelected={this.state.postSelected}
-                                comments={this.state.comments} />
+                                comments={this.state.comments}
+                                toggleDeleteCommentModal={this.toggleDeleteCommentModal} />
                             <Community submissions={this.state.submissions} />
                             <div className='turntable-wrapper'>
                                 <Turntable />
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>

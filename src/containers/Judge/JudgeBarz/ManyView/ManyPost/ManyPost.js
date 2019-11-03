@@ -2,9 +2,8 @@ import React, { Component } from 'react'
 import './ManyPost.css'
 import firebase from 'firebase'
 import 'firebase/firestore'
-import manyComment from '../../../../../assets/manyComment.png'
-import manyFlame from '../../../../../assets/manyFlame.png'
-import ViewedPost from '../../../../../components/Scribble/MyBars/ViewedBar/ViewedPost'
+
+
 
 class ManyPost extends Component {
     state = {
@@ -18,6 +17,7 @@ class ManyPost extends Component {
         this.fetchScore()
         this.fetchCommentsCount()
     }
+
 
     fetchPhotoURL = async (photoRef) => {
         var storage = firebase.storage()
@@ -63,6 +63,7 @@ class ManyPost extends Component {
 
 
 
+
     render() {
 
         // date
@@ -89,11 +90,14 @@ class ManyPost extends Component {
         const coastColor = colorDict[this.props.address.region]
 
 
-
         return (
-            <div className='many-post' id={this.props.pid} onClick={() => this.props.selectPost(this.props.pid)}>
+
+            <div
+                className={`many-post scrollTo${this.props.pid}`}
+                id={`scrollTo${this.props.pid}`}
+                onClick={() => this.props.selectPost(this.props.pid)}>
                 <header>
-                    <div className='many-post-details'>
+                    <div className='many-post-details' id={this.props.pid}>
                         <img className='many-post-pic' src={this.state.photoURL} alt='pic'></img>
                         <div className='many-post-name-date-container'>
                             <h6>{this.props.username}</h6>
@@ -104,15 +108,16 @@ class ManyPost extends Component {
                         {this.props.address.region.toLowerCase()}
                     </div>
                     <div className='many-post-misc'>
-                        <img className='manyComment' src={manyComment} alt='pic' />
+                        <i class="fas fa-comment" id='manyComment'></i>
                         {commentsCount}
-                        <img className='manyFlame' src={manyFlame} alt='pic' />
+                        <i className="fas fa-fire" id='manyFlame' aria-hidden="true"></i>
                         {score}
                     </div>
                 </header>
                 <div className='many-post-body'>
                     <p>{`"${content}"`}</p>
                 </div>
+
                 <div className='vote-box'>
                     <button className='vote-button dislike-button'>
                         <i className="fa fa-trash" aria-hidden="true"></i>
@@ -123,6 +128,7 @@ class ManyPost extends Component {
 
                 </div>
             </div>
+
         )
     }
 }

@@ -23,7 +23,7 @@ function PostComments(props) {
                     index={index}
                     noOfComments={props.comments.length}
                     data={comment}
-                    toggleModal={props.toggleModal}
+                    toggleDeleteCommentModal={props.toggleDeleteCommentModal}
                     // toggleLoader={toggleLoader}
                 />
             )
