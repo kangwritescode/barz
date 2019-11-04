@@ -16,6 +16,15 @@
           flex-direction: column;
 }
 
+.column-container {
+  position: relative;
+  top: 5em;
+}
+
+.column-container .left-column {
+  width: 14em;
+}
+
 #mv-cred {
   display: -webkit-box;
   display: -ms-flexbox;

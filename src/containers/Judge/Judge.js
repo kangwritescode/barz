@@ -80,7 +80,7 @@ class Judge extends Component {
             <div>
                 <div className="JudgeContainer">
                     <img id='backup-img' src={vinyl2_IMG} alt=''></img>
-                    <video src={vinyl2} autoPlay={true} loop={false} playsInline={true} muted />
+                    <video src={vinyl2} autoPlay={true} loop={true} playsInline={true} muted />
                     <div id="judgeOverlay" />
                     <JudgeNavBar 
                         sort={this.state.sort}

@@ -1,0 +1,159 @@
+.profile-box {
+  position: relative;
+  width: 100%;
+  height: 20em;
+  background-color: rgba(0, 0, 0, 0.801);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.199);
+}
+
+.profile-box .profile-box__block-one {
+  position: relative;
+  z-index: 1;
+  height: 50%;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.055);
+  color: rgba(255, 255, 255, 0.904);
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.profile-box .profile-box__block-one .block-one__username {
+  font-size: 1.9em;
+}
+
+.profile-box .profile-box__block-one .block-one__address-gender {
+  font-size: 0.7em;
+  letter-spacing: 0.04em;
+  margin-bottom: 1em;
+}
+
+.profile-box .profile-box__block-two {
+  position: relative;
+  z-index: 0;
+  height: 45%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.profile-box .profile-box__block-two .block-two__blurb {
+  position: relative;
+  top: 0.9em;
+  color: rgba(255, 255, 255, 0.726);
+  width: 80%;
+  font-size: 0.7em;
+  line-height: 1.4em;
+  text-align: center;
+}
+
+.profile-box .profile-box__block-three {
+  background-color: rgba(255, 255, 255, 0.055);
+  height: 15%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.profile-box .profile-box__block-three .handle-container {
+  position: relative;
+  height: 23px;
+  width: 23px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.233);
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  opacity: 0.3;
+}
+
+.profile-box .profile-box__block-three .block-three__fb {
+  background-color: #0000a5;
+  position: relative;
+  top: -1px;
+  height: 26px;
+  width: 27px;
+}
+
+.profile-box .profile-box__block-three .block-three__ig {
+  position: relative;
+  height: 25px;
+  width: 25px;
+  background-image: -webkit-gradient(linear, left top, right bottom, from(#8a3ab9), color-stop(#bc2a8d), to(#ffdc80));
+  background-image: linear-gradient(to bottom right, #8a3ab9, #bc2a8d, #ffdc80);
+}
+
+.profile-box .profile-box__block-three .block-three__yt {
+  background-color: black;
+  position: relative;
+  height: 19px;
+  width: 19px;
+}
+
+.profile-box .profile-box__block-three .block-three__sc {
+  background-color: #0000a5;
+  position: relative;
+  height: 26px;
+  width: 27px;
+}
+/*# sourceMappingURL=ProfileBox.css.map */

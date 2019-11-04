@@ -1,7 +1,6 @@
 #uploadContainer {
   /* margin-right: 30px; */
-  top: 3px;
-  position: relative;
+  position: absolute;
   height: 65px;
   width: 65px;
   border-radius: 50%;
@@ -16,7 +15,9 @@
       -ms-flex-pack: center;
           justify-content: center;
   overflow: hidden;
-  margin-left: 14px;
+  bottom: 0em;
+  -webkit-transform: translateY(50%);
+          transform: translateY(50%);
 }
 
 #uploadButtonContainer {

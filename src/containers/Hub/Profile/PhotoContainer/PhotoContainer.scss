@@ -1,7 +1,6 @@
 #uploadContainer {
     /* margin-right: 30px; */
-    top: 3px;
-    position: relative;
+    position: absolute;
     height: 65px;
     width: 65px;
     border-radius: 50%;
@@ -10,7 +9,8 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    margin-left: 14px;
+    bottom: 0em;
+    transform: translateY(50%);
 
 }
 

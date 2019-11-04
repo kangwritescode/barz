@@ -30,7 +30,7 @@ const initialState = {
     username: '?',
     gender: '?',
     address: '?',
-    photoRef: '?',
+    photoRef: null,
     handles: {
         facebook: '',
         instagram: '',

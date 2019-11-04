@@ -56,16 +56,7 @@ class UploadImage extends Component {
         var imageRef = storageRef.child(this.props.photoRef)
         var uploadTask = imageRef.put(this.state.selectedFile)
         uploadTask.on('state_changed', snapshot => {
-            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log('Upload is ' + progress + '% done');
-            switch (snapshot.state) {
-                case firebase.storage.TaskState.PAUSED: // or 'paused'
-                    console.log('Upload is paused');
-                    break;
-                case firebase.storage.TaskState.RUNNING: // or 'running'
-                    console.log('Upload is running');
-                    break;
-            }
+
         }, (err) => {
             this.setState({
                 ...this.state,
@@ -76,7 +67,7 @@ class UploadImage extends Component {
             })
         }, () => {
             uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-                this.props.setProfileImage(downloadURL)
+                this.props.setImgURL(downloadURL)
                 this.setState({
                     ...this.state,
                     uploading: false,
@@ -109,7 +100,7 @@ class UploadImage extends Component {
 
         return (
             <div>
-                <div className="ul-img-backdrop" onClick={() => this.props.toggleShow('showUploadImage', false)}></div>
+                <div className="ul-img-backdrop" onClick={() => this.props.setShowPhotoModal(false)}></div>
 
                 <div id="UploadImage">
                     {this.state.uploading ? <div id="dotdotLoader"></div> : null}
@@ -121,7 +112,7 @@ class UploadImage extends Component {
                             {this.state.notificationMessage}
                         </div> : null}
 
-                    <div id="closeUploadImage" onClick={() => this.props.toggleShow('showUploadImage', false)}><i className="fa fa-close"></i></div>
+                    <div id="closeUploadImage" onClick={() => this.props.setShowPhotoModal(false)}><i className="fa fa-close"></i></div>
 
                     {/* <img alt="alt" src={portrait}></img> */}
                     <h1>Set Photo</h1>
@@ -136,7 +127,7 @@ class UploadImage extends Component {
                         <label id="uploadIMG" htmlFor="files">Choose File</label>
                         {this.state.hasChanged ?
                             <button onClick={() => this.fileUploadHandler()}>Confirm</button> :
-                            <button onClick={() => this.props.toggleShow('showUploadImage', false)}>Cancel</button>}
+                            <button onClick={() => this.props.setShowPhotoModal(false)}>Cancel</button>}
                     </div>
 
                 </div>
