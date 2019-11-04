@@ -2,25 +2,13 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 .many-post {
   position: relative;
-  background-color: rgba(0, 0, 0, 0.74);
-  border-radius: 1.2em;
+  border: 1px solid rgba(255, 255, 255, 0.123);
+  background-color: rgba(0, 0, 0, 0.589);
+  border-radius: 0.2em;
   margin: 1em;
   font-size: 0.9rem;
   font-family: "permanent marker";
-  color: rgba(255, 255, 255, 0.74);
-}
-
-.many-post:hover {
-  cursor: pointer;
-}
-
-.many-post .scroll-link {
-  position: relative;
-  display: inline-block;
-  width: 100%;
-  height: 80%;
-  background-color: black;
-  z-index: 999;
+  color: rgba(255, 255, 255, 0.644);
 }
 
 .many-post header {
@@ -35,13 +23,18 @@
           justify-content: space-between;
   height: 2.9em;
   color: white;
-  border-top-left-radius: 1.2em;
-  border-top-right-radius: 1.2em;
-  background-color: rgba(255, 255, 255, 0.144);
+  border-top-left-radius: 0.2em;
+  border-top-right-radius: 0.2em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.123);
+  background-color: rgba(0, 0, 0, 0.521);
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+.many-post header:hover {
+  cursor: pointer;
 }
 
 .many-post header .many-post-details {
@@ -53,7 +46,7 @@
   width: 1.7em;
   overflow: hidden;
   border-radius: 50%;
-  margin-right: 0.7em;
+  margin-right: 0.45em;
 }
 
 .many-post header .many-post-details .many-post-name-date-container {
@@ -65,10 +58,10 @@
           margin-block-start: 0em;
   -webkit-margin-after: 0em;
           margin-block-end: 0em;
-  font-size: 1.2em;
+  font-size: 1.15em;
   color: rgba(228, 228, 228, 0.973);
-  letter-spacing: 0.1em;
-  font-family: "permanent marker";
+  letter-spacing: 1px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
 
 .many-post header .many-post-details .many-post-name-date-container p {
@@ -83,14 +76,14 @@
 
 .many-post header .many-post-region {
   font-family: "permanent marker";
-  font-size: 1.3em;
+  font-size: 1.2em;
   position: relative;
   left: -0.9em;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.1em;
 }
 
 .many-post header #yellow {
-  color: rgba(236, 232, 0, 0.733);
+  color: #979505;
 }
 
 .many-post header #green {
@@ -130,7 +123,7 @@
 
 .many-post header .many-post-misc #manyFlame {
   margin-left: 1em;
-  margin-right: .2em;
+  margin-right: 0.2em;
   position: relative;
 }
 
@@ -153,6 +146,10 @@
           justify-content: center;
 }
 
+.many-post .many-post-body:hover {
+  cursor: pointer;
+}
+
 .many-post .many-post-body p {
   font-size: 1.5em;
   padding: 2em;
@@ -168,12 +165,13 @@
 
 .many-post .vote-box {
   position: relative;
-  background-color: rgba(255, 255, 255, 0.144);
+  background-color: rgba(0, 0, 0, 0.137);
   bottom: 0em;
   height: 2.7em;
   width: 100%;
-  border-bottom-left-radius: 1.2em;
-  border-bottom-right-radius: 1.2em;
+  border-bottom-left-radius: 0.2em;
+  border-bottom-right-radius: 0.2em;
+  border-top: 1px solid rgba(255, 255, 255, 0.123);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -190,16 +188,16 @@
   width: 48%;
   height: 75%;
   border: none;
-  background-color: rgba(0, 0, 0, 0.158);
+  background-color: rgba(255, 255, 255, 0.089);
   font-size: 1em;
 }
 
 .many-post .vote-box .dislike-button {
-  border-bottom-left-radius: 1em;
+  border-bottom-left-radius: 0.2em;
 }
 
 .many-post .vote-box .like-button {
-  border-bottom-right-radius: 1em;
+  border-bottom-right-radius: 0.2em;
   font-size: 1.1em;
 }
 /*# sourceMappingURL=ManyPost.css.map */

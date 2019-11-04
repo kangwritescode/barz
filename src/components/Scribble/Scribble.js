@@ -9,6 +9,7 @@ import Post from './Post/Post'
 import MyBars from './MyBars/MyBars'
 import Toolkit from './Toolkit/Toolkit'
 import Turntable from './Turntable/Turntable'
+import nafla from '../../assets/nafla-blows.m4v'
 
 
 class Scribble extends Component {

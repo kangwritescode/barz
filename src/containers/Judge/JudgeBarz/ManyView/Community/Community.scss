@@ -1,3 +1,4 @@
+$edges: .2em;
 
 @mixin flex-centered($direction) {
     display: flex;
@@ -7,19 +8,21 @@
 }
 .Community {
     position: relative;
-    background-color: rgba(0, 0, 0, 0.836);
-    border-radius: 1em;
+    background-color: rgba(0, 0, 0, 0.63);
+    border-radius: $edges;
     width: 100%;
     height: 6em;
     margin-top: 2em;
-    font-family: 'permanent marker';
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    letter-spacing: .1em;
 }
 .community-header {
     position: relative;
     width: 100%;
     height: 1.8em;
-    border-radius: 1em 1em 0em 0em;
-    background-color: rgba(255, 255, 255, 0.164);
+    border-radius: $edges $edges 0em 0em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.267);
+    // background-color: rgba(255, 255, 255, 0.164);
     color: rgba(255, 255, 255, 0.836);
     @include flex-centered(column);
 }
@@ -30,9 +33,12 @@
     color: rgba(255, 255, 255, 0.658);
     @include flex-centered(row);
     justify-content: space-evenly;
+    font-family: 'rock salt';
+    font-size: .75em;
+    letter-spacing: .03em;
 
     .a-line {
-        height: 2.5em;
+        height: 3.3em;
         border-right: 1px solid rgba(255, 255, 255, 0.164);
     }
 }

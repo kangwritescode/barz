@@ -1,27 +1,19 @@
 @import url("https://fonts.googleapis.com/css?family=Permanent+Marker|Sedgwick+Ave+Display&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+
+$edges: 0.2em;
+
 .many-post {
     position: relative;
-    background-color: rgba(0, 0, 0, 0.74);
-    border-radius: 1.2em;
+    border: 1px solid rgba(255, 255, 255, 0.123);
+    background-color: rgba(0, 0, 0, 0.589);
+    border-radius: $edges;
     margin: 1em;
     font-size: 0.9rem;
     font-family: "permanent marker";
-    color: rgba(255, 255, 255, 0.74);
-    &:hover {
-        cursor: pointer;
-    }
+    color: rgba(255, 255, 255, 0.644);
 
-    $bar-colors: rgba(255, 255, 255, 0.144);
-
-    .scroll-link {
-        position: relative;
-        display: inline-block;
-        width: 100%;
-        height: 80%;
-        background-color: black;
-        z-index: 999;
-    }
+    $bar-colors: rgba(0, 0, 0, 0.137);
 
 
     header {
@@ -32,13 +24,17 @@
         justify-content: space-between;
         height: 2.9em;
         color: white;
-        border-top-left-radius: 1.2em;
-        border-top-right-radius: 1.2em;
-        background-color: $bar-colors;
+        border-top-left-radius: $edges;
+        border-top-right-radius: $edges;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.123);
+        background-color: rgba(0, 0, 0, 0.521);
         align-items: center;
+
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
             "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-
+        &:hover {
+            cursor: pointer;
+        }
         .many-post-details {
             margin-left: 1.4em;
             img {
@@ -46,17 +42,17 @@
                 width: 1.7em;
                 overflow: hidden;
                 border-radius: 50%;
-                margin-right: 0.7em;
+                margin-right: 0.45em;
             }
             .many-post-name-date-container {
                 display: inline-block;
                 h6 {
                     margin-block-start: 0em;
                     margin-block-end: 0em;
-                    font-size: 1.2em;
+                    font-size: 1.15em;
                     color: rgba(228, 228, 228, 0.973);
-                    letter-spacing: 0.1em;
-                    font-family: "permanent marker";
+                    letter-spacing: 1px;
+                    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
                 }
                 p {
                     margin-block-start: 0em;
@@ -69,13 +65,13 @@
         }
         .many-post-region {
             font-family: "permanent marker";
-            font-size: 1.3em;
+            font-size: 1.2em;
             position: relative;
             left: -0.9em;
-            letter-spacing: 0.22em;
+            letter-spacing: 0.1em;
         }
         #yellow {
-            color: rgba(236, 232, 0, 0.733);
+            color: rgb(151, 149, 5);
         }
         #green {
             color: rgb(0, 236, 0.705);
@@ -104,7 +100,7 @@
             }
             #manyFlame {
                 margin-left: 1em;
-                margin-right: .2em;
+                margin-right: 0.2em;
                 position: relative;
                 // top: -1px;
             }
@@ -118,8 +114,9 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-
-        
+        &:hover {
+            cursor: pointer;
+        }
         p {
             font-size: 1.5em;
             padding: 2em;
@@ -137,8 +134,9 @@
         bottom: 0em;
         height: 2.7em;
         width: 100%;
-        border-bottom-left-radius: 1.2em;
-        border-bottom-right-radius: 1.2em;
+        border-bottom-left-radius: $edges;
+        border-bottom-right-radius: $edges;
+        border-top: 1px solid rgba(255, 255, 255, 0.123);
         display: flex;
         align-items: center;
         justify-content: space-evenly;
@@ -148,14 +146,14 @@
             width: 48%;
             height: 75%;
             border: none;
-            background-color: rgba(0, 0, 0, 0.158);
+            background-color: rgba(255, 255, 255, 0.089);
             font-size: 1em;
         }
         .dislike-button {
-            border-bottom-left-radius: 1em;
+            border-bottom-left-radius: $edges;
         }
         .like-button {
-            border-bottom-right-radius: 1em;
+            border-bottom-right-radius: $edges;
             font-size: 1.1em;
         }
     }

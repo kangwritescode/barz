@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import * as actionTypes from '../../store/actions'
 import vinyl2 from '../../assets/vinyl2.mp4'
 import vinyl2_IMG from '../../assets/vinyl2_IMG.png'
+import nafla from '../../assets/nafla-blows.m4v'
 import JudgeNavBar from '../Judge/JudgeBarz/JudgeNavBar/JudgeNavBar'
 import ManyView from './JudgeBarz/ManyView/ManyView'
 import SingleView from './JudgeBarz/SingleView/SingleView'
@@ -79,7 +80,7 @@ class Judge extends Component {
             <div>
                 <div className="JudgeContainer">
                     <img id='backup-img' src={vinyl2_IMG} alt=''></img>
-                    <video src={vinyl2} autoPlay={true} loop={true} playsInline={true} muted />
+                    <video src={vinyl2} autoPlay={true} loop={false} playsInline={true} muted />
                     <div id="judgeOverlay" />
                     <JudgeNavBar 
                         sort={this.state.sort}

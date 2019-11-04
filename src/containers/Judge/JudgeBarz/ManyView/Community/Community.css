@@ -1,19 +1,20 @@
 .Community {
   position: relative;
-  background-color: rgba(0, 0, 0, 0.836);
-  border-radius: 1em;
+  background-color: rgba(0, 0, 0, 0.63);
+  border-radius: 0.2em;
   width: 100%;
   height: 6em;
   margin-top: 2em;
-  font-family: 'permanent marker';
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  letter-spacing: .1em;
 }
 
 .community-header {
   position: relative;
   width: 100%;
   height: 1.8em;
-  border-radius: 1em 1em 0em 0em;
-  background-color: rgba(255, 255, 255, 0.164);
+  border-radius: 0.2em 0.2em 0em 0em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.267);
   color: rgba(255, 255, 255, 0.836);
   display: -webkit-box;
   display: -ms-flexbox;
@@ -51,10 +52,13 @@
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
+  font-family: 'rock salt';
+  font-size: .75em;
+  letter-spacing: .03em;
 }
 
 .community-body .a-line {
-  height: 2.5em;
+  height: 3.3em;
   border-right: 1px solid rgba(255, 255, 255, 0.164);
 }
 /*# sourceMappingURL=Community.css.map */

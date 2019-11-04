@@ -42,7 +42,8 @@ class App extends Component {
   
       )
   
-    
+
+      // app = <Landing />
 
 
       return (
