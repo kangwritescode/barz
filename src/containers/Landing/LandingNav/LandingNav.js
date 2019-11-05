@@ -4,6 +4,17 @@ import './LandingNav.css'
 
 export default function LandingNav(props) {
 
+    const isValidEmail = () => {
+        return (
+            validator.isEmail(props.email) 
+        )
+    }
+    const isValidPassword = () => {
+        return props.password.length >= 6
+    }
+
+    const buttonValidStyle = isValidEmail() && isValidPassword() ? 'valid-button' : null
+
     return (
         <div className='splash-navbar'>
             <div className='logo'>BARZ</div>
@@ -20,7 +31,10 @@ export default function LandingNav(props) {
                         onChange={event => props.setPassword(event.target.value)}></input>
                     <div className='forgot-password'>Forgot Password?</div>
                 </div>
-                <button disabled className='log-in'>Log In</button>
+                <button
+                    className={`log-in ${buttonValidStyle}`} 
+                    disabled={!buttonValidStyle}
+                    onClick={props.trySignIn}>Log In</button>
             </form>
         </div>
     )

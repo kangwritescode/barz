@@ -84,17 +84,17 @@ class DeleteAccount extends Component {
 
         return (
             <div>
-                <div className="delete-backdrop" onClick={() => this.props.toggleShow('showDeleteAccount', false)} />
+                <div className="delete-backdrop" onClick={() => this.props.toggleDeleteAcc(false)} />
                 <div id="delete-account-modal">
-                    <i className="fa fa-close" id="exit-delete-modal" onClick={() => this.props.toggleShow('showDeleteAccount', false)}></i>
+                    <i className="fa fa-close" id="exit-delete-modal" onClick={() => this.props.toggleDeleteAcc(false)}></i>
                     <img id="delete-icon" src={trash}></img>
-                    <div id="are-you-sure">Are you sure?</div>
+                    <div id="are-you-sure">Delete Account</div>
                     <div id="will-be-deleted">
                         All user data will be deleted forever.
                     </div>
                     <input type="password" id="delete-pass-input" placeholder="password" onChange={this.onInputHandler}></input>
                     <div id="delete-buttons">
-                        <div className="delete-button" id="cancel" onClick={() => this.props.toggleShow('showDeleteAccount', false)}>Cancel</div>
+                        <div className="delete-button" id="cancel" onClick={() => this.props.toggleDeleteAcc(false)}>Cancel</div>
                         <div
                             className={`delete-button`}
                             id={this.state.password === '' ? 'delete-disabled' : 'delete'} onClick={this.state.password === '' ? null : this.deleteAccount}>Delete</div>

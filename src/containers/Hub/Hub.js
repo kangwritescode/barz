@@ -8,12 +8,13 @@ import yoxIMG from '../../assets/yoxIMG.png'
 import ProfileBox from './ProfileBox/ProfileBox'
 import Profile from './Profile/Profile'
 import UploadImage from './Profile/UploadImage/UploadImage'
+import AddHandles from './Profile/AddHandles/AddHandles'
 
 
 const Hub = (props) => {
 
     const [showPhotoModal, setShowPhotoModal] = useState(false)
-
+    const [showUploadHandles, toggleUploadHandles] = useState(false)
     var profile = <Profile />
 
     const [imgURL, setImgURL] = useState('')
@@ -38,13 +39,17 @@ const Hub = (props) => {
         profile = (
             <div className="hub-layout">
                 {showPhotoModal ? <UploadImage setShowPhotoModal={setShowPhotoModal} setImgURL={setImgURL}/> : null}
+                {showUploadHandles ? <AddHandles toggleUploadHandles={toggleUploadHandles}/> : null}
                 <img id="backup-img" src={yoxIMG} alt="alt" />
                 <video id="yox" src={yox} autoPlay={true} loop={true} playsInline={true} muted />
                 <div id="yoxOverlay" />
                 <div id="mv-cred">YEAR OF THE OX - MOOD CONTROL CYPHER</div>
                 <div className='column-container'>
                     <div className='left-column'>
-                        <ProfileBox setShowPhotoModal={setShowPhotoModal} imgURL={imgURL}/>
+                        <ProfileBox 
+                            setShowPhotoModal={setShowPhotoModal} 
+                            imgURL={imgURL}
+                            toggleUploadHandles={toggleUploadHandles}/>
                         <div></div>
                         <div></div>
                         <div></div>

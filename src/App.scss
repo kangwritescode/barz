@@ -36,3 +36,13 @@ input {
     outline: none;
   }
 }
+
+#yoxOverlay {
+  z-index: 0;
+  position: fixed;
+  background: rgba(18, 10, 0, 0.418);
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+}

@@ -45,7 +45,7 @@
   margin-right: 1.4em;
   color: rgba(255, 255, 255, 0.877);
   padding-left: 1.3em;
-  padding-bottom: .2em;
+  padding-bottom: 0.2em;
 }
 
 .splash-navbar .sign-in input:focus {
@@ -53,12 +53,62 @@
 }
 
 .splash-navbar .sign-in .log-in {
-  color: rgba(255, 255, 255, 0.466);
+  color: rgba(255, 255, 255, 0.699);
   background: rgba(0, 0, 0, 0);
-  border: 1px solid rgba(255, 255, 255, 0.404);
+  border: 1px solid rgba(255, 255, 255, 0.575);
   border-radius: 5em;
   height: 2.8em;
   width: 7em;
+  cursor: not-allowed;
+}
+
+.splash-navbar .sign-in .valid-button {
+  position: relative;
+  color: rgba(255, 255, 255, 0.767);
+  border-color: rgba(255, 255, 255, 0.658);
+  cursor: pointer;
+}
+
+.splash-navbar .sign-in .valid-button:hover {
+  color: rgba(255, 255, 255, 0.863);
+  border-color: rgba(255, 255, 255, 0.781);
+}
+
+.splash-navbar .sign-in .valid-button:active {
+  color: white;
+  border-color: rgba(255, 255, 255, 0.932);
+}
+
+.splash-navbar .sign-in .valid-button:before {
+  content: "";
+  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  position: absolute;
+  top: 0px;
+  left: 3px;
+  background-size: 400%;
+  z-index: -1;
+  -webkit-filter: blur(5px);
+          filter: blur(5px);
+  width: calc(96%);
+  height: calc(96%);
+  -webkit-animation: glowing 20s linear infinite;
+          animation: glowing 20s linear infinite;
+  opacity: 1;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+.splash-navbar .sign-in .valid-button:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #080808;
+  left: 0;
+  top: 0;
+  border-radius: 10em;
 }
 
 .splash-navbar .sign-in .pass-input-wrapper {

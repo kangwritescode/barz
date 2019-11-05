@@ -115,9 +115,9 @@ class AddHandles extends Component {
 
         return (
             <div>
-                <div className="ul-img-backdrop" onClick={() => this.props.toggleShow('showAddHandles', false)}></div>
+                <div className="ul-img-backdrop" onClick={() => this.props.toggleUploadHandles(false)}></div>
                 <div className="add-handles-modal">
-                <div id="closeUploadImage" onClick={() => this.props.toggleShow('showAddHandles', false)}><i className="fa fa-close"></i></div>
+                <div id="closeUploadImage" onClick={() => this.props.toggleUploadHandles(false)}><i className="fa fa-close"></i></div>
                     <h1 id="handles-header">My Media</h1>
 
                     <div className={`handle-wrapper `}>

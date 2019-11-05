@@ -14,43 +14,37 @@ import Landing from './containers/Landing/Landing';
 
 class App extends Component {
 
+
   componentDidMount() {
     this.props.onTryAutoSignin()
   }
 
+
   render() {
 
-    let app = (
-        <div>
-          <Navbar />
-          <ReactPlayer
-            volume={this.props.volume * 1.0 / 100}
-            url={this.props.musicURL}a
-            playing={this.props.playing}
-            loop
-            width="0px"
-            height="0px" />
-  
-          <Switch>
-            <Route path="/scribble" component={Scribble} ></Route>
-            <Route path="/judge" component={Judge} ></Route>
-            <Route path="/wordsmiths" component={Wordsmiths} ></Route>
-            <Route path="/hub" component={Hub} ></Route>
-            <Route path="/" component={Hub}></Route>
-          </Switch>
-        </div>
-  
-      )
-  
+    if (this.props.autoSignInOver && !this.props.authenticated) {
+      return <Landing />
+    }
 
-      // app = <Landing />
-
-
-      return (
-        <div className="App">
-          {app}
-        </div>
-      )
+    return (
+      <div className="App">
+         <Navbar />
+            <ReactPlayer
+              volume={this.props.volume * 1.0 / 100}
+              url={this.props.musicURL} a
+              playing={this.props.playing}
+              loop
+              width="0px"
+              height="0px" />
+        <Switch>
+          <Route path="/scribble" component={Scribble} ></Route>
+          <Route path="/judge" component={Judge} ></Route>
+          <Route path="/wordsmiths" component={Wordsmiths} ></Route>
+          <Route path="/hub" component={Hub} ></Route>
+          <Route path="/" component={Hub}></Route>
+        </Switch>
+      </div>
+    )
   }
 }
 const mapStateToProps = state => {
@@ -59,8 +53,8 @@ const mapStateToProps = state => {
     musicURL: state.musicURL,
     volume: state.volume,
     authenticated: state.loggedIn,
-    email: state.email
-
+    email: state.email,
+    autoSignInOver: state.autoSignInOver
   }
 }
 
