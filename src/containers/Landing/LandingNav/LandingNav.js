@@ -29,7 +29,7 @@ export default function LandingNav(props) {
                         type='password'
                         value={props.password}
                         onChange={event => props.setPassword(event.target.value)}></input>
-                    <div className='forgot-password'>Forgot Password?</div>
+                    <div className='forgot-password' onClick={() => props.toggleForgotPass(true)}>Forgot Password?</div>
                 </div>
                 <button
                     className={`log-in ${buttonValidStyle}`} 

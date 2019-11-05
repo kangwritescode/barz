@@ -38,12 +38,16 @@ const Hub = (props) => {
     if (true) {
         profile = (
             <div className="hub-layout">
+
+                {/* modal and ui */}
                 {showPhotoModal ? <UploadImage setShowPhotoModal={setShowPhotoModal} setImgURL={setImgURL}/> : null}
                 {showUploadHandles ? <AddHandles toggleUploadHandles={toggleUploadHandles}/> : null}
                 <img id="backup-img" src={yoxIMG} alt="alt" />
                 <video id="yox" src={yox} autoPlay={true} loop={true} playsInline={true} muted />
                 <div id="yoxOverlay" />
                 <div id="mv-cred">YEAR OF THE OX - MOOD CONTROL CYPHER</div>
+
+                {/* main content */}
                 <div className='column-container'>
                     <div className='left-column'>
                         <ProfileBox 

@@ -74,9 +74,9 @@ class ForgotPassword extends Component {
     render() {
         return (
             <div>
-                <div className="forgot-password-backdrop" onClick={(event) => this.props.toggleModal(event, 'showForgotPassword', false)} />
+                <div className="forgot-password-backdrop" onClick={(event) => this.props.toggleForgotPass(false)} />
                 <form id="forgot-password-modal">
-                    <i className="fa fa-close" id="forgot-pass-x" onClick={(event) => this.props.toggleModal(event, 'showForgotPassword', false)}></i>
+                    <i className="fa fa-close" id="forgot-pass-x" onClick={(event) => this.props.toggleForgotPass(false)}></i>
                     {this.state.processing ? <DotSpinner id={'forgot-pass-dot'} /> : null}
                     {this.state.showNotification ? 
                             <div className="forgot-pass-notification"

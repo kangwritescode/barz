@@ -6,6 +6,7 @@ import splashVid from '../../assets/splash-vid.m4v'
 import LandingNav from './LandingNav/LandingNav'
 import firebase from 'firebase'
 import RegForm from './RegForm/RegForm'
+import ForgotPassword from '../Authenticate/SignIn/ForgotPassword/ForgotPassword'
 
 const Landing = (props) => {
 
@@ -14,6 +15,8 @@ const Landing = (props) => {
     var [showErr, setShowErr] = useState(false)
     var [errMsg, setErrMsg] = useState('')
     var [errSentiment, setErrSentiment] = useState(false)
+
+    var [showForgotPass, toggleForgotPass] = useState(false)
 
     // login
     var [email, setEmail] = useState('')
@@ -101,6 +104,7 @@ const Landing = (props) => {
     return (
 
         <div className='landing'>
+            {showForgotPass ? <ForgotPassword toggleForgotPass={toggleForgotPass}/> : null}
             <div className='splash-video-overlay'></div>
             <video className="splash-video" src={splashVid} autoPlay={true} loop={true} playsInline={true} muted />
             <LandingNav
@@ -108,7 +112,8 @@ const Landing = (props) => {
                 setEmail={setEmail}
                 password={password}
                 setPassword={setPassword}
-                trySignIn={signIn} />
+                trySignIn={signIn} 
+                toggleForgotPass={toggleForgotPass}/>
             <div className='content'>
                 <div className='header-wrapper'>
                     <div className={`header-text`}>
