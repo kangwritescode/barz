@@ -23,7 +23,7 @@ function ProfileBox(props) {
     const closeDropOptions = (event) => {
         if (!event.target.classList.contains('profile-box__three-dots') && !event.target.classList.contains('dot')) {
             toggleDropOptions(false)
-        } 
+        }
     }
 
     const activeFB = props.handles.facebook ? 'active-handle' : null
@@ -31,33 +31,35 @@ function ProfileBox(props) {
     const activeSC = props.handles.soundcloud ? 'active-handle' : null
     const activeYT = props.handles.youtube ? 'active-handle' : null
 
+    var myAccountOptions = null
 
-    var myAccountOptions = (
-        <div>
-            <div className='profile-box__three-dots' onClick={() => toggleDropOptions(!showDropOptions)}>
-                <div className='dot' />
-                <div className='dot' />
-                <div className='dot' />
+    if (props.wrappedBy === 'Hub') {
+        myAccountOptions = (
+            <div>
+                <div className='profile-box__three-dots' onClick={() => toggleDropOptions(!showDropOptions)}>
+                    <div className='dot' />
+                    <div className='dot' />
+                    <div className='dot' />
+                </div>
+                {showDropOptions ?
+                    <div className='profile-box__drop-options'>
+                        <div className='drop-options__log-out' onClick={props.logout}>Log Out</div>
+                    </div> : null}
+
+                <i className="fas fa-cog profile-box__settings" onClick={() => toggleDeleteAcc(true)}></i>
             </div>
-            {showDropOptions ?
-                <div className='profile-box__drop-options'>
-                    <div className='drop-options__log-out' onClick={props.logout}>Log Out</div>
-                </div> : null}
+        )
+    }
 
-            <i className="fas fa-cog profile-box__settings" onClick={() => toggleDeleteAcc(true)}></i>
-        </div>
-    )
-
-    console.log(showDropOptions)
 
     return (
         <div className='profile-box'>
-            {showDeleteAcc ? <DeleteAccount toggleDeleteAcc={toggleDeleteAcc} /> : null }
+            {showDeleteAcc ? <DeleteAccount toggleDeleteAcc={toggleDeleteAcc} /> : null}
             {myAccountOptions}
             <div className='profile-box__block-one'>
                 <div className='block-one__username'>{props.username}</div>
                 <div className='block-one__address-gender'>{props.address.city}, {props.address.state} | {props.sex}</div>
-                <PhotoContainer imgURL={props.imgURL} setShowPhotoModal={props.setShowPhotoModal} />
+                <PhotoContainer imgURL={props.photoURL} setShowPhotoModal={props.setShowPhotoModal} />
             </div>
             <div className='profile-box__block-two'>
                 <p className='block-two__blurb'>"West Philidelphia born and raised, on the playground was where i spent most of my days"</p>
@@ -97,6 +99,7 @@ const mapStateToProps = state => {
         state: state.address.state,
         needsInfo: state.needsInfo,
         photoRef: state.photoRef,
+        photoURL: state.photoURL,
         handles: state.handles,
     }
 }

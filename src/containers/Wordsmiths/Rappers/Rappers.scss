@@ -42,6 +42,14 @@
   height: 39em;
   width: 250px;
   display: inline-block;
+  .Winners-container__spotlight {
+    .spotlight__header {
+
+    }
+    .spotlight__profile-box-container {
+      height: 18em;
+    }
+  }
 }
 
 .headerDetail {

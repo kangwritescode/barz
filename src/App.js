@@ -9,6 +9,7 @@ import Judge from './containers/Judge/Judge'
 import { fetchUserData, authCheckState } from './store/actionCreators'
 import Wordsmiths from './containers/Wordsmiths/Wordsmiths'
 import './App.css'
+import {fetchPhotoURL} from './store/actionCreators'
 import Landing from './containers/Landing/Landing';
 
 
@@ -17,6 +18,11 @@ class App extends Component {
 
   componentDidMount() {
     this.props.onTryAutoSignin()
+  }
+  componentDidUpdate = (prevProps, prevState) => {
+    if (!prevProps.photoRef && this.props.photoRef) {
+      this.props.fetchPhotoURL(this.props.photoRef)
+    }
   }
 
 
@@ -28,14 +34,14 @@ class App extends Component {
 
     return (
       <div className="App">
-         <Navbar />
-            <ReactPlayer
-              volume={this.props.volume * 1.0 / 100}
-              url={this.props.musicURL} a
-              playing={this.props.playing}
-              loop
-              width="0px"
-              height="0px" />
+        <Navbar />
+        <ReactPlayer
+          volume={this.props.volume * 1.0 / 100}
+          url={this.props.musicURL} a
+          playing={this.props.playing}
+          loop
+          width="0px"
+          height="0px" />
         <Switch>
           <Route path="/scribble" component={Scribble} ></Route>
           <Route path="/judge" component={Judge} ></Route>
@@ -54,14 +60,16 @@ const mapStateToProps = state => {
     volume: state.volume,
     authenticated: state.loggedIn,
     email: state.email,
-    autoSignInOver: state.autoSignInOver
+    autoSignInOver: state.autoSignInOver,
+    photoRef: state.photoRef
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     onTryAutoSignin: () => dispatch(authCheckState()),
-    fetchUserData: (uid) => dispatch(fetchUserData(uid))
+    fetchUserData: (uid) => dispatch(fetchUserData(uid)),
+    fetchPhotoURL: (photoRef) => dispatch(fetchPhotoURL(photoRef))
   }
 }
 

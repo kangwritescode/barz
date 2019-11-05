@@ -1,0 +1,46 @@
+.follow-box {
+  margin-top: 1.5em;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.486);
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+}
+
+.follow-box .follow-box__header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 2.3em;
+  cursor: pointer;
+}
+
+.follow-box .follow-box__header .header__section {
+  height: 100%;
+  width: 50%;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: .7em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  letter-spacing: .06em;
+  text-align: center;
+}
+/*# sourceMappingURL=FollowBox.css.map */

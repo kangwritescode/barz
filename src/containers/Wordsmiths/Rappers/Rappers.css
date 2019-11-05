@@ -60,6 +60,10 @@
   display: inline-block;
 }
 
+.Winners-container .Winners-container__spotlight .spotlight__profile-box-container {
+  height: 18em;
+}
+
 .headerDetail {
   /* border-left: 1px solid rgba(121, 121, 121, 0.315); */
   height: 100%;

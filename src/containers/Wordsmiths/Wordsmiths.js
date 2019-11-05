@@ -31,9 +31,7 @@ class Wordsmiths extends Component {
         try {
 
             this.toggleFetching(true)
-
             var rappers = {}
-
             var submissions = await this.fetchSubmissions()
             var votes = await this.fetchVotes()
 
@@ -50,7 +48,6 @@ class Wordsmiths extends Component {
                         username: submission.username,
                         address: submission.address,
                         votes: filteredVotes
-
                     }
                 } else {
                     rappers[submission.uid].votes[submission.createdOn] = filteredVotes
@@ -126,7 +123,6 @@ class Wordsmiths extends Component {
 
     }
 
-
     toggleFetching = (bool) => {
         this.setState({
             ...this.state,
@@ -150,7 +146,6 @@ class Wordsmiths extends Component {
         for (let uid in rappers) {
             var rapper = rappers[uid]
             var tally = 0
-            console.log(rapper)
             allVotes.forEach((vote) => {
                 var now = new Date()
                 var passedMilliseconds = now - vote.postDate.toDate().getTime()

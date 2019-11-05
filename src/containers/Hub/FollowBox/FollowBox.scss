@@ -1,0 +1,29 @@
+@mixin flex-centered($direction) {
+    display: flex;
+    flex-direction: $direction;
+    align-content: center;
+    justify-content: center;
+}
+
+.follow-box {
+    margin-top: 1.5em;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.486);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    .follow-box__header {
+        @include flex-centered(row);
+        height: 2.3em;
+        cursor: pointer;
+        .header__section {
+            height: 100%;
+            width: 50%;
+            color: rgba(255, 255, 255, 0.76);
+            font-size: .7em;
+            @include flex-centered(column);
+            letter-spacing: .06em;
+            text-align: center;
+
+        }
+    }
+}

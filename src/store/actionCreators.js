@@ -7,10 +7,7 @@ import 'firebase/firestore'
 // asynchronous actionCreators
 
 export function fetchUserData(uid) {
-
-
     return dispatch => {
-
         var db = firebase.firestore()
         var docRef = db.collection(`users/`).doc(`${uid}`);
         docRef.get().then((doc) => {
@@ -39,8 +36,21 @@ export function postUserData(uid, nameAddGen) {
                 // The document probably doesn't exist.
                 console.error("Error updating document: ", error);
             });
+    }   
+}
+
+export const fetchPhotoURL = (photoRef) => {
+    return dispatch => {
+        var storage = firebase.storage();
+            storage.ref(photoRef).getDownloadURL()
+            .then(url => {
+                dispatch({ type: actionTypes.SET_PHOTO_URL, photoURL: url})
+            })
+            .catch(function (error) { console.log("error in Profile.js: ", error) });
+            return () => {
+                // cleanup
+            };
     }
-    
 }
 
 

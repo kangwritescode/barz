@@ -9,6 +9,7 @@ import ProfileBox from './ProfileBox/ProfileBox'
 import Profile from './Profile/Profile'
 import UploadImage from './Profile/UploadImage/UploadImage'
 import AddHandles from './Profile/AddHandles/AddHandles'
+import FollowBox from './FollowBox/FollowBox'
 
 
 const Hub = (props) => {
@@ -40,8 +41,8 @@ const Hub = (props) => {
             <div className="hub-layout">
 
                 {/* modal and ui */}
-                {showPhotoModal ? <UploadImage setShowPhotoModal={setShowPhotoModal} setImgURL={setImgURL}/> : null}
-                {showUploadHandles ? <AddHandles toggleUploadHandles={toggleUploadHandles}/> : null}
+                {showPhotoModal ? <UploadImage setShowPhotoModal={setShowPhotoModal} setImgURL={setImgURL} /> : null}
+                {showUploadHandles ? <AddHandles toggleUploadHandles={toggleUploadHandles} /> : null}
                 <img id="backup-img" src={yoxIMG} alt="alt" />
                 <video id="yox" src={yox} autoPlay={true} loop={true} playsInline={true} muted />
                 <div id="yoxOverlay" />
@@ -50,11 +51,14 @@ const Hub = (props) => {
                 {/* main content */}
                 <div className='column-container'>
                     <div className='left-column'>
-                        <ProfileBox 
-                            setShowPhotoModal={setShowPhotoModal} 
-                            imgURL={imgURL}
-                            toggleUploadHandles={toggleUploadHandles}/>
-                        <div></div>
+                        <div className='left-column__profile-box-container'>
+                            <ProfileBox
+                                setShowPhotoModal={setShowPhotoModal}
+                                imgURL={imgURL}
+                                toggleUploadHandles={toggleUploadHandles}
+                                wrappedBy='Hub' />
+                        </div>
+                        <FollowBox />
                         <div></div>
                         <div></div>
                     </div>

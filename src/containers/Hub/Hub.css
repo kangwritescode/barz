@@ -22,7 +22,12 @@
 }
 
 .column-container .left-column {
-  width: 14em;
+  width: 15em;
+}
+
+.column-container .left-column .left-column__profile-box-container {
+  height: 20em;
+  width: 100%;
 }
 
 #mv-cred {

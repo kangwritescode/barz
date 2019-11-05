@@ -5,6 +5,7 @@ import firebase from '../../../Firebase'
 import Pedestal from '../Pedestal/Pedestal'
 import BestCity from '../BestCity/BestCity'
 import BestCoast from '../BestCoast/BestCoast'
+import ProfileBox from '../../Hub/ProfileBox/ProfileBox'
 
 class Rappers extends Component {
 
@@ -58,7 +59,7 @@ class Rappers extends Component {
 
 
     setSpotlightRapper = async (rapper) => {
-    
+
         this.setState({
             ...this.state,
             fetchingSpotlightRapper: true,
@@ -128,10 +129,17 @@ class Rappers extends Component {
             <div className='Rappers-Container'>
                 {rappers}
                 <div className="Winners-container">
-                    <Pedestal 
-                        rapper={this.state.spotlightRapper} 
-                        sort={this.props.sort} />
-                    <BestCoast 
+                    <div className='Winners-container__spotlight'>
+                        <div className='spotlight__header'></div>
+                        <div className='spotlight__profile-box-container'>
+                            <ProfileBox
+                                setShowPhotoModal={this.props.setShowPhotoModal}
+                                imgURL={this.props.imgURL}
+                                toggleUploadHandles={this.props.toggleUploadHandles}
+                                wrappedBy='Rappers' />
+                        </div>
+                    </div>
+                    <BestCoast
                         rank={this.props.rank}
                         time={this.props.time}
                         state={this.props.state}
