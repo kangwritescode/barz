@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import './Hub.css'
 import firebase from 'firebase'
 // import Aux from '../../hoc/Aux/'
+import { getOrdinal } from '../../shared/getOrdinal'
 import yox from '../../assets/yox.m4v'
-import yoxIMG from '../../assets/yoxIMG.png'
 import ProfileBox from './ProfileBox/ProfileBox'
 import Profile from './Profile/Profile'
 import UploadImage from './Profile/UploadImage/UploadImage'
@@ -16,61 +16,108 @@ const Hub = (props) => {
 
     const [showPhotoModal, setShowPhotoModal] = useState(false)
     const [showUploadHandles, toggleUploadHandles] = useState(false)
-    var profile = <Profile />
-
     const [imgURL, setImgURL] = useState('')
+    const [votes, setVotes] = useState([])
+    const [myPlace, setMyPlace] = useState(null)
+    const [myScore, setMyScore] = useState(0)
 
 
-    // fetch imgURL if new photoRef is given
     useEffect(() => {
-        if (props.photoRef) {
-            console.log(props.photoRef)
-            var storage = firebase.storage();
-            storage.ref(props.photoRef).getDownloadURL().then(url => {
-                setImgURL(url)
-            }).catch(function (error) { console.log("error in Profile.js: ", error) });
-            return () => {
-                // cleanup
-            };
+        fetchVotes()
+        return () => {
+        };
+    }, [])
+    useEffect(() => {
+        if (votes.length !== 0) {
+            setMyPlace(myPlaceFinder())
         }
+        return () => {
+        };
+    }, [votes])
 
-    }, [props.photoRef])
+    const fetchVotes = () => {
+        var db = firebase.firestore()
+        var fetchedVotes = []
+        db.collection('postVotes').get()
+            .then(snapshot => {
+                var fetchedVote;
+                snapshot.forEach(vote => {
+                    fetchedVote = {
+                        ...vote.data(),
+                        vid: vote.id
+                    }
+                    fetchedVotes.push(fetchedVote)
+                })
+                setVotes(fetchedVotes)
+            })
+    }
 
-    if (true) {
-        profile = (
-            <div className="hub-layout">
+    const myPlaceFinder = () => {
+        const dict = {}
+        votes.forEach(vote => {
+            if (vote.receiverID in dict) {
+                dict[vote.receiverID] = dict[vote.receiverID] + vote.value
+            } else {
+                dict[vote.receiverID] = vote.value
+            }
+        })
+        var arr = []
+        for (let key in dict) {
+            var obj = { uid: key, score: dict[key] }
+            arr.push(obj)
+        }
+        arr = arr.sort((a, b) => {
+            if (a.score > b.score) {
+                return -1
+            } return 1
+        })
+        var myPosition
+        arr.forEach((item, index) => {
+            if (item.uid === props.uid) {
+                myPosition = index + 1
+                setMyScore(item.score)
+            }
+        })
+        return myPosition
+    }
 
-                {/* modal and ui */}
-                {showPhotoModal ? <UploadImage setShowPhotoModal={setShowPhotoModal} setImgURL={setImgURL} /> : null}
-                {showUploadHandles ? <AddHandles toggleUploadHandles={toggleUploadHandles} /> : null}
-                <img id="backup-img" src={yoxIMG} alt="alt" />
-                <video id="yox" src={yox} autoPlay={true} loop={true} playsInline={true} muted />
-                <div id="yoxOverlay" />
-                <div id="mv-cred">YEAR OF THE OX - MOOD CONTROL CYPHER</div>
+    const profile = (
+        <div className="hub-layout">
 
-                {/* main content */}
-                <div className='column-container'>
-                    <div className='left-column'>
-                        <div className='left-column__profile-box-container'>
-                            <ProfileBox
-                                setShowPhotoModal={setShowPhotoModal}
-                                imgURL={imgURL}
-                                toggleUploadHandles={toggleUploadHandles}
-                                wrappedBy='Hub' />
-                        </div>
-                        <FollowBox />
-                        <div></div>
-                        <div></div>
+            {/* modal and ui */}
+            {showPhotoModal ? <UploadImage setShowPhotoModal={setShowPhotoModal} setImgURL={setImgURL} /> : null}
+            {showUploadHandles ? <AddHandles toggleUploadHandles={toggleUploadHandles} /> : null}
+            <img id="backup-img" src={imgURL} alt="alt" />
+            <video id="yox" src={yox} autoPlay={true} loop={true} playsInline={true} muted />
+            <div id="yoxOverlay" />
+            <div id="mv-cred">YEAR OF THE OX - MOOD CONTROL CYPHER</div>
+
+            {/* main content */}
+            <div className='column-container'>
+                <div className='left-column'>
+                    <div className='left-column__profile-box-container'>
+                        <ProfileBox
+                            uid={props.uid}
+                            photoRef={props.photoRef}
+                            setShowPhotoModal={setShowPhotoModal}
+                            toggleUploadHandles={toggleUploadHandles}
+                            wrappedBy='Hub'
+                            myPlace={myPlace}
+                            myPoints={myScore}/>
                     </div>
-                    <div className='middle-column'></div>
-                    <div className='right column'>
-                        <div className='news-and-updates'></div>
-                        <div></div>
-                    </div>
+                    <FollowBox />
+                    <div></div>
+                    <div></div>
+                </div>
+                <div className='middle-column'></div>
+                <div className='right column'>
+                    <div className='news-and-updates'></div>
+                    <div></div>
                 </div>
             </div>
-        )
-    }
+        </div>
+    )
+
     return profile
 
 }
@@ -82,7 +129,8 @@ const mapStateToProps = state => {
         email: state.email,
         username: state.username,
         sex: state.sex,
-        photoRef: state.photoRef
+        photoRef: state.photoRef,
+        uid: state.uid
     }
 }
 

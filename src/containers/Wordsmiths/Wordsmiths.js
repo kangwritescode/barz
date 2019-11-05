@@ -34,6 +34,7 @@ class Wordsmiths extends Component {
             var rappers = {}
             var submissions = await this.fetchSubmissions()
             var votes = await this.fetchVotes()
+            var users = await this.fetchUsers()
 
             // for every single submission
             submissions.forEach(submission => {
@@ -47,7 +48,8 @@ class Wordsmiths extends Component {
                         gender: submission.gender,
                         username: submission.username,
                         address: submission.address,
-                        votes: filteredVotes
+                        votes: filteredVotes,
+                        photoRef: users[submission.uid].photoRef
                     }
                 } else {
                     rappers[submission.uid].votes[submission.createdOn] = filteredVotes
@@ -99,6 +101,22 @@ class Wordsmiths extends Component {
             })
             .catch(err => { throw err })
     }
+
+    // fetch ALl votes
+    fetchUsers = async () => {
+        var db = firebase.firestore()
+        return db.collection("users").get()
+            .then((querySnapshot) => {
+                var users = {}
+                querySnapshot.forEach((doc) => {
+                    users[doc.id] = {...doc.data(), uid: doc.id}
+                });
+                return users
+
+            })
+            .catch(err => { throw err })
+    }
+
     sortAndFilter(type, parameter) {
         // set appropriate UI
         if (type === 'state' && parameter !== 'All States') {
@@ -135,6 +153,7 @@ class Wordsmiths extends Component {
     render() {
 
         var rappers = { ...this.state.rappers }
+        console.log(rappers)
         var allVotes = this.state.votes ? Object.values(this.state.votes) : []
 
         // states, coast, and gender filter

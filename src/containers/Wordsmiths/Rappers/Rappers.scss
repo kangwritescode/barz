@@ -2,67 +2,98 @@
 @import url("https://fonts.googleapis.com/css?family=Alike+Angular|Press+Start+2P&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Noto+Sans&display=swap");
 
+@mixin flex-centered($direction) {
+    display: flex;
+    flex-direction: $direction;
+    align-items: center;
+    justify-content: center;
+}
+
 .Rappers-Container {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  padding-top: 3.4em;
-  overflow: auto;
-  justify-content: center;
-  align-items: flex-start;
-  width: 100%;
-  min-width: 55em;
-  padding-bottom: 5em;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    padding-top: 3.4em;
+    overflow: auto;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    min-width: 55em;
+    padding-bottom: 5em;
 }
 
 .Rappers-Container::-webkit-scrollbar {
-  width: 0.35em;
+    width: 0.35em;
 }
 
 .Rappers-Container::-webkit-scrollbar-thumb {
-  background: #888;
+    background: #888;
 }
 
 .Rappers {
-  position: relative;
-  width: auto;
-  height: auto;
-  display: block;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 1;
-  margin-right: 17px;
-  /* right: 20px; */
+    position: relative;
+    width: auto;
+    height: auto;
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1;
+    margin-right: 17px;
+    /* right: 20px; */
 }
 
 .Winners-container {
-  position: sticky;
-  top: 0em;
-  height: 39em;
-  width: 250px;
-  display: inline-block;
-  .Winners-container__spotlight {
-    .spotlight__header {
+    position: sticky;
+    top: 0em;
+    height: 39em;
+    width: 250px;
+    display: inline-block;
+    .Winners-container__spotlight {
+        .spotlight__header {
+            height: 2em;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.788);
+            border: 1px solid rgba(255, 255, 255, 0.171);
+            border-bottom: none;
+            font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+            letter-spacing: 0.1em;
+            color: rgba(255, 255, 255, 0.26);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.541);
+            @include flex-centered(row);
 
+            .header__section {
+                height: 100%;
+                width: 50%;
+                @include flex-centered(column);
+                background-color: rgba(255, 255, 255, 0.021);
+                .section__word {
+                  cursor: pointer;
+                }
+            }
+            .header__lit {
+              color: white;
+              cursor: default;
+            }
+
+        }
+        .spotlight__profile-box-container {
+            height: 18em;
+        }
     }
-    .spotlight__profile-box-container {
-      height: 18em;
-    }
-  }
 }
 
 .headerDetail {
-  /* border-left: 1px solid rgba(121, 121, 121, 0.315); */
-  height: 100%;
-  width: 117px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  letter-spacing: 2px;
+    /* border-left: 1px solid rgba(121, 121, 121, 0.315); */
+    height: 100%;
+    width: 117px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    letter-spacing: 2px;
 
-  font-size: 18px;
+    font-size: 18px;
 }
 
 /* #right-border {
@@ -71,128 +102,122 @@
 } */
 
 .rapperLoading {
-  /* direction: rtl; */
-  margin-bottom: 5px;
-  height: 60px;
-  width: 600px;
-  background-color: rgba(0, 0, 0, 0.301);
-  font-family: "Rock Salt", cursive;
-  font-size: 10px;
-  background-color: rgba(0, 0, 0, 0.619);
-  border: 1px solid rgba(255, 255, 255, 0.496);
-  border-radius: 4px;
-  color: rgba(255, 255, 255, 0.913);
+    /* direction: rtl; */
+    margin-bottom: 5px;
+    height: 60px;
+    width: 600px;
+    background-color: rgba(0, 0, 0, 0.301);
+    font-family: "Rock Salt", cursive;
+    font-size: 10px;
+    background-color: rgba(0, 0, 0, 0.619);
+    border: 1px solid rgba(255, 255, 255, 0.496);
+    border-radius: 4px;
+    color: rgba(255, 255, 255, 0.913);
 
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 #table-header {
-  background-color: rgba(0, 0, 0, 0.76);
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    background-color: rgba(0, 0, 0, 0.76);
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 
-  /* direction: rtl; */
-  /* margin-bottom: 5px; */
-  height: 55px;
-  width: 600px;
+    /* direction: rtl; */
+    /* margin-bottom: 5px; */
+    height: 55px;
+    width: 600px;
 
-  font-size: 10px;
-  color: rgba(255, 255, 255, 0.879);
-  background-color: rgba(0, 0, 0, 0.76);
-  /* border-bottom: 1px solid rgba(255, 255, 255, 0.496); */
-  border-radius: 2px;
-  border: 1px solid rgba(255, 255, 255, 0.267);
-  border-bottom: 2px solid rgba(255, 255, 255, 0.555);
-  /* border-top: 2px solid rgba(255, 255, 255, 0.555); */
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.879);
+    background-color: rgba(0, 0, 0, 0.76);
+    /* border-bottom: 1px solid rgba(255, 255, 255, 0.496); */
+    border-radius: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.267);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.555);
+    /* border-top: 2px solid rgba(255, 255, 255, 0.555); */
 
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 #no-rappers {
-  position: relative;
-  height: 35%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
+    position: relative;
+    height: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 #no-rappers-text {
-  position: absolute;
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  /* border: 1px solid pink; */
-  font-size: 1.4em;
-  top: 5em;
-  letter-spacing: 0.06em;
-  background-color: rgba(32, 16, 2, 0.548);
-  color: rgba(255, 255, 255, 0.692);
-  padding: 0.5em;
-  border-radius: 0.2em;
-  animation: fade-in 1.2s;
+    position: absolute;
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    /* border: 1px solid pink; */
+    font-size: 1.4em;
+    top: 5em;
+    letter-spacing: 0.06em;
+    background-color: rgba(32, 16, 2, 0.548);
+    color: rgba(255, 255, 255, 0.692);
+    padding: 0.5em;
+    border-radius: 0.2em;
+    animation: fade-in 1.2s;
 }
 
 #load-more {
-  position: relative;
-  height: 3.1em;
-  border: 1px solid rgba(255, 255, 255, 0.267);
-  border-radius: 3px;
-  background-color: rgba(0, 0, 0, 0.678);
-  color: rgba(252, 252, 252, 0.541);
-  font-family: "noto sans", sans-serif;
-  font-size: 0.8em;
-  letter-spacing: 0.2em;
+    position: relative;
+    height: 3.1em;
+    border: 1px solid rgba(255, 255, 255, 0.267);
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, 0.678);
+    color: rgba(252, 252, 252, 0.541);
+    font-family: "noto sans", sans-serif;
+    font-size: 0.8em;
+    letter-spacing: 0.2em;
 
-  cursor: pointer;
+    cursor: pointer;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  animation: fade-in 0.1s ease-in;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: fade-in 0.1s ease-in;
 }
 
 #load-more:hover {
-  border-color: rgba(255, 255, 255, 0.466);
-  color: rgba(252, 252, 252, 0.651);
-  cursor: pointer;
+    border-color: rgba(255, 255, 255, 0.466);
+    color: rgba(252, 252, 252, 0.651);
+    cursor: pointer;
 }
 
 #load-more:active {
-  border-color: rgba(255, 255, 255, 0.616);
-  color: rgba(252, 252, 252, 0.767);
-  cursor: pointer;
+    border-color: rgba(255, 255, 255, 0.616);
+    color: rgba(252, 252, 252, 0.767);
+    cursor: pointer;
 }
 
 .fa-refresh {
-  animation: none;
+    animation: none;
 }
 
 .fa-refresh:hover {
-  animation: fa-spin 2s linear infinite;
+    animation: fa-spin 2s linear infinite;
 }
 
 #load-more-icon {
-  position: absolute;
-  left: 5px;
+    position: absolute;
+    left: 5px;
 }
 
 @media only screen and (max-width: 45em) {
-  .Winners-container {
-    display: none
-  }
+    .Winners-container {
+        display: none;
+    }
 }
-
-
-
-
 
 #rappers-loader {
-  margin-top: 10em;
+    margin-top: 10em;
 }
-
-

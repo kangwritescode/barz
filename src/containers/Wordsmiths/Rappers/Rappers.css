@@ -60,6 +60,59 @@
   display: inline-block;
 }
 
+.Winners-container .Winners-container__spotlight .spotlight__header {
+  height: 2em;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.788);
+  border: 1px solid rgba(255, 255, 255, 0.171);
+  border-bottom: none;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.26);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.541);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.Winners-container .Winners-container__spotlight .spotlight__header .header__section {
+  height: 100%;
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: rgba(255, 255, 255, 0.021);
+}
+
+.Winners-container .Winners-container__spotlight .spotlight__header .header__section .section__word {
+  cursor: pointer;
+}
+
+.Winners-container .Winners-container__spotlight .spotlight__header .header__lit {
+  color: white;
+  cursor: default;
+}
+
 .Winners-container .Winners-container__spotlight .spotlight__profile-box-container {
   height: 18em;
 }

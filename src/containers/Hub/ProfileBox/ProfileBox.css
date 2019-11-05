@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Antic+Slab&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Righteous&display=swap");
 .profile-box {
   position: relative;
   width: 100%;
@@ -22,8 +24,8 @@
 .profile-box .profile-box__three-dots {
   position: absolute;
   z-index: 3;
-  top: .5em;
-  right: .4em;
+  top: 0.5em;
+  right: 0.4em;
   cursor: pointer;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -53,9 +55,9 @@
   position: absolute;
   z-index: 5;
   top: 1.1em;
-  right: .5em;
-  padding: .2em;
-  border-radius: .2em;
+  right: 0.5em;
+  padding: 0.2em;
+  border-radius: 0.2em;
   background-color: #0a0a0a;
   cursor: pointer;
 }
@@ -65,9 +67,9 @@
   position: relative;
   width: 9em;
   height: 2em;
-  font-size: .7em;
-  letter-spacing: .1em;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 0.7em;
+  letter-spacing: 0.1em;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   background: rgba(255, 255, 255, 0.13);
   color: rgba(255, 255, 255, 0.795);
   display: -webkit-box;
@@ -98,17 +100,16 @@
   z-index: 3;
   cursor: pointer;
   color: rgba(255, 255, 255, 0.548);
-  font-size: .7em;
-  left: .7em;
-  top: .5em;
+  font-size: 0.7em;
+  left: 0.7em;
+  top: 0.5em;
 }
 
 .profile-box .profile-box__block-one {
   position: relative;
   z-index: 1;
-  height: 50%;
+  height: 82%;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.055);
   color: rgba(255, 255, 255, 0.904);
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   display: -webkit-box;
@@ -124,51 +125,72 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 }
 
 .profile-box .profile-box__block-one .block-one__username {
-  font-size: 1.5em;
+  font-size: 1em;
+  margin-top: .4em;
+  margin-bottom: .2em;
 }
 
 .profile-box .profile-box__block-one .block-one__address-gender {
-  font-size: 0.6em;
-  letter-spacing: 0.07em;
+  font-size: 0.1em;
+  font-family: "antic slab";
   margin-bottom: 1em;
 }
 
-.profile-box .profile-box__block-two {
+.profile-box .profile-box__block-one .block-one__handles-container {
   position: relative;
-  z-index: 0;
-  height: 45%;
-  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-orient: vertical;
+  -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  width: 40%;
+  margin-bottom: .6em;
 }
 
-.profile-box .profile-box__block-two .block-two__blurb {
-  position: relative;
-  top: 0.9em;
-  color: rgba(255, 255, 255, 0.726);
-  width: 80%;
-  font-size: 0.7em;
-  line-height: 1.4em;
+.profile-box .profile-box__block-one .block-one__handles-container .icon {
+  color: white;
+  font-size: .1em;
+  cursor: pointer;
+}
+
+.profile-box .profile-box__block-one .block-one__handles-container .active-handle {
+  opacity: 0.6;
+}
+
+.profile-box .profile-box__block-one .block-one__blurb {
+  width: 70%;
+  font-size: .5em;
+  font-family: "antic slab";
   text-align: center;
+  vertical-align: middle;
+  margin-bottom: 3em;
 }
 
-.profile-box .profile-box__block-three {
-  background-color: rgba(255, 255, 255, 0.055);
-  height: 15%;
+.profile-box .profile-box__block-two {
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.075);
+  font-family: 'righteous';
+  color: rgba(255, 255, 255, 0.733);
+  font-size: .8em;
+  letter-spacing: .05em;
+  height: 18%;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -186,62 +208,5 @@
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
-}
-
-.profile-box .profile-box__block-three .handle-container {
-  position: relative;
-  height: 23px;
-  width: 23px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.233);
-  overflow: hidden;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  opacity: 0.2;
-}
-
-.profile-box .profile-box__block-three .active-handle {
-  opacity: .6;
-}
-
-.profile-box .profile-box__block-three .block-three__fb {
-  background-color: #0000a5;
-  position: relative;
-  top: -1px;
-  height: 26px;
-  width: 27px;
-}
-
-.profile-box .profile-box__block-three .block-three__ig {
-  position: relative;
-  height: 25px;
-  width: 25px;
-  background-image: -webkit-gradient(linear, left top, right bottom, from(#8a3ab9), color-stop(#bc2a8d), to(#ffdc80));
-  background-image: linear-gradient(to bottom right, #8a3ab9, #bc2a8d, #ffdc80);
-}
-
-.profile-box .profile-box__block-three .block-three__yt {
-  background-color: black;
-  position: relative;
-  height: 19px;
-  width: 19px;
-}
-
-.profile-box .profile-box__block-three .block-three__sc {
-  background-color: #0000a5;
-  position: relative;
-  height: 26px;
-  width: 27px;
 }
 /*# sourceMappingURL=ProfileBox.css.map */

@@ -3,6 +3,8 @@ import './ProfileBox.css'
 import PhotoContainer from '../Profile/PhotoContainer/PhotoContainer'
 import * as actionTypes from '../../../store/actions'
 import DeleteAccount from '../Profile/DeleteAccount/DeleteAccount'
+import firebase from 'firebase'
+import { getOrdinal } from '../../../shared/getOrdinal'
 import ig from '../../../assets/handles/ig.png'
 import fb from '../../../assets/handles/fb.png'
 import sc from '../../../assets/handles/sc.png'
@@ -13,12 +15,54 @@ function ProfileBox(props) {
 
     const [showDropOptions, toggleDropOptions] = useState(false)
     const [showDeleteAcc, toggleDeleteAcc] = useState(false)
+    const [imgURL, setImgURL] = useState(null)
+    const [userData, setUserData] = useState(null)
 
     useEffect(() => {
         document.addEventListener('click', closeDropOptions)
         return () => {
+            document.removeEventListener('click', closeDropOptions)
         };
     }, [])
+
+    useEffect(() => {
+        if (props.uid) {
+            fetchUserData(props.uid)
+        }
+        if (props.photoRef) {
+            fetchPhotoURL(props.photoRef)
+        }
+        return () => {
+        };
+    }, [props.uid, props.photoRef])
+
+    const fetchUserData = async (uid) => {
+        var db = firebase.firestore()
+        db.collection('users').doc(uid).get()
+            .then(user => {
+                user = {
+                    ...user.data(),
+                    uid: user.id
+                }
+                setUserData(user)
+            })
+    }
+    const fetchPhotoURL = async (photoRef) => {
+        var storage = firebase.storage();
+        storage.ref(photoRef).getDownloadURL().then(url => {
+            setImgURL(url)
+        }).catch(function (error) { console.log("error in Profile.js: ", error) });
+        return () => {
+            // cleanup
+        };
+    }
+
+    const addhttp = (url) => {
+        if (!/^(?:f|ht)tps?\:\/\//.test(url)) {
+            url = "http://" + url;
+        }
+        return url;
+    }
 
     const closeDropOptions = (event) => {
         if (!event.target.classList.contains('profile-box__three-dots') && !event.target.classList.contains('dot')) {
@@ -26,12 +70,9 @@ function ProfileBox(props) {
         }
     }
 
-    const activeFB = props.handles.facebook ? 'active-handle' : null
-    const activeIG = props.handles.instagram ? 'active-handle' : null
-    const activeSC = props.handles.soundcloud ? 'active-handle' : null
-    const activeYT = props.handles.youtube ? 'active-handle' : null
-
-    var myAccountOptions = null
+    var myAccountOptions = null;
+    var theHandles = null;
+    var blockTwo = null;
 
     if (props.wrappedBy === 'Hub') {
         myAccountOptions = (
@@ -49,58 +90,73 @@ function ProfileBox(props) {
                 <i className="fas fa-cog profile-box__settings" onClick={() => toggleDeleteAcc(true)}></i>
             </div>
         )
+        theHandles = (
+            <div className='block-one__handles-container'>
+                <i className="fab fa-facebook-f icon" onClick={() => props.toggleUploadHandles(true)}></i>
+                <i className="fab fa-instagram icon" onClick={() => props.toggleUploadHandles(true)}></i>
+                <i className="fab fa-soundcloud icon" onClick={() => props.toggleUploadHandles(true)}></i>
+                <i className="fab fa-youtube icon" onClick={() => props.toggleUploadHandles(true)}></i>
+            </div>
+        )
+        blockTwo = (
+            <div className='profile-box__block-two'>
+                <div>
+                    {props.myPlace + getOrdinal(props.myPlace) + " place"}
+                </div>
+                <div>
+                    {props.myPoints + " point" + (props.myPoints === 1 ? '' : 's')}
+                </div>
+            </div>
+        )
+
+    }
+
+    else if (props.wrappedBy === 'Rappers') {
+        theHandles = (
+            <div className='block-one__handles-container'>
+                {userData && userData.handles.facebook ?
+                    <a href={addhttp(userData.handles.facebook)} rel="noopener noreferrer" target="_blank">
+                        <i className="fab fa-facebook-f icon" onClick={() => props.toggleUploadHandles(true)}></i>
+                    </a> : null}
+                {userData && userData.handles.instagram ?
+                    <a href={addhttp(userData.handles.instagram)} rel="noopener noreferrer" target="_blank">
+                        <i className="fab fa-instagram icon" onClick={() => props.toggleUploadHandles(true)}></i>
+                    </a> : null}
+                {userData && userData.handles.soundcloud ?
+                    <a href={addhttp(userData.handles.soundcloud)} rel="noopener noreferrer" target="_blank">
+                        <i className="fab fa-soundcloud icon" onClick={() => props.toggleUploadHandles(true)}></i>
+                    </a> : null}
+                {userData && userData.handles.youtube ?
+                    <a href={addhttp(userData.handles.youtube)} rel="noopener noreferrer" target="_blank">
+                        <i className="fab fa-youtube icon" onClick={() => props.toggleUploadHandles(true)}></i>
+                    </a> : null}
+            </div>
+        )
+        blockTwo = (
+            <div className='profile-box__block-two'>
+            </div>
+        )
     }
 
 
     return (
-        <div className='profile-box'>
+        <div className='profile-box' >
             {showDeleteAcc ? <DeleteAccount toggleDeleteAcc={toggleDeleteAcc} /> : null}
             {myAccountOptions}
             <div className='profile-box__block-one'>
-                <div className='block-one__username'>{props.username}</div>
-                <div className='block-one__address-gender'>{props.address.city}, {props.address.state} | {props.sex}</div>
-                <PhotoContainer imgURL={props.photoURL} setShowPhotoModal={props.setShowPhotoModal} />
+                <PhotoContainer imgURL={imgURL} setShowPhotoModal={props.setShowPhotoModal} />
+                <div className='block-one__username'>{userData ? userData.username : null}</div>
+                <div className='block-one__address-gender'>{userData ? userData.address.city : null}, {userData ? userData.address.state : null} | {userData ? userData.gender : null}</div>
+                {theHandles}
+                <p className='block-one__blurb'>"West Philadelpha born and raised on the playground was where I spent most of my days..."</p>
             </div>
-            <div className='profile-box__block-two'>
-                <p className='block-two__blurb'>"West Philidelphia born and raised, on the playground was where i spent most of my days"</p>
-            </div>
-            <div className='profile-box__block-three'>
-                <div className={`handle-container ${activeFB}`} onClick={() => props.toggleUploadHandles(true)}>
-                    <img className={`block-three__fb`} alt="alt" src={fb}></img>
-                </div>
-                <div className={`handle-container ${activeIG}`} onClick={() => props.toggleUploadHandles(true)}>
-                    <img className={`block-three__ig`} alt="alt" src={ig}></img>
-                </div>
-                <div className={`handle-container ${activeSC}`} onClick={() => props.toggleUploadHandles(true)}>
-                    <img className={`block-three__sc`} alt="alt" src={sc}></img>
-                </div>
-                <div className={`handle-container ${activeYT}`} onClick={() => props.toggleUploadHandles(true)}>
-                    <img className={`block-three__yt`} alt="alt" src={yt}></img>
-                </div>
-
-
-
-
-            </div>
-
+            {blockTwo}
         </div>
     )
 }
 const mapStateToProps = state => {
     return {
-        uid: state.uid,
-        loggedin: state.loggedIn,
-        email: state.email,
-        username: state.username,
-        sex: state.gender,
-        address: state.address,
-        zipcode: state.address.zip_code,
-        city: state.address.city,
-        state: state.address.state,
-        needsInfo: state.needsInfo,
-        photoRef: state.photoRef,
-        photoURL: state.photoURL,
-        handles: state.handles,
+
     }
 }
 

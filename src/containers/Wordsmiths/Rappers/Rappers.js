@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './Rappers.css'
 import Rapper from './Rapper/Rapper'
+import { connect } from 'react-redux'
 import firebase from '../../../Firebase'
 import Pedestal from '../Pedestal/Pedestal'
 import BestCity from '../BestCity/BestCity'
@@ -12,8 +13,8 @@ class Rappers extends Component {
     static pageLen = 11
 
     state = {
+        spotlightFocus: 'me',
         spotlightRapper: null,
-        spotlightRapperURL: null,
         fetchingSpotlightRapper: false,
         rappers: [],
         dequedNo: 0,
@@ -59,14 +60,27 @@ class Rappers extends Component {
 
 
     setSpotlightRapper = async (rapper) => {
+        if (rapper.uid === this.props.uid) {
+            this.setState({
+                spotlightFocus: 'me'
+            })
+        }
+        else {
+            this.setState({
+                ...this.state,
+                spotlightRapper: rapper,
+                spotlightFocus: 'other'
+            })
+        }
 
-        this.setState({
-            ...this.state,
-            fetchingSpotlightRapper: true,
-            spotlightRapper: rapper
-        })
     }
 
+    setSpotlightFocus = (value) => {
+        this.setState({
+            ...this.state,
+            spotlightFocus: value
+        })
+    }
 
     render() {
 
@@ -123,18 +137,29 @@ class Rappers extends Component {
             </div>
         )
 
-        console.log(this.state.fetchingSpotlightRapper)
+        const otherLit = this.state.spotlightFocus === 'other' ? 'header__lit' : null
+        const meLit = this.state.spotlightFocus === 'me' ? 'header__lit' : null
+
+        console.log(this.state.spotlightRapper)
 
         return (
             <div className='Rappers-Container'>
                 {rappers}
                 <div className="Winners-container">
                     <div className='Winners-container__spotlight'>
-                        <div className='spotlight__header'></div>
+                        <div className='spotlight__header'>
+                            <div className={`header__section ${otherLit}`} onClick={this.state.spotlightRapper ? () => this.setSpotlightFocus('other') : () => alert('Select a rapper!')}>
+                                <span className='section__word'>Them</span>
+                            </div>
+                            <div className={`header__section ${meLit}`} onClick={() => this.setSpotlightFocus('me')}>
+                                <span className='section__word'>Me</span>
+                            </div>
+                        </div>
                         <div className='spotlight__profile-box-container'>
                             <ProfileBox
+                                uid={this.state.spotlightFocus === 'me' ? this.props.uid : this.state.spotlightRapper.uid}
+                                photoRef={this.state.spotlightFocus === 'me' ? this.props.photoRef : this.state.spotlightRapper.photoRef}
                                 setShowPhotoModal={this.props.setShowPhotoModal}
-                                imgURL={this.props.imgURL}
                                 toggleUploadHandles={this.props.toggleUploadHandles}
                                 wrappedBy='Rappers' />
                         </div>
@@ -160,5 +185,12 @@ class Rappers extends Component {
 
     }
 }
-export default Rappers
+
+const mapStateToProps = state => {
+    return {
+        uid: state.uid,
+        photoRef: state.photoRef
+    }
+}
+export default connect(mapStateToProps, null)(Rappers)
 
