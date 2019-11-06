@@ -228,7 +228,7 @@ class Wordsmiths extends Component {
 
         return (
             <div className="WordsmithsContainer">
-                <img id="backup-img" src={joeyIMG} alt="alt" />
+                <img id="backup-img" src={joeyIMG} alt="" />
 
                 <video id="badass" src={joey} autoPlay={true} loop={true} playsInline={true} muted />
                 <div id="WordSmithsOverlay" />

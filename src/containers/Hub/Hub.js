@@ -87,7 +87,7 @@ const Hub = (props) => {
             {/* modal and ui */}
             {showPhotoModal ? <UploadImage setShowPhotoModal={setShowPhotoModal} setImgURL={setImgURL} /> : null}
             {showUploadHandles ? <AddHandles toggleUploadHandles={toggleUploadHandles} /> : null}
-            <img id="backup-img" src={imgURL} alt="alt" />
+            <img id="backup-img" src={imgURL} alt="" />
             <video id="yox" src={yox} autoPlay={true} loop={true} playsInline={true} muted />
             <div id="yoxOverlay" />
             <div id="mv-cred">YEAR OF THE OX - MOOD CONTROL CYPHER</div>

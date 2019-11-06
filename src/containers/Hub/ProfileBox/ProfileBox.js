@@ -176,13 +176,9 @@ function ProfileBox(props) {
    
         var photo = props.rapper ?
             <div className='block-one__img-wrapper'>
-                <img alt='alt' src={imgURL} />
+                <img alt='' src={imgURL} />
             </div>
             : null
-
-        // var photo = props.rapper ?
-        //     <PhotoContainer imgURL={imgURL} setShowPhotoModal={props.setShowPhotoModal} />
-        //     : null
         var button = <button className='follow-button' onClick={follow}>follow</button>
         if (amFollowing) {
             button = <button className='follow-button' onClick={unfollow}>following</button>

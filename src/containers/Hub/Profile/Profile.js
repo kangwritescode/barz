@@ -92,7 +92,7 @@ class Profile extends Component {
                         <div className="box-button" />
                         <div className="box-button" />
                         <div id="logout-button" onClick={this.logout}>
-                            <img alt="alt" id="log-out" src={close}></img>
+                            <img alt="" id="log-out" src={close}></img>
                         </div>
                     </div>
                 </div>
@@ -111,16 +111,16 @@ class Profile extends Component {
                         </div>
                         <div id="handles-container">
                             <div className={this.props.handles.facebook ? "fb-container-active" : "fb-container"} onClick={() => this.toggleShowModal('showAddHandles', true)}>
-                                <img alt="alt" id="fb" src={fb} />
+                                <img alt="" id="fb" src={fb} />
                             </div>
                             <div className={this.props.handles.instagram ? "handle-button-active" : "handle-button"} onClick={() => this.toggleShowModal('showAddHandles', true)}>
-                                <img alt="alt" id="ig" src={ig} />
+                                <img alt="" id="ig" src={ig} />
                             </div>
                             <div className={this.props.handles.soundcloud ? "handle-button-active" : "handle-button"} onClick={() => this.toggleShowModal('showAddHandles', true)}>
-                                <img alt="alt" id="sc" src={sc} />
+                                <img alt="" id="sc" src={sc} />
                             </div>
                             <div className={this.props.handles.youtube ? "handle-button-active" : "handle-button"} onClick={() => this.toggleShowModal('showAddHandles', true)}>
-                                <img alt="alt" id="yt" src={yt} />
+                                <img alt="" id="yt" src={yt} />
                             </div>
                         </div>
                     </div>

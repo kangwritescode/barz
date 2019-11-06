@@ -114,7 +114,7 @@ class UploadImage extends Component {
 
                     <div id="closeUploadImage" onClick={() => this.props.setShowPhotoModal(false)}><i className="fa fa-close"></i></div>
 
-                    {/* <img alt="alt" src={portrait}></img> */}
+                    {/* <img alt="" src={portrait}></img> */}
                     <h1>Set Photo</h1>
                     <div id="IMG_Border">
                         {theImage}

@@ -129,7 +129,7 @@ class Pedestal extends Component {
                     <div className={`spotlight-username`}>{username}</div>
                     <div className={`spotlight-details`}>{cityStateGender}</div>
                     <div className={`spotlight-photo-container`}>
-                        <img className={`spotlight-photo ${fetching}`} alt="alt" src={this.state.photoURL ? this.state.photoURL : this.props.defaultURL} />
+                        <img className={`spotlight-photo ${fetching}`} alt="" src={this.state.photoURL ? this.state.photoURL : this.props.defaultURL} />
                     </div>
                 </div>
                 <div className="spotlight-block" id="spotlight-block-two">
@@ -153,19 +153,19 @@ class Pedestal extends Component {
                     <div className={`spotlight-handles-container ${fetching}`}>
                         {hasFB ?
                             <a className={`handle-container handle-activated`} href={this.addhttp(hasFB)} target="_blank">
-                                <img className={`spotlight-fb`} alt="alt" src={fb}></img>
+                                <img className={`spotlight-fb`} alt="" src={fb}></img>
                             </a> : null}
                         {hasIG ?
                             <a className={`handle-container handle-activated`} href={`https://www.instagram.com/${hasIG}/`} target="_blank">
-                                <img className={`spotlight-ig`} alt="alt" src={ig}></img>
+                                <img className={`spotlight-ig`} alt="" src={ig}></img>
                             </a> : null}
                         {hasSC ?
                             <a className={`handle-container handle-activated`} href={this.addhttp(hasSC)} target="_blank">
-                                <img className={`spotlight-sc`} alt="alt" src={sc}></img>
+                                <img className={`spotlight-sc`} alt="" src={sc}></img>
                             </a> : null}
                         {hasYT ?
                             <a className={`handle-container handle-activated`} href={this.addhttp(hasYT)} target="_blank">
-                                <img className={`spotlight-yt`} alt="alt" src={yt}></img>
+                                <img className={`spotlight-yt`} alt="" src={yt}></img>
                             </a> : null}
 
                     </div>

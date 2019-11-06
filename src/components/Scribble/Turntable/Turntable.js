@@ -30,12 +30,12 @@ class Turntable extends Component {
                 <div id="click-space" onClick={this.props.playing ? this.props.stopMusic : this.playMusic}></div>
                 <Slider />
                 <div id="vinyl">
-                    <img alt="alt" className={this.props.playing ? 'spinning' : null} id="glare" src={glare} />
+                    <img alt="" className={this.props.playing ? 'spinning' : null} id="glare" src={glare} />
                     <div id="inner-vinyl"></div>
                     <div id="dot"></div>
                 </div>
                 <div className={`arm-container ${this.props.playing ? 'record-play' : 'record-stop'}`} >
-                    <img alt="alt" id="arm" src={arm} />
+                    <img alt="" id="arm" src={arm} />
                 </div>
                 <div id="buttons-container">
                     <div className={`button`} id={`${this.props.playing ? null : 'button-active'}`}></div>
