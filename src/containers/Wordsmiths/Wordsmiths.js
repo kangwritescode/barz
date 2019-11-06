@@ -23,7 +23,9 @@ class Wordsmiths extends Component {
 
         rappers: {},
         submissions: [],
-        fetching: true
+        fetching: true,
+        follows: [],
+        followsRef: null
 
     }
     componentDidMount = async () => {
@@ -71,6 +73,8 @@ class Wordsmiths extends Component {
         }
 
     }
+    componentWillUnmount = () => {
+    }
 
     // fetch ALL submissions
     fetchSubmissions = async () => {
@@ -110,13 +114,14 @@ class Wordsmiths extends Component {
             .then((querySnapshot) => {
                 var users = {}
                 querySnapshot.forEach((doc) => {
-                    users[doc.id] = {...doc.data(), uid: doc.id}
+                    users[doc.id] = { ...doc.data(), uid: doc.id }
                 });
                 return users
 
             })
             .catch(err => { throw err })
     }
+
 
     sortAndFilter(type, parameter) {
         // set appropriate UI
@@ -207,11 +212,11 @@ class Wordsmiths extends Component {
         rappers.forEach(rapper => {
             const cityState = `${rapper.address.city}, ${rapper.address.state}`
             if (rapper.tally > 0) {
-                cityVotes[cityState] = (cityState in cityVotes) ? 
-                    cityVotes[cityState] + rapper.tally 
+                cityVotes[cityState] = (cityState in cityVotes) ?
+                    cityVotes[cityState] + rapper.tally
                     : rapper.tally
                 coastVotes[rapper.address.region] = (rapper.address.region in coastVotes) ?
-                    coastVotes[rapper.address.region] + rapper.tally 
+                    coastVotes[rapper.address.region] + rapper.tally
                     : rapper.tally
             }
         })
@@ -244,7 +249,8 @@ class Wordsmiths extends Component {
                     bestCity={bestCity}
                     bestCoast={bestCoast}
                     sort={this.state.rank}
-                    fetching={this.state.fetching} />
+                    fetching={this.state.fetching}
+                    follows={this.state.follows} />
             </div>
         )
     }

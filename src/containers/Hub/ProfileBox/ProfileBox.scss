@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Antic+Slab&display=swap");
-@import url('https://fonts.googleapis.com/css?family=Righteous&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Righteous&display=swap");
 
 @mixin flex-centered($direction) {
     display: flex;
@@ -84,12 +84,19 @@
         font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
         @include flex-centered(column);
         justify-content: flex-end;
+        margin-bottom: 0.2em;
 
+        h2 {
+            position: relative;
+            top: 0em;
+            font-size: 1.3em;
+            color: "lightgrey";
+            font-family: "righteous";
+        }
 
         .block-one__username {
             font-size: 1em;
-            margin-top: .4em;
-            margin-bottom: .2em;
+            margin-top: 0.4em;
         }
         .block-one__address-gender {
             font-size: 0.1em;
@@ -101,12 +108,12 @@
             @include flex-centered(row);
             justify-content: space-evenly;
             width: 40%;
-            margin-bottom: .6em;
-            height: .4em;
+            margin-bottom: 0.6em;
+            height: 0.4em;
 
             .icon {
                 color: white;
-                font-size: .1em;
+                font-size: 0.1em;
                 cursor: pointer;
             }
             .fa-facebook-f {
@@ -128,20 +135,21 @@
         }
         .block-one__blurb {
             width: 70%;
-            font-size: .5em;
+            font-size: 0.6em;
             font-family: "antic slab";
             text-align: center;
             vertical-align: middle;
-            margin-bottom: 4em;
+            margin-bottom: 3em;
+            min-height: 1.3em;
         }
     }
     .profile-box__block-two {
         position: relative;
         background-color: rgba(255, 255, 255, 0.075);
-        font-family: 'righteous';
+        font-family: "righteous";
         color: rgba(255, 255, 255, 0.733);
-        font-size: .8em;
-        letter-spacing: .05em;
+        font-size: 0.8em;
+        letter-spacing: 0.05em;
         height: 22%;
         width: 100%;
         @include flex-centered(row);
@@ -156,11 +164,11 @@
             border-radius: 5em;
             background-color: rgb(21, 21, 21);
             box-shadow: 2px 2px 2px black;
-            font-family: 'righteous';
-            font-size: .3em;
+            font-family: "righteous";
+            font-size: 0.3em;
             border: 1px solid rgba(255, 255, 255, 0.214);
             color: white;
-            letter-spacing: .07em;
+            letter-spacing: 0.07em;
             z-index: 6;
             cursor: pointer;
 

@@ -58,23 +58,10 @@
             border-bottom: none;
             font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
             letter-spacing: 0.1em;
-            color: rgba(255, 255, 255, 0.26);
+            color: rgba(255, 255, 255, 0.836);
             border-bottom: 2px solid rgba(255, 255, 255, 0.541);
             @include flex-centered(row);
 
-            .header__section {
-                height: 100%;
-                width: 50%;
-                @include flex-centered(column);
-                background-color: rgba(255, 255, 255, 0.021);
-                .section__word {
-                  cursor: pointer;
-                }
-            }
-            .header__lit {
-              color: white;
-              cursor: default;
-            }
 
         }
         .spotlight__profile-box-container {

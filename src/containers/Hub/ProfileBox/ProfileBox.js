@@ -5,10 +5,6 @@ import * as actionTypes from '../../../store/actions'
 import DeleteAccount from '../Profile/DeleteAccount/DeleteAccount'
 import firebase from 'firebase'
 import { getOrdinal } from '../../../shared/getOrdinal'
-import ig from '../../../assets/handles/ig.png'
-import fb from '../../../assets/handles/fb.png'
-import sc from '../../../assets/handles/sc.png'
-import yt from '../../../assets/handles/yt.png'
 import { connect } from 'react-redux'
 
 
@@ -20,28 +16,44 @@ function ProfileBox(props) {
     const [showDropOptions, toggleDropOptions] = useState(false)
     const [showDeleteAcc, toggleDeleteAcc] = useState(false)
     const [imgURL, setImgURL] = useState(null)
+    const [follows, setFollows] = useState([])
+    const [followsRef, setFollowsRef] = useState(null)
 
+
+
+    // componentDidMount
     useEffect(() => {
         document.addEventListener('click', closeDropOptions)
-
+        fetchFollows()
         return () => {
             document.removeEventListener('click', closeDropOptions)
         };
     }, [])
 
+    // componentDidUpdate
     useEffect(() => {
         if (props.wrappedBy === 'Hub') {
             fetchPhotoURL(props.photoRef)
-        } 
-    }, [])
-
-    useEffect(() => {
+        }
         if (props.wrappedBy === 'Rappers' && props.rapper) {
             fetchPhotoURL(props.rapper.photoRef)
         }
-        return () => {
-        };
-    }, [props.rapper, props.wrappedBy])
+    }, [props.photoRef, props.rapper, props.wrappedBy])
+
+    const fetchFollows = async () => {
+        var db = firebase.firestore()
+        var follows = await db.collection("follows").get().then(((querySnapshot) => {
+            var fetchedFollows = []
+            querySnapshot.forEach(doc => {
+                fetchedFollows.push({
+                    ...doc.data(),
+                    fid: doc.id
+                })
+            })
+            return fetchedFollows
+        }))
+        setFollows(follows)
+    }
 
     const fetchPhotoURL = async (photoRef) => {
         var storage = firebase.storage();
@@ -51,6 +63,31 @@ function ProfileBox(props) {
         return () => {
             // cleanup
         };
+    }
+
+    const follow = () => {
+        var db = firebase.firestore()
+        db.collection('follows').add({
+            from: props.uid,
+            to: props.rapper.uid
+        })
+            .then(() => fetchFollows())
+            .catch(err => console.log(err.message))
+    }
+
+    const unfollow = () => {
+        var db = firebase.firestore()
+        db.collection('follows')
+            .where('from', '==', props.uid)
+            .where('to', '==', props.rapper.uid)
+            .get()
+            .then(snap => {
+                snap.forEach(doc => {
+                    doc.ref.delete()
+                })
+                fetchFollows()
+            })
+            .catch(err => console.log(err))
     }
 
     const addhttp = (url) => {
@@ -65,6 +102,16 @@ function ProfileBox(props) {
             toggleDropOptions(false)
         }
     }
+
+    const calcAmFollowing = (otherUID) => {
+
+        var follow = follows
+            .filter(follow => {
+                return follow.to === otherUID && follow.from === props.uid
+            })
+        return follow.length === 0 ? false : true
+    }
+
 
     var content = null;
 
@@ -111,15 +158,31 @@ function ProfileBox(props) {
 
 
     else if (props.wrappedBy === 'Rappers') {
-        console.log(props.rapper)
+
+        var username = props.rapper ?
+            <div className='block-one__username'>{props.rapper ? props.rapper.username : null}</div>
+            : <h2>Select a User</h2>
+        var addressGender = props.rapper ?
+            <div className='block-one__address-gender'>{props.rapper ? props.rapper.city : null}, {props.rapper ? props.rapper.state : null} | {props.rapper ? props.rapper.gender : null}</div>
+            : null
+        var photo = props.rapper ?
+            <PhotoContainer imgURL={imgURL} setShowPhotoModal={props.setShowPhotoModal} />
+            : null
+
+        var amFollowing = props.rapper && calcAmFollowing(props.rapper.uid) ? true : false
+
+        var button = <button className='follow-button' onClick={follow}>follow</button>
+        if (amFollowing) {
+            button = <button className='follow-button' onClick={unfollow}>following</button>
+        }
 
         content = (
             <div className='profile-box' >
                 {showDeleteAcc ? <DeleteAccount toggleDeleteAcc={toggleDeleteAcc} /> : null}
                 <div className='profile-box__block-one'>
-                    <PhotoContainer imgURL={imgURL} setShowPhotoModal={props.setShowPhotoModal} />
-                    <div className='block-one__username'>{props.rapper ? props.rapper.username : null}</div>
-                    <div className='block-one__address-gender'>{props.rapper ? props.rapper.city : null}, {props.rapper ? props.rapper.state : null} | {props.rapper ? props.rapper.gender : null}</div>
+                    {photo}
+                    {username}
+                    {addressGender}
                     <div className='block-one__handles-container'>
                         {props.rapper && props.rapper.handles.facebook ?
                             <a href={addhttp(props.rapper.handles.facebook)} rel="noopener noreferrer" target="_blank">
@@ -138,19 +201,19 @@ function ProfileBox(props) {
                                 <i className="fab fa-youtube icon"></i>
                             </a> : null}
                     </div>
-                    <p className='block-one__blurb'>"West Philadelpha born and raised on the playground was where I spent most of my days..."</p>
+                    <p className='block-one__blurb'>{props.rapper ? "\"West Philadelphia born and raised, on the playground was where I spent most of my days.\"" : null}</p>
                 </div>
-                <div className='profile-box__block-two' style={{fontSize: '.7em'}}>
-                    {props.focus === 'them' ? <button className='follow-button'>follow</button> : null}
+                <div className='profile-box__block-two' style={{ fontSize: '.7em' }}>
+                    {props.focus === 'them' ? button : null}
                     <div>{props.rapper ? props.rapper.rank + getOrdinal(props.rapper.rank) + ' place' : null} </div>
-                    <div>{props.rapper ? props.rapper.votes + (props.rapper.votes === 1 ? ' point' : ' points'  ): null} </div>
-                    
+                    <div>{props.rapper ? props.rapper.votes + (props.rapper.votes === 1 ? ' point' : ' points') : null} </div>
+
                 </div>
             </div>
         )
     }
 
-
+    console.log(follows)
     return content
 }
 const mapStateToProps = state => {

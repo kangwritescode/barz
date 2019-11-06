@@ -3,17 +3,7 @@ import {connect} from 'react-redux'
 import './Rapper.css'
 
 function Rapper(props) {
-
-
-    // when I'm loaded, shine on me as the default 'shined on' rapper
-    useEffect(() => {
-        if (props.username === props.myUsername) {
-            props.shineSpotlight(props)
-        }
-        return () => {
-        };
-    }, [])
-
+    
     return (
         <div className="rapper" onClick={() => props.shineSpotlight(props)} id={props.style}>
             <div className="rapperDetail rapper-detail-font" id="votes">{props.votes}</div>

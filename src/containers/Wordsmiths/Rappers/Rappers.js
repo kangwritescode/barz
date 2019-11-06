@@ -10,17 +10,18 @@ import ProfileBox from '../../Hub/ProfileBox/ProfileBox'
 
 class Rappers extends Component {
 
-    static pageLen = 11
+    static pageLen = 20
 
     state = {
         spotlightFocus: 'me',
         spotlightRapper: null,
-        myCachedRapperData: null,
         fetchingSpotlightRapper: false,
         rappers: [],
         dequedNo: 0,
         toDeque: 0
     }
+
+
 
     componentDidUpdate = (prevProps, prevState) => {
         if (prevProps.rappers !== this.props.rappers) {
@@ -39,6 +40,7 @@ class Rappers extends Component {
             })
         }
     }
+
 
     deque = () => {
 
@@ -101,7 +103,6 @@ class Rappers extends Component {
     }
 
     render() {
-
         var placeholder = (
             <div className="Rappers">
                 <div id="table-header">
@@ -157,8 +158,6 @@ class Rappers extends Component {
             </div>
         )
 
-        const otherLit = this.state.spotlightFocus === 'them' ? 'header__lit' : null
-        const meLit = this.state.spotlightFocus === 'me' ? 'header__lit' : null
 
 
         return (
@@ -167,11 +166,8 @@ class Rappers extends Component {
                 <div className="Winners-container">
                     <div className='Winners-container__spotlight'>
                         <div className='spotlight__header'>
-                            <div className={`header__section ${otherLit}`} onClick={this.state.spotlightRapper ? () => this.setSpotlightFocus('them') : () => alert('Select a rapper!')}>
-                                <span className='section__word'>Them</span>
-                            </div>
-                            <div className={`header__section ${meLit}`} onClick={() => this.setSpotlightFocus('me')}>
-                                <span className='section__word'>Me</span>
+                            <div className={`header__section`} onClick={this.state.spotlightRapper && this.state.spotlightRapper.username === this.props.username ? () => alert('Select a rapper!'): () => this.setSpotlightFocus('them')}>
+                                <span className='section__word'>Wordsmith</span>
                             </div>
                         </div>
                         <div className='spotlight__profile-box-container'>
@@ -208,7 +204,8 @@ class Rappers extends Component {
 const mapStateToProps = state => {
     return {
         uid: state.uid,
-        photoRef: state.photoRef
+        photoRef: state.photoRef,
+        username: state.username
     }
 }
 export default connect(mapStateToProps, null)(Rappers)
