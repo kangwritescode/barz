@@ -139,6 +139,21 @@
   font-family: "righteous";
 }
 
+.profile-box .profile-box__block-one .block-one__img-wrapper {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  background-color: white;
+}
+
+.profile-box .profile-box__block-one .block-one__img-wrapper img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
 .profile-box .profile-box__block-one .block-one__username {
   font-size: 1em;
   margin-top: 0.4em;

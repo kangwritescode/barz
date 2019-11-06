@@ -172,9 +172,17 @@ function ProfileBox(props) {
         var addressGender = props.rapper ?
             <div className='block-one__address-gender'>{props.rapper ? props.rapper.city : null}, {props.rapper ? props.rapper.state : null} | {props.rapper ? props.rapper.gender : null}</div>
             : null
+
+   
         var photo = props.rapper ?
-            <PhotoContainer imgURL={imgURL} setShowPhotoModal={props.setShowPhotoModal} />
+            <div className='block-one__img-wrapper'>
+                <img alt='alt' src={imgURL} />
+            </div>
             : null
+
+        // var photo = props.rapper ?
+        //     <PhotoContainer imgURL={imgURL} setShowPhotoModal={props.setShowPhotoModal} />
+        //     : null
         var button = <button className='follow-button' onClick={follow}>follow</button>
         if (amFollowing) {
             button = <button className='follow-button' onClick={unfollow}>following</button>
