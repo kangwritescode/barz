@@ -15,6 +15,7 @@ class Rappers extends Component {
     state = {
         spotlightFocus: 'me',
         spotlightRapper: null,
+        myCachedRapperData: null,
         fetchingSpotlightRapper: false,
         rappers: [],
         dequedNo: 0,
@@ -57,11 +58,19 @@ class Rappers extends Component {
         }
     }
 
-
+    findRapper = () => {
+        var rapper = this.state.rappers.filter(rapper => rapper.uid === this.props.uid)[0]
+        return rapper
+    }
 
     setSpotlightRapper = async (rapper) => {
+        console.log(rapper, 'new spot light rapper')
+
         if (rapper.uid === this.props.uid) {
             this.setState({
+                ...this.state,
+                myCachedRapperData: rapper,
+                spotlightRapper: rapper,
                 spotlightFocus: 'me'
             })
         }
@@ -76,10 +85,19 @@ class Rappers extends Component {
     }
 
     setSpotlightFocus = (value) => {
-        this.setState({
-            ...this.state,
-            spotlightFocus: value
-        })
+        if (value === 'me') {
+            this.setState({
+                ...this.state,
+                spotlightFocus: value,
+                spotlightRapper: this.state.myCachedRapperData
+            })
+        } else {
+            this.setState({
+                ...this.state,
+                spotlightFocus: value,
+            })
+        }
+        
     }
 
     render() {
@@ -127,8 +145,10 @@ class Rappers extends Component {
                         city={rapper.address.city}
                         coast={rapper.address.region}
                         gender={rapper.gender}
+                        address={rapper.address}
                         submissionCount={rapper.submissionCount}
                         uid={rapper.uid}
+                        handles={rapper.handles}
                         photoRef={rapper.photoRef}
                         shineSpotlight={this.setSpotlightRapper} />
                 })}
@@ -140,7 +160,6 @@ class Rappers extends Component {
         const otherLit = this.state.spotlightFocus === 'them' ? 'header__lit' : null
         const meLit = this.state.spotlightFocus === 'me' ? 'header__lit' : null
 
-        console.log(this.state.spotlightRapper)
 
         return (
             <div className='Rappers-Container'>

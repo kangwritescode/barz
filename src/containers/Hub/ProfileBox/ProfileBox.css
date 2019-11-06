@@ -108,7 +108,7 @@
 .profile-box .profile-box__block-one {
   position: relative;
   z-index: 1;
-  height: 82%;
+  height: 78%;
   width: 100%;
   color: rgba(255, 255, 255, 0.904);
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
@@ -207,7 +207,7 @@
   color: rgba(255, 255, 255, 0.733);
   font-size: .8em;
   letter-spacing: .05em;
-  height: 18%;
+  height: 22%;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -243,6 +243,8 @@
   border: 1px solid rgba(255, 255, 255, 0.214);
   color: white;
   letter-spacing: .07em;
+  z-index: 6;
+  cursor: pointer;
 }
 
 .profile-box .profile-box__block-two .follow-button:active {

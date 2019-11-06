@@ -41,7 +41,6 @@ class Wordsmiths extends Component {
 
                 // find the votes for that submission
                 var filteredVotes = votes.filter(vote => vote.pid === submission.pid)
-
                 if (!rappers[submission.uid]) {
                     rappers[submission.uid] = {
                         uid: submission.uid,
@@ -50,7 +49,8 @@ class Wordsmiths extends Component {
                         address: submission.address,
                         votes: filteredVotes,
                         photoRef: users[submission.uid].photoRef,
-                        blurb: users[submission.uid].blurb
+                        blurb: users[submission.uid].blurb,
+                        handles: users[submission.uid].handles
                     }
                 } else {
                     rappers[submission.uid].votes[submission.createdOn] = filteredVotes

@@ -1,7 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import {connect} from 'react-redux'
 import './Rapper.css'
 
-export default function Rapper(props) {
+function Rapper(props) {
+
+
+    // when I'm loaded, shine on me as the default 'shined on' rapper
+    useEffect(() => {
+        if (props.username === props.myUsername) {
+            props.shineSpotlight(props)
+        }
+        return () => {
+        };
+    }, [])
 
     return (
         <div className="rapper" onClick={() => props.shineSpotlight(props)} id={props.style}>
@@ -13,3 +24,11 @@ export default function Rapper(props) {
         </div>
     )
 }
+
+const mapStateToProps = state => {
+    return {
+        myUsername: state.username,
+    }
+}
+
+export default connect(mapStateToProps, null)(Rapper)
