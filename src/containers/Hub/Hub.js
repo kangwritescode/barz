@@ -54,6 +54,7 @@ const Hub = (props) => {
 
     const myPlaceFinder = () => {
         const dict = {}
+        console.log(dict)
         votes.forEach(vote => {
             if (vote.receiverID in dict) {
                 dict[vote.receiverID] = dict[vote.receiverID] + vote.value
@@ -78,6 +79,10 @@ const Hub = (props) => {
                 setMyScore(item.score)
             }
         })
+        // if you've received no votes
+        if (!myPosition) {
+            return arr.length + 1
+        }
         return myPosition
     }
 

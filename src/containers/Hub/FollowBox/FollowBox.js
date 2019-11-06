@@ -4,21 +4,20 @@ import {connect} from 'react-redux'
 import './FollowBox.css'
 
 function FollowBox(props) {
-    const [state, setState] = useState({
-        followedBy: [],
-        following: [],
-        users: {}
-    })
+
+    const [followedBy, setFollowedBy] = useState([])
+    const [following, setFollowing] = useState([])
+    const [users, setUsers] = useState({})
 
     // componentDidMount
     useEffect(() => {
-        fetchFollows()
-        fetchUsers()
-        return () => {
-        };
-    }, [])
+        if (props.uid) {
+            fetchUsers()
+            fetchFollows()
+        }
+    }, [props.uid])
 
-    const fetchFollows = () => {
+    const fetchFollows = async () => {
         var db = firebase.firestore()
         db.collection('follows').get()
             .then(snap => {
@@ -28,21 +27,17 @@ function FollowBox(props) {
                     var follow = {
                         ...doc.data()
                     }
-                    console.log(follow)
                     if (follow.to === props.uid) {
                         followedBy.push(follow.from)
                     } else if (follow.from === props.uid) {
                         following.push(follow.to)
                     }
                 })
-                setState({
-                    ...state,
-                    following: following,
-                    followedBy: followedBy
-                })
+                setFollowedBy(followedBy)
+                setFollowing(following)
             })
     }
-    const fetchUsers = () => {
+    const fetchUsers = async () => {
         var db = firebase.firestore()
         db.collection('users').get()
             .then(snap => {
@@ -50,10 +45,7 @@ function FollowBox(props) {
                 snap.forEach(doc => {
                     users[doc.id] = doc.data()
                 })
-                setState({
-                    ...state,
-                    users: users
-                })
+                setUsers(users)
             })
     }
 
@@ -62,10 +54,10 @@ function FollowBox(props) {
         <div className='follow-box'>
             <div className='follow-box__header'>
                 <div className='header__section'>
-                    {state.followedBy} followers
+                    {followedBy.length} {'follower' + (followedBy.length !== 1 ? 's' : '')}
                 </div>
                 <div className='header__section'>
-                    {state.following} following
+                    {following.length} following
                 </div>
             </div>
             <div className='follow-box_body'></div>
