@@ -21,7 +21,7 @@ const Hub = (props) => {
     const [myPlace, setMyPlace] = useState(null)
     const [myScore, setMyScore] = useState(0)
 
-
+    // componentDidMount
     useEffect(() => {
         fetchVotes()
         return () => {

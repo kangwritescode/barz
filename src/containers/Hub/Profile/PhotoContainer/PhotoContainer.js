@@ -9,7 +9,7 @@ function PhotoContainer(props) {
         <div id="uploadContainer" onClick={() => props.setShowPhotoModal(true)}>
             <div id="uploadButtonContainer">
                 <div id="uploadButton">
-                    <i className="fa fa-camera" aria-hidden="true"></i>
+                    <i className="fa fa-camera camera-icon" aria-hidden="true"></i>
                 </div>
             </div>
             {props.imgURL ?

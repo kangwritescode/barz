@@ -58,6 +58,10 @@
   background-color: rgba(0, 0, 0, 0.722);
 }
 
+#uploadButton .camera-icon {
+  font-size: 12px;
+}
+
 #uploadButton:hover {
   background-color: rgba(0, 0, 0, 0.859);
 }
