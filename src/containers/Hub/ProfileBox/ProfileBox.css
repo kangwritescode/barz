@@ -162,12 +162,29 @@
           justify-content: space-evenly;
   width: 40%;
   margin-bottom: .6em;
+  height: .4em;
 }
 
 .profile-box .profile-box__block-one .block-one__handles-container .icon {
   color: white;
   font-size: .1em;
   cursor: pointer;
+}
+
+.profile-box .profile-box__block-one .block-one__handles-container .fa-facebook-f {
+  color: blue;
+}
+
+.profile-box .profile-box__block-one .block-one__handles-container .fa-instagram {
+  color: purple;
+}
+
+.profile-box .profile-box__block-one .block-one__handles-container .fa-soundcloud {
+  color: orange;
+}
+
+.profile-box .profile-box__block-one .block-one__handles-container .fa-youtube {
+  color: red;
 }
 
 .profile-box .profile-box__block-one .block-one__handles-container .active-handle {
@@ -180,7 +197,7 @@
   font-family: "antic slab";
   text-align: center;
   vertical-align: middle;
-  margin-bottom: 3em;
+  margin-bottom: 4em;
 }
 
 .profile-box .profile-box__block-two {
@@ -208,5 +225,30 @@
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
+}
+
+.profile-box .profile-box__block-two .follow-button {
+  position: absolute;
+  top: 0em;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  height: 2.2em;
+  width: 10em;
+  border-radius: 5em;
+  background-color: #151515;
+  -webkit-box-shadow: 2px 2px 2px black;
+          box-shadow: 2px 2px 2px black;
+  font-family: 'righteous';
+  font-size: .3em;
+  border: 1px solid rgba(255, 255, 255, 0.214);
+  color: white;
+  letter-spacing: .07em;
+}
+
+.profile-box .profile-box__block-two .follow-button:active {
+  -webkit-box-shadow: 0px 0px 5px black;
+          box-shadow: 0px 0px 5px black;
+  height: 2em;
+  width: 9.8em;
 }
 /*# sourceMappingURL=ProfileBox.css.map */

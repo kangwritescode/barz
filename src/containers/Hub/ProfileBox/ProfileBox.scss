@@ -102,11 +102,24 @@
             justify-content: space-evenly;
             width: 40%;
             margin-bottom: .6em;
+            height: .4em;
 
             .icon {
                 color: white;
                 font-size: .1em;
                 cursor: pointer;
+            }
+            .fa-facebook-f {
+                color: blue;
+            }
+            .fa-instagram {
+                color: purple;
+            }
+            .fa-soundcloud {
+                color: orange;
+            }
+            .fa-youtube {
+                color: red;
             }
 
             .active-handle {
@@ -119,7 +132,7 @@
             font-family: "antic slab";
             text-align: center;
             vertical-align: middle;
-            margin-bottom: 3em;
+            margin-bottom: 4em;
         }
     }
     .profile-box__block-two {
@@ -134,6 +147,26 @@
         @include flex-centered(row);
         justify-content: space-evenly;
 
+        .follow-button {
+            position: absolute;
+            top: 0em;
+            transform: translateY(-50%);
+            height: 2.2em;
+            width: 10em;
+            border-radius: 5em;
+            background-color: rgb(21, 21, 21);
+            box-shadow: 2px 2px 2px black;
+            font-family: 'righteous';
+            font-size: .3em;
+            border: 1px solid rgba(255, 255, 255, 0.214);
+            color: white;
+            letter-spacing: .07em;
 
+            &:active {
+                box-shadow: 0px 0px 5px black;
+                height: 2em;
+                width: 9.8em;
+            }
+        }
     }
 }

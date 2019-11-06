@@ -97,8 +97,6 @@ const Hub = (props) => {
                 <div className='left-column'>
                     <div className='left-column__profile-box-container'>
                         <ProfileBox
-                            uid={props.uid}
-                            photoRef={props.photoRef}
                             setShowPhotoModal={setShowPhotoModal}
                             toggleUploadHandles={toggleUploadHandles}
                             wrappedBy='Hub'

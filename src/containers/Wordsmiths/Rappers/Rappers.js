@@ -69,7 +69,7 @@ class Rappers extends Component {
             this.setState({
                 ...this.state,
                 spotlightRapper: rapper,
-                spotlightFocus: 'other'
+                spotlightFocus: 'them'
             })
         }
 
@@ -137,7 +137,7 @@ class Rappers extends Component {
             </div>
         )
 
-        const otherLit = this.state.spotlightFocus === 'other' ? 'header__lit' : null
+        const otherLit = this.state.spotlightFocus === 'them' ? 'header__lit' : null
         const meLit = this.state.spotlightFocus === 'me' ? 'header__lit' : null
 
         console.log(this.state.spotlightRapper)
@@ -148,7 +148,7 @@ class Rappers extends Component {
                 <div className="Winners-container">
                     <div className='Winners-container__spotlight'>
                         <div className='spotlight__header'>
-                            <div className={`header__section ${otherLit}`} onClick={this.state.spotlightRapper ? () => this.setSpotlightFocus('other') : () => alert('Select a rapper!')}>
+                            <div className={`header__section ${otherLit}`} onClick={this.state.spotlightRapper ? () => this.setSpotlightFocus('them') : () => alert('Select a rapper!')}>
                                 <span className='section__word'>Them</span>
                             </div>
                             <div className={`header__section ${meLit}`} onClick={() => this.setSpotlightFocus('me')}>
@@ -157,11 +157,11 @@ class Rappers extends Component {
                         </div>
                         <div className='spotlight__profile-box-container'>
                             <ProfileBox
-                                uid={this.state.spotlightFocus === 'me' ? this.props.uid : this.state.spotlightRapper.uid}
-                                photoRef={this.state.spotlightFocus === 'me' ? this.props.photoRef : this.state.spotlightRapper.photoRef}
+                                rapper={this.state.spotlightRapper}
+                                focus={this.state.spotlightFocus}
+                                wrappedBy='Rappers'
                                 setShowPhotoModal={this.props.setShowPhotoModal}
-                                toggleUploadHandles={this.props.toggleUploadHandles}
-                                wrappedBy='Rappers' />
+                                toggleUploadHandles={this.props.toggleUploadHandles}/>
                         </div>
                     </div>
                     <BestCoast

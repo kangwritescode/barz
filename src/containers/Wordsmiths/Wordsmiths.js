@@ -49,7 +49,8 @@ class Wordsmiths extends Component {
                         username: submission.username,
                         address: submission.address,
                         votes: filteredVotes,
-                        photoRef: users[submission.uid].photoRef
+                        photoRef: users[submission.uid].photoRef,
+                        blurb: users[submission.uid].blurb
                     }
                 } else {
                     rappers[submission.uid].votes[submission.createdOn] = filteredVotes

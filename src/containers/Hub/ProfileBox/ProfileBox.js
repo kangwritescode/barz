@@ -16,37 +16,21 @@ function ProfileBox(props) {
     const [showDropOptions, toggleDropOptions] = useState(false)
     const [showDeleteAcc, toggleDeleteAcc] = useState(false)
     const [imgURL, setImgURL] = useState(null)
-    const [userData, setUserData] = useState(null)
 
     useEffect(() => {
         document.addEventListener('click', closeDropOptions)
+
         return () => {
             document.removeEventListener('click', closeDropOptions)
         };
     }, [])
 
     useEffect(() => {
-        if (props.uid) {
-            fetchUserData(props.uid)
-        }
-        if (props.photoRef) {
+        if (props.wrappedBy === 'Hub') {
             fetchPhotoURL(props.photoRef)
         }
-        return () => {
-        };
-    }, [props.uid, props.photoRef])
+    }, [props.photoRef])
 
-    const fetchUserData = async (uid) => {
-        var db = firebase.firestore()
-        db.collection('users').doc(uid).get()
-            .then(user => {
-                user = {
-                    ...user.data(),
-                    uid: user.id
-                }
-                setUserData(user)
-            })
-    }
     const fetchPhotoURL = async (photoRef) => {
         var storage = firebase.storage();
         storage.ref(photoRef).getDownloadURL().then(url => {
@@ -70,12 +54,11 @@ function ProfileBox(props) {
         }
     }
 
-    var myAccountOptions = null;
-    var theHandles = null;
-    var blockTwo = null;
+    var content = null;
 
     if (props.wrappedBy === 'Hub') {
-        myAccountOptions = (
+        content = (<div className='profile-box' >
+            {showDeleteAcc ? <DeleteAccount toggleDeleteAcc={toggleDeleteAcc} /> : null}
             <div>
                 <div className='profile-box__three-dots' onClick={() => toggleDropOptions(!showDropOptions)}>
                     <div className='dot' />
@@ -89,16 +72,18 @@ function ProfileBox(props) {
 
                 <i className="fas fa-cog profile-box__settings" onClick={() => toggleDeleteAcc(true)}></i>
             </div>
-        )
-        theHandles = (
-            <div className='block-one__handles-container'>
-                <i className="fab fa-facebook-f icon" onClick={() => props.toggleUploadHandles(true)}></i>
-                <i className="fab fa-instagram icon" onClick={() => props.toggleUploadHandles(true)}></i>
-                <i className="fab fa-soundcloud icon" onClick={() => props.toggleUploadHandles(true)}></i>
-                <i className="fab fa-youtube icon" onClick={() => props.toggleUploadHandles(true)}></i>
+            <div className='profile-box__block-one'>
+                <PhotoContainer imgURL={imgURL} setShowPhotoModal={props.setShowPhotoModal} />
+                <div className='block-one__username'>{props.username}</div>
+                <div className='block-one__address-gender'>{props.address.city}, {props.address.state} | {props.sex}</div>
+                <div className='block-one__handles-container'>
+                    <i className="fab fa-facebook-f icon" onClick={() => props.toggleUploadHandles(true)}></i>
+                    <i className="fab fa-instagram icon" onClick={() => props.toggleUploadHandles(true)}></i>
+                    <i className="fab fa-soundcloud icon" onClick={() => props.toggleUploadHandles(true)}></i>
+                    <i className="fab fa-youtube icon" onClick={() => props.toggleUploadHandles(true)}></i>
+                </div>
+                <p className='block-one__blurb'>"West Philadelpha born and raised on the playground was where I spent most of my days..."</p>
             </div>
-        )
-        blockTwo = (
             <div className='profile-box__block-two'>
                 <div>
                     {props.myPlace + getOrdinal(props.myPlace) + " place"}
@@ -107,56 +92,64 @@ function ProfileBox(props) {
                     {props.myPoints + " point" + (props.myPoints === 1 ? '' : 's')}
                 </div>
             </div>
+        </div>
         )
-
     }
 
     else if (props.wrappedBy === 'Rappers') {
-        theHandles = (
-            <div className='block-one__handles-container'>
-                {userData && userData.handles.facebook ?
-                    <a href={addhttp(userData.handles.facebook)} rel="noopener noreferrer" target="_blank">
-                        <i className="fab fa-facebook-f icon" onClick={() => props.toggleUploadHandles(true)}></i>
-                    </a> : null}
-                {userData && userData.handles.instagram ?
-                    <a href={addhttp(userData.handles.instagram)} rel="noopener noreferrer" target="_blank">
-                        <i className="fab fa-instagram icon" onClick={() => props.toggleUploadHandles(true)}></i>
-                    </a> : null}
-                {userData && userData.handles.soundcloud ?
-                    <a href={addhttp(userData.handles.soundcloud)} rel="noopener noreferrer" target="_blank">
-                        <i className="fab fa-soundcloud icon" onClick={() => props.toggleUploadHandles(true)}></i>
-                    </a> : null}
-                {userData && userData.handles.youtube ?
-                    <a href={addhttp(userData.handles.youtube)} rel="noopener noreferrer" target="_blank">
-                        <i className="fab fa-youtube icon" onClick={() => props.toggleUploadHandles(true)}></i>
-                    </a> : null}
-            </div>
-        )
-        blockTwo = (
-            <div className='profile-box__block-two'>
+
+        content = (
+            <div className='profile-box' >
+                {showDeleteAcc ? <DeleteAccount toggleDeleteAcc={toggleDeleteAcc} /> : null}
+                <div className='profile-box__block-one'>
+                    <PhotoContainer imgURL={imgURL} setShowPhotoModal={props.setShowPhotoModal} />
+                    <div className='block-one__username'>{userData ? userData.username : null}</div>
+                    <div className='block-one__address-gender'>{userData ? userData.address.city : null}, {userData ? userData.address.state : null} | {userData ? userData.gender : null}</div>
+                    <div className='block-one__handles-container'>
+                        {userData && userData.handles.facebook ?
+                            <a href={addhttp(userData.handles.facebook)} rel="noopener noreferrer" target="_blank">
+                                <i className="fab fa-facebook-f icon"></i>
+                            </a> : null}
+                        {userData && userData.handles.instagram ?
+                            <a href={addhttp(userData.handles.instagram)} rel="noopener noreferrer" target="_blank">
+                                <i className="fab fa-instagram icon"></i>
+                            </a> : null}
+                        {userData && userData.handles.soundcloud ?
+                            <a href={addhttp(userData.handles.soundcloud)} rel="noopener noreferrer" target="_blank">
+                                <i className="fab fa-soundcloud icon"></i>
+                            </a> : null}
+                        {userData && userData.handles.youtube ?
+                            <a href={addhttp(userData.handles.youtube)} rel="noopener noreferrer" target="_blank">
+                                <i className="fab fa-youtube icon"></i>
+                            </a> : null}
+                    </div>
+                    <p className='block-one__blurb'>"West Philadelpha born and raised on the playground was where I spent most of my days..."</p>
+                </div>
+                <div className='profile-box__block-two'>
+                    <button className='follow-button'>follow</button>
+                </div>
             </div>
         )
     }
 
 
-    return (
-        <div className='profile-box' >
-            {showDeleteAcc ? <DeleteAccount toggleDeleteAcc={toggleDeleteAcc} /> : null}
-            {myAccountOptions}
-            <div className='profile-box__block-one'>
-                <PhotoContainer imgURL={imgURL} setShowPhotoModal={props.setShowPhotoModal} />
-                <div className='block-one__username'>{userData ? userData.username : null}</div>
-                <div className='block-one__address-gender'>{userData ? userData.address.city : null}, {userData ? userData.address.state : null} | {userData ? userData.gender : null}</div>
-                {theHandles}
-                <p className='block-one__blurb'>"West Philadelpha born and raised on the playground was where I spent most of my days..."</p>
-            </div>
-            {blockTwo}
-        </div>
-    )
+    return content
 }
 const mapStateToProps = state => {
     return {
-
+        uid: state.uid,
+        loggedin: state.loggedIn,
+        email: state.email,
+        username: state.username,
+        sex: state.gender,
+        address: state.address,
+        zipcode: state.address.zip_code,
+        city: state.address.city,
+        state: state.address.state,
+        needsInfo: state.needsInfo,
+        photoRef: state.photoRef,
+        handles: state.handles,
+        playing: state.playing
     }
 }
 
