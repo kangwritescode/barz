@@ -17,7 +17,7 @@ function ProfileBox(props) {
     const [showDeleteAcc, toggleDeleteAcc] = useState(false)
     const [imgURL, setImgURL] = useState(null)
     const [follows, setFollows] = useState([])
-    const [followsRef, setFollowsRef] = useState(null)
+    const [amFollowing, setAmFollowing] = useState(false)
 
 
 
@@ -37,8 +37,9 @@ function ProfileBox(props) {
         }
         if (props.wrappedBy === 'Rappers' && props.rapper) {
             fetchPhotoURL(props.rapper.photoRef)
+            calcAmFollowing(props.rapper.uid)
         }
-    }, [props.photoRef, props.rapper, props.wrappedBy])
+    }, [props.photoRef, props.rapper, props.wrappedBy, follows])
 
     const fetchFollows = async () => {
         var db = firebase.firestore()
@@ -53,6 +54,7 @@ function ProfileBox(props) {
             return fetchedFollows
         }))
         setFollows(follows)
+
     }
 
     const fetchPhotoURL = async (photoRef) => {
@@ -66,6 +68,7 @@ function ProfileBox(props) {
     }
 
     const follow = () => {
+        setAmFollowing(true)
         var db = firebase.firestore()
         db.collection('follows').add({
             from: props.uid,
@@ -76,6 +79,7 @@ function ProfileBox(props) {
     }
 
     const unfollow = () => {
+        setAmFollowing(false)
         var db = firebase.firestore()
         db.collection('follows')
             .where('from', '==', props.uid)
@@ -109,12 +113,15 @@ function ProfileBox(props) {
             .filter(follow => {
                 return follow.to === otherUID && follow.from === props.uid
             })
-        return follow.length === 0 ? false : true
+        setAmFollowing(follow.length === 0 ? false : true)
     }
 
 
     var content = null;
 
+
+
+    // hub component ~~~
     if (props.wrappedBy === 'Hub') {
         content = (<div className='profile-box' >
             {showDeleteAcc ? <DeleteAccount toggleDeleteAcc={toggleDeleteAcc} /> : null}
@@ -156,7 +163,7 @@ function ProfileBox(props) {
     }
 
 
-
+    // hub component ~~~
     else if (props.wrappedBy === 'Rappers') {
 
         var username = props.rapper ?
@@ -168,14 +175,10 @@ function ProfileBox(props) {
         var photo = props.rapper ?
             <PhotoContainer imgURL={imgURL} setShowPhotoModal={props.setShowPhotoModal} />
             : null
-
-        var amFollowing = props.rapper && calcAmFollowing(props.rapper.uid) ? true : false
-
         var button = <button className='follow-button' onClick={follow}>follow</button>
         if (amFollowing) {
             button = <button className='follow-button' onClick={unfollow}>following</button>
         }
-
         content = (
             <div className='profile-box' >
                 {showDeleteAcc ? <DeleteAccount toggleDeleteAcc={toggleDeleteAcc} /> : null}
