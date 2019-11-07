@@ -8,9 +8,10 @@
 .follow-box {
     margin-top: 1.5em;
     width: 100%;
-    background: rgba(0, 0, 0, 0.486);
+    background-color: rgba(0, 0, 0, 0.486);
     font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
     border: 1px solid rgba(255, 255, 255, 0.13);
+    transition: all .2s ease-in;
     .follow-box__header {
         @include flex-centered(row);
         height: 2.3em;
@@ -46,6 +47,14 @@
         .focused {
             color: orange;
         }
+    }
+    .follow-box_header-unfilled {
+        background-color: rgba(255, 255, 255, 0);
+        transition: all .2s ease-in;
+    }
+    .follow-box_header-filled {
+        background-color: rgba(255, 255, 255, 0.05);
+        transition: all .2s ease-in;
     }
     .follow-box__body {
     }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import firebase from 'firebase'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import './FollowBox.css'
 
 function FollowBox(props) {
@@ -13,6 +13,8 @@ function FollowBox(props) {
     ]
 
     // follows
+    const [followedByCount, setFollowedByCount] = useState(0)
+    const [followingCount, setFollowingCount] = useState(0)
     const [followedBy, setFollowedBy] = useState([])
     const [following, setFollowing] = useState([])
     // users
@@ -31,7 +33,12 @@ function FollowBox(props) {
     useEffect(() => {
         if (props.uid) {
             fetchUsers()
-            fetchFollows()
+            var followersPromise = fetchFollowers()
+            var followingPromise = fetchFollowing()
+            return () => {
+                followersPromise.then(listener => listener())
+                followingPromise.then(listener => listener())
+            }
         }
     }, [props.uid])
 
@@ -40,36 +47,41 @@ function FollowBox(props) {
         followBoxClasses.forEach(className => {
             if (event.target.classList.contains(className)) {
                 clickedOnFollowBox = true
-            } 
+            }
         });
         if (clickedOnFollowBox) {
             return
         } else {
             setFocusOn('')
         }
-       
+
     }
 
-    const fetchFollows = async () => {
+    const fetchFollowers = async () => {
         var db = firebase.firestore()
-        db.collection('follows').get()
-            .then(snap => {
-                var following = []
-                var followedBy = []
-                snap.forEach(doc => {
-                    var follow = {
-                        ...doc.data()
-                    }
-                    if (follow.to === props.uid) {
-                        followedBy.push(follow.from)
-                    } else if (follow.from === props.uid) {
-                        following.push(follow.to)
-                    }
+        return db.collection('follows').where('to', '==', props.uid)
+            .onSnapshot(snapshot => {
+                setFollowedByCount(snapshot.size)
+                var arr = []
+                snapshot.forEach(doc => {
+                    arr.push(doc.data().from)
                 })
-                setFollowedBy(followedBy)
-                setFollowing(following)
+                setFollowedBy(arr)
             })
     }
+    const fetchFollowing = async () => {
+        var db = firebase.firestore()
+        return db.collection('follows').where('from', '==', props.uid)
+            .onSnapshot(snapshot => {
+                setFollowingCount(snapshot.size)
+                var arr = []
+                snapshot.forEach(doc => {
+                    arr.push(doc.data().to)
+                })
+                setFollowing(arr)
+            })
+    }
+
     const fetchUsers = async () => {
         var db = firebase.firestore()
         db.collection('users').get()
@@ -82,11 +94,11 @@ function FollowBox(props) {
             })
     }
 
-    
+
     const expandedBody = focusOn ? 'follow-box__expanded' : 'follow-box__compressed'
     const followersFocused = focusOn === 'followers' ? 'focused' : null
     const followingFocused = focusOn === 'following' ? 'focused' : null
-   
+
     var focusedBarStyle = null;
     if (focusOn === 'following') {
         focusedBarStyle = 'under-following'
@@ -96,13 +108,13 @@ function FollowBox(props) {
 
     return (
         <div className='follow-box'>
-            <div className='follow-box__header'>
+            <div className={`follow-box__header ${focusOn ? 'follow-box_header-filled' : 'follow-box_header-unfilled'}`}>
                 <div className={`header__section ${followersFocused}`} onClick={() => setFocusOn(focusOn === 'followers' ? '' : 'followers')}>
-                    {followedBy.length} {'follower' + (followedBy.length !== 1 ? 's' : '')}
+                    {followedBy.length} {'follower' + (followedByCount !== 1 ? 's' : '')}
                     <div className={`focused-bar ${focusedBarStyle}`}></div>
                 </div>
                 <div className={`header__section ${followingFocused}`} onClick={() => setFocusOn(focusOn === 'following' ? '' : 'following')}>
-                    {following.length} following
+                    {followingCount} following
                 </div>
             </div>
             <div className={`follow-box_body ${expandedBody}`}>
@@ -120,7 +132,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-       
+
     }
 }
 
