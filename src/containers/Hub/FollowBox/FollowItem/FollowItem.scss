@@ -3,17 +3,20 @@
 
 
 .follow-item {
-    width: 88%;
+    position: relative;
+    width: 87%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     color: rgba(255, 255, 255, 0.845);
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    margin: .2em;
     
     .follow-item__profile {
         display: flex;
         align-items: center;
         .profile__photo {
+            background-color: white;
             border-radius: 50%;
             width: 20px;
             min-width: 20px;
@@ -31,6 +34,20 @@
         }
     }
     .follow-item__follow-button {
+        cursor: pointer;
+        position: relative;
+        top: .4em;
+        border-radius: 5em;
+        font-family: 'righteous';
+        font-size: .1em;
+        width: 7.5em;
+        border: 1px solid rgba(117, 117, 117, 0.63);
+        background-color: rgb(8, 8, 8);
+        color: rgba(255, 255, 255, 0.87);
+        // box-shadow: 1px 1px 2px rgba(255, 255, 255, 0.158);
 
+        &:active {
+            box-shadow: none;
+        }
     }
 }

@@ -10,6 +10,7 @@ import Profile from './Profile/Profile'
 import UploadImage from './Profile/UploadImage/UploadImage'
 import AddHandles from './Profile/AddHandles/AddHandles'
 import FollowBox from './FollowBox/FollowBox'
+import Turntable from '../../components/Scribble/Turntable/Turntable'
 
 
 const Hub = (props) => {
@@ -109,8 +110,6 @@ const Hub = (props) => {
                             myPoints={myScore}/>
                     </div>
                     <FollowBox />
-                    <div></div>
-                    <div></div>
                 </div>
                 <div className='middle-column'></div>
                 <div className='right column'>

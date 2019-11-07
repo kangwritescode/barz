@@ -10,7 +10,13 @@ function FollowBox(props) {
         'follow-box',
         'follow-box__header',
         'follow-box_body',
-        "header__section"
+        "header__section",
+        'follow-item__follow-button',
+        'follow-box_body follow-box__expanded',
+        'follow-item',
+        'profile__photo',
+        'details-container__name',
+        'details-container__details'
     ]
 
     // follows
@@ -146,11 +152,11 @@ function FollowBox(props) {
     var displayedUsers;
     if (focusOn === 'following') {
         displayedUsers = followingUsers.map(user => {
-            return <FollowItem {...user} />
+            return <FollowItem follows={follows} user={user} />
         })
     } else if (focusOn === 'followers') {
         displayedUsers = followedUsers.map(user => {
-            return <FollowItem {...user} />
+            return <FollowItem follows={follows} user={user} />
         })
     }
 

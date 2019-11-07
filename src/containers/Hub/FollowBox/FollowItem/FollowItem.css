@@ -1,7 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Righteous&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Antic+Slab&display=swap");
 .follow-item {
-  width: 88%;
+  position: relative;
+  width: 87%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -13,6 +14,7 @@
           justify-content: space-between;
   color: rgba(255, 255, 255, 0.845);
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  margin: .2em;
 }
 
 .follow-item .follow-item__profile {
@@ -25,6 +27,7 @@
 }
 
 .follow-item .follow-item__profile .profile__photo {
+  background-color: white;
   border-radius: 50%;
   width: 20px;
   min-width: 20px;
@@ -39,5 +42,23 @@
 .follow-item .follow-item__profile .profile__details-container .details-container__details {
   font-size: .1em;
   font-family: 'antic slab';
+}
+
+.follow-item .follow-item__follow-button {
+  cursor: pointer;
+  position: relative;
+  top: .4em;
+  border-radius: 5em;
+  font-family: 'righteous';
+  font-size: .1em;
+  width: 7.5em;
+  border: 1px solid rgba(117, 117, 117, 0.63);
+  background-color: #080808;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.follow-item .follow-item__follow-button:active {
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 /*# sourceMappingURL=FollowItem.css.map */
