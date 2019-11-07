@@ -147,7 +147,7 @@ const mapStateToProps = state => {
         city: state.address.city,
         state: state.address.state,
         needsInfo: state.needsInfo,
-        photoRef: state.photoRef,
+        photoURL: state.photoURL,
         handles: state.handles,
         playing: state.playing
     }

@@ -129,7 +129,7 @@ class Post extends Component {
 
     generateSubmission = () => {
 
-        var content = {
+        var content = { 
             ...this.state.submission
         }
         // trim initial whitespaces
@@ -144,7 +144,7 @@ class Post extends Component {
             gender: this.props.gender,
             content: content,
             address: this.props.address,
-            photoRef: this.props.photoRef,
+            photoURL: this.props.photoURL,
             comments: {
             },
             votes: {
@@ -265,7 +265,7 @@ const mapStateToProps = state => {
         address: state.address,
         loggedIn: state.loggedIn,
         needsInfo: state.needsInfo,
-        photoRef: state.photoRef
+        photoURL: state.photoURL,
     };
 };
 

@@ -42,11 +42,9 @@ function ProfileBox(props) {
             setAmFollowing(follow.length === 0 ? false : true)
         }
 
-        if (props.wrappedBy === 'Hub') {
-            fetchPhotoURL(props.photoRef)
-        }
         if (props.wrappedBy === 'Rappers' && props.rapper) {
-            fetchPhotoURL(props.rapper.photoRef)
+            console.log(props.rapper)
+            setImgURL(props.rapper.photoURL)
             calcAmFollowing(props.rapper.uid)
         }
     }, [props.photoRef, props.rapper, props.wrappedBy, follows, props.uid])
@@ -67,15 +65,6 @@ function ProfileBox(props) {
 
     }
 
-    const fetchPhotoURL = async (photoRef) => {
-        var storage = firebase.storage();
-        storage.ref(photoRef).getDownloadURL().then(url => {
-            setImgURL(url)
-        }).catch(function (error) { console.log("error in Profile.js: ", error) });
-        return () => {
-            // cleanup
-        };
-    }
 
     const follow = () => {
         setAmFollowing(true)
@@ -142,7 +131,7 @@ function ProfileBox(props) {
                 <i className="fas fa-cog profile-box__settings" onClick={() => toggleDeleteAcc(true)}></i>
             </div>
             <div className='profile-box__block-one'>
-                <PhotoContainer imgURL={imgURL} setShowPhotoModal={props.setShowPhotoModal} />
+                <PhotoContainer imgURL={props.photoURL} setShowPhotoModal={props.setShowPhotoModal} />
                 <div className='block-one__username'>{props.username}</div>
                 <div className='block-one__address-gender'>{props.city}, {props.state} | {props.sex}</div>
                 <div className='block-one__handles-container'>
@@ -238,7 +227,7 @@ const mapStateToProps = state => {
         city: state.address.city,
         state: state.address.state,
         needsInfo: state.needsInfo,
-        photoRef: state.photoRef,
+        photoURL: state.photoURL,
     }
 }
 

@@ -31,7 +31,6 @@ const initialState = {
     gender: '?',
     address: '?',
     photoRef: null,
-    photoURL: null,
     handles: {
         facebook: '',
         instagram: '',

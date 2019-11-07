@@ -249,7 +249,7 @@ const mapStateToProps = state => {
     return {
         uid: state.uid,
         username: state.username,
-        photoRef: state.photoRef
+        photoURL: state.photoURL
     }
 }
 

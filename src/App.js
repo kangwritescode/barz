@@ -61,7 +61,7 @@ const mapStateToProps = state => {
     authenticated: state.loggedIn,
     email: state.email,
     autoSignInOver: state.autoSignInOver,
-    photoRef: state.photoRef
+    photoURL: state.photoURL
   }
 }
 

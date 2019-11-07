@@ -13,24 +13,8 @@ class ManyPost extends Component {
 
     }
     componentDidMount() {
-        this.fetchPhotoURL(this.props.photoRef)
         this.fetchScore()
         this.fetchCommentsCount()
-    }
-
-
-    fetchPhotoURL = async (photoRef) => {
-        var storage = firebase.storage()
-        storage.ref(photoRef).getDownloadURL()
-            .then(url => {
-                this.setState({
-                    ...this.state,
-                    photoURL: url
-                })
-            })
-            .catch(err => {
-                console.log(err)
-            });
     }
 
 
@@ -82,7 +66,7 @@ class ManyPost extends Component {
         // dict {coast: color}
         const colorDict = {
             'West': 'yellow',
-            'East': 'green',
+            'East': 'greeen',
             'South': 'blue',
             'Midwest': 'purple',
         }
@@ -98,7 +82,7 @@ class ManyPost extends Component {
                 onClick={() => this.props.selectPost(this.props.pid)}>
                 <header>
                     <div className='many-post-details' id={this.props.pid}>
-                        <img className='many-post-pic' src={this.state.photoURL} alt='pic'></img>
+                        <img className='many-post-pic' src={this.props.photoURL} alt='pic'></img>
                         <div className='many-post-name-date-container'>
                             <h6>{this.props.username}</h6>
                             <p>{date}</p>

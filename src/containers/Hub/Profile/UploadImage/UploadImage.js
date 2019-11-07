@@ -3,6 +3,7 @@ import './UploadImage.css'
 import { connect } from 'react-redux'
 import firebase from '../../../../Firebase'
 import portrait from '../../../../assets/portrait.png'
+import * as actionTypes from '../../../../store/actions'
 
 class UploadImage extends Component {
 
@@ -16,18 +17,13 @@ class UploadImage extends Component {
     }
 
     componentDidMount() {
-        var storage = firebase.storage();
-        storage.ref(this.props.photoRef).getDownloadURL().then(url => {
 
-            console.log(url)
-            this.setState({
-                ...this.state,
-                selectedFile: url
-            })
-        }).catch(function (error) {
-            console.log("error in Profile.js: ", error)
-        });
+        this.setState({
+            ...this.state,
+            selectedFile: this.props.photoURL
+        })
     }
+
 
     fileSelectedHandler = event => {
         var targetFile = event.target.files[0]
@@ -53,7 +49,7 @@ class UploadImage extends Component {
             uploading: true
         })
         var storageRef = firebase.storage().ref()
-        var imageRef = storageRef.child(this.props.photoRef)
+        var imageRef = storageRef.child(`images/${this.props.uid}/userIMG.png`);
         var uploadTask = imageRef.put(this.state.selectedFile)
         uploadTask.on('state_changed', snapshot => {
 
@@ -67,7 +63,7 @@ class UploadImage extends Component {
             })
         }, () => {
             uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-                this.props.setImgURL(downloadURL)
+                this.props.setPhotoURL(downloadURL)
                 this.setState({
                     ...this.state,
                     uploading: false,
@@ -119,8 +115,8 @@ class UploadImage extends Component {
                     <div id="IMG_Border">
                         {theImage}
                     </div>
-                    
-                    
+
+
 
                     <div id="UploadButtons">
                         <input onChange={this.fileSelectedHandler} type="file" id="files" className="hidden" accept="image/x-png, image/jpeg" />
@@ -140,12 +136,13 @@ class UploadImage extends Component {
 const mapStateToProps = state => {
     return {
         uid: state.uid,
-        photoRef: state.photoRef
+        photoURL: state.photoURL,
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
+        setPhotoURL: (photoURL) => dispatch({type: actionTypes.SET_PHOTO_URL, photoURL: photoURL})
     }
 }
 

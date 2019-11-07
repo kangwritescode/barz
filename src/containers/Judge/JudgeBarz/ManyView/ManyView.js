@@ -246,6 +246,7 @@ class ManyView extends Component {
         var manyPosts = null
         if (submissions.length > 0) {
             manyPosts = submissions.map((submission, index) => {
+                console.log(submission)
 
                 return (
                     <ManyPost

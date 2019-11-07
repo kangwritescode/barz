@@ -50,7 +50,7 @@ class Wordsmiths extends Component {
                         username: submission.username,
                         address: submission.address,
                         votes: filteredVotes,
-                        photoRef: users[submission.uid].photoRef,
+                        photoURL: users[submission.uid].photoURL,
                         blurb: users[submission.uid].blurb,
                         handles: users[submission.uid].handles
                     }

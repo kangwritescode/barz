@@ -64,7 +64,7 @@ var Commenter = (props) => {
                 <h2 className={`select-a-post ${isHidden}`}>Select a Post</h2>
                 {commentsAndLikes}
                 <form className='post-comment'>
-                    <div className='img-wrapper'><img alt='alt' src={david} className='comment-user-img'></img></div>
+                    <div className='img-wrapper'><img alt='' src={props.photoURL} className='comment-user-img'></img></div>
                     <TextareaAutosize
                         disabled={!props.postSelected}
                         placeholder='Thoughts...'
@@ -89,7 +89,7 @@ const mapStateToProps = state => {
         uid: state.uid,
         username: state.username,
         state: state.address.state,
-        photoRef: state.photoRef,
+        photoURL: state.photoURL,
         handles: state.handles,
     }
 }

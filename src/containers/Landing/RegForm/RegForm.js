@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import validator from 'validator'
 import firebase from 'firebase'
-import {regions} from '../../../shared/regions'
+import { regions } from '../../../shared/regions'
 import './RegForm.css'
 import axios from 'axios'
 import { errorCreater } from '../../../shared/errorCreator'
@@ -26,9 +26,9 @@ function RegForm(props) {
     var [zipcode, setZipcode] = useState('')
     var [gender, pickGender] = useState('')
 
-   
 
-    
+
+
 
     // on mounting
     useEffect(() => {
@@ -70,11 +70,17 @@ function RegForm(props) {
                 throw err
             })
     }
+
+    // uploades mysteryman and then...
     const uploadMysteryMan = async (uid) => {
         var storageRef = firebase.storage().ref();
         var photoRef = storageRef.child(`images/${uid}/userIMG.png`);
         return photoRef.put(mysteryManBlob)
-            .then(() => { return photoRef })
+            .then(async (successObj) => {
+                // fetches and returns the download URL
+                const url = await successObj.ref.getDownloadURL()
+                return url
+            })
             .catch(err => { console.log(err.message) })
     }
 
@@ -95,13 +101,13 @@ function RegForm(props) {
                 console.log(error)
             });
     }
-    const createFirebaseUser = async (email, uid, address, photoRef) => {
+    const createFirebaseUser = async (email, uid, address, photoURL) => {
         var db = firebase.firestore();
 
         const user = {
             email: email,
             uid: uid,
-            photoRef: photoRef,
+            photoURL: photoURL,
             username: username,
             address: {
                 ...address,
@@ -180,13 +186,13 @@ function RegForm(props) {
                 setStep('profile')
             }
         }
-        
+
         catch (err) {
             setSpinner(false)
             notifyWithErr(err.message)
         }
     }
-    
+
 
 
     const submit = async (event) => {
@@ -205,9 +211,9 @@ function RegForm(props) {
             // zipcode check
             const address = await fetchAddressFromZipcode(zipcode)
             let [emailFire, uid] = await createAuthUser(email, password)
-            const photoRef = await uploadMysteryMan(uid)
-            await createFirebaseUser(emailFire, uid, address, photoRef.location.path)
-            
+            const photoURL = await uploadMysteryMan(uid)
+            await createFirebaseUser(emailFire, uid, address, photoURL)
+
             // success!
 
             props.setErrSentiment(true)
@@ -220,7 +226,7 @@ function RegForm(props) {
             props.setPassword(password)
             setEmail('')
             setPass('')
-            
+
 
 
         }
@@ -311,7 +317,7 @@ function RegForm(props) {
     return (
         <form className='reg-form'>
             {spinning ? <div className='reg-form-spinner'></div> : null}
-            <i className="fa fa-close" id='reg-form-close' onClick={() => {props.updateReg(false); props.setShowErr(false)}}></i>
+            <i className="fa fa-close" id='reg-form-close' onClick={() => { props.updateReg(false); props.setShowErr(false) }}></i>
             <h1 className='reg-header'>Sign Up</h1>
             {form}
         </form>

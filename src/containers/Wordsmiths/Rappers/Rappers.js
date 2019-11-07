@@ -150,7 +150,7 @@ class Rappers extends Component {
                         submissionCount={rapper.submissionCount}
                         uid={rapper.uid}
                         handles={rapper.handles}
-                        photoRef={rapper.photoRef}
+                        photoURL={rapper.photoURL}
                         shineSpotlight={this.setSpotlightRapper} />
                 })}
                 {this.state.toDeque ? <div id='load-more' onClick={this.deque}>View More</div> : null}
@@ -204,7 +204,7 @@ class Rappers extends Component {
 const mapStateToProps = state => {
     return {
         uid: state.uid,
-        photoRef: state.photoRef,
+        photoURL: state.photoURL,
         username: state.username
     }
 }
