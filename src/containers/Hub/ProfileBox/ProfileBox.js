@@ -226,6 +226,7 @@ function ProfileBox(props) {
     console.log(follows)
     return content
 }
+
 const mapStateToProps = state => {
     return {
         uid: state.uid,
@@ -240,6 +241,7 @@ const mapStateToProps = state => {
         photoRef: state.photoRef,
     }
 }
+
 
 const mapDispatchToProps = dispatch => {
     return {

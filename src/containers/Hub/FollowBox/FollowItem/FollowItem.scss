@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css?family=Righteous&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Antic+Slab&display=swap");
+
+
+.follow-item {
+    width: 88%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: rgba(255, 255, 255, 0.845);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    
+    .follow-item__profile {
+        display: flex;
+        align-items: center;
+        .profile__photo {
+            border-radius: 50%;
+            width: 20px;
+            min-width: 20px;
+            margin-right: .5em;
+        }
+        .profile__details-container {
+            .details-container__name {
+                font-size: .7em;
+                letter-spacing: .04em;
+            }
+            .details-container__details {
+                font-size: .1em;
+                font-family: 'antic slab';
+            }
+        }
+    }
+    .follow-item__follow-button {
+
+    }
+}

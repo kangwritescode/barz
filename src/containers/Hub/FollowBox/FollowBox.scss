@@ -8,7 +8,7 @@
 .follow-box {
     margin-top: 1.5em;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.486);
+    background-color: rgba(0, 0, 0, 0.76);
     font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
     border: 1px solid rgba(255, 255, 255, 0.13);
     transition: all .2s ease-in;
@@ -53,14 +53,20 @@
         transition: all .2s ease-in;
     }
     .follow-box_header-filled {
-        background-color: rgba(255, 255, 255, 0.05);
+        background-color: rgba(255, 255, 255, 0.077);
         transition: all .2s ease-in;
     }
     .follow-box__body {
+        
     }
     .follow-box__expanded {
         height: 12em;
         transition: all .2s ease-in;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 1em;
     }
     .follow-box__compressed {
         height: 0em;

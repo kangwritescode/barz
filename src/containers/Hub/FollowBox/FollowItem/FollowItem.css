@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css?family=Righteous&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Antic+Slab&display=swap");
+.follow-item {
+  width: 88%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  color: rgba(255, 255, 255, 0.845);
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.follow-item .follow-item__profile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.follow-item .follow-item__profile .profile__photo {
+  border-radius: 50%;
+  width: 20px;
+  min-width: 20px;
+  margin-right: .5em;
+}
+
+.follow-item .follow-item__profile .profile__details-container .details-container__name {
+  font-size: .7em;
+  letter-spacing: .04em;
+}
+
+.follow-item .follow-item__profile .profile__details-container .details-container__details {
+  font-size: .1em;
+  font-family: 'antic slab';
+}
+/*# sourceMappingURL=FollowItem.css.map */

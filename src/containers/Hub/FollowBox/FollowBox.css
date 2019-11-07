@@ -1,7 +1,7 @@
 .follow-box {
   margin-top: 1.5em;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.486);
+  background-color: rgba(0, 0, 0, 0.76);
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   border: 1px solid rgba(255, 255, 255, 0.13);
   -webkit-transition: all .2s ease-in;
@@ -82,7 +82,7 @@
 }
 
 .follow-box .follow-box_header-filled {
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(255, 255, 255, 0.077);
   -webkit-transition: all .2s ease-in;
   transition: all .2s ease-in;
 }
@@ -91,6 +91,20 @@
   height: 12em;
   -webkit-transition: all .2s ease-in;
   transition: all .2s ease-in;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  padding-top: 1em;
 }
 
 .follow-box .follow-box__compressed {
