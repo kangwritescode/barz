@@ -9,21 +9,52 @@
     margin-top: 1.5em;
     width: 100%;
     background: rgba(0, 0, 0, 0.486);
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
     border: 1px solid rgba(255, 255, 255, 0.13);
     .follow-box__header {
         @include flex-centered(row);
         height: 2.3em;
         cursor: pointer;
         .header__section {
+            position: relative;
             height: 100%;
             width: 50%;
             color: rgba(255, 255, 255, 0.651);
-            font-size: .7em;
+            font-size: 0.7em;
             @include flex-centered(column);
-            letter-spacing: .06em;
+            letter-spacing: 0.06em;
             text-align: center;
 
+            .focused-bar {
+                position: absolute;
+                width: 100%;
+                bottom: 0em;
+                border-bottom: 1px solid orange;
+                opacity: 0;
+            }
+            .under-followers {
+                opacity: 1;
+                transform: translateX(0%);
+                // transition: all 0.1s ease-in;
+            }
+            .under-following {
+                opacity: 1;
+                transform: translateX(100%);
+                // transition: all 0.1s ease-in;
+            }
         }
+        .focused {
+            color: orange;
+        }
+    }
+    .follow-box__body {
+    }
+    .follow-box__expanded {
+        height: 12em;
+        transition: all .2s ease-in;
+    }
+    .follow-box__compressed {
+        height: 0em;
+        transition: all .2s ease-in;
     }
 }

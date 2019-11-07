@@ -2,7 +2,7 @@
   margin-top: 1.5em;
   width: 100%;
   background: rgba(0, 0, 0, 0.486);
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   border: 1px solid rgba(255, 255, 255, 0.13);
 }
 
@@ -24,10 +24,11 @@
 }
 
 .follow-box .follow-box__header .header__section {
+  position: relative;
   height: 100%;
   width: 50%;
   color: rgba(255, 255, 255, 0.651);
-  font-size: .7em;
+  font-size: 0.7em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -40,7 +41,43 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  letter-spacing: .06em;
+  letter-spacing: 0.06em;
   text-align: center;
+}
+
+.follow-box .follow-box__header .header__section .focused-bar {
+  position: absolute;
+  width: 100%;
+  bottom: 0em;
+  border-bottom: 1px solid orange;
+  opacity: 0;
+}
+
+.follow-box .follow-box__header .header__section .under-followers {
+  opacity: 1;
+  -webkit-transform: translateX(0%);
+          transform: translateX(0%);
+}
+
+.follow-box .follow-box__header .header__section .under-following {
+  opacity: 1;
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+}
+
+.follow-box .follow-box__header .focused {
+  color: orange;
+}
+
+.follow-box .follow-box__expanded {
+  height: 12em;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+}
+
+.follow-box .follow-box__compressed {
+  height: 0em;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
 }
 /*# sourceMappingURL=FollowBox.css.map */
