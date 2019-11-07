@@ -59,12 +59,16 @@
   opacity: 1;
   -webkit-transform: translateX(0%);
           transform: translateX(0%);
+  -webkit-transition: all 0.1s ease-in;
+  transition: all 0.1s ease-in;
 }
 
 .follow-box .follow-box__header .header__section .under-following {
   opacity: 1;
   -webkit-transform: translateX(100%);
           transform: translateX(100%);
+  -webkit-transition: all 0.1s ease-in;
+  transition: all 0.1s ease-in;
 }
 
 .follow-box .follow-box__header .focused {

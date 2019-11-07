@@ -31,13 +31,46 @@ function FollowBox(props) {
     }, [])
 
     useEffect(() => {
+        var db = firebase.firestore()
+        const fetchFollowers = async () => {
+            return db.collection('follows').where('to', '==', props.uid)
+                .onSnapshot(snapshot => {
+                    setFollowedByCount(snapshot.size)
+                    var arr = []
+                    snapshot.forEach(doc => {
+                        arr.push(doc.data().from)
+                    })
+                    setFollowedBy(arr)
+                })
+        }
+        const fetchFollowing = async () => {
+            return db.collection('follows').where('from', '==', props.uid)
+                .onSnapshot(snapshot => {
+                    setFollowingCount(snapshot.size)
+                    var arr = []
+                    snapshot.forEach(doc => {
+                        arr.push(doc.data().to)
+                    })
+                    setFollowing(arr)
+                })
+        }
+        const fetchUsers = async () => {
+            return db.collection('users').onSnapshot(snap => {
+                var users = {}
+                snap.forEach(doc => {
+                    users[doc.id] = doc.data()
+                })
+                setUsers(users)
+            })
+        }
         if (props.uid) {
-            fetchUsers()
+            var usersPromise = fetchUsers()
             var followersPromise = fetchFollowers()
             var followingPromise = fetchFollowing()
             return () => {
                 followersPromise.then(listener => listener())
                 followingPromise.then(listener => listener())
+                usersPromise.then(listener => listener())
             }
         }
     }, [props.uid])
@@ -57,42 +90,9 @@ function FollowBox(props) {
 
     }
 
-    const fetchFollowers = async () => {
-        var db = firebase.firestore()
-        return db.collection('follows').where('to', '==', props.uid)
-            .onSnapshot(snapshot => {
-                setFollowedByCount(snapshot.size)
-                var arr = []
-                snapshot.forEach(doc => {
-                    arr.push(doc.data().from)
-                })
-                setFollowedBy(arr)
-            })
-    }
-    const fetchFollowing = async () => {
-        var db = firebase.firestore()
-        return db.collection('follows').where('from', '==', props.uid)
-            .onSnapshot(snapshot => {
-                setFollowingCount(snapshot.size)
-                var arr = []
-                snapshot.forEach(doc => {
-                    arr.push(doc.data().to)
-                })
-                setFollowing(arr)
-            })
-    }
+    
+    
 
-    const fetchUsers = async () => {
-        var db = firebase.firestore()
-        db.collection('users').get()
-            .then(snap => {
-                var users = {}
-                snap.forEach(doc => {
-                    users[doc.id] = doc.data()
-                })
-                setUsers(users)
-            })
-    }
 
 
     const expandedBody = focusOn ? 'follow-box__expanded' : 'follow-box__compressed'

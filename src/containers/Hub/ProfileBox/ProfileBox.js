@@ -32,6 +32,16 @@ function ProfileBox(props) {
 
     // componentDidUpdate
     useEffect(() => {
+
+        const calcAmFollowing = (otherUID) => {
+
+            var follow = follows
+                .filter(follow => {
+                    return follow.to === otherUID && follow.from === props.uid
+                })
+            setAmFollowing(follow.length === 0 ? false : true)
+        }
+
         if (props.wrappedBy === 'Hub') {
             fetchPhotoURL(props.photoRef)
         }
@@ -39,7 +49,7 @@ function ProfileBox(props) {
             fetchPhotoURL(props.rapper.photoRef)
             calcAmFollowing(props.rapper.uid)
         }
-    }, [props.photoRef, props.rapper, props.wrappedBy, follows])
+    }, [props.photoRef, props.rapper, props.wrappedBy, follows, props.uid])
 
     const fetchFollows = async () => {
         var db = firebase.firestore()
@@ -107,14 +117,7 @@ function ProfileBox(props) {
         }
     }
 
-    const calcAmFollowing = (otherUID) => {
 
-        var follow = follows
-            .filter(follow => {
-                return follow.to === otherUID && follow.from === props.uid
-            })
-        setAmFollowing(follow.length === 0 ? false : true)
-    }
 
 
     var content = null;
@@ -226,7 +229,6 @@ function ProfileBox(props) {
 const mapStateToProps = state => {
     return {
         uid: state.uid,
-        loggedin: state.loggedIn,
         email: state.email,
         username: state.username,
         sex: state.gender,
@@ -236,8 +238,6 @@ const mapStateToProps = state => {
         state: state.address.state,
         needsInfo: state.needsInfo,
         photoRef: state.photoRef,
-        handles: state.handles,
-        playing: state.playing
     }
 }
 
