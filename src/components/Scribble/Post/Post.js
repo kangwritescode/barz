@@ -176,8 +176,6 @@ class Post extends Component {
 
             // auth check 
             if (!this.props.uid) { throw this.createErr('Log in to post!', 405) }
-            // set info check
-            if (this.props.needsInfo) { throw this.createErr('Set Info to Post!', 405) }
             // limit check
             const postsToday = await this.checkPostsLeft()
             // filled out check

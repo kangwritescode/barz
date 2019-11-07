@@ -206,7 +206,7 @@ class SingleView extends Component {
     // vote and check functions
     vote = async (vote) => {
 
-        if (this.checkLoggedIn() && this.infoSet()) {
+        if (this.checkLoggedIn()) {
             var db = firebase.firestore()
             var myVote = this.findVote()
             var value = myVote && myVote.value === vote ? 0 : vote
