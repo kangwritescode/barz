@@ -6,21 +6,13 @@ import { connect } from 'react-redux'
 
 const FollowItem = (props) => {
 
-    const [photoURL, setPhotoURL] = useState(null)
     const [amFollowing, setAmFollowing] = useState(false);
 
     // componentDidMount
     useEffect(() => {
-        const fetchPhotoUrl = () => {
-            var storage = firebase.storage();
-            storage.ref(props.user.photoRef).getDownloadURL().then(url => {
-                setPhotoURL(url)
-            })
-        }
-        fetchPhotoUrl()
         return () => {
         };
-    }, [props.user.photoRef])
+    }, [])
 
     useEffect(() => {
         // return true if user is following this user, otherwise false
@@ -63,7 +55,7 @@ const FollowItem = (props) => {
     return (
         <div className='follow-item'>
             <div className={`follow-item__profile`}>
-                <img className={`profile__photo`} alt='' src={photoURL}></img>
+                <img className={`profile__photo`} alt='' src={props.user.photoURL}></img>
                 <div className={`profile__details-container`}>
                     <div className={`details-container__name`}>
                         {props.user.username}

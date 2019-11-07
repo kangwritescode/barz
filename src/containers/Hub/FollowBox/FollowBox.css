@@ -30,7 +30,7 @@
   height: 100%;
   width: 50%;
   color: rgba(255, 255, 255, 0.651);
-  font-size: 0.7em;
+  font-size: 0.75em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -104,7 +104,8 @@
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
-  padding-top: 1em;
+  padding: 1em 0em;
+  overflow: auto;
 }
 
 .follow-box .follow-box__compressed {

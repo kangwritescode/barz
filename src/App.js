@@ -19,11 +19,6 @@ class App extends Component {
   componentDidMount() {
     this.props.onTryAutoSignin()
   }
-  componentDidUpdate = (prevProps, prevState) => {
-    if (!prevProps.photoRef && this.props.photoRef) {
-      this.props.fetchPhotoURL(this.props.photoRef)
-    }
-  }
 
 
   render() {
@@ -69,7 +64,6 @@ const mapDispatchToProps = dispatch => {
   return {
     onTryAutoSignin: () => dispatch(authCheckState()),
     fetchUserData: (uid) => dispatch(fetchUserData(uid)),
-    fetchPhotoURL: (photoRef) => dispatch(fetchPhotoURL(photoRef))
   }
 }
 

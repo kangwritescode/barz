@@ -24,7 +24,7 @@ var Commenter = (props) => {
         db.collection('postComments').add({
             comment: input,
             date: new Date(),
-            photoRef: props.photoRef,
+            photoURL: props.photoURL,
             pid: props.selectedPost.pid,
             receiverUsername: props.selectedPost.username,
             receiverUID: props.selectedPost.uid,

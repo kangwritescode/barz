@@ -110,6 +110,9 @@ const Hub = (props) => {
                             myPoints={myScore}/>
                     </div>
                     <FollowBox />
+                    <div className={`left-column__turntable-wrapper`}>
+                        <Turntable />
+                    </div>
                 </div>
                 <div className='middle-column'></div>
                 <div className='right column'>

@@ -1,5 +1,5 @@
 .hub-layout {
-  position: absolute;
+  position: fixed;
   top: 2em;
   bottom: 0em;
   left: 0em;
@@ -22,12 +22,17 @@
 }
 
 .column-container .left-column {
-  width: 15em;
+  width: 16.75em;
 }
 
 .column-container .left-column .left-column__profile-box-container {
   height: 19em;
   width: 100%;
+}
+
+.column-container .left-column .left-column__turntable-wrapper {
+  margin-top: 1.3em;
+  height: 10.5em;
 }
 
 #mv-cred {

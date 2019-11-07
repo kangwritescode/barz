@@ -13,26 +13,13 @@ function PostComment(props) {
     // fetch photo on mounting
     useEffect(() => {
         document.addEventListener('click', closeDropdowns)
-        fetchPhoto()
+
         return () => {
             document.removeEventListener('click', closeDropdowns)
 
         }
     }, [])
 
-    const fetchPhoto = () => {
-        var storage = firebase.storage()
-        storage.ref(data.photoRef).getDownloadURL()
-            .then(url => {
-                updatePhotoURL(url)
-                if (props.index + 1 === props.noOfComments) {
-                    // props.toggleLoader(false)
-                    console.log('toggleLoader false')
-                }
-            }).catch(function (error) {
-                console.log("error in Profile.js: ", error)
-            });
-    }
 
     const closeDropdowns = (event) => {
         const classList = event.target.classList
@@ -106,7 +93,7 @@ function PostComment(props) {
             className='posted-comment'
             onMouseLeave={(event) => { closeDropdowns(event) }}>
             <div className='posted-comment__img-container'>
-                <img alt='alt' src={photoURL}></img>
+                <img alt='alt' src={data.photoURL}></img>
             </div>
             <div className='posted-comment__content'>
                 <b>{data.username}</b> {data.comment} <br />

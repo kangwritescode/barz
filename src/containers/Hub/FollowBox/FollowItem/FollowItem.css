@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css?family=Antic+Slab&display=swap");
 .follow-item {
   position: relative;
-  width: 87%;
+  width: 80%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -14,7 +14,7 @@
           justify-content: space-between;
   color: rgba(255, 255, 255, 0.845);
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  margin: .2em;
+  margin: .3em;
 }
 
 .follow-item .follow-item__profile {
