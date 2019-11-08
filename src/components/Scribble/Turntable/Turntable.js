@@ -28,9 +28,13 @@ class Turntable extends Component {
         return (
             <div className="turntable">
                 <div id="click-space" onClick={this.props.playing ? this.props.stopMusic : this.playMusic}></div>
-                <Slider />
-                <div id="vinyl">
-                    <img alt="" className={this.props.playing ? 'spinning' : null} id="glare" src={glare} />
+                <Slider customStyle={this.props.customStyle ? this.props.customStyle.slider : null}/>
+                <div id="vinyl" style={this.props.customStyle ? this.props.customStyle.vinyl : null}>
+                    <img 
+                        alt="" 
+                        className={this.props.playing ? 'spinning' : null} 
+                        style={this.props.customStyle ? this.props.customStyle.glare : null}
+                        id="glare" src={glare} />
                     <div id="inner-vinyl"></div>
                     <div id="dot"></div>
                 </div>

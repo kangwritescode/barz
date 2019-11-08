@@ -2,26 +2,30 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import './Hub.css'
 import firebase from 'firebase'
-// import Aux from '../../hoc/Aux/'
-import { getOrdinal } from '../../shared/getOrdinal'
 import yox from '../../assets/yox.m4v'
 import ProfileBox from './ProfileBox/ProfileBox'
-import Profile from './Profile/Profile'
 import UploadImage from './Profile/UploadImage/UploadImage'
 import AddHandles from './Profile/AddHandles/AddHandles'
 import FollowBox from './FollowBox/FollowBox'
 import Turntable from '../../components/Scribble/Turntable/Turntable'
+import HubNavBar from './HubNavBar/HubNavBar'
 
 
 const Hub = (props) => {
 
+    // show modals
     const [showPhotoModal, setShowPhotoModal] = useState(false)
     const [showUploadHandles, toggleUploadHandles] = useState(false)
+    // photo related
     const [imgURL, setImgURL] = useState('')
+    // votes/score related
     const [votes, setVotes] = useState([])
     const [myPlace, setMyPlace] = useState(null)
     const [myScore, setMyScore] = useState(0)
+    // feed related
+    const [feed, setFeed] = useState('Personal')
 
+    
     // componentDidMount
     useEffect(() => {
         fetchVotes()
@@ -52,7 +56,6 @@ const Hub = (props) => {
                 setVotes(fetchedVotes)
             })
     }
-
     const myPlaceFinder = () => {
         const dict = {}
         console.log(dict)
@@ -86,9 +89,16 @@ const Hub = (props) => {
         }
         return myPosition
     }
+    const sortAndFilter = (type, parameter) => {
+        // set appropriate UI
+        setFeed(parameter)
+    }
 
-    const profile = (
+
+
+    return (
         <div className="hub-layout">
+            <HubNavBar sortAndFilter={sortAndFilter} feed={feed} />
 
             {/* modal and ui */}
             {showPhotoModal ? <UploadImage setShowPhotoModal={setShowPhotoModal} setImgURL={setImgURL} /> : null}
@@ -107,11 +117,22 @@ const Hub = (props) => {
                             toggleUploadHandles={toggleUploadHandles}
                             wrappedBy='Hub'
                             myPlace={myPlace}
-                            myPoints={myScore}/>
+                            myPoints={myScore} />
                     </div>
                     <FollowBox />
                     <div className={`left-column__turntable-wrapper`}>
-                        <Turntable />
+                        <Turntable customStyle={{
+                            vinyl: {
+                                height: '7em',
+                                width: '7em',
+                            },
+                            glare: {
+                                height: '6.4em'
+                            },
+                            slider: {
+                                left: '-2.4em'
+                            }
+                        }} />
                     </div>
                 </div>
                 <div className='middle-column'></div>
@@ -122,8 +143,6 @@ const Hub = (props) => {
             </div>
         </div>
     )
-
-    return profile
 
 }
 

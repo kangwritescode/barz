@@ -155,13 +155,12 @@
 }
 
 .profile-box .profile-box__block-one .block-one__username {
-  font-size: 1em;
+  font-size: 1.1em;
   margin-top: 0.4em;
-  margin-bottom: .1em;
 }
 
 .profile-box .profile-box__block-one .block-one__address-gender {
-  font-size: 0.1em;
+  font-size: 0.6rem;
   font-family: "antic slab";
   margin-bottom: 1.1em;
 }
@@ -191,7 +190,7 @@
 
 .profile-box .profile-box__block-one .block-one__handles-container .icon {
   color: white;
-  font-size: 0.1em;
+  font-size: 0.5rem;
   cursor: pointer;
 }
 
@@ -217,11 +216,11 @@
 
 .profile-box .profile-box__block-one .block-one__blurb {
   width: 70%;
-  font-size: 0.65em;
+  font-size: 0.6em;
   font-family: "antic slab";
   text-align: center;
   vertical-align: middle;
-  margin-bottom: 2.5em;
+  margin-bottom: 2.3em;
   min-height: 1.3em;
 }
 

@@ -8,10 +8,15 @@ class Slider extends Component {
 
     render() {
 
+        console.log(this.props.customStyle)
+
         return (
-            <div className="Slider">
+            <div className="Slider"  >
                 <input 
-                    onChange={event => this.props.changeVol(event.target.value)} value={this.props.volume} type="range" />
+                    onChange={event => this.props.changeVol(event.target.value)} 
+                    value={this.props.volume} 
+                    type="range"
+                    style={this.props.customStyle}/>
             </div>
         )
     }

@@ -1,0 +1,116 @@
+@import url("https://fonts.googleapis.com/css?family=Alike+Angular|Press+Start+2P&display=swap");
+.HubNavBar {
+  position: fixed;
+  top: 6.2em;
+  height: 4.4em;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.242);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: rgba(255, 255, 255, 0.845);
+  font-family: 'Press Start 2P', cursive;
+  font-size: 8px;
+  z-index: 200;
+}
+
+.HubNavBarSectionContainer {
+  width: auto;
+  height: inherit;
+  /* border: 1px solid white; */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.nav-bar-section {
+  width: auto;
+  height: inherit;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+#sort-container {
+  margin-right: 5px;
+}
+
+#judge-container {
+  margin-left: 20px;
+}
+
+#view-container {
+  margin-right: 55px;
+}
+
+.FilterContainer {
+  margin-left: 20px;
+  width: auto;
+  height: inherit;
+  /* border: 1px solid blue; */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.ConsiderContainer {
+  margin-left: 20px;
+  margin-right: 20px;
+  width: auto;
+  height: inherit;
+  /* border: 1px solid blue; */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+#sort, #filter, #view {
+  color: rgba(250, 250, 250, 0.872);
+}
+/*# sourceMappingURL=HubNavBar.css.map */

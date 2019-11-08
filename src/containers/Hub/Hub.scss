@@ -9,7 +9,7 @@
 
 .hub-layout {
     position: fixed;
-    top: 2em;
+    top: 5.33em;
     bottom: 0em;
     left: 0em;
     right: 0em;
@@ -20,17 +20,17 @@
 
 .column-container {
     position: relative;
-    top: 5em;
+    top: 3.5em;
 
     .left-column {
-        width: 16.75em;
+        width: 15em;
         .left-column__profile-box-container {
             height: 19em;
             width: 100%;
         }
         .left-column__turntable-wrapper {
             margin-top: 1.3em;
-            height: 10.5em;
+            height: 9.2em;
         }
     }
 }
@@ -71,7 +71,14 @@
 
 
 
-
+#ProfileImage {
+    object-fit: cover;
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+    /* border: 2px solid black; */
+    background-color: rgb(255, 255, 255);
+  }
 #backup-img {
     z-index: -100;
     position: fixed;
