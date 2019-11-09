@@ -144,9 +144,6 @@ function ProfileBox(props) {
                     <i className="fab fa-soundcloud icon" onClick={() => props.toggleUploadHandles(true)}></i>
                     <i className="fab fa-youtube icon" onClick={() => props.toggleUploadHandles(true)}></i>
                 </div>
-                {/* <p className='block-one__blurb'>
-                    {'I like turtles and bananas. I also like to pick my nose heh.'}
-                </p> */}
                 <textarea 
                     className='block-one__blurb' 
                     placeholder='-Write a blurb-'
@@ -215,8 +212,9 @@ function ProfileBox(props) {
                                 <i className="fab fa-youtube icon"></i>
                             </a> : null}
                     </div>
-                    {console.log(props.rapper)}
-                    <p className='block-one__blurb'>{props.rapper ? props.rapper.blurb : null}</p>
+                    <p className='block-one__blurb' style={{cursor: 'text'}}>
+                        {props.rapper ? props.rapper.blurb : null}
+                    </p>
                 </div>
                 <div className='profile-box__block-two' style={{ fontSize: '.7em' }}>
                     {props.focus === 'them' ? button : null}
