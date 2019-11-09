@@ -12,6 +12,7 @@ import Commenter from '../Judge/JudgeBarz/ManyView/Commenter/Commenter'
 import HubNavBar from './HubNavBar/HubNavBar'
 import ManyPost from '../Judge/JudgeBarz/ManyView/ManyPost/ManyPost'
 import GenID from '../../shared/GenID'
+import DeleteComment from '../../components/Scribble/MyBars/ViewedBar/DeleteComment/DeleteComment'
 
 
 const Hub = (props) => {
@@ -21,6 +22,8 @@ const Hub = (props) => {
     // show modals
     const [showPhotoModal, setShowPhotoModal] = useState(false)
     const [showUploadHandles, toggleUploadHandles] = useState(false)
+    const [showDeleteComment, setShowDeleteComment] = useState(false)
+    const [commentCID, setCommentCID] = useState(null);
     // photo related
     const [imgURL, setImgURL] = useState('')
     // votes/score related
@@ -136,7 +139,7 @@ const Hub = (props) => {
     }
     const fetchVotes = () => {
         var db = firebase.firestore()
-        
+
         const listener = db.collection('postVotes').onSnapshot(snapshot => {
             console.log('votes listener detected a change')
             var fetchedVote;
@@ -205,6 +208,14 @@ const Hub = (props) => {
     const filterMine = (posts) => {
         return posts.filter(post => props.uid === post.uid)
     }
+
+    const toggleDeleteCommentModal = (bool, cid) => {
+        setCommentCID(cid)
+        setShowDeleteComment(bool)
+    }
+
+
+    // render ~~~
 
 
 
@@ -277,6 +288,7 @@ const Hub = (props) => {
             {/* modal and ui */}
             {showPhotoModal ? <UploadImage setShowPhotoModal={setShowPhotoModal} setImgURL={setImgURL} /> : null}
             {showUploadHandles ? <AddHandles toggleUploadHandles={toggleUploadHandles} /> : null}
+            {showDeleteComment ? <DeleteComment cid={commentCID} toggleDeleteCommentModal={toggleDeleteCommentModal}/> : null}
             <img id="backup-img" src={imgURL} alt="" />
             <video className='yox' id="yox" src={yox} autoPlay={true} loop={true} playsInline={true} muted />
             <div id="yoxOverlay" />
@@ -303,11 +315,14 @@ const Hub = (props) => {
                 </div>
                 <div className='right-column'>
                     <Commenter
+                        toggleDeleteCommentModal={toggleDeleteCommentModal}
                         customStyle={commenterCustomStyle}
                         selectedPost={selectedPost}
                         postSelected={postSelected}
                         comments={comments} />
-                    <div className='news-and-updates'></div>
+                    <div className={`turntable-wrapper`}>
+                        <Turntable />
+                    </div>
                 </div>
             </div>
         </div>

@@ -52,7 +52,10 @@
     .right-column {
         position: sticky;
         top: 3.8em;
-
+        .turntable-wrapper {
+            height: 10em;
+            margin-top: 1.8em;
+        }
     }
 }
 

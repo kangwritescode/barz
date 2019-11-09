@@ -40,6 +40,8 @@
     align-items: center;
     background-color: rgba(0, 0, 0, 0.722);
     .camera-icon {
+        position: relative;
+        top: .5em;
         font-size: 12px;
     }
 }

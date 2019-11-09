@@ -179,9 +179,11 @@ function ProfileBox(props) {
             <div className='profile-box' >
                 {showDeleteAcc ? <DeleteAccount toggleDeleteAcc={toggleDeleteAcc} /> : null}
                 <div className='profile-box__block-one'>
+                    
                     {photo}
                     {username}
                     {addressGender}
+
                     <div className='block-one__handles-container'>
                         {props.rapper && props.rapper.handles.facebook ?
                             <a href={addhttp(props.rapper.handles.facebook)} rel="noopener noreferrer" target="_blank">
