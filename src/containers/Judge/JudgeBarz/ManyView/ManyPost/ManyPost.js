@@ -7,28 +7,28 @@ import 'firebase/firestore'
 
 const ManyPost = (props) => {
 
-    const [photoURL, setphotoURL] = useState('https://firebasestorage.googleapis.com/v0/b/barz-86ae0.appspot.com/o/mysteryman%2Fmysteryman.png?alt=media&token=7b1e5a7c-ede3-46ff-a036-70636e528cd2')
     const [commentsCount, setCommentsCount] = useState(0)
-    const [votes, setVotes] = useState([])
+    const [myVote, setMyVote] = useState(0)
+
 
     useEffect(() => {
+        if (props.pid && props.votes && props.uid) {
             var db = firebase.firestore()
-            const votesListener = db.collection('postVotes').where('pid', '==', props.pid).onSnapshot(snap => {
-                var votes = []
-                snap.docs.forEach(doc => { votes.push(doc.data()) })
-                setVotes(votes)
-            })
             const commentsCountListener = db.collection('postComments').where('pid', '==', props.pid).onSnapshot(snap => {
                 setCommentsCount(snap.size)
             })
-        return () => {
-            votesListener()
-            commentsCountListener()
 
-        };
-    }, [commentsCount, votes]);
+            console.log(props.votes)
+            var myVote = props.votes.filter(vote => vote.voterID === props.uid)
+            myVote = myVote.length === 1 && myVote[0].value !== 0 ? myVote[0].value : 0
+            setMyVote(myVote)
+            return () => {
+                commentsCountListener()
+            };
+        }
 
-
+        
+    }, [props.pid, props.uid, props.votes]);
 
 
     // date
@@ -38,8 +38,8 @@ const ManyPost = (props) => {
     // content
     var content = props.content.lineOne + ' / ' + props.content.lineTwo + ' / ' + props.content.lineThree + ' / ' + props.content.lineFour
 
-    // votes 
-    var score = votes.filter(vote => {
+    // votes
+    var score = props.votes.filter(vote => {
         return props.pid === vote.pid && vote.value === 1
     })
 
@@ -51,8 +51,6 @@ const ManyPost = (props) => {
         'Midwest': 'purple',
     }
     const coastColor = colorDict[props.address.region]
-
-
 
 
     return (
@@ -75,7 +73,7 @@ const ManyPost = (props) => {
                     {props.address.region.toLowerCase()}
                 </div>
                 <div className='many-post-misc'>
-                    <i class="fas fa-comment" id='manyComment'></i>
+                    <i class="fas fa-comment" id='manyComment' ></i>
                     {commentsCount}
                     <i className="fas fa-fire" id='manyFlame' aria-hidden="true"></i>
                     {score.length}
@@ -87,10 +85,10 @@ const ManyPost = (props) => {
 
             <div className='vote-box'>
                 <button className='vote-button dislike-button'>
-                    <i className="fa fa-trash" aria-hidden="true"></i>
+                    <i className="fa fa-trash" style={myVote === -1 ? {color: 'darkRed'}: null} aria-hidden="true"></i>
                 </button>
                 <button className='vote-button like-button'>
-                    <i className="fas fa-fire"></i>
+                    <i className="fas fa-fire" style={myVote === 1 ? {color: 'orange'}: null}></i>
                 </button>
 
             </div>

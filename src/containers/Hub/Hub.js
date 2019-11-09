@@ -47,12 +47,13 @@ const Hub = (props) => {
 
     // componentDidMount
     useEffect(() => {
-        fetchVotes()
+        const fetchVotesListener = fetchVotes()
         const fetchFollowsListener = fetchFollows()
         const fetchPostsListener = fetchPosts()
         const fetchCommentsListener = fetchSubmissionComments()
         document.addEventListener('click', toggleCommenter)
         return () => {
+            fetchVotesListener()
             fetchFollowsListener()
             fetchPostsListener()
             fetchCommentsListener()
@@ -68,14 +69,15 @@ const Hub = (props) => {
         };
     }, [votes])
 
-    
+
     const toggleCommenter = (event) => {
         closesCommenter.forEach(className => {
             if (event.target.classList.contains(className)) {
                 setPostSelected(false)
             }
-        })}
-      
+        })
+    }
+
 
 
     const fetchPosts = () => {
@@ -95,18 +97,18 @@ const Hub = (props) => {
     const fetchVotes = () => {
         var db = firebase.firestore()
         var fetchedVotes = []
-        db.collection('postVotes').get()
-            .then(snapshot => {
-                var fetchedVote;
-                snapshot.forEach(vote => {
-                    fetchedVote = {
-                        ...vote.data(),
-                        vid: vote.id
-                    }
-                    fetchedVotes.push(fetchedVote)
-                })
-                setVotes(fetchedVotes)
+        const listener = db.collection('postVotes').onSnapshot(snapshot => {
+            var fetchedVote;
+            snapshot.forEach(vote => {
+                fetchedVote = {
+                    ...vote.data(),
+                    vid: vote.id
+                }
+                fetchedVotes.push(fetchedVote)
             })
+            setVotes(fetchedVotes)
+        })
+        return listener
     }
     const fetchFollows = () => {
         const db = firebase.firestore()
@@ -228,7 +230,14 @@ const Hub = (props) => {
         posts = filterMine(posts)
         posts = sortByNewest(posts)
         manyPosts = posts.map(post => {
-            return <ManyPost customStyle={manyPostsCustomStyle} {...post} selectPost={selectPost} />
+            return (
+                <ManyPost
+                    customStyle={manyPostsCustomStyle}
+                    selectPost={selectPost}
+                    votes={votes.filter(vote => vote.pid === post.pid)}
+                    {...post} 
+                    />
+            )
         })
     }
     // commenter stuff

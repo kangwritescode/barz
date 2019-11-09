@@ -27,7 +27,7 @@ class ManyView extends Component {
 
     state = {
         submissions: [],
-        votes: {},
+        votes: [],
         comments: [],
         postSelected: false,
         selectedPost: null,
@@ -108,14 +108,14 @@ class ManyView extends Component {
 
     fetchVotes = () => {
         var db = firebase.firestore()
-        const votes = {}
+        const votes = []
         db.collection('postVotes').onSnapshot(querySnapshot => {
             querySnapshot.forEach((doc) => {
                 var vote = {
                     ...doc.data(),
                     vid: doc.id
                 }
-                votes[doc.id] = vote
+                votes.push(vote)
             })
             this.setState({
                 ...this.state,
@@ -184,7 +184,6 @@ class ManyView extends Component {
         // Voted / Unvoted filter
         if (this.props.filter !== 'All Posts') {
             var votes = this.state.votes
-            votes = Object.values(votes)
             var myVotes = votes.filter(vote => vote.voterID === this.props.uid)
             submissions = submissions
                 .filter(submission => {
@@ -244,18 +243,22 @@ class ManyView extends Component {
 
     render() {
 
+        console.log(this.state.votes)
+
         var submissions = [...this.state.submissions]
         submissions = this.sort_submissions(submissions)
         submissions = this.filter_submissions(submissions)
         var manyPosts = null
         if (submissions.length > 0) {
             manyPosts = submissions.map((submission, index) => {
+                console.log(this.state.votes, 'da votessssss')
 
                 return (
                     <ManyPost
                         key={submission.pid}
                         index={index}
                         selectPost={this.selectPost}
+                        votes={this.state.votes.filter(vote => vote.pid === submission.pid)}
                         {...submission} />
                 )
             })

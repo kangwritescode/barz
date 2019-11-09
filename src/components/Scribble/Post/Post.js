@@ -147,9 +147,6 @@ class Post extends Component {
             photoURL: this.props.photoURL,
             comments: {
             },
-            votes: {
-                [this.props.uid]: 0
-            }
         };
     }
 
