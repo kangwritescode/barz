@@ -88,7 +88,7 @@
 }
 
 .follow-box .follow-box__expanded {
-  height: 12em;
+  height: 11em;
   -webkit-transition: all .2s ease-in;
   transition: all .2s ease-in;
   display: -webkit-box;

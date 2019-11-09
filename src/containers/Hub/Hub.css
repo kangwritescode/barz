@@ -1,9 +1,11 @@
 .hub-layout {
   position: fixed;
-  top: 5.33em;
+  top: 5.34em;
   bottom: 0em;
   left: 0em;
   right: 0em;
+  width: 100%;
+  height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -14,25 +16,48 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  overflow: auto;
+  z-index: 5;
 }
 
-.column-container {
+.columns-container {
+  padding-top: 2em;
   position: relative;
-  top: 3.5em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
 
-.column-container .left-column {
-  width: 15em;
+.columns-container .left-column {
+  width: 14em;
+  margin-top: .9em;
+  margin-right: 1em;
 }
 
-.column-container .left-column .left-column__profile-box-container {
+.columns-container .left-column .left-column__profile-box-container {
   height: 19em;
   width: 100%;
 }
 
-.column-container .left-column .left-column__turntable-wrapper {
+.columns-container .left-column .left-column__turntable-wrapper {
   margin-top: 1.3em;
   height: 9.2em;
+}
+
+.columns-container .middle-column {
+  padding-bottom: 20em;
+  margin-right: 1em;
+}
+
+.columns-container .right-column {
+  margin-top: .9em;
 }
 
 #mv-cred {
@@ -104,6 +129,7 @@
      object-fit: cover;
   height: 100%;
   width: 100%;
+  pointer-events: none;
 }
 
 #yoxOverlay {
@@ -114,6 +140,7 @@
   right: 0px;
   top: 0px;
   bottom: 0px;
+  pointer-events: none;
 }
 
 #hub-loader {

@@ -41,6 +41,12 @@ class ManyView extends Component {
         this.fetchSubmissionComments()
         document.addEventListener('click', this.toggleCommenter)
     }
+    componentWillUnmount = () => {
+        document.removeEventListener('click', this.toggleCommenter)
+    }
+
+
+
 
     toggleCommenter = (event) => {
         this.props.closesCommenter.forEach(className => {
@@ -52,6 +58,7 @@ class ManyView extends Component {
             }
         });   
     }
+
     toggleDeleteCommentModal = (bool, cid) => {
         this.setState({
             ...this.state,
@@ -85,7 +92,7 @@ class ManyView extends Component {
         db.collection('submissions').onSnapshot((snapshot) => {
             var submissions = []
             for (var submission of snapshot.docs) {
-                var submission = {
+                submission = {
                     ...submission.data(),
                     pid: submission.id
                 }
@@ -228,9 +235,6 @@ class ManyView extends Component {
     selectPost = (pid) => {
         var post = this.state.submissions.filter(submission => submission.pid === pid)
         post = post[0]
-        // scrollToElement('#scrollTo' + pid)
-        // var elem = document.querySelector('.scrollTo' + pid)
-        // document.getElementById('scrollTo' + pid).scrollIntoView();
         this.setState({
             postSelected: true,
             selectedPost: post
@@ -246,7 +250,6 @@ class ManyView extends Component {
         var manyPosts = null
         if (submissions.length > 0) {
             manyPosts = submissions.map((submission, index) => {
-                console.log(submission)
 
                 return (
                     <ManyPost

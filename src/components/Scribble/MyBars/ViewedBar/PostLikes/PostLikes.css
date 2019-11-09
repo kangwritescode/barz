@@ -19,8 +19,8 @@
   font-family: "permanent marker";
 }
 
-.likes .fire-icon-container {
-  width: 3.6em;
+.likes .vote-icon-container {
+  width: 18%;
   height: 80%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -40,13 +40,13 @@
   cursor: pointer;
 }
 
-.likes .fire-icon-container .likes-icon {
+.likes .vote-icon-container .likes-icon {
   font-size: 1.1em;
   color: #969696;
 }
 
-.likes .fire-icon-container .lit-up {
-  color: red;
+.likes .vote-icon-container .lit-up {
+  color: orange;
 }
 
 .likes .total-score {
@@ -64,9 +64,10 @@
       -ms-flex-pack: center;
           justify-content: center;
   border-right: 1px solid #cecece;
+  border-left: 1px solid #cecece;
   color: rgba(0, 0, 0, 0.774);
   height: 80%;
-  width: 52%;
+  width: 49%;
   font-size: 0.8em;
   letter-spacing: 0.08em;
   position: relative;
@@ -78,7 +79,7 @@
   color: rgba(0, 0, 0, 0.774);
   letter-spacing: 0.06em;
   height: 80%;
-  width: 36%;
+  width: 33%;
   padding-right: 0.2em;
   cursor: pointer;
   display: -webkit-box;

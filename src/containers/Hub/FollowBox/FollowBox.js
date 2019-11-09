@@ -39,34 +39,24 @@ function FollowBox(props) {
 
     // attach listeners for users, following, followers
     useEffect(() => {
-        var db = firebase.firestore()
-        const fetchFollows = async () => {
-            return db.collection('follows')
-                .onSnapshot(snapshot => {
-                    var followersCount = 0;
-                    var followingCount = 0;
-                    var arr = []
-                    snapshot.forEach(doc => {
-                        if (doc.data().from === props.uid) {
+        if (props.follows) {
+            var followersCount = 0;
+            var followingCount = 0;
+            var arr = []
+                    props.follows.forEach(follow => {
+                        if (follow.from === props.uid) {
                             followingCount += 1
                         }
-                        if (doc.data().to === props.uid) {
+                        if (follow.to === props.uid) {
                             followersCount += 1
                         }
-                        arr.push(doc.data())
+                        arr.push(follow)
                     })
                     setfollowersCount(followersCount)
                     setfollowingCount(followingCount)
-                    setfollows(arr)
-                })
-        }
-        if (props.uid) {
-            var fetchFollowsPromise = fetchFollows()
-            return () => {
-                fetchFollowsPromise.then(listener => listener())
-            }
-        }
-    }, [props.uid], followersCount, followingCount)
+                    setfollows(props.follows)
+                }
+            }, [props.uid, followersCount, followingCount, props.follows])
 
 
     // fetch followerUsers and followingUsers

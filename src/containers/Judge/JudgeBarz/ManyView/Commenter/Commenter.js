@@ -44,7 +44,6 @@ var Commenter = (props) => {
     var isHidden = props.postSelected ? 'hidden' : null
 
     var commentsAndLikes = null
-
     if (props.postSelected) {
         commentsAndLikes = (
             <div className='comments-and-likes'>
@@ -58,9 +57,9 @@ var Commenter = (props) => {
         )
     }
     return (
-        <div className='commenter-wrapper'>
-            <div className='header'></div>
-            <div className={`commenter-body ${isExpanded}`}>
+        <div className={`commenter-wrapper`} style={props.customStyle ? props.customStyle.wrapper : null}>
+            <div className='header' style={props.customStyle ? props.customStyle.header : null}></div>
+            <div className={`commenter-body ${isExpanded}`} style={props.customStyle ? props.customStyle.body : null}>
                 <h2 className={`select-a-post ${isHidden}`}>Select a Post</h2>
                 {commentsAndLikes}
                 <form className='post-comment'>
