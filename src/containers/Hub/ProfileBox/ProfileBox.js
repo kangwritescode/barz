@@ -148,7 +148,7 @@ function ProfileBox(props) {
                     {'I like turtles and bananas. I also like to pick my nose heh.'}
                 </p> */}
                 <textarea 
-                    className='blurb' 
+                    className='block-one__blurb' 
                     placeholder='-Write a blurb-'
                     spellCheck={false}
                     maxLength={55}

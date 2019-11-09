@@ -79,11 +79,11 @@
         z-index: 1;
         height: 78%;
         width: 100%;
+        padding-top: .5em;
         // background-color: rgba(255, 255, 255, 0.055);
         color: rgba(255, 255, 255, 0.904);
         font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
         @include flex-centered(column);
-        margin-bottom: 0.2em;
 
         h2 {
             position: relative;
@@ -144,24 +144,14 @@
             }
         }
         .block-one__blurb {
-            cursor: pointer;
-            color: white;
-            word-wrap: break-word;
-            width: 70%;
-            font-size: 0.7em;
-            font-family: "antic slab";
-            text-align: center;
-            vertical-align: middle;
-            margin-bottom: 2.3em;
-            min-height: 1.3em;
-        }
-        .blurb {
-            position: absolute;
+            position: relative;
             background: transparent;
             resize: none;
-            bottom: 1.5em;
+            top: .6em;
+            font-family: "antic slab";
             color: rgba(255, 248, 248, 0.824);
             text-align: center;
+            font-size: .8em;
             width: 75%;
             height: 2em;
             cursor: pointer;
