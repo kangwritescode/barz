@@ -23,14 +23,15 @@ export function fetchUserData(uid) {
     }
 }
 
-export function postUserData(uid, nameAddGen) {
+export const postUserData = (uid, newInfo) => {
+
     return dispatch => {
 
         var db = firebase.firestore()
-        db.collection("users").doc(uid).update(nameAddGen)
+        db.collection("users").doc(uid).update(newInfo)
             .then(function () {
                 console.log("Document successfully updated!");
-                dispatch({ type: actionTypes.SET_USER_DATA, data: nameAddGen })
+                dispatch({ type: actionTypes.SET_USER_DATA, data: newInfo })
             })
             .catch(function (error) {
                 // The document probably doesn't exist.

@@ -6,6 +6,7 @@ import DeleteAccount from '../Profile/DeleteAccount/DeleteAccount'
 import firebase from 'firebase'
 import { getOrdinal } from '../../../shared/getOrdinal'
 import { connect } from 'react-redux'
+import { postUserData } from '../../../store/actionCreators'
 
 
 
@@ -17,6 +18,7 @@ function ProfileBox(props) {
     const [imgURL, setImgURL] = useState(null)
     const [follows, setFollows] = useState([])
     const [amFollowing, setAmFollowing] = useState(false)
+    const [blurbText, setBlurbText] = useState('')
 
 
 
@@ -46,7 +48,10 @@ function ProfileBox(props) {
             setImgURL(props.rapper.photoURL)
             calcAmFollowing(props.rapper.uid)
         }
-    }, [props.photoRef, props.rapper, props.wrappedBy, follows, props.uid])
+        if (props.blurb) {
+            setBlurbText(props.blurb)
+        }
+    }, [props.photoRef, props.rapper, props.wrappedBy, follows, props.uid, props.blurb])
 
     const fetchFollows = async () => {
         var db = firebase.firestore()
@@ -139,7 +144,17 @@ function ProfileBox(props) {
                     <i className="fab fa-soundcloud icon" onClick={() => props.toggleUploadHandles(true)}></i>
                     <i className="fab fa-youtube icon" onClick={() => props.toggleUploadHandles(true)}></i>
                 </div>
-                <p className='block-one__blurb'>"Westsdfdfsdklfjsdlfjkdlsfjdklsfjdlskfjdslkfjlskdfjs..."</p>
+                {/* <p className='block-one__blurb'>
+                    {'I like turtles and bananas. I also like to pick my nose heh.'}
+                </p> */}
+                <textarea 
+                    className='blurb' 
+                    placeholder='-Write a blurb-'
+                    spellCheck={false}
+                    maxLength={55}
+                    onChange={event => setBlurbText(event.target.value)}
+                    onBlur={event => props.postUserData(props.uid, {blurb: event.target.value})}
+                    value={blurbText}/>
             </div>
             <div className='profile-box__block-two'>
                 <div>
@@ -154,7 +169,7 @@ function ProfileBox(props) {
     }
 
 
-    // hub rappers component ~~~
+    // rappers component ~~~
     else if (props.wrappedBy === 'Rappers') {
 
         var username = props.rapper ?
@@ -200,7 +215,8 @@ function ProfileBox(props) {
                                 <i className="fab fa-youtube icon"></i>
                             </a> : null}
                     </div>
-                    <p className='block-one__blurb'>{props.rapper ? "\"West Philadelphia born and raised, on the playground was where I spent most of my days.\"" : null}</p>
+                    {console.log(props.rapper)}
+                    <p className='block-one__blurb'>{props.rapper ? props.rapper.blurb : null}</p>
                 </div>
                 <div className='profile-box__block-two' style={{ fontSize: '.7em' }}>
                     {props.focus === 'them' ? button : null}
@@ -226,12 +242,15 @@ const mapStateToProps = state => {
         state: state.address.state,
         needsInfo: state.needsInfo,
         photoURL: state.photoURL,
+        blurb: state.blurb
     }
 }
 
 
+
 const mapDispatchToProps = dispatch => {
     return {
+        postUserData: (uid, data) => dispatch(postUserData(uid, data)),
         logout: () => dispatch({ type: actionTypes.LOG_OUT })
     }
 }

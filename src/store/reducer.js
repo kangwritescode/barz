@@ -37,6 +37,7 @@ const initialState = {
         soundcloud: '',
         youtube: ''
     },
+    blurb: '',
 
     // ui related
     shouldRefetchPosts: false

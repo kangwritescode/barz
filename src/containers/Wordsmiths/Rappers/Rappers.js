@@ -151,6 +151,7 @@ class Rappers extends Component {
                         uid={rapper.uid}
                         handles={rapper.handles}
                         photoURL={rapper.photoURL}
+                        blurb={rapper.blurb}
                         shineSpotlight={this.setSpotlightRapper} />
                 })}
                 {this.state.toDeque ? <div id='load-more' onClick={this.deque}>View More</div> : null}

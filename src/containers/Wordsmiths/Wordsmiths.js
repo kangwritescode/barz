@@ -40,6 +40,7 @@ class Wordsmiths extends Component {
 
             // for every single submission
             submissions.forEach(submission => {
+                console.log(users[submission.uid])
 
                 // find the votes for that submission
                 var filteredVotes = votes.filter(vote => vote.pid === submission.pid)

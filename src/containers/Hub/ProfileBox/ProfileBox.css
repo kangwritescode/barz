@@ -125,9 +125,6 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
   margin-bottom: 0.2em;
 }
 
@@ -183,7 +180,7 @@
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
-  width: 40%;
+  width: 45%;
   margin-bottom: 0.6em;
   height: 0.4em;
 }
@@ -215,6 +212,7 @@
 }
 
 .profile-box .profile-box__block-one .block-one__blurb {
+  cursor: pointer;
   color: white;
   word-wrap: break-word;
   width: 70%;
@@ -224,6 +222,41 @@
   vertical-align: middle;
   margin-bottom: 2.3em;
   min-height: 1.3em;
+}
+
+.profile-box .profile-box__block-one .blurb {
+  position: absolute;
+  background: transparent;
+  resize: none;
+  bottom: 1.5em;
+  color: rgba(255, 248, 248, 0.824);
+  text-align: center;
+  width: 75%;
+  height: 2em;
+  cursor: pointer;
+  border: none;
+  border: 1px dotted rgba(255, 255, 255, 0);
+}
+
+.profile-box .profile-box__block-one .blurb:focus {
+  cursor: text;
+  border: 1px dotted rgba(255, 255, 255, 0.24);
+}
+
+.profile-box .profile-box__block-one .blurb:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+
+.profile-box .profile-box__block-one .blurb:focus:-ms-input-placeholder {
+  color: transparent;
+}
+
+.profile-box .profile-box__block-one .blurb:focus::-ms-input-placeholder {
+  color: transparent;
+}
+
+.profile-box .profile-box__block-one .blurb:focus::placeholder {
+  color: transparent;
 }
 
 .profile-box .profile-box__block-two {
