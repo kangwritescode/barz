@@ -65,7 +65,6 @@ const Hub = (props) => {
                 }
             })
         }
-
         const fetchVotesListener = FireApi.allVotesListener(setVotes)
         const fetchFollowsListener = FireApi.allFollowsListener(setFollows)
         const fetchPostsListener = FireApi.allPostsListener(setPosts)
@@ -82,7 +81,7 @@ const Hub = (props) => {
 
     useEffect(() => {
         // helper function
-        
+
         if (votes.length !== 0) {
             setMyPlace(HubTools.myPlaceFinder(votes, props.uid))
             var likes = votes.filter(vote => vote.receiverID === props.uid && vote.value === 1)
@@ -120,6 +119,7 @@ const Hub = (props) => {
 
     // render ~~~~~~~~~~~~
 
+    // Custom Styles 
 
     // many post stuff
     var manyPosts;
@@ -134,22 +134,6 @@ const Hub = (props) => {
         body: {
             backgroundColor: 'rgba(0, 0, 0, 0.81)'
         }
-    }
-    if (feed === 'Personal') {
-        posts = posts.filter(post => props.uid === post.uid)
-        posts = sortByNewest(posts)
-        manyPosts = posts.map(post => {
-            return (
-                <ManyPost
-                    comments={comments.filter(comment => comment.pid === post.pid)}
-                    key={GenID()}
-                    customStyle={manyPostsCustomStyle}
-                    selectPost={selectPost}
-                    votes={votes.filter(vote => vote.pid === post.pid)}
-                    {...post}
-                />
-            )
-        })
     }
     // commenter stuff
     var commenterCustomStyle = {
@@ -168,6 +152,25 @@ const Hub = (props) => {
         }
     }
 
+    // Post Sorting and Filtering
+
+    if (feed === 'Personal') {
+        posts = posts.filter(post => props.uid === post.uid)
+        posts = sortByNewest(posts)
+        manyPosts = posts.map(post => {
+            return (
+                <ManyPost
+                    comments={comments.filter(comment => comment.pid === post.pid)}
+                    key={GenID()}
+                    customStyle={manyPostsCustomStyle}
+                    selectPost={selectPost}
+                    votes={votes.filter(vote => vote.pid === post.pid)}
+                    {...post}
+                />
+            )
+        })
+    }
+
 
 
     return (
@@ -177,8 +180,9 @@ const Hub = (props) => {
             {/* modal and ui */}
             {showPhotoModal ? <UploadImage setShowPhotoModal={setShowPhotoModal} setImgURL={setImgURL} /> : null}
             {showUploadHandles ? <AddHandles toggleUploadHandles={toggleUploadHandles} /> : null}
-            {showDeleteComment ? <DeleteComment cid={commentCID} toggleDeleteCommentModal={toggleDeleteCommentModal}/> : null}
+            {showDeleteComment ? <DeleteComment cid={commentCID} toggleDeleteCommentModal={toggleDeleteCommentModal} /> : null}
             {showDeleteAcc ? <DeleteAccount toggleDeleteAcc={toggleDeleteAcc} /> : null}
+
             <img id="backup-img" src={imgURL} alt="" />
             <video className='yox' id="yox" src={yox} autoPlay={true} loop={true} playsInline={true} muted />
             <div id="yoxOverlay" />
