@@ -110,7 +110,7 @@
             margin-top: 0.4em;
         }
         .block-one__address-gender {
-            font-size: 0.6rem;
+            font-size: 0.7rem;
             font-family: "antic slab";
             margin-bottom: 1.1em;
         }
@@ -124,7 +124,7 @@
 
             .icon {
                 color: white;
-                font-size: 0.5rem;
+                font-size: 0.7rem;
                 cursor: pointer;
             }
             .fa-facebook-f {
@@ -145,8 +145,10 @@
             }
         }
         .block-one__blurb {
+            color: white;
+            word-wrap: break-word;
             width: 70%;
-            font-size: 0.6em;
+            font-size: 0.7em;
             font-family: "antic slab";
             text-align: center;
             vertical-align: middle;

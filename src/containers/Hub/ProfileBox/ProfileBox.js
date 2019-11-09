@@ -139,7 +139,7 @@ function ProfileBox(props) {
                     <i className="fab fa-soundcloud icon" onClick={() => props.toggleUploadHandles(true)}></i>
                     <i className="fab fa-youtube icon" onClick={() => props.toggleUploadHandles(true)}></i>
                 </div>
-                <p className='block-one__blurb'>"West Philadelpha born and raised on the playground was where I spent most of my days..."</p>
+                <p className='block-one__blurb'>"Westsdfdfsdklfjsdlfjkdlsfjdklsfjdlskfjdslkfjlskdfjs..."</p>
             </div>
             <div className='profile-box__block-two'>
                 <div>
