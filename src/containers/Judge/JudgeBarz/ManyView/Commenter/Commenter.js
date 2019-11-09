@@ -47,8 +47,8 @@ var Commenter = (props) => {
     if (props.postSelected) {
         commentsAndLikes = (
             <div className='comments-and-likes'>
-                <PostComments
-                    viewedPost={props.selectedPost}
+                <PostComments 
+                    viewedPost={props.selectedPost} 
                     comments={props.comments}
                     toggleDeleteCommentModal={props.toggleDeleteCommentModal} />
                 <PostLikes viewedPost={props.selectedPost} />
@@ -58,9 +58,7 @@ var Commenter = (props) => {
     }
     return (
         <div className={`commenter-wrapper`} style={props.customStyle ? props.customStyle.wrapper : null}>
-            <div className='header' onClick={isExpanded ? () => props.toggleCommenter(false) : null} style={props.customStyle ? props.customStyle.header : null}>
-                <i className={`fa fa-window-minimize minimize ${props.postSelected ? 'show' : 'hide'}`} aria-hidden="true"></i>
-            </div>
+            <div className='header' style={props.customStyle ? props.customStyle.header : null}></div>
             <div className={`commenter-body ${isExpanded}`} style={props.customStyle ? props.customStyle.body : null}>
                 <h2 className={`select-a-post ${isHidden}`} style={props.customStyle ? props.customStyle.selectAPost : null}>Select a Post</h2>
                 {commentsAndLikes}

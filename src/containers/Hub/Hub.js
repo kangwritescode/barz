@@ -12,7 +12,6 @@ import Commenter from '../Judge/JudgeBarz/ManyView/Commenter/Commenter'
 import HubNavBar from './HubNavBar/HubNavBar'
 import ManyPost from '../Judge/JudgeBarz/ManyView/ManyPost/ManyPost'
 import GenID from '../../shared/GenID'
-import { relative } from 'path'
 
 
 const Hub = (props) => {
@@ -43,18 +42,34 @@ const Hub = (props) => {
     // componentDidMount
     useEffect(() => {
 
+        // unchanging variables
+        const closesCommenter = [
+            'columns-container',
+            'left-column',
+            'middle-column',
+            'right-column',
+            'yox'
+        ]
+
+        const toggleCommenter = (event) => {
+            closesCommenter.forEach(className => {
+                if (event.target.classList.contains(className)) {
+                    setPostSelected(false)
+                }
+            })
+        }
 
         const fetchVotesListener = fetchVotes()
         const fetchFollowsListener = fetchFollows()
         const fetchPostsListener = fetchPosts()
         const fetchCommentsListener = fetchSubmissionComments()
-        // document.addEventListener('click', toggleCommenter)
+        document.addEventListener('click', toggleCommenter)
         return () => {
             fetchVotesListener()
             fetchFollowsListener()
             fetchPostsListener()
             fetchCommentsListener()
-            // document.removeEventListener('click', toggleCommenter)
+            document.removeEventListener('click', toggleCommenter)
         }
     }, [])
 
@@ -121,7 +136,7 @@ const Hub = (props) => {
     }
     const fetchVotes = () => {
         var db = firebase.firestore()
-
+        
         const listener = db.collection('postVotes').onSnapshot(snapshot => {
             console.log('votes listener detected a change')
             var fetchedVote;
@@ -244,8 +259,7 @@ const Hub = (props) => {
         },
         selectAPost: {
             fontSize: '1em',
-            top: '2.5em',
-            
+            top: '2.5em'
         },
         body: {
             backgroundColor: 'rgba(255, 255, 255, 0.9)',
@@ -255,9 +269,6 @@ const Hub = (props) => {
         }
     }
 
-    const toggleCommenter = (bool) => {
-        setPostSelected(bool)
-    }
 
     return (
         <div className="hub-layout">
@@ -292,7 +303,6 @@ const Hub = (props) => {
                 </div>
                 <div className='right-column'>
                     <Commenter
-                        toggleCommenter={toggleCommenter}
                         customStyle={commenterCustomStyle}
                         selectedPost={selectedPost}
                         postSelected={postSelected}

@@ -15,7 +15,7 @@ const ManyPost = (props) => {
     useEffect(() => {
 
         if (props.pid && props.votes && props.uid) {
-            var myVote = props.votes.filter(vote => vote.voterID === props.uid)
+            var myVote = props.votes.filter(vote => vote.voterID === props.myUID)
             setMyVote(myVote)
             return () => {
             };
@@ -26,7 +26,7 @@ const ManyPost = (props) => {
 
     const vote = (newValue) => {
         const db = firebase.firestore()
-
+        console.log(myVote, 'myVote')
         if (myVote.length === 0) {
             var newVote = {
                 value: newValue,
