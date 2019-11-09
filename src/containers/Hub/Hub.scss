@@ -23,7 +23,7 @@
 }
 
 .columns-container {
-    padding-top: 2em;
+    padding-top: 2.8em;
     position: relative;
     display: flex;
     flex-direction: row;
@@ -32,7 +32,6 @@
 
     .left-column {
         width: 14em;
-        margin-top: .9em;
         margin-right: 1em;
         .left-column__profile-box-container {
             height: 19em;
@@ -44,11 +43,11 @@
         }
     }
     .middle-column {
+        min-width: 27.115em;
         padding-bottom: 20em;
         margin-right: 1em;
     }
     .right-column {
-        margin-top: .9em;
     }
 }
 

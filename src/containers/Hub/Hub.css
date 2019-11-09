@@ -21,7 +21,7 @@
 }
 
 .columns-container {
-  padding-top: 2em;
+  padding-top: 2.8em;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -37,7 +37,6 @@
 
 .columns-container .left-column {
   width: 14em;
-  margin-top: .9em;
   margin-right: 1em;
 }
 
@@ -52,12 +51,9 @@
 }
 
 .columns-container .middle-column {
+  min-width: 27.115em;
   padding-bottom: 20em;
   margin-right: 1em;
-}
-
-.columns-container .right-column {
-  margin-top: .9em;
 }
 
 #mv-cred {

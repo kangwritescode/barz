@@ -93,7 +93,7 @@ function PostComment(props) {
             className='posted-comment'
             onMouseLeave={(event) => { closeDropdowns(event) }}>
             <div className='posted-comment__img-container'>
-                <img alt='alt' src={data.photoURL}></img>
+                <img alt='alt' src={props.myPhotoURL}></img>
             </div>
             <div className='posted-comment__content'>
                 <b>{data.username}</b> {data.comment} <br />
@@ -106,7 +106,8 @@ function PostComment(props) {
 
 const mapStateToProps = state => {
     return {
-        uid: state.uid
+        uid: state.uid,
+        myPhotoURL: state.photoURL
     }
 }
 

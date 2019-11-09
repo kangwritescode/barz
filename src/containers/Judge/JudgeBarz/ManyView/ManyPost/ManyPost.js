@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from 'react'
 import './ManyPost.css'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import firebase from 'firebase'
 import 'firebase/firestore'
 
@@ -21,12 +21,12 @@ const ManyPost = (props) => {
             };
         }
 
-        
+
     }, [props.pid, props.uid, props.votes, props.comments]);
 
     const vote = (newValue) => {
         const db = firebase.firestore()
-        
+
         if (myVote.length === 0) {
             var newVote = {
                 value: newValue,
@@ -52,7 +52,7 @@ const ManyPost = (props) => {
     }
 
     // RENDER ---->
-    
+
 
     // date
     var verboseDate = props.createdOn.toDate().toDateString()
@@ -81,11 +81,10 @@ const ManyPost = (props) => {
         <div
             className={`many-post scrollTo${props.pid}`}
             id={`scrollTo${props.pid}`}
-            onClick={() => props.selectPost(props.pid)}
             style={props.customStyle ? props.customStyle.body : null}>
-            <header>
+            <header onClick={() => props.selectPost(props.pid)}>
                 <div className='many-post-details' id={props.pid}>
-                    <img className='many-post-pic' src={props.photoURL} alt='pic'></img>
+                    <img className='many-post-pic' src={props.myPhotoURL} alt='pic'></img>
                     <div className='many-post-name-date-container'>
                         <h6 style={props.customStyle ? props.customStyle.username : null}>{props.username}</h6>
                         <p>{date}</p>
@@ -101,16 +100,20 @@ const ManyPost = (props) => {
                     {score.length}
                 </div>
             </header>
-            <div className='many-post-body'>
-                <p style={props.customStyle ? props.customStyle.paragraph : null}>{`"${content}"`}</p>
+            <div className='many-post-body' onClick={() => props.selectPost(props.pid)}>
+                
+                <p
+                    style={props.customStyle ? props.customStyle.paragraph : null}>
+                    {`"${content}"`}
+                </p>
             </div>
 
             <div className='vote-box'>
                 <button className='vote-button dislike-button' onClick={() => vote(-1)}>
-                    <i className="fa fa-trash" style={myVote.length === 1 && myVote[0].value === -1 ? {color: 'darkRed'}: null} aria-hidden="true"></i>
+                    <i className="fa fa-trash" style={myVote.length === 1 && myVote[0].value === -1 ? { color: 'darkRed' } : null} aria-hidden="true"></i>
                 </button>
                 <button className='vote-button like-button' onClick={() => vote(1)}>
-                    <i className="fas fa-fire" style={myVote.length === 1 && myVote[0].value === 1 ? {color: 'orange'}: null}></i>
+                    <i className="fas fa-fire" style={myVote.length === 1 && myVote[0].value === 1 ? { color: 'orange' } : null}></i>
                 </button>
 
             </div>
@@ -121,7 +124,8 @@ const ManyPost = (props) => {
 
 const mapStateToProps = state => {
     return {
-        myUID: state.uid
+        myUID: state.uid,
+        myPhotoURL: state.photoURL
     }
 }
 

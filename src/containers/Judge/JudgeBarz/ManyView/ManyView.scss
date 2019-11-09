@@ -31,6 +31,7 @@
 }
 
 .many-view {
+
     position: relative;
     top: 3.5em;
     display: flex;
@@ -41,13 +42,14 @@
         height: auto;
         margin-right: 1.5em;
         padding-bottom: 30em;
+        min-width: 33em;
         @include flex-center(column);
     }
     .many-view__modules {
         position: relative;
         .sticky-wrapper {
              position: sticky;
-             top: 4.4em;
+             top: 3.5em;
              width: 18.2em;
             .turntable-wrapper {
                 margin-top: 1.8em;

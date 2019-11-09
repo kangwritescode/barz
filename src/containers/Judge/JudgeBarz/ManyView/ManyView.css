@@ -34,6 +34,7 @@
   height: auto;
   margin-right: 1.5em;
   padding-bottom: 30em;
+  min-width: 33em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -53,7 +54,7 @@
 .many-view .many-view__modules .sticky-wrapper {
   position: -webkit-sticky;
   position: sticky;
-  top: 4.4em;
+  top: 3.5em;
   width: 18.2em;
 }
 

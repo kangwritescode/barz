@@ -228,7 +228,7 @@ const Hub = (props) => {
             fontSize: '1em'
         },
         paragraph: {
-            width: '15.5em',
+            width: '16em',
             fontSize: '1.4em'
         },
         body: {
@@ -255,7 +255,7 @@ const Hub = (props) => {
     // commenter stuff
     var commenterCustomStyle = {
         wrapper: {
-            width: '17em',
+            width: '16em',
         },
         body: {
             backgroundColor: 'rgba(255, 255, 255, 0.9)',

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Righteous&display=swap");
+
 @mixin flex-centered($direction) {
     display: flex;
     flex-direction: $direction;
@@ -54,7 +56,7 @@ $edges: .3em;
         position: absolute;
         display: inline-block;
         font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-        color: rgb(75, 75, 75);
+        color: rgba(0, 0, 0, 0.603);
         font-size: 1.3em;
         top: 1.7em;
         transition: all .1s ease-out;

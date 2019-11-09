@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Righteous&display=swap");
 .commenter-wrapper {
   width: 100%;
 }
@@ -65,7 +66,7 @@
   position: absolute;
   display: inline-block;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  color: #4b4b4b;
+  color: rgba(0, 0, 0, 0.603);
   font-size: 1.3em;
   top: 1.7em;
   -webkit-transition: all .1s ease-out;
