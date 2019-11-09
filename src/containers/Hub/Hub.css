@@ -36,6 +36,9 @@
 }
 
 .columns-container .left-column {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 3.8em;
   width: 14em;
   margin-right: 1em;
 }
@@ -54,6 +57,12 @@
   min-width: 27.115em;
   padding-bottom: 20em;
   margin-right: 1em;
+}
+
+.columns-container .right-column {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 3.8em;
 }
 
 #mv-cred {

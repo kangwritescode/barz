@@ -6,17 +6,12 @@ import FollowItem from './FollowItem/FollowItem'
 
 function FollowBox(props) {
 
-    const followBoxClasses = [
-        'follow-box',
-        'follow-box__header',
-        'follow-box_body',
-        "header__section",
-        'follow-item__follow-button',
-        'follow-box_body follow-box__expanded',
-        'follow-item',
-        'profile__photo',
-        'details-container__name',
-        'details-container__details'
+    const closesFollowBox = [
+        'columns-container',
+        'left-column',
+        'middle-column',
+        'right-column',
+        'yox'
     ]
 
     // follows
@@ -31,9 +26,9 @@ function FollowBox(props) {
 
     // componentDidMount
     useEffect(() => {
-        document.addEventListener('click', toggleFocus)
+        // document.addEventListener('click', toggleFocus)
         return () => {
-            document.removeEventListener('click', toggleFocus)
+            // document.removeEventListener('click', toggleFocus)
         };
     }, [])
 
@@ -43,20 +38,20 @@ function FollowBox(props) {
             var followersCount = 0;
             var followingCount = 0;
             var arr = []
-                    props.follows.forEach(follow => {
-                        if (follow.from === props.uid) {
-                            followingCount += 1
-                        }
-                        if (follow.to === props.uid) {
-                            followersCount += 1
-                        }
-                        arr.push(follow)
-                    })
-                    setfollowersCount(followersCount)
-                    setfollowingCount(followingCount)
-                    setfollows(props.follows)
+            props.follows.forEach(follow => {
+                if (follow.from === props.uid) {
+                    followingCount += 1
                 }
-            }, [props.uid, followersCount, followingCount, props.follows])
+                if (follow.to === props.uid) {
+                    followersCount += 1
+                }
+                arr.push(follow)
+            })
+            setfollowersCount(followersCount)
+            setfollowingCount(followingCount)
+            setfollows(props.follows)
+        }
+    }, [props.uid, followersCount, followingCount, props.follows])
 
 
     // fetch followerUsers and followingUsers
@@ -77,17 +72,11 @@ function FollowBox(props) {
     }, [focusOn])
 
     const toggleFocus = (event) => {
-        var clickedOnFollowBox = false;
-        followBoxClasses.forEach(className => {
+        closesFollowBox.forEach(className => {
             if (event.target.classList.contains(className)) {
-                clickedOnFollowBox = true
+                setFocusOn('')
             }
-        });
-        if (clickedOnFollowBox) {
-            return
-        } else {
-            setFocusOn('')
-        }
+        })
     }
 
     // returns array of 

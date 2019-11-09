@@ -9,7 +9,36 @@
   border-radius: 0.3em 0.3em 0em 0em;
   background-color: rgba(255, 255, 255, 0.829);
   border-bottom: 1px solid #cecece;
+  cursor: pointer;
   height: 1.5em;
+}
+
+.header:hover > .minimize {
+  color: black;
+  cursor: pointer;
+}
+
+.header .minimize {
+  position: absolute;
+  color: rgba(0, 0, 0, 0.468);
+  left: 0.7em;
+  top: 0.3em;
+  font-size: 0.8em;
+}
+
+.header .show {
+  opacity: 1;
+  cursor: pointer;
+  -webkit-transition: all 0.1s ease-in;
+  transition: all 0.1s ease-in;
+}
+
+.header .hide {
+  opacity: 0;
+  cursor: pointer;
+  pointer-events: none;
+  -webkit-transition: all 0.1s ease-in;
+  transition: all 0.1s ease-in;
 }
 
 .commenter-body {
@@ -32,15 +61,15 @@
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
-  -webkit-transition: all .3s ease-in;
-  transition: all .3s ease-in;
+  -webkit-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
 }
 
 .commenter-body .comments-and-likes {
   position: relative;
   width: 100%;
-  -webkit-animation: fade-in .3s ease-in .3s forwards;
-          animation: fade-in .3s ease-in .3s forwards;
+  -webkit-animation: fade-in 0.3s ease-in 0.3s forwards;
+          animation: fade-in 0.3s ease-in 0.3s forwards;
   opacity: 0;
 }
 
@@ -65,18 +94,18 @@
 .commenter-body .select-a-post {
   position: absolute;
   display: inline-block;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   color: rgba(0, 0, 0, 0.603);
   font-size: 1.3em;
   top: 1.7em;
-  -webkit-transition: all .1s ease-out;
-  transition: all .1s ease-out;
+  -webkit-transition: all 0.1s ease-out;
+  transition: all 0.1s ease-out;
 }
 
 .commenter-body .hidden {
   color: rgba(75, 75, 75, 0);
-  -webkit-transition: all .1s ease-out;
-  transition: all .1s ease-out;
+  -webkit-transition: all 0.1s ease-out;
+  transition: all 0.1s ease-out;
   pointer-events: none;
 }
 
@@ -180,7 +209,7 @@
 
 .expanded {
   height: 20em;
-  -webkit-transition: all .4s ease-in-out;
-  transition: all .4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 /*# sourceMappingURL=Commenter.css.map */

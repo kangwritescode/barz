@@ -31,6 +31,8 @@
     
 
     .left-column {
+        position: sticky;
+        top: 3.8em;
         width: 14em;
         margin-right: 1em;
         .left-column__profile-box-container {
@@ -48,6 +50,9 @@
         margin-right: 1em;
     }
     .right-column {
+        position: sticky;
+        top: 3.8em;
+
     }
 }
 

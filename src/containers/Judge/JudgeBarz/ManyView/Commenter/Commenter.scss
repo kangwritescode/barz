@@ -8,7 +8,7 @@
     font-size: 1rem;
 }
 $border-color: rgb(206, 206, 206);
-$edges: .3em;
+$edges: 0.3em;
 
 .commenter-wrapper {
     width: 100%;
@@ -19,7 +19,30 @@ $edges: .3em;
     border-radius: $edges $edges 0em 0em;
     background-color: rgba(255, 255, 255, 0.829);
     border-bottom: 1px solid rgb(206, 206, 206);
+    cursor: pointer;
     height: 1.5em;
+    &:hover > .minimize {
+        color: black;
+        cursor: pointer;
+    }
+    .minimize {
+        position: absolute;
+        color: rgba(0, 0, 0, 0.468);
+        left: 0.7em;
+        top: 0.3em;
+        font-size: 0.8em;
+    }
+    .show {
+        opacity: 1;
+        cursor: pointer;
+        transition: all 0.1s ease-in;
+    }
+    .hide {
+        opacity: 0;
+        cursor: pointer;
+        pointer-events: none;
+        transition: all 0.1s ease-in;
+    }
 }
 
 .commenter-body {
@@ -34,20 +57,20 @@ $edges: .3em;
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
-    transition: all .3s ease-in;
+    transition: all 0.3s ease-in;
 
     .comments-and-likes {
         position: relative;
         width: 100%;
-        animation: fade-in .3s ease-in .3s forwards;
+        animation: fade-in 0.3s ease-in 0.3s forwards;
         opacity: 0;
 
         @keyframes fade-in {
             0% {
-                opacity: 0
+                opacity: 0;
             }
             100% {
-                opacity: 1
+                opacity: 1;
             }
         }
     }
@@ -55,15 +78,15 @@ $edges: .3em;
     .select-a-post {
         position: absolute;
         display: inline-block;
-        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
         color: rgba(0, 0, 0, 0.603);
         font-size: 1.3em;
         top: 1.7em;
-        transition: all .1s ease-out;
+        transition: all 0.1s ease-out;
     }
     .hidden {
         color: rgba(75, 75, 75, 0);
-        transition: all .1s ease-out;
+        transition: all 0.1s ease-out;
         pointer-events: none;
     }
 
@@ -139,5 +162,5 @@ $edges: .3em;
 
 .expanded {
     height: 20em;
-    transition: all .4s ease-in-out;
+    transition: all 0.4s ease-in-out;
 }

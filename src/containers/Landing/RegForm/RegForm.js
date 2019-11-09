@@ -169,9 +169,9 @@ function RegForm(props) {
     }
 
     const validateZipcode = (zipcode) => {
-        var zipString = parseInt(zipcode)
-        var zipCodePattern = /^\d{5}$|^\d{5}-\d{4}$/;
-        return zipCodePattern.test(zipString);
+        if (zipcode.length === 5) {
+            return true
+        } return false
     }
 
     // auth functions
