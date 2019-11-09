@@ -11,18 +11,12 @@ import Turntable from '../../components/Scribble/Turntable/Turntable'
 import Commenter from '../Judge/JudgeBarz/ManyView/Commenter/Commenter'
 import HubNavBar from './HubNavBar/HubNavBar'
 import ManyPost from '../Judge/JudgeBarz/ManyView/ManyPost/ManyPost'
+import GenID from '../../shared/GenID'
 
 
 const Hub = (props) => {
 
-    // unchanging variables
-    const closesCommenter = [
-        'columns-container',
-        'left-column',
-        'middle-column',
-        'right-column',
-        'yox'
-    ]
+
 
     // show modals
     const [showPhotoModal, setShowPhotoModal] = useState(false)
@@ -47,6 +41,24 @@ const Hub = (props) => {
 
     // componentDidMount
     useEffect(() => {
+
+        // unchanging variables
+        const closesCommenter = [
+            'columns-container',
+            'left-column',
+            'middle-column',
+            'right-column',
+            'yox'
+        ]
+
+        const toggleCommenter = (event) => {
+            closesCommenter.forEach(className => {
+                if (event.target.classList.contains(className)) {
+                    setPostSelected(false)
+                }
+            })
+        }
+
         const fetchVotesListener = fetchVotes()
         const fetchFollowsListener = fetchFollows()
         const fetchPostsListener = fetchPosts()
@@ -62,21 +74,49 @@ const Hub = (props) => {
     }, [])
 
     useEffect(() => {
+        // helper function
+        const myPlaceFinder = () => {
+            const dict = {}
+            console.log(dict)
+            votes.forEach(vote => {
+                if (vote.receiverID in dict) {
+                    dict[vote.receiverID] = dict[vote.receiverID] + vote.value
+                } else {
+                    dict[vote.receiverID] = vote.value
+                }
+            })
+            var arr = []
+            for (let key in dict) {
+                var obj = { uid: key, score: dict[key] }
+                arr.push(obj)
+            }
+            arr = arr.sort((a, b) => {
+                if (a.score > b.score) {
+                    return -1
+                } return 1
+            })
+            var myPosition
+            arr.forEach((item, index) => {
+                if (item.uid === props.uid) {
+                    myPosition = index + 1
+                    setMyScore(item.score)
+                }
+            })
+            // if you've received no votes
+            if (!myPosition) {
+                return arr.length + 1
+            }
+            return myPosition
+        }
         if (votes.length !== 0) {
             setMyPlace(myPlaceFinder())
         }
         return () => {
         };
-    }, [votes])
+    }, [props.uid, votes])
 
 
-    const toggleCommenter = (event) => {
-        closesCommenter.forEach(className => {
-            if (event.target.classList.contains(className)) {
-                setPostSelected(false)
-            }
-        })
-    }
+
 
 
 
@@ -96,9 +136,11 @@ const Hub = (props) => {
     }
     const fetchVotes = () => {
         var db = firebase.firestore()
-        var fetchedVotes = []
+        
         const listener = db.collection('postVotes').onSnapshot(snapshot => {
+            console.log('votes listener detected a change')
             var fetchedVote;
+            var fetchedVotes = []
             snapshot.forEach(vote => {
                 fetchedVote = {
                     ...vote.data(),
@@ -140,40 +182,7 @@ const Hub = (props) => {
 
 
 
-    // helper function
-    const myPlaceFinder = () => {
-        const dict = {}
-        console.log(dict)
-        votes.forEach(vote => {
-            if (vote.receiverID in dict) {
-                dict[vote.receiverID] = dict[vote.receiverID] + vote.value
-            } else {
-                dict[vote.receiverID] = vote.value
-            }
-        })
-        var arr = []
-        for (let key in dict) {
-            var obj = { uid: key, score: dict[key] }
-            arr.push(obj)
-        }
-        arr = arr.sort((a, b) => {
-            if (a.score > b.score) {
-                return -1
-            } return 1
-        })
-        var myPosition
-        arr.forEach((item, index) => {
-            if (item.uid === props.uid) {
-                myPosition = index + 1
-                setMyScore(item.score)
-            }
-        })
-        // if you've received no votes
-        if (!myPosition) {
-            return arr.length + 1
-        }
-        return myPosition
-    }
+
 
     const selectPost = (pid) => {
         var post = posts.filter(submission => submission.pid === pid)
@@ -226,17 +235,20 @@ const Hub = (props) => {
             backgroundColor: 'rgba(0, 0, 0, 0.81)'
         }
     }
+    console.log(comments)
     if (feed === 'Personal') {
         posts = filterMine(posts)
         posts = sortByNewest(posts)
         manyPosts = posts.map(post => {
             return (
                 <ManyPost
+                    comments={comments.filter(comment => comment.pid === post.pid)}
+                    key={GenID()}
                     customStyle={manyPostsCustomStyle}
                     selectPost={selectPost}
                     votes={votes.filter(vote => vote.pid === post.pid)}
-                    {...post} 
-                    />
+                    {...post}
+                />
             )
         })
     }
@@ -253,7 +265,6 @@ const Hub = (props) => {
         }
     }
 
-    console.log(selectedPost)
 
     return (
         <div className="hub-layout">
@@ -276,7 +287,7 @@ const Hub = (props) => {
                             toggleUploadHandles={toggleUploadHandles}
                             wrappedBy='Hub'
                             myPlace={myPlace}
-                            myPoints={myScore} />
+                            myPoints={Math.max(myScore, 0)} />
                     </div>
                     <FollowBox follows={follows} />
                     <div className={`left-column__turntable-wrapper`}>

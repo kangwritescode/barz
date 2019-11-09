@@ -145,8 +145,6 @@ class Post extends Component {
             content: content,
             address: this.props.address,
             photoURL: this.props.photoURL,
-            comments: {
-            },
         };
     }
 

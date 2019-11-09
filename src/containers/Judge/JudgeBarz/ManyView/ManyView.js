@@ -108,8 +108,9 @@ class ManyView extends Component {
 
     fetchVotes = () => {
         var db = firebase.firestore()
-        const votes = []
+
         db.collection('postVotes').onSnapshot(querySnapshot => {
+            const votes = []
             querySnapshot.forEach((doc) => {
                 var vote = {
                     ...doc.data(),
@@ -251,11 +252,11 @@ class ManyView extends Component {
         var manyPosts = null
         if (submissions.length > 0) {
             manyPosts = submissions.map((submission, index) => {
-                console.log(this.state.votes, 'da votessssss')
 
                 return (
                     <ManyPost
                         key={submission.pid}
+                        comments={this.state.comments.filter(comment => comment.pid === submission.pid)}
                         index={index}
                         selectPost={this.selectPost}
                         votes={this.state.votes.filter(vote => vote.pid === submission.pid)}

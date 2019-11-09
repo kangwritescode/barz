@@ -24,7 +24,6 @@ const PostLikes = (props) => {
             // for every vote of this post
             snapshot.docs.forEach(vote => {
                 vote = vote.data()
-                console.log(vote)
                 if (vote.value === 1) {
                     likes += 1
                 }

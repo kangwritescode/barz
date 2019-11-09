@@ -211,8 +211,6 @@ function ProfileBox(props) {
             </div>
         )
     }
-
-    console.log(follows)
     return content
 }
 
