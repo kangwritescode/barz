@@ -14,7 +14,6 @@ import { connect } from 'react-redux'
 function ProfileBox(props) {
 
     const [showDropOptions, toggleDropOptions] = useState(false)
-    const [showDeleteAcc, toggleDeleteAcc] = useState(false)
     const [imgURL, setImgURL] = useState(null)
     const [follows, setFollows] = useState([])
     const [amFollowing, setAmFollowing] = useState(false)
@@ -116,7 +115,7 @@ function ProfileBox(props) {
     // hub component ~~~
     if (props.wrappedBy === 'Hub') {
         content = (<div className='profile-box' >
-            {showDeleteAcc ? <DeleteAccount toggleDeleteAcc={toggleDeleteAcc} /> : null}
+            
             <div>
                 <div className='profile-box__three-dots' onClick={() => toggleDropOptions(!showDropOptions)}>
                     <div className='dot' />
@@ -128,7 +127,7 @@ function ProfileBox(props) {
                         <div className='drop-options__log-out' onClick={props.logout}>Log Out</div>
                     </div> : null}
 
-                <i className="fas fa-cog profile-box__settings" onClick={() => toggleDeleteAcc(true)}></i>
+                <i className="fas fa-cog profile-box__settings" onClick={() => props.toggleDeleteAcc(true)}></i>
             </div>
             <div className='profile-box__block-one'>
                 <PhotoContainer imgURL={props.photoURL} setShowPhotoModal={props.setShowPhotoModal} />
@@ -155,7 +154,7 @@ function ProfileBox(props) {
     }
 
 
-    // hub component ~~~
+    // hub rappers component ~~~
     else if (props.wrappedBy === 'Rappers') {
 
         var username = props.rapper ?
@@ -177,7 +176,6 @@ function ProfileBox(props) {
         }
         content = (
             <div className='profile-box' >
-                {showDeleteAcc ? <DeleteAccount toggleDeleteAcc={toggleDeleteAcc} /> : null}
                 <div className='profile-box__block-one'>
                     
                     {photo}

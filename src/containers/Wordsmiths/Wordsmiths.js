@@ -73,8 +73,6 @@ class Wordsmiths extends Component {
         }
 
     }
-    componentWillUnmount = () => {
-    }
 
     // fetch ALL submissions
     fetchSubmissions = async () => {
