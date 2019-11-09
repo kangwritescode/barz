@@ -79,7 +79,7 @@
   left: 10px;
   opacity: 0;
   color: white;
-  font-family: 'Rock Salt', cursive;
+  font-family: "Rock Salt", cursive;
   font-size: 9px;
   letter-spacing: 2px;
   -webkit-animation: fade-in-and-out 5s forwards;

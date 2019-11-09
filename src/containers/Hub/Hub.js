@@ -21,7 +21,6 @@ import DeleteAccount from './Profile/DeleteAccount/DeleteAccount'
 const Hub = (props) => {
 
 
-
     // show modals
     const [showPhotoModal, setShowPhotoModal] = useState(false)
     const [showUploadHandles, toggleUploadHandles] = useState(false)
@@ -120,9 +119,6 @@ const Hub = (props) => {
     // render ~~~~~~~~~~~~
 
     // Custom Styles 
-
-    // many post stuff
-    var manyPosts;
     var manyPostsCustomStyle = {
         username: {
             fontSize: '1em'
@@ -135,7 +131,6 @@ const Hub = (props) => {
             backgroundColor: 'rgba(0, 0, 0, 0.81)'
         }
     }
-    // commenter stuff
     var commenterCustomStyle = {
         wrapper: {
             width: '16.5em',
@@ -154,8 +149,28 @@ const Hub = (props) => {
 
     // Post Sorting and Filtering
 
+    var manyPosts;
     if (feed === 'Personal') {
         posts = posts.filter(post => props.uid === post.uid)
+        posts = sortByNewest(posts)
+        manyPosts = posts.map(post => {
+            return (
+                <ManyPost
+                    comments={comments.filter(comment => comment.pid === post.pid)}
+                    key={GenID()}
+                    customStyle={manyPostsCustomStyle}
+                    selectPost={selectPost}
+                    votes={votes.filter(vote => vote.pid === post.pid)}
+                    {...post}
+                />
+            )
+        })
+    }
+    if (feed === 'Following') {
+        var myFollows = follows.filter(follow => follow.from === props.uid)
+        var followingUIDs = new Set()
+        myFollows.forEach(follow => {followingUIDs.add(follow.to)})
+        posts = posts.filter(post => followingUIDs.has(post.uid))
         posts = sortByNewest(posts)
         manyPosts = posts.map(post => {
             return (

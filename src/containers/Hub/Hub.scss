@@ -1,10 +1,8 @@
-
-
 @mixin flex-centered($direction) {
     display: flex;
     flex-direction: $direction;
     align-items: center;
-    justify-content: center; 
+    justify-content: center;
 }
 
 .hub-layout {
@@ -28,7 +26,6 @@
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    
 
     .left-column {
         position: sticky;
@@ -59,17 +56,14 @@
     }
 }
 
-
-
 #mv-cred {
-
     display: flex;
     position: fixed;
     bottom: 5px;
     left: 10px;
     opacity: 0;
     color: white;
-    font-family: 'Rock Salt', cursive;
+    font-family: "Rock Salt", cursive;
     font-size: 9px;
     letter-spacing: 2px;
     animation: fade-in-and-out 5s forwards;
@@ -91,10 +85,6 @@
     }
 }
 
-
-
-
-
 #ProfileImage {
     object-fit: cover;
     border-radius: 50%;
@@ -102,7 +92,7 @@
     width: 100%;
     /* border: 2px solid black; */
     background-color: rgb(255, 255, 255);
-  }
+}
 #backup-img {
     z-index: -100;
     position: fixed;
@@ -114,7 +104,6 @@
     height: 100%;
     width: 100%;
     pointer-events: none;
-
 }
 #yoxOverlay {
     z-index: 0;
@@ -130,5 +119,3 @@
     position: absolute;
     margin-top: 7.5em;
 }
-
-
