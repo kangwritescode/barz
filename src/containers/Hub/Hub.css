@@ -1,23 +1,29 @@
 .hub-layout {
-  position: fixed;
-  top: 5.34em;
+  top: 0em;
   bottom: 0em;
   left: 0em;
   right: 0em;
-  width: 100%;
-  height: 100%;
+  overflow: auto;
+  z-index: 5;
+}
+
+.hub-layout .hub-layout__body-wrapper {
+  position: fixed;
+  top: 5.3em;
+  left: 0em;
+  right: 0em;
+  bottom: 0em;
+  overflow: auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  overflow: auto;
-  z-index: 5;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .columns-container {
@@ -143,7 +149,6 @@
 }
 
 #yoxOverlay {
-  z-index: 0;
   position: fixed;
   background: rgba(18, 10, 0, 0.418);
   left: 0px;
@@ -156,5 +161,9 @@
 #hub-loader {
   position: absolute;
   margin-top: 7.5em;
+}
+
+.yox {
+  position: fixed;
 }
 /*# sourceMappingURL=Hub.css.map */

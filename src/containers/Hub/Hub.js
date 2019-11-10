@@ -169,7 +169,7 @@ const Hub = (props) => {
     if (feed === 'Following') {
         var myFollows = follows.filter(follow => follow.from === props.uid)
         var followingUIDs = new Set()
-        myFollows.forEach(follow => {followingUIDs.add(follow.to)})
+        myFollows.forEach(follow => { followingUIDs.add(follow.to) })
         posts = posts.filter(post => followingUIDs.has(post.uid))
         posts = sortByNewest(posts)
         manyPosts = posts.map(post => {
@@ -204,34 +204,36 @@ const Hub = (props) => {
             <div id="mv-cred">YEAR OF THE OX - MOOD CONTROL CYPHER</div>
 
             {/* main content */}
-            <div className='columns-container'>
-                <div className='left-column'>
-                    <div className='left-column__profile-box-container'>
-                        <ProfileBox
-                            setShowPhotoModal={setShowPhotoModal}
-                            toggleUploadHandles={toggleUploadHandles}
-                            toggleDeleteAcc={toggleDeleteAcc}
-                            wrappedBy='Hub'
-                            myPlace={myPlace}
-                            myPoints={Math.max(myScore, 0)} />
+            <div className={`hub-layout__body-wrapper`}>
+                <div className='columns-container'>
+                    <div className='left-column'>
+                        <div className='left-column__profile-box-container'>
+                            <ProfileBox
+                                setShowPhotoModal={setShowPhotoModal}
+                                toggleUploadHandles={toggleUploadHandles}
+                                toggleDeleteAcc={toggleDeleteAcc}
+                                wrappedBy='Hub'
+                                myPlace={myPlace}
+                                myPoints={Math.max(myScore, 0)} />
+                        </div>
+                        <FollowBox follows={follows} />
+                        <div className={`left-column__turntable-wrapper`}>
+                            {/* <Turntable customStyle={turntableStyle} /> */}
+                        </div>
                     </div>
-                    <FollowBox follows={follows} />
-                    <div className={`left-column__turntable-wrapper`}>
-                        {/* <Turntable customStyle={turntableStyle} /> */}
+                    <div className='middle-column'>
+                        {manyPosts}
                     </div>
-                </div>
-                <div className='middle-column'>
-                    {manyPosts}
-                </div>
-                <div className='right-column'>
-                    <Commenter
-                        toggleDeleteCommentModal={toggleDeleteCommentModal}
-                        customStyle={commenterCustomStyle}
-                        selectedPost={selectedPost}
-                        postSelected={postSelected}
-                        comments={comments} />
-                    <div className={`turntable-wrapper`}>
-                        <Turntable />
+                    <div className='right-column'>
+                        <Commenter
+                            toggleDeleteCommentModal={toggleDeleteCommentModal}
+                            customStyle={commenterCustomStyle}
+                            selectedPost={selectedPost}
+                            postSelected={postSelected}
+                            comments={comments} />
+                        <div className={`turntable-wrapper`}>
+                            <Turntable />
+                        </div>
                     </div>
                 </div>
             </div>

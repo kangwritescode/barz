@@ -171,7 +171,7 @@ function ProfileBox(props) {
 
         var username = props.rapper ?
             <div className='block-one__username'>{props.rapper ? props.rapper.username : null}</div>
-            : <h2>Select a User</h2>
+            : <h2 className='block-one__select-a-user'>Select a User</h2>
         var addressGender = props.rapper ?
             <div className='block-one__address-gender'>{props.rapper ? props.rapper.city : null}, {props.rapper ? props.rapper.state : null} | {props.rapper ? props.rapper.gender : null}</div>
             : null

@@ -156,6 +156,11 @@
   margin-top: 0.4em;
 }
 
+.profile-box .profile-box__block-one .block-one__select-a-user {
+  position: absolute;
+  top: 4em;
+}
+
 .profile-box .profile-box__block-one .block-one__address-gender {
   font-size: 0.7rem;
   font-family: "antic slab";
