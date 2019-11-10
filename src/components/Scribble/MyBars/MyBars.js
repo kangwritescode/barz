@@ -1,15 +1,16 @@
-import React, { Component } from 'react'
+import React, { Component, useState, useEffect } from 'react'
 import firebase from '../../../Firebase'
 import { connect } from 'react-redux'
 import 'firebase/firestore'
 import './MyBars.css'
 import ViewedPost from './ViewedBar/ViewedPost'
 import GenID from '../../../shared/GenID'
+import FireApi from '../../../FireApi/FireApi'
 
 
-class MyBars extends Component {
+const MyBars = (props) => {
 
-    static monthString = {
+    const monthString = {
         '1': 'January',
         '2': 'February',
         '3': 'March',
@@ -24,73 +25,28 @@ class MyBars extends Component {
         '12': 'December'
     }
 
-    state = {
-        posts: [],
-        showPost: false,
-        viewedPost: null
-    }
+    const [posts, setPosts] = useState([])
+    const [votes, setVotes] = useState({})
+    const [comments, setComments] = useState([])
+    const [showPost, setShowPost] = useState(false)
+    const [viewedPost, setViewedPost] = useState(null)
 
-    componentDidUpdate = async (prevProps, prevState) => {
-        if (prevProps.focused === 'Post' && this.props.focused === 'MyBars') {
-            await this.fetchVotes(this.props.uid)
-            this.fetchPosts(this.props.uid)
-        } else if (prevState.showPost === true && this.state.showPost === false) {
-            await this.fetchVotes(this.props.uid)
-            this.fetchPosts(this.props.uid)
+    useEffect(() => {
+        if (props.myUID) {
+            const fetchVotesForUIDListener = FireApi.voteForUIDListener(setVotes, props.myUID)
+            const userSortedPostsListener = FireApi.userSortedPostsListener(setPosts, props.myUID)
+            const fetchCommentsListener = FireApi.allSubmissionCommentsListener(setComments)
+            return () => {
+                fetchVotesForUIDListener()
+                userSortedPostsListener()
+                fetchCommentsListener()
+            };
         }
 
-    }
+    }, [props.myUID])
 
 
-    fetchPosts = async (uid) => {
-        var db = firebase.firestore()
-        await db.collection('submissions').where("uid", "==", uid).orderBy('createdOn', 'desc').get()
-            .then(querySnapshot => {
-                var posts = []
-                querySnapshot.forEach(doc => {
-                    var post = {
-                        ...doc.data(),
-                        pid: doc.id
-                    }
-                    posts.push(post)
-                })
-                this.setState({
-                    ...this.state,
-                    posts: posts
-                })
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    }
-    fetchVotes = async (uid) => {
-        var db = firebase.firestore()
-        await db.collection('postVotes').where('receiverID', '==', uid).get()
-            .then(querySnapshot => {
-                var votes = {}
-                querySnapshot.forEach(doc => {
-                    var vote = doc.data()
-                    votes[vote.pid] = votes[vote.pid] ? Math.max(votes[vote.pid] + vote.value< 0) : Math.max(vote.value, 0)
-                })
-                console.log(votes)
-                this.setState({
-                    ...this.state,
-                    votes: votes
-                })
-                 
-            })
-    }
-
-    getOrdinal = (i) => {
-        var j = i % 10
-        var k = i % 100
-        if (j == 1 && k != 11) { return "st" }
-        if (j == 2 && k != 12) { return "nd" }
-        if (j == 3 && k != 13) { return "rd" }
-        else { return "th" }
-    }
-
-    insertDateHeaders = (inputArr) => {
+    const insertDateHeaders = (inputArr) => {
         // create a copy
         var arr = [...inputArr]
         var currYear = 0
@@ -117,64 +73,68 @@ class MyBars extends Component {
         return arr
     }
 
-    toggleModal = (modal, value) => {
-        this.setState({
-            ...this.state,
-            [modal]: value
-        })
+    const toggleModal = (modal, value) => {
+        setShowPost(value)
     }
 
-    viewPost = async (pid) => {
-        this.setState({
-            ...this.state,
-            showPost: true,
-            viewedPost: pid
-        })
+    const viewPost = (pid) => {
+        setShowPost(true)
+        setViewedPost(pid)
+    }
+
+    const getCommentCount = (pid, comments) => {
+        return comments.filter(comment => comment.pid === pid).length
     }
 
 
-    render() {
 
-        // UI
-        let focused = this.props.focused === "MyBars"
-        let myBarsId = focused ? 'mybars-expanded' : 'mybars-compressed'
-        let widgetHeader = focused ? 'my-bars-header-compressed' : 'my-bars-header-expanded'
-        let postsContainerId = focused ? 'posts-container-opaque' : 'posts-container-transparent'
-        
-        // insert the date headers into the array
-        var posts = [...this.state.posts]
-        if (this.state.posts) {
-            posts = this.insertDateHeaders(this.state.posts)
-        }
 
-        return (
-            <div className="my-bars" id={myBarsId}>
-                <div className={`my-bars-widget-header`} id={widgetHeader} onClick={!focused ? this.props.toggle : null}>Manage</div>
-                <div className="posts-container" id={postsContainerId}>
-                    {posts.map((post) => {
-                        if ((typeof post === 'array' || post instanceof Array)) {
-                            return <div id='month-header' key={GenID()}>{MyBars.monthString[post[0]]} {post[1]}</div>
-                        }
-                        return (
-                            <div className="a-post" onClick={() => this.viewPost(post.pid)} key={GenID()}>
-                                <div id='likes-overlay'>
-                                    <span><i className="fas fa-fire" id="my-bars-flame"></i></span>
-                                    {this.state.votes[post.pid] > 0 ? this.state.votes[post.pid] : 0}
-                                </div>
-                                <p>{post.content.lineOne + "..."}</p>
+
+    // RENDER ~~~~~~~~~~~~~~
+
+
+
+    // UI
+    let focused = props.focused === "MyBars"
+    let myBarsId = focused ? 'mybars-expanded' : 'mybars-compressed'
+    let widgetHeader = focused ? 'my-bars-header-compressed' : 'my-bars-header-expanded'
+    let postsContainerId = focused ? 'posts-container-opaque' : 'posts-container-transparent'
+
+    // insert the date headers into the array
+
+    var preppedPosts = insertDateHeaders(posts)
+
+    console.log(votes)
+    return (
+        <div className="my-bars" id={myBarsId}>
+            <div className={`my-bars-widget-header`} id={widgetHeader} onClick={!focused ? props.toggle : null}>Manage</div>
+            <div className="posts-container" id={postsContainerId}>
+                {preppedPosts.map((post) => {
+                    if ((typeof post === 'array' || post instanceof Array)) {
+                        return <div id='month-header' key={GenID()}>{monthString[post[0]]} {post[1]}</div>
+                    }
+                    return (
+                        <div className="a-post" onClick={() => viewPost(post.pid)} key={GenID()}>
+                            <div id='likes-overlay'>
+                                <span><i className="fas fa-fire" id="my-bars-flame"></i></span>
+                                {votes[post.pid] > 0 ? votes[post.pid] : 0}
+                                <span><i className="fas fa-comment" id="my-bars-comment"></i></span>
+                                {getCommentCount(post.pid, comments)}
                             </div>
-                        )
-                    })}
-                </div>
-                {this.state.showPost ? <ViewedPost toggleViewedPost={this.toggleModal} pid={this.state.viewedPost} toggleModal={this.toggleModal}/> : null }                
+                            <p>{post.content.lineOne + "..."}</p>
+                        </div>
+                    )
+                })}
             </div>
-        )
-    }
+            {showPost ? <ViewedPost toggleViewedPost={toggleModal} pid={viewedPost} toggleModal={toggleModal} /> : null}
+        </div>
+    )
+
 }
 
 const mapStateToProps = state => {
     return {
-        uid: state.uid
+        myUID: state.uid
     }
 }
 

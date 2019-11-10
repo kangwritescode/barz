@@ -14,8 +14,17 @@ const fetchPosts = (setter) => {
     })
     return listener
 }
+const fetchUserSortedPosts = (setter, uid) => {
+    var db = firebase.firestore()
+    const listener = db.collection('submissions').where("uid", "==", uid).orderBy('createdOn', 'desc')
+        .onSnapshot(querySnapshot => {
+            var posts = []
+            querySnapshot.forEach(doc => { posts.push({ pid: doc.id, ...doc.data() }) })
+            setter(posts)
+        }, err => console.log(err))
+    return listener
+}
 
-    
 const fetchVotes = (setter) => {
     var db = firebase.firestore()
     const listener = db.collection('postVotes').onSnapshot(snapshot => {
@@ -33,6 +42,24 @@ const fetchVotes = (setter) => {
     })
     return listener
 }
+
+const fetchVotesForUID = (setter, uid) => {
+    var db = firebase.firestore()
+    const listener = db.collection('postVotes').where('receiverID', '==', uid).onSnapshot(querySnapshot => {
+        var votes = {}
+        querySnapshot.forEach(doc => {
+            var vote = doc.data()
+            if (vote.value === 1) {
+                votes[vote.pid] = votes[vote.pid] ? votes[vote.pid] + 1 : 1
+            }
+
+        })
+        setter(votes)
+
+    })
+    return listener
+}
+
 const fetchFollows = (setter) => {
     const db = firebase.firestore()
     const listener = db.collection('follows').onSnapshot(snapshot => {
@@ -65,5 +92,7 @@ export default {
     allPostsListener: fetchPosts,
     allVotesListener: fetchVotes,
     allFollowsListener: fetchFollows,
-    allSubmissionCommentsListener: fetchSubmissionComments
+    allSubmissionCommentsListener: fetchSubmissionComments,
+    voteForUIDListener: fetchVotesForUID,
+    userSortedPostsListener: fetchUserSortedPosts
 }
