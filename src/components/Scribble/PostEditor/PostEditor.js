@@ -4,12 +4,14 @@ import { connect } from 'react-redux'
 import FireApi from '../../../FireApi/FireApi'
 import ManyPost from '../../../containers/Judge/JudgeBarz/ManyView/ManyPost/ManyPost'
 import Commenter from '../../../containers/Judge/JudgeBarz/ManyView/Commenter/Commenter'
+import DeleteComment from '../MyBars/ViewedBar/DeleteComment/DeleteComment'
 
 const PostEditor = (props) => {
 
     const [comments, setComments] = useState([])
     const [votes, setVotes] = useState([])
     const [post, setPost] = useState(null)
+    const [cid, setCid] = useState(null)
 
     useEffect(() => {
 
@@ -27,6 +29,12 @@ const PostEditor = (props) => {
     if (post) {
         content = (
             <div className={`editor-layout`}>
+                {cid ?
+                    <DeleteComment
+                        cid={cid}
+                        toggleDeleteCommentModal={() => setCid(false)}
+                    />
+                    : null}
                 <div className='editor-backdrop' onClick={() => props.toggleEditor(null)} />
                 <div className={`editor-layout__content-container`}>
                     <ManyPost
@@ -36,7 +44,7 @@ const PostEditor = (props) => {
                         {...post} />
                     <div className={`content-container-edit-container`}>
                         <Commenter
-                            toggleDeleteCommentModal={() => null}
+                            toggleDeleteCommentModal={(bool, cid) => setCid(cid)}
                             customStyle={null}
                             selectedPost={post}
                             postSelected={post}

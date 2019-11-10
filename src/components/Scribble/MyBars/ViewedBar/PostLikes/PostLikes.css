@@ -49,6 +49,14 @@
   color: orange;
 }
 
+.likes .vote-icon-container .lit {
+  color: orange;
+}
+
+.likes .vote-icon-container .vote-icon-container__trash {
+  color: darkred;
+}
+
 .likes .total-score {
   display: -webkit-box;
   display: -ms-flexbox;

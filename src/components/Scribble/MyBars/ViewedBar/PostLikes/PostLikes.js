@@ -11,6 +11,7 @@ const PostLikes = (props) => {
     const [points, setPoints] = useState(0);
     const [likes, setLikes] = useState(0)
     const [dislikes, setDislikes] = useState(0)
+    const [myVote, setMyVote] = useState({})
 
 
 
@@ -21,6 +22,7 @@ const PostLikes = (props) => {
             var points = 0
             var likes = 0
             var dislikes = 0
+            var myVote = null;
             // for every vote of this post
             snapshot.docs.forEach(vote => {
                 vote = vote.data()
@@ -30,24 +32,38 @@ const PostLikes = (props) => {
                 if (vote.value === -1) {
                     dislikes += 1
                 }
+                if (vote.voterID === props.myUID) {
+                    myVote = vote
+                }
             })
             points = (likes - dislikes) < 0 ? 0 : (likes - dislikes)
             setPoints(points)
             setLikes(likes)
             setDislikes(dislikes)
+            setMyVote(myVote)
         })
         return () => {
             votesListener()
         };
-    }, [props.postSelected, props.viewedPost]);
+    }, [props.myUID, props.postSelected, props.viewedPost]);
 
-    const percentage = likes > 0 ? Math.floor((likes * 1.0) / (likes + dislikes * 1.0) * 100) : null
+    const pointsPercentage = likes > 0 ? Math.floor((likes * 1.0) / (likes + dislikes * 1.0) * 100) : null
+
+    
+    var iconStyle = 'fire'
+    var iconColor = myVote.value ? 'lit' : ''
+    if (myVote.value === -1) {
+        iconStyle = 'trash'
+    }
+
 
     return (
         <div className='likes'>
-            <div className={`vote-icon-container`}></div>
+            <div className={`vote-icon-container`}>
+            <i className={`fas fa-${iconStyle} vote-icon-container__${iconStyle} ${iconColor}`}></i>
+            </div>
             <div className='total-score'>
-                {points} pt{points === 1 ? null : 's'}. {percentage ? '('+ percentage + '%)' : null}
+                {points} pt{points === 1 ? null : 's'}. {pointsPercentage ? '(' + pointsPercentage + '%)' : null}
             </div>
             <div className='fans'>
                 {likes} {likes === 1 ? 'like' : 'likes'}
@@ -59,7 +75,7 @@ const PostLikes = (props) => {
 
 const mapStatetoProps = state => {
     return {
-        uid: state.uid
+        myUID: state.uid
     }
 }
 
