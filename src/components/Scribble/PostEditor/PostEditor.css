@@ -1,10 +1,9 @@
-.editor-backdrop {
+.editor-layout {
   position: fixed;
   top: 0em;
   bottom: 0em;
   left: 0em;
   right: 0em;
-  background-color: rgba(0, 0, 0, 0.767);
   z-index: 20;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -21,7 +20,19 @@
           flex-direction: column;
 }
 
-.editor-backdrop .editor-backdrop__content-container {
+.editor-layout .editor-backdrop {
+  position: fixed;
+  top: 0em;
+  bottom: 0em;
+  left: 0em;
+  right: 0em;
+  background-color: rgba(0, 0, 0, 0.767);
+  z-index: 20;
+}
+
+.editor-layout .editor-layout__content-container {
+  position: relative;
+  z-index: 30;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -38,9 +49,10 @@
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
+  pointer-events: none;
 }
 
-.editor-backdrop .editor-backdrop__content-container .content-container-edit-container {
-  width: 20em;
+.editor-layout .editor-layout__content-container .content-container-edit-container {
+  width: 18em;
 }
 /*# sourceMappingURL=PostEditor.css.map */

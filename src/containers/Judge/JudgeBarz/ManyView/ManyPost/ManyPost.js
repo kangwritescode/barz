@@ -26,7 +26,7 @@ const ManyPost = (props) => {
 
     const vote = (newValue) => {
         const db = firebase.firestore()
-        console.log(myVote, 'myVote')
+
         if (myVote.length === 0) {
             var newVote = {
                 value: newValue,
@@ -39,15 +39,26 @@ const ManyPost = (props) => {
             }
             db.collection('postVotes').add(newVote)
                 .catch(err => console.log(err))
-        } else if (myVote) {
+        } else {
             var updatedVote = {
                 ...myVote[0],
                 value: newValue === myVote[0].value ? 0 : newValue,
                 date: new Date()
             }
-
-            db.collection('postVotes').doc(myVote[0].vid).set(updatedVote)
+            // set the vote 
+            db.collection('postVotes').doc(myVote[0].vid)
+                .set(updatedVote)
                 .catch(err => console.log(err))
+                
+            // cleanup leaked extras ***
+            if (myVote.length > 1) {
+                for (let i = 1; i < myVote.length; i++) {
+                    db.collection('postVotes').doc(myVote[i].vid)
+                        .delete()
+                        .then(() => console.log('vote deleted successfully'))
+                        .catch(err => console.log(err))                    
+                }
+            }
         }
     }
 
@@ -75,7 +86,7 @@ const ManyPost = (props) => {
     }
     const coastColor = colorDict[props.address.region]
 
-    console.log(props.comments, 'passed comments')
+    console.log(myVote, 'myVoteeeee')
     return (
 
         <div
@@ -101,7 +112,7 @@ const ManyPost = (props) => {
                 </div>
             </header>
             <div className='many-post-body' onClick={() => props.selectPost(props.pid)}>
-                
+
                 <p
                     style={props.customStyle ? props.customStyle.paragraph : null}>
                     {`"${content}"`}

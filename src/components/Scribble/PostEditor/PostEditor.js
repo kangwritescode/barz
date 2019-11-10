@@ -26,8 +26,9 @@ const PostEditor = (props) => {
     var content = null
     if (post) {
         content = (
-            <div className='editor-backdrop'>
-                <div className={`editor-backdrop__content-container`}>
+            <div className={`editor-layout`}>
+                <div className='editor-backdrop' onClick={() => props.toggleEditor(null)} />
+                <div className={`editor-layout__content-container`}>
                     <ManyPost
                         comments={comments.filter(post => post.pid === props.pid)}
                         selectPost={() => null}
@@ -42,8 +43,8 @@ const PostEditor = (props) => {
                             comments={comments} />
                     </div>
                 </div>
-
             </div>
+
         )
     }
     return content

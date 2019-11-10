@@ -5,22 +5,31 @@
     flex-direction: $direction;
 }
 
-
-.editor-backdrop {
+.editor-layout {
     position: fixed;
     top: 0em;
     bottom: 0em;
     left: 0em;
     right: 0em;
-    background-color: rgba(0, 0, 0, 0.767);
     z-index: 20;
     @include flex-centered(column);
-    
-    .editor-backdrop__content-container {
+    .editor-backdrop {
+        position: fixed;
+        top: 0em;
+        bottom: 0em;
+        left: 0em;
+        right: 0em;
+        background-color: rgba(0, 0, 0, 0.767);
+        z-index: 20;
+    }
+    .editor-layout__content-container {
+        position: relative;
+        z-index: 30;
         @include flex-centered(row);
         align-items: flex-start;
+        pointer-events: none;
         .content-container-edit-container {
-            width: 20em;
+            width: 18em;
         }
     }
 }

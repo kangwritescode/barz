@@ -32,7 +32,7 @@ const Scribble = () => {
             <video src={vinyl} autoPlay={true} loop={true} playsInline={true} muted />
             <div id="scribbleOverlay" />
 
-            {editedPost ? <PostEditor pid={editedPost}/> : null}
+            {editedPost ? <PostEditor pid={editedPost} toggleEditor={setEditedPost}/> : null}
             
             <div className="row-one">
                 <MyBars focused={viewFocus} toggle={toggleView} editPost={editPost}/>
