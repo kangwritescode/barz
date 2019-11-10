@@ -1,0 +1,26 @@
+@mixin flex-centered($direction) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: $direction;
+}
+
+
+.editor-backdrop {
+    position: fixed;
+    top: 0em;
+    bottom: 0em;
+    left: 0em;
+    right: 0em;
+    background-color: rgba(0, 0, 0, 0.767);
+    z-index: 20;
+    @include flex-centered(column);
+    
+    .editor-backdrop__content-container {
+        @include flex-centered(row);
+        align-items: flex-start;
+        .content-container-edit-container {
+            width: 20em;
+        }
+    }
+}

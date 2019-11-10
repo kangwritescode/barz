@@ -90,7 +90,7 @@ const MyBars = (props) => {
 
 
 
-    // RENDER ~~~~~~~~~~~~~~
+    // RENDER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 
@@ -114,7 +114,7 @@ const MyBars = (props) => {
                         return <div id='month-header' key={GenID()}>{monthString[post[0]]} {post[1]}</div>
                     }
                     return (
-                        <div className="a-post" onClick={() => viewPost(post.pid)} key={GenID()}>
+                        <div className="a-post" onClick={() => props.editPost(post.pid)} key={GenID()}>
                             <div id='likes-overlay'>
                                 <span><i className="fas fa-fire" id="my-bars-flame"></i></span>
                                 {votes[post.pid] > 0 ? votes[post.pid] : 0}

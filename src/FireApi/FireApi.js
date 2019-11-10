@@ -14,6 +14,15 @@ const fetchPosts = (setter) => {
     })
     return listener
 }
+
+const fetchPost = (setter, pid) => {
+    var db = firebase.firestore()
+    db.collection('submissions').doc(pid).get()
+        .then(doc => {
+            setter({...doc.data(), pid: doc.id})
+        })
+}
+
 const fetchUserSortedPosts = (setter, uid) => {
     var db = firebase.firestore()
     const listener = db.collection('submissions').where("uid", "==", uid).orderBy('createdOn', 'desc')
@@ -28,6 +37,23 @@ const fetchUserSortedPosts = (setter, uid) => {
 const fetchVotes = (setter) => {
     var db = firebase.firestore()
     const listener = db.collection('postVotes').onSnapshot(snapshot => {
+        console.log('votes listener detected a change')
+        var fetchedVote;
+        var fetchedVotes = []
+        snapshot.forEach(vote => {
+            fetchedVote = {
+                ...vote.data(),
+                vid: vote.id
+            }
+            fetchedVotes.push(fetchedVote)
+        })
+        setter(fetchedVotes)
+    })
+    return listener
+}
+const fetchVotesForPost = (setter, pid) => {
+    var db = firebase.firestore()
+    const listener = db.collection('postVotes').where('pid', '==', pid).onSnapshot(snapshot => {
         console.log('votes listener detected a change')
         var fetchedVote;
         var fetchedVotes = []
@@ -87,6 +113,21 @@ const fetchSubmissionComments = (setter) => {
     })
     return listener
 }
+const fetchSubmissionCommentsForPost = (setter, pid) => {
+    const db = firebase.firestore()
+    const listener = db.collection('postComments').where('pid', '==', pid).onSnapshot((snapshot) => {
+        var comments = []
+        for (var comment of snapshot.docs) {
+            comment = {
+                ...comment.data(),
+                cid: comment.id
+            }
+            comments.push(comment)
+        }
+        setter(comments)
+    })
+    return listener
+}
 
 export default {
     allPostsListener: fetchPosts,
@@ -94,5 +135,9 @@ export default {
     allFollowsListener: fetchFollows,
     allSubmissionCommentsListener: fetchSubmissionComments,
     voteForUIDListener: fetchVotesForUID,
-    userSortedPostsListener: fetchUserSortedPosts
+    userSortedPostsListener: fetchUserSortedPosts,
+    votesForPostListener: fetchVotesForPost,
+    submissionCommentsForPostListener: fetchSubmissionCommentsForPost,
+    fetchSinglePost: fetchPost
+
 }

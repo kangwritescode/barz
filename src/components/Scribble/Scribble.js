@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import { connect } from 'react-redux'
 import 'firebase/firestore'
 import * as actionTypes from '../../store/actions'
@@ -10,53 +10,44 @@ import MyBars from './MyBars/MyBars'
 import Toolkit from './Toolkit/Toolkit'
 import Turntable from './Turntable/Turntable'
 import nafla from '../../assets/nafla-blows.m4v'
+import PostEditor from './PostEditor/PostEditor'
 
 
-class Scribble extends Component {
+const Scribble = () => {
 
-    state = {
-        viewFocus: 'Post',
+    const [viewFocus, setViewFocus] = useState('Post')
+    const [editedPost, setEditedPost] = useState(null)
+
+    const toggleView = () => {
+        return viewFocus === 'Post' ? setViewFocus('MyBars') : setViewFocus('Post')
+    }
+    const editPost = (pid) => {
+        setEditedPost(pid)
     }
 
-    toggleView = () => {
-        if (this.state.viewFocus === 'Post') {
-            this.setState({
-                viewFocus: 'MyBars'
-            })
-        } else if (this.state.viewFocus === 'MyBars') {
-            this.setState({
-                viewFocus: 'Post'
-            })
-        }
-        return
-    }
+    return (
+        <div className="Scribble">
+            
+            <img id='backup-img' src={vinyIMG} alt='alt'></img>
+            <video src={vinyl} autoPlay={true} loop={true} playsInline={true} muted />
+            <div id="scribbleOverlay" />
 
-
-    render() {
-
-
-        return (
-            <div className="Scribble">
-                <img id='backup-img' src={vinyIMG} alt='alt'></img>
-                <video src={vinyl} autoPlay={true} loop={true} playsInline={true} muted />
-                <div id="scribbleOverlay" />
-                <div className="row-one">
-                    <MyBars focused={this.state.viewFocus} toggle={this.toggleView} />
-                    <Post focused={this.state.viewFocus} toggle={this.toggleView} />
-                    <div></div>
-                </div>
-                <div className="row-two">
-                    <Toolkit />
-                    <div className='scribble-turntable-wrapper'>
-                        <Turntable />
-                    </div>
+            {editedPost ? <PostEditor pid={editedPost}/> : null}
+            
+            <div className="row-one">
+                <MyBars focused={viewFocus} toggle={toggleView} editPost={editPost}/>
+                <Post focused={viewFocus} toggle={toggleView} />
+                <div></div>
+            </div>
+            <div className="row-two">
+                <Toolkit />
+                <div className='scribble-turntable-wrapper'>
+                    <Turntable />
                 </div>
             </div>
-        )
-    }
-
+        </div>
+    )
 }
-
 let mapStatetoProps = state => {
     return {
         musicURL: state.musicURL,
