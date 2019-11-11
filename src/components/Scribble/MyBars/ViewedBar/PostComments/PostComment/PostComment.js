@@ -23,6 +23,7 @@ function PostComment(props) {
 
     const closeDropdowns = (event) => {
         const classList = event.target.classList
+        console.log(classList)
         if (classList
             && !classList.contains('posted-comment__dots')
             && !classList.contains('posted-comment__dot')) {

@@ -20,12 +20,12 @@
 }
 
 .likes .vote-icon-container {
-  width: 18%;
-  height: 80%;
+  width: 16%;
+  margin: 0% 1%;
+  height: 2em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  border-right: 1px solid #cecece;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -40,21 +40,76 @@
   cursor: pointer;
 }
 
+.likes .vote-icon-container .vote-icon-container-hover-div {
+  position: absolute;
+  height: 2em;
+  width: 16%;
+}
+
+.likes .vote-icon-container .vote-icon-container-hover-div:hover {
+  background: rgba(0, 0, 0, 0.036);
+}
+
+.likes .vote-icon-container #icon {
+  pointer-events: none;
+}
+
 .likes .vote-icon-container .likes-icon {
   font-size: 1.1em;
   color: #969696;
-}
-
-.likes .vote-icon-container .lit-up {
-  color: orange;
 }
 
 .likes .vote-icon-container .lit {
   color: orange;
 }
 
+.likes .vote-icon-container .lit-trash {
+  color: darkred;
+}
+
 .likes .vote-icon-container .vote-icon-container__trash {
   color: darkred;
+}
+
+.likes .vote-icon-container .vote-icon-container__pop-up-voter {
+  position: absolute;
+  height: 2.3em;
+  width: 5.5em;
+  left: 0.1em;
+  top: -2.6em;
+  background-color: #ededed;
+  border: 1px solid rgba(0, 0, 0, 0.103);
+  -webkit-box-shadow: 1px 1px 2px lightgrey;
+          box-shadow: 1px 1px 2px lightgrey;
+  border-radius: 5em;
+  opacity: 0;
+  -webkit-transform: translateY(30%);
+          transform: translateY(30%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.likes .vote-icon-container .voter-icon {
+  padding: 0em 0.62em;
+}
+
+.likes .vote-icon-container .show {
+  -webkit-transform: translateY(0%);
+          transform: translateY(0%);
+  opacity: 1;
+  -webkit-transition: all 0.1s ease-in;
+  transition: all 0.1s ease-in;
 }
 
 .likes .total-score {
