@@ -275,6 +275,7 @@ class ManyView extends Component {
                     <div className='many-view__modules'>
                         <div className='sticky-wrapper'>
                             <Commenter
+                                customStyle={{body: {backgroundColor: 'rgba(255, 255, 255, 0.95)'}, header: {backgroundColor: 'rgba(255, 255, 255, 0.95)'}}}
                                 selectedPost={this.state.selectedPost}
                                 postSelected={this.state.postSelected}
                                 comments={this.state.comments}

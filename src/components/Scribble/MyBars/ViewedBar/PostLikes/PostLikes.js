@@ -82,10 +82,9 @@ const PostLikes = (props) => {
 
 
     const vote = (newValue) => {
+        const voter = document.getElementById('voter')
+        voter.classList.remove('show')
         const db = firebase.firestore()
-
-        console.log(props)
-
         if (myVote.length === 0) {
             var newVote = {
                 value: newValue,

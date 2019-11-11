@@ -45,7 +45,7 @@ const PostEditor = (props) => {
                     <div className={`content-container-edit-container`}>
                         <Commenter
                             toggleDeleteCommentModal={(bool, cid) => setCid(cid)}
-                            customStyle={null}
+                            customStyle={{body: {height: '16em', backgroundColor: 'rgba(255, 255, 255, 0.95)'}, header: {backgroundColor: 'rgba(255, 255, 255, 0.95)'}}}
                             selectedPost={post}
                             postSelected={post}
                             comments={comments} />
