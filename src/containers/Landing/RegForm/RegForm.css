@@ -79,6 +79,11 @@
   color: rgba(255, 255, 255, 0.959);
 }
 
+.reg-form .valid:focus {
+  border-color: rgba(255, 255, 255, 0.842);
+  color: rgba(255, 255, 255, 0.842);
+}
+
 .reg-form .large-input {
   background-color: transparent;
   height: 2.5em;
@@ -204,6 +209,10 @@
 
 .reg-form .profile-wrapper .zip-sex-wrapper .sex-button:hover {
   cursor: pointer;
+}
+
+.reg-form .profile-wrapper .zip-sex-wrapper .sex-button:focus {
+  outline: 1px solid rgba(255, 255, 255, 0.666);
 }
 
 .reg-form .profile-wrapper .zip-sex-wrapper .focused-sex {

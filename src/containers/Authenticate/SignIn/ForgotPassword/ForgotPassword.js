@@ -85,7 +85,7 @@ class ForgotPassword extends Component {
                                     {this.state.notificationMsg}
                             </div> : 
                             null}
-                    <img id="pass-icon" src={passIcon} />
+                    <img alt='' id="pass-icon" src={passIcon} />
                     <h2>Reset Password</h2>
                     <h5>Don't remember your password? We'll send you a reset link to your email.</h5>
                     <input

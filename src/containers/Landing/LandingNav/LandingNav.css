@@ -11,24 +11,36 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.splash-navbar .splash-navbar__contents-container {
+  position: relative;
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
 
-.splash-navbar .logo {
+.splash-navbar .splash-navbar__contents-container .logo {
   position: relative;
   z-index: 2;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   letter-spacing: 0.05em;
   font-size: 2.8em;
-  left: 1.5em;
 }
 
-.splash-navbar .sign-in {
+.splash-navbar .splash-navbar__contents-container .sign-in {
   position: relative;
   z-index: 1;
-  right: 3em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -37,7 +49,7 @@
           align-items: center;
 }
 
-.splash-navbar .sign-in input {
+.splash-navbar .splash-navbar__contents-container .sign-in input {
   background: rgba(0, 0, 0, 0);
   border: 1px solid rgba(255, 255, 255, 0.575);
   border-radius: 5em;
@@ -48,11 +60,11 @@
   padding-bottom: 0.2em;
 }
 
-.splash-navbar .sign-in input:focus {
+.splash-navbar .splash-navbar__contents-container .sign-in input:focus {
   outline: none;
 }
 
-.splash-navbar .sign-in .log-in {
+.splash-navbar .splash-navbar__contents-container .sign-in .log-in {
   color: rgba(255, 255, 255, 0.699);
   background: rgba(0, 0, 0, 0);
   border: 1px solid rgba(255, 255, 255, 0.575);
@@ -62,24 +74,29 @@
   cursor: not-allowed;
 }
 
-.splash-navbar .sign-in .valid-button {
+.splash-navbar .splash-navbar__contents-container .sign-in .valid-button {
   position: relative;
   color: rgba(255, 255, 255, 0.767);
   border-color: rgba(255, 255, 255, 0.658);
   cursor: pointer;
 }
 
-.splash-navbar .sign-in .valid-button:hover {
+.splash-navbar .splash-navbar__contents-container .sign-in .valid-button:hover {
   color: rgba(255, 255, 255, 0.863);
   border-color: rgba(255, 255, 255, 0.781);
 }
 
-.splash-navbar .sign-in .valid-button:active {
+.splash-navbar .splash-navbar__contents-container .sign-in .valid-button:active {
   color: white;
   border-color: rgba(255, 255, 255, 0.932);
 }
 
-.splash-navbar .sign-in .valid-button:before {
+.splash-navbar .splash-navbar__contents-container .sign-in .valid-button:focus {
+  color: white;
+  border-color: rgba(255, 255, 255, 0.932);
+}
+
+.splash-navbar .splash-navbar__contents-container .sign-in .valid-button:before {
   content: "";
   background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
   position: absolute;
@@ -99,7 +116,7 @@
   border-radius: 10px;
 }
 
-.splash-navbar .sign-in .valid-button:after {
+.splash-navbar .splash-navbar__contents-container .sign-in .valid-button:after {
   z-index: -1;
   content: "";
   position: absolute;
@@ -111,11 +128,11 @@
   border-radius: 10em;
 }
 
-.splash-navbar .sign-in .pass-input-wrapper {
+.splash-navbar .splash-navbar__contents-container .sign-in .pass-input-wrapper {
   position: relative;
 }
 
-.splash-navbar .sign-in .pass-input-wrapper .forgot-password {
+.splash-navbar .splash-navbar__contents-container .sign-in .pass-input-wrapper .forgot-password {
   position: absolute;
   cursor: pointer;
   left: 1.1em;
@@ -124,11 +141,11 @@
   color: rgba(255, 255, 255, 0.342);
 }
 
-.splash-navbar .sign-in .pass-input-wrapper .forgot-password:hover {
+.splash-navbar .splash-navbar__contents-container .sign-in .pass-input-wrapper .forgot-password:hover {
   color: rgba(255, 255, 255, 0.575);
 }
 
-.splash-navbar .sign-in .pass-input-wrapper .forgot-password:active {
+.splash-navbar .splash-navbar__contents-container .sign-in .pass-input-wrapper .forgot-password:active {
   color: rgba(255, 255, 255, 0.767);
 }
 /*# sourceMappingURL=LandingNav.css.map */

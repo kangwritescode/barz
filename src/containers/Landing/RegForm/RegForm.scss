@@ -44,6 +44,8 @@
         margin: 0.6em 0em;
         border: 1px solid rgba(209, 209, 209, 0.432);
         color: rgba(255, 255, 255, 0.438);
+
+
     }
     .valid {
         $valid-color: rgba(255, 255, 255, 0.726);
@@ -58,6 +60,11 @@
             $valid-active-color: rgba(255, 255, 255, 0.959);
             border-color: $valid-active-color;
             color: $valid-active-color;
+        }
+        &:focus {
+            $valid-hover-color: rgba(255, 255, 255, 0.842);
+            border-color: $valid-hover-color;
+            color: $valid-hover-color;
         }
     }
     .large-input {
@@ -125,6 +132,9 @@
                 cursor: pointer;
                 &:hover {
                     cursor: pointer;
+                }
+                &:focus {
+                    outline: 1px solid rgba(255, 255, 255, 0.666);
                 }
                 @include flex-centered(column);
             }
