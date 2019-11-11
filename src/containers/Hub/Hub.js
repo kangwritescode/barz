@@ -4,6 +4,7 @@ import './Hub.css'
 import firebase from 'firebase'
 import FireApi from '../../FireApi/FireApi'
 import yox from '../../assets/yox.m4v'
+import yoxIMG from '../../assets/yoxIMG.png'
 import ProfileBox from './ProfileBox/ProfileBox'
 import UploadImage from './Profile/UploadImage/UploadImage'
 import AddHandles from './Profile/AddHandles/AddHandles'
@@ -198,7 +199,7 @@ const Hub = (props) => {
             {showDeleteComment ? <DeleteComment cid={commentCID} toggleDeleteCommentModal={toggleDeleteCommentModal} /> : null}
             {showDeleteAcc ? <DeleteAccount toggleDeleteAcc={toggleDeleteAcc} /> : null}
 
-            <img id="backup-img" src={imgURL} alt="" />
+            <img id="backup-img" src={yoxIMG} alt="" />
             <video className='yox' id="yox" src={yox} autoPlay={true} loop={true} playsInline={true} muted />
             <div id="yoxOverlay" />
             <div id="mv-cred">YEAR OF THE OX - MOOD CONTROL CYPHER</div>
