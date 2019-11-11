@@ -73,7 +73,7 @@ const PostLikes = (props) => {
             setPoints(points)
             setLikes(likes)
             setDislikes(dislikes)
-            setMyVote(myVote)
+            setMyVote(myVote.length > 0 ? myVote : [])
         })
         return () => {
             votesListener()
@@ -84,15 +84,17 @@ const PostLikes = (props) => {
     const vote = (newValue) => {
         const db = firebase.firestore()
 
+        console.log(props)
+
         if (myVote.length === 0) {
             var newVote = {
                 value: newValue,
                 date: new Date(),
-                pid: props.pid,
-                receiverID: props.uid,
+                pid: props.viewedPost.pid,
+                receiverID: props.viewedPost.uid,
                 voterID: props.myUID,
-                postDate: props.createdOn,
-                address: props.address
+                postDate: props.viewedPost.createdOn,
+                address: props.viewedPost.address
             }
             db.collection('postVotes').add(newVote)
                 .catch(err => console.log(err))
@@ -124,9 +126,10 @@ const PostLikes = (props) => {
 
     const pointsPercentage = likes > 0 ? Math.floor((likes * 1.0) / (likes + dislikes * 1.0) * 100) : null
 
-    var iconColor = myVote && myVote[0].value ? 'lit' : ''
+    console.log(myVote)
+    var iconColor = myVote && myVote[0] && myVote[0].value ? 'lit' : ''
     var iconStyle = <i className={`fa fa-${'fire'} vote-icon-container__${'fire'} ${iconColor}`} id='icon'/>
-    if (myVote && myVote[0].value === -1) {
+    if (myVote && myVote[0] && myVote[0].value === -1) {
         iconStyle = <i className={`fa fa-${'trash'} vote-icon-container__${'trash'} ${iconColor}`} id='icon'/>
     }
 
@@ -136,7 +139,7 @@ const PostLikes = (props) => {
                 className={`vote-icon-container`}
                 id={`vote-icon`}>
                 {iconStyle}
-                <div className={`vote-icon-container-hover-div`} onClick={myVote && myVote[0].value === -1 ? () => vote(-1) : () => vote(1)}></div>
+                <div className={`vote-icon-container-hover-div`} onClick={myVote && myVote[0] && myVote[0].value === -1 ? () => vote(-1) : () => vote(1)}></div>
                 <div className={`vote-icon-container__pop-up-voter`} id={`voter`}>
                     <div className={`pop-up-voter__icon-wrapper left`} onClick={() => vote(-1)}><i className={`fa fa-trash lit-trash voter-icon`} aria-hidden="true"></i></div>
                     <div className={`pop-up-voter__icon-wrapper right`} onClick={() => vote(1)}><i className={`fa fa-fire lit voter-icon`} aria-hidden="true"></i></div>
