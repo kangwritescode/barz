@@ -33,6 +33,28 @@ class DeleteAccount extends Component {
             .then(async () => {
                 var db = firebase.firestore()
 
+                // delete submissions
+                await db.collection("submissions").get().then(snapshot => {
+                    snapshot.forEach(doc => {
+                        var post = doc.data()
+                        if (post.uid === this.props.uid) {
+                            doc.ref.delete()
+                        }
+                    })
+                }).catch(err => { throw err })
+
+                // delete follows
+                await db.collection("follows").get().then(snapshot => {
+                    snapshot.forEach(doc => {
+                        var follow = doc.data()
+                        if (follow.from === this.props.uid
+                            || follow.to === this.props.uid) {
+                            doc.ref.delete()
+                        }
+                    })
+                }).catch(err => { throw err })
+
+
                 // delete votes
                 await db.collection("postVotes").get().then(snapshot => {
                     snapshot.forEach(doc => {
@@ -43,6 +65,7 @@ class DeleteAccount extends Component {
                         }
                     })
                 }).catch(err => { throw err })
+                
                 // delete post comments
                 await db.collection("postComments").get().then(querySnapshot => {
                     querySnapshot.forEach(doc => {
@@ -55,16 +78,8 @@ class DeleteAccount extends Component {
 
                     })
                 }).catch(err => { throw err })
-                // delete the submissions
-                await db.collection("follows").get().then(snapshot => {
-                    snapshot.forEach(doc => {
-                        var follow = doc.data()
-                        if (follow.from === this.props.uid
-                            || follow.to === this.props.uid) {
-                            doc.ref.delete()
-                        }
-                    })
-                }).catch(err => { throw err })
+
+
 
                 //  remove profile image
                 var storage = firebase.storage();
