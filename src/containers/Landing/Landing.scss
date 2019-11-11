@@ -232,8 +232,25 @@ $break-small: 48em;
 
     .scribble-tut {
         position: relative;
-        height: 50em;
+        height: 20vh;
         width: 100vw;
-        background-color: rgb(29, 29, 29);
+        background-color: rgb(16, 16, 16);
+
+        @include flex-centered(column);
+        color: rgba(255, 255, 255, 0.514);
+        justify-content: flex-end;
+        box-sizing: border-box;
+        padding-bottom: 1em;
+        font-family: 'permanent marker';
+        letter-spacing: .1em;
+        animation: widen 2s ease-in-out;
+        @keyframes widen {
+            0% {
+                letter-spacing: .05em
+            }
+            100% {
+                letter-spacing: .1em;
+            }
+        }
     }
 }

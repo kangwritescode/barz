@@ -127,7 +127,9 @@ const Landing = (props) => {
                         {regForm}
                     </div>
                 </div>
-                <div className='scribble-tut'></div>
+                <div className='scribble-tut'>
+                    -Website Under Construction-
+                </div>
             </div>
         </div>
     )
