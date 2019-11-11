@@ -107,8 +107,8 @@ const PostLikes = (props) => {
                     className={`fas fa-${iconStyle} vote-icon-container__${iconStyle} ${iconColor}`} id='icon' />
                 <div className={`vote-icon-container-hover-div`}></div>
                 <div className={`vote-icon-container__pop-up-voter`} id={`voter`}>
-                    <div><i className={`fa fa-fire lit voter-icon`} aria-hidden="true"></i></div>
-                    <div><i className={`fa fa-trash lit-trash voter-icon`} aria-hidden="true"></i></div>
+                    <div className={`pop-up-voter__icon-wrapper left`}><i className={`fa fa-fire lit voter-icon`} aria-hidden="true"></i></div>
+                    <div className={`pop-up-voter__icon-wrapper right`}><i className={`fa fa-trash lit-trash voter-icon`} aria-hidden="true"></i></div>
                 </div>
             </div>
 

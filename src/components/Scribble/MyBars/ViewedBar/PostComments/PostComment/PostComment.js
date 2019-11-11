@@ -7,7 +7,6 @@ import 'firebase/firestore'
 
 function PostComment(props) {
 
-    var [photoURL, updatePhotoURL] = useState('https://firebasestorage.googleapis.com/v0/b/barz-86ae0.appspot.com/o/mysteryman%2Fmysteryman.png?alt=media&token=7b1e5a7c-ede3-46ff-a036-70636e528cd2')
     var data = props.data
 
     // fetch photo on mounting
@@ -23,7 +22,6 @@ function PostComment(props) {
 
     const closeDropdowns = (event) => {
         const classList = event.target.classList
-        console.log(classList)
         if (classList
             && !classList.contains('posted-comment__dots')
             && !classList.contains('posted-comment__dot')) {

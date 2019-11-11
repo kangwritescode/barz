@@ -28,7 +28,6 @@ $border-color: rgb(206, 206, 206);
             width: 16%;
             &:hover {
                 background: rgba(0, 0, 0, 0.036);
-                
             }
         }
 
@@ -62,6 +61,22 @@ $border-color: rgb(206, 206, 206);
             opacity: 0;
             transform: translateY(30%);
             @include flex-centered(row);
+            .pop-up-voter__icon-wrapper {
+                height: 80%;
+                width: 47%;
+                @include flex-centered(row);
+                &:hover {
+                    background: rgba(0, 0, 0, 0.03);
+                }
+            }
+            .left {
+                border-top-left-radius: 5em;
+                border-bottom-left-radius: 5em;
+            }
+            .right {
+                border-top-right-radius: 5em;
+                border-bottom-right-radius: 5em;
+            }
         }
         .voter-icon {
             padding: 0em 0.62em;
