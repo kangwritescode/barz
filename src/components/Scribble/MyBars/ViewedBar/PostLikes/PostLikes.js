@@ -14,7 +14,7 @@ const PostLikes = (props) => {
     const [points, setPoints] = useState(0);
     const [likes, setLikes] = useState(0)
     const [dislikes, setDislikes] = useState(0)
-    const [myVote, setMyVote] = useState({})
+    const [myVote, setMyVote] = useState(null)
 
 
     useEffect(() => {
@@ -55,10 +55,10 @@ const PostLikes = (props) => {
             var points = 0
             var likes = 0
             var dislikes = 0
-            var myVote = null;
+            var myVote = [];
             // for every vote of this post
             snapshot.docs.forEach(vote => {
-                vote = vote.data()
+                vote = { ...vote.data(), vid: vote.id }
                 if (vote.value === 1) {
                     likes += 1
                 }
@@ -66,7 +66,7 @@ const PostLikes = (props) => {
                     dislikes += 1
                 }
                 if (vote.voterID === props.myUID) {
-                    myVote = vote
+                    myVote.push(vote)
                 }
             })
             points = (likes - dislikes) < 0 ? 0 : (likes - dislikes)
@@ -81,34 +81,65 @@ const PostLikes = (props) => {
     }, [props.myUID, props.postSelected, props.viewedPost]);
 
 
+    const vote = (newValue) => {
+        const db = firebase.firestore()
 
+        if (myVote.length === 0) {
+            var newVote = {
+                value: newValue,
+                date: new Date(),
+                pid: props.pid,
+                receiverID: props.uid,
+                voterID: props.myUID,
+                postDate: props.createdOn,
+                address: props.address
+            }
+            db.collection('postVotes').add(newVote)
+                .catch(err => console.log(err))
+        } else {
+            var updatedVote = {
+                ...myVote[0],
+                value: newValue === myVote[0].value ? 0 : newValue,
+                date: new Date()
+            }
+            // set the vote 
+            db.collection('postVotes').doc(myVote[0].vid)
+                .set(updatedVote)
+                .catch(err => console.log(err))
 
-
+            // cleanup leaked extras ***
+            if (myVote.length > 1) {
+                for (let i = 1; i < myVote.length; i++) {
+                    db.collection('postVotes').doc(myVote[i].vid)
+                        .delete()
+                        .then(() => console.log('vote deleted successfully'))
+                        .catch(err => console.log(err))
+                }
+            }
+        }
+    }
 
     // render ~~~~~~~~~~~~~
 
 
     const pointsPercentage = likes > 0 ? Math.floor((likes * 1.0) / (likes + dislikes * 1.0) * 100) : null
 
-    var iconStyle = 'fire'
-    var iconColor = myVote.value ? 'lit' : ''
-    if (myVote.value === -1) {
-        iconStyle = 'trash'
+    var iconColor = myVote && myVote[0].value ? 'lit' : ''
+    var iconStyle = <i className={`fa fa-${'fire'} vote-icon-container__${'fire'} ${iconColor}`} id='icon'/>
+    if (myVote && myVote[0].value === -1) {
+        iconStyle = <i className={`fa fa-${'trash'} vote-icon-container__${'trash'} ${iconColor}`} id='icon'/>
     }
-
 
     return (
         <div className='likes'>
-
             <div
                 className={`vote-icon-container`}
-                id={`vote-icon`} onClick={() => console.log('sdfsdfdsf')}>
-                <i 
-                    className={`fas fa-${iconStyle} vote-icon-container__${iconStyle} ${iconColor}`} id='icon' />
-                <div className={`vote-icon-container-hover-div`}></div>
+                id={`vote-icon`}>
+                {iconStyle}
+                <div className={`vote-icon-container-hover-div`} onClick={myVote && myVote[0].value === -1 ? () => vote(-1) : () => vote(1)}></div>
                 <div className={`vote-icon-container__pop-up-voter`} id={`voter`}>
-                    <div className={`pop-up-voter__icon-wrapper left`}><i className={`fa fa-fire lit voter-icon`} aria-hidden="true"></i></div>
-                    <div className={`pop-up-voter__icon-wrapper right`}><i className={`fa fa-trash lit-trash voter-icon`} aria-hidden="true"></i></div>
+                    <div className={`pop-up-voter__icon-wrapper left`} onClick={() => vote(-1)}><i className={`fa fa-trash lit-trash voter-icon`} aria-hidden="true"></i></div>
+                    <div className={`pop-up-voter__icon-wrapper right`} onClick={() => vote(1)}><i className={`fa fa-fire lit voter-icon`} aria-hidden="true"></i></div>
                 </div>
             </div>
 
@@ -118,7 +149,6 @@ const PostLikes = (props) => {
             <div className='fans'>
                 {likes} {likes === 1 ? 'like' : 'likes'}
             </div>
-
         </div>
     )
 }
