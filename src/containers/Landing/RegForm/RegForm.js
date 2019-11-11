@@ -210,6 +210,7 @@ function RegForm(props) {
             }
             // zipcode check
             const address = await fetchAddressFromZipcode(zipcode)
+            console.log(address)
             let [emailFire, uid] = await createAuthUser(email, password)
             const photoURL = await uploadMysteryMan(uid)
             await createFirebaseUser(emailFire, uid, address, photoURL)
