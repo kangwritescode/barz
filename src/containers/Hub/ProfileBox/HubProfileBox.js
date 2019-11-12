@@ -97,7 +97,7 @@ function HubProfileBox(props) {
 
     var blockTwoContent = null;
 
-    if (props.myPlace) {
+    if (!props.isLoading) {
         blockTwoContent = (
             <div className={'block-two__place-point-container'}>
                 <div>

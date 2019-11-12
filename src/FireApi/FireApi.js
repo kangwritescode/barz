@@ -1,6 +1,6 @@
 import firebase from 'firebase'
 
-const fetchPosts = (setter) => {
+const fetchPosts = (setter, setDoneFetching) => {
     var db = firebase.firestore()
     const listener = db.collection('submissions').onSnapshot(snapshot => {
         const fetchedPosts = []
@@ -11,6 +11,10 @@ const fetchPosts = (setter) => {
             })
         })
         setter(fetchedPosts)
+        if (setDoneFetching) {setDoneFetching(true)}
+    }, err => {
+        console.log(err.message)
+        if (setDoneFetching) {setDoneFetching(true)}
     })
     return listener
 }
@@ -98,7 +102,7 @@ const fetchFollows = (setter) => {
     return listener
 }
 
-const fetchSubmissionComments = (setter, setDoneFetching) => {
+const fetchSubmissionComments = (setter) => {
     const db = firebase.firestore()
     const listener = db.collection('postComments').onSnapshot((snapshot) => {
         var comments = []
@@ -109,10 +113,9 @@ const fetchSubmissionComments = (setter, setDoneFetching) => {
             }
             comments.push(comment)
         }
-        if (setDoneFetching) { setDoneFetching(true) }
         setter(comments)
-        
-
+    }, err => {
+        console.log(err)
     })
     return listener
 }

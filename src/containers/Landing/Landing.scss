@@ -26,14 +26,14 @@ $break-small: 48em;
 .splash-video {
     position: fixed;
     z-index: 1;
-    height: 80vh;
+    height: 90vh;
     display: block;
 }
 .splash-video-overlay {
     position: relative;
     z-index: 2;
     top: 4.5em;
-    height: calc(80vh - 4.5em);
+    height: calc(90vh - 4.5em);
     width: 100vw;
     background-color: rgba(0, 0, 0, 0.466);
 }
@@ -46,7 +46,7 @@ $break-small: 48em;
 
     .header-wrapper {
         position: relative;
-        height: calc(80vh - 4.5em);
+        height: calc(90vh - 4.5em);
         width: 100vw;
         @include flex-centered(column);
         .header-text {
@@ -232,7 +232,7 @@ $break-small: 48em;
 
     .scribble-tut {
         position: relative;
-        height: 20vh;
+        height: 10vh;
         width: 100vw;
         background-color: rgb(16, 16, 16);
 
@@ -240,7 +240,7 @@ $break-small: 48em;
         color: rgba(255, 255, 255, 0.514);
         justify-content: flex-end;
         box-sizing: border-box;
-        padding-bottom: 1em;
+        padding-bottom: 1.6em;
         font-family: 'permanent marker';
         letter-spacing: .1em;
         animation: widen 2s ease-in-out;

@@ -34,7 +34,7 @@ const Hub = (props) => {
     const [imgURL, setImgURL] = useState('')
     // votes/score related
     const [votes, setVotes] = useState([])
-    const [myPlace, setMyPlace] = useState(null)
+    const [myPlace, setMyPlace] = useState(0)
     const [myScore, setMyScore] = useState(0)
     // follows
     const [follows, setFollows] = useState([])
@@ -69,8 +69,8 @@ const Hub = (props) => {
         }
         const fetchVotesListener = FireApi.allVotesListener(setVotes)
         const fetchFollowsListener = FireApi.allFollowsListener(setFollows)
-        const fetchPostsListener = FireApi.allPostsListener(setPosts)
-        const fetchCommentsListener = FireApi.allSubmissionCommentsListener(setComments, setDoneFetching)
+        const fetchPostsListener = FireApi.allPostsListener(setPosts, setDoneFetching)
+        const fetchCommentsListener = FireApi.allSubmissionCommentsListener(setComments)
         document.addEventListener('click', toggleCommenter)
         return () => {
             fetchVotesListener()
@@ -158,7 +158,7 @@ const Hub = (props) => {
             manyPosts = <CircularSpinner />
         }
         else if ((posts === undefined) || (posts.length === 0)) {
-            manyPosts = <div className={`middle-column__go-follow-posts`}>
+            manyPosts = <div className={`middle-column__notification`}>
                 <div className={``}>You haven't posted any barz yet!</div>
             </div>
         } else {
@@ -187,7 +187,7 @@ const Hub = (props) => {
             manyPosts = <CircularSpinner />
         }
         else if ((posts === undefined) || (posts.length === 0)) {
-            manyPosts = <div className={`middle-column__go-follow-posts`}>
+            manyPosts = <div className={`middle-column__notification`}>
                 <div className={``}>You're not following anyone!</div>
             </div>
         } else {
@@ -235,7 +235,8 @@ const Hub = (props) => {
                                 toggleDeleteAcc={toggleDeleteAcc}
                                 wrappedBy='Hub'
                                 myPlace={myPlace}
-                                myPoints={Math.max(myScore, 0)} />
+                                myPoints={Math.max(myScore, 0)}
+                                isLoading={!doneFetching} />
                         </div>
                         <FollowBox follows={follows} />
                         <div className={`left-column__turntable-wrapper`}>

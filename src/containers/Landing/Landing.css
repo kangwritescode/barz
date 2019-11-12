@@ -29,7 +29,7 @@
 .splash-video {
   position: fixed;
   z-index: 1;
-  height: 80vh;
+  height: 90vh;
   display: block;
 }
 
@@ -37,7 +37,7 @@
   position: relative;
   z-index: 2;
   top: 4.5em;
-  height: calc(80vh - 4.5em);
+  height: calc(90vh - 4.5em);
   width: 100vw;
   background-color: rgba(0, 0, 0, 0.466);
 }
@@ -51,7 +51,7 @@
 
 .content .header-wrapper {
   position: relative;
-  height: calc(80vh - 4.5em);
+  height: calc(90vh - 4.5em);
   width: 100vw;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -324,7 +324,7 @@
 
 .content .scribble-tut {
   position: relative;
-  height: 20vh;
+  height: 10vh;
   width: 100vw;
   background-color: #101010;
   display: -webkit-box;
@@ -346,7 +346,7 @@
           justify-content: flex-end;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  padding-bottom: 1em;
+  padding-bottom: 1.6em;
   font-family: 'permanent marker';
   letter-spacing: .1em;
   -webkit-animation: widen 2s ease-in-out;

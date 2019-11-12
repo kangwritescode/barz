@@ -18,7 +18,7 @@ const PostEditor = (props) => {
     useEffect(() => {
 
         FireApi.fetchSinglePost(setPost, props.pid)
-        const commentsListener = FireApi.allSubmissionCommentsListener(setComments, props.pid)
+        const commentsListener = FireApi.allSubmissionCommentsListener(setComments)
         const votesListener = FireApi.allVotesListener(setVotes, props.pid)
 
         return () => {
