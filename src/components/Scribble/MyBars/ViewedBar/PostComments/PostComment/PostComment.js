@@ -92,7 +92,7 @@ function PostComment(props) {
             className='posted-comment'
             onMouseLeave={(event) => { closeDropdowns(event) }}>
             <div className='posted-comment__img-container'>
-                <img alt='alt' src={props.myPhotoURL}></img>
+                <img alt='' src={props.myPhotoURL}></img>
             </div>
             <div className='posted-comment__content'>
                 <b>{data.username}</b> {data.comment} <br />

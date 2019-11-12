@@ -28,7 +28,7 @@ const Scribble = () => {
     return (
         <div className="Scribble">
             
-            <img id='backup-img' src={vinyIMG} alt='alt'></img>
+            <img id='backup-img' src={vinyIMG} alt=''></img>
             <video src={vinyl} autoPlay={true} loop={true} playsInline={true} muted />
             <div id="scribbleOverlay" />
 

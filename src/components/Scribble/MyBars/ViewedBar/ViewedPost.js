@@ -214,7 +214,7 @@ class ViewedPost extends Component {
                                 <PostComments toggleModal={this.toggleDeleteCommentModal} comments={this.state.comments} viewedPost={this.state.viewedPost} />
                                 <PostLikes viewedPost={this.state.viewedPost} />
                                 <form className='post-comment'>
-                                    <div className='img-wrapper'><img alt='alt' src={this.state.viewerIMG} className='comment-user-img'></img></div>
+                                    <div className='img-wrapper'><img alt='' src={this.state.viewerIMG} className='comment-user-img'></img></div>
                                     <TextareaAutosize
                                         onChange={this.onChangeHandler}
                                         value={this.state.commentInput}
