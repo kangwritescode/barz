@@ -18,6 +18,34 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-animation: editor-in .3s ease-in;
+          animation: editor-in .3s ease-in;
+}
+
+@-webkit-keyframes editor-in {
+  0% {
+    -webkit-transform: scale(1.15);
+            transform: scale(1.15);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes editor-in {
+  0% {
+    -webkit-transform: scale(1.15);
+            transform: scale(1.15);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .editor-layout .editor-backdrop {

@@ -126,10 +126,11 @@ function Spotlight(props) {
         button = <button className='follow-button' onClick={unfollow}>following</button>
     }
     var handles = null;
-    if (props.rapper && (props.rapper.facebook
-        || props.rapper.soundcloud
-        || props.rapper.instagram
-        || props.rapper.soundcloud)) {
+    console.log(props.rapper)
+    if (props.rapper && (props.rapper.handles.facebook
+        || props.rapper.handles.soundcloud
+        || props.rapper.handles.instagram
+        || props.rapper.handles.youtube)) {
         handles = (<div className='block-one__handles-container'>
             {props.rapper && props.rapper.handles.facebook ?
                 <a href={addhttp(props.rapper.handles.facebook)} rel="noopener noreferrer" target="_blank">

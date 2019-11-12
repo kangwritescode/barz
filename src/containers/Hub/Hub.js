@@ -17,11 +17,13 @@ import GenID from '../../shared/GenID'
 import DeleteComment from '../../components/Scribble/MyBars/ViewedBar/DeleteComment/DeleteComment'
 import HubTools from './HubTools/HubTools'
 import DeleteAccount from './Profile/DeleteAccount/DeleteAccount'
+import CircularSpinner from '../../shared/CircularSpinner/CircularSpinner'
 
 
 const Hub = (props) => {
 
-
+    // loader
+    // const [loading, setLoading] = useState(false)
     // show modals
     const [showPhotoModal, setShowPhotoModal] = useState(false)
     const [showUploadHandles, toggleUploadHandles] = useState(false)
@@ -80,8 +82,6 @@ const Hub = (props) => {
     }, [])
 
     useEffect(() => {
-        // helper function
-
         if (votes.length !== 0) {
             setMyPlace(HubTools.myPlaceFinder(votes, props.uid))
             var likes = votes.filter(vote => vote.receiverID === props.uid && vote.value === 1)

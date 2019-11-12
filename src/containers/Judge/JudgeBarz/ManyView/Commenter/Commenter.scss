@@ -105,14 +105,15 @@ $edges: 0.3em;
             @include flex-centered(column);
             position: relative;
             left: 0.5rem;
-            overflow: hidden;
+            height: 1.7em;
+            width: 1.7em;
             border-radius: 50%;
-            height: 1.8em;
-            width: 1.8em;
 
             img {
+                background: inherit;
                 height: 100%;
                 width: 100%;
+                border-radius: 50%;
             }
         }
         input {

@@ -77,107 +77,112 @@
     .hub-profile-box__block-one {
         position: relative;
         z-index: 1;
-        height: 78%;
+        height: 13.6em;
         width: 100%;
         color: rgba(255, 255, 255, 0.904);
         font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
         padding-top: 1rem;
         @include flex-centered(column);
+        .block-one__contents-wrapper {
+            height: 100%;
+            width: 100%;
+            @include flex-centered(column);
+            animation: gentle-fade-in 0.3s ease-in;
 
-        h2 {
-            position: relative;
-            top: 0em;
-            font-size: 1.3em;
-            color: "lightgrey";
-            font-family: "righteous";
-        }
+            
+            h2 {
+                position: relative;
+                top: 0em;
+                font-size: 1.3em;
+                color: "lightgrey";
+                font-family: "righteous";
+            }
 
-        $margin-space: .3rem;
-        .block-one__img-wrapper {
-            height: 50px;
-            width: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-            background-color: white;
+            $margin-space: 0.3rem;
 
-            img {
+            .contents-wrapper__img-wrapper {
                 height: 50px;
                 width: 50px;
                 border-radius: 50%;
+                object-fit: cover;
+                background-color: white;
+
+                img {
+                    height: 50px;
+                    width: 50px;
+                    border-radius: 50%;
+                }
             }
-        }
-
-        .block-one__username {
-            font-size: 1.1em;
-            margin-top: $margin-space;
-            margin-bottom: .1rem;
-
-        }
-        .block-one__select-a-user {
-            position: absolute;
-            top: 4em;
-        }
-        .block-one__address-gender {
-            font-size: 0.7rem;
-            font-family: "antic slab";
-            margin-bottom: .7rem;
-
-        }
-        .block-one__handles-container {
-            position: relative;
-            @include flex-centered(row);
-            justify-content: space-evenly;
-            width: 45%;
-            height: 0.4em;
-            margin-bottom: $margin-space;
-
-
-            .icon {
-                color: white;
+            .contents-wrapper__username {
+                font-size: 1.1em;
+                margin-top: $margin-space;
+                margin-bottom: 0.1rem;
+            }
+            .block-one__select-a-user {
+                position: absolute;
+                top: 4em;
+            }
+            .contents-wrapper__address-gender {
                 font-size: 0.7rem;
-                cursor: pointer;
+                font-family: "antic slab";
+                margin-bottom: 0.7rem;
             }
-            .fa-facebook-f {
-                color: blue;
-            }
-            .fa-instagram {
-                color: purple;
-            }
-            .fa-soundcloud {
-                color: orange;
-            }
-            .fa-youtube {
-                color: red;
-            }
+            .contents-wrapper__handles-container {
+                position: relative;
+                @include flex-centered(row);
+                justify-content: space-evenly;
+                width: 45%;
+                height: 0.4em;
+                margin-bottom: $margin-space;
 
-            .active-handle {
-                opacity: 0.6;
+                .icon {
+                    color: white;
+                    font-size: 0.7rem;
+                    cursor: pointer;
+                }
+                .fa-facebook-f {
+                    color: blue;
+                }
+                .fa-instagram {
+                    color: purple;
+                }
+                .fa-soundcloud {
+                    color: orange;
+                }
+                .fa-youtube {
+                    color: red;
+                }
+
+                .active-handle {
+                    opacity: 0.6;
+                }
             }
-        }
-        .block-one__blurb {
-            position: relative;
-            background: transparent;
-            resize: none;
-            margin-top: 1em;
-            font-family: "permanent marker";
-            color: rgba(255, 248, 248, 0.824);
-            text-align: center;
-            font-size: .8em;
-            line-height: 1.1em;
-            width: 70%;
-            height: 3.3em;
-            cursor: pointer;
-            border: none;
-            border: 1px dotted rgba(255, 255, 255, 0);
-            &:focus {
-                cursor: text;
-                border: 1px dotted rgba(255, 255, 255, 0.24);
-            }
-            &:focus::placeholder {
-                color: transparent;
+            .contents-wrapper__blurb {
+                position: relative;
+                background: transparent;
+                resize: none;
+                margin-top: 1em;
+                font-family: "permanent marker";
+                color: rgba(255, 248, 248, 0.824);
+                text-align: center;
+                font-size: 0.8em;
+                line-height: 1.1em;
+                width: 70%;
+                height: 3.3em;
+                cursor: pointer;
+                border: none;
+                border: 1px dotted rgba(255, 255, 255, 0);
+                &:focus {
+                    cursor: text;
+                    border: 1px dotted rgba(255, 255, 255, 0.24);
+                }
+                &:focus::placeholder {
+                    color: transparent;
+                }
             }
         }
     }
+
     .hub-profile-box__block-two {
         position: relative;
         background-color: rgba(255, 255, 255, 0.075);
@@ -185,10 +190,16 @@
         color: rgba(255, 255, 255, 0.733);
         font-size: 0.8em;
         letter-spacing: 0.05em;
-        height: 22%;
+        height: 5.5em;
         width: 100%;
         @include flex-centered(row);
         justify-content: space-evenly;
+        .block-two__place-point-container {
+            width: 100%;
+            @include flex-centered(row);
+            justify-content: space-evenly;
+            animation: gentle-fade-in 0.3s ease-in;
+        }
 
         .follow-button {
             position: absolute;
@@ -213,5 +224,15 @@
                 width: 9.8em;
             }
         }
+    }
+}
+
+
+@keyframes gentle-fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
     }
 }

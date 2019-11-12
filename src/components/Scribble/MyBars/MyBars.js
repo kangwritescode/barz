@@ -76,12 +76,6 @@ const MyBars = (props) => {
     const toggleModal = (modal, value) => {
         setShowPost(value)
     }
-
-    const viewPost = (pid) => {
-        setShowPost(true)
-        setViewedPost(pid)
-    }
-
     const getCommentCount = (pid, comments) => {
         return comments.filter(comment => comment.pid === pid).length
     }
@@ -104,7 +98,6 @@ const MyBars = (props) => {
 
     var preppedPosts = insertDateHeaders(posts)
 
-    console.log(votes)
     return (
         <div className="my-bars" id={myBarsId}>
             <div className={`my-bars-widget-header`} id={widgetHeader} onClick={!focused ? props.toggle : null}>Manage</div>

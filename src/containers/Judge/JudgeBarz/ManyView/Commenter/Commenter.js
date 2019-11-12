@@ -7,7 +7,7 @@ import scrollToElement from 'scroll-to-element'
 import './Commenter.css'
 import TextareaAutosize from 'react-autosize-textarea/lib'
 import PostLikes from '../../../../../components/Scribble/MyBars/ViewedBar/PostLikes/PostLikes'
-import PostComments from '../../../../../components/Scribble/MyBars/ViewedBar/PostComments/PostComments'
+import PostComments from '../../../../../components/Scribble/MyBars/ViewedBar/PostComments\/PostComments'
 
 var Commenter = (props) => {
 

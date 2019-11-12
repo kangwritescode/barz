@@ -27,9 +27,9 @@ const initialState = {
     
     uid: '',
     email: '',
-    username: '?',
-    gender: '?',
-    address: '?',
+    username: '',
+    gender: '',
+    address: '',
     photoRef: null,
     handles: {
         facebook: '',

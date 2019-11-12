@@ -22,8 +22,10 @@ $edges: .2em;
     height: 1.8em;
     border-radius: $edges $edges 0em 0em;
     border-bottom: 1px solid rgba(255, 255, 255, 0.267);
-    // background-color: rgba(255, 255, 255, 0.164);
+    font-size: .8em;
+    padding: .1em 0em;
     color: rgba(255, 255, 255, 0.836);
+    background: rgba(0, 0, 0, 0.666);
     @include flex-centered(column);
 }
 .community-body {
@@ -33,12 +35,12 @@ $edges: .2em;
     color: rgba(255, 255, 255, 0.658);
     @include flex-centered(row);
     justify-content: space-evenly;
-    font-family: 'rock salt';
-    font-size: .75em;
+    font-family: 'righteous';
+    font-size: .9em;
     letter-spacing: .03em;
 
     .a-line {
-        height: 3.3em;
+        height: 2.7em;
         border-right: 1px solid rgba(255, 255, 255, 0.164);
     }
 }

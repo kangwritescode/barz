@@ -20,7 +20,7 @@ function Community(props) {
         <div className='Community'>
             <div className='community-header'>Community</div>
             <div className='community-body'>
-                <div>{totalMembers} members</div> 
+    <div>{totalMembers} member{totalMembers === 1 ? '' : 's'}</div> 
                 <div className='a-line'></div>
                 <div>{props.submissions.length * 4} barz</div>
             </div>

@@ -9,6 +9,7 @@ import Turntable from '../../../../components/Scribble/Turntable/Turntable'
 import Commenter from './Commenter/Commenter'
 import Community from './Community/Community'
 import DeleteComment from '../../../../components/Scribble/MyBars/ViewedBar/DeleteComment/DeleteComment'
+import CircularSpinner from '../../../../shared/CircularSpinner/CircularSpinner'
 
 
 class ManyView extends Component {
@@ -249,7 +250,7 @@ class ManyView extends Component {
         var submissions = [...this.state.submissions]
         submissions = this.sort_submissions(submissions)
         submissions = this.filter_submissions(submissions)
-        var manyPosts = null
+        var manyPosts = <CircularSpinner />
         if (submissions.length > 0) {
             manyPosts = submissions.map((submission, index) => {
 
