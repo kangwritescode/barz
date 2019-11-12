@@ -23,7 +23,7 @@ import CircularSpinner from '../../shared/CircularSpinner/CircularSpinner'
 const Hub = (props) => {
 
     // loader
-    // const [loading, setLoading] = useState(false)
+    const [doneFetching, setDoneFetching] = useState(false)
     // show modals
     const [showPhotoModal, setShowPhotoModal] = useState(false)
     const [showUploadHandles, toggleUploadHandles] = useState(false)
@@ -70,7 +70,7 @@ const Hub = (props) => {
         const fetchVotesListener = FireApi.allVotesListener(setVotes)
         const fetchFollowsListener = FireApi.allFollowsListener(setFollows)
         const fetchPostsListener = FireApi.allPostsListener(setPosts)
-        const fetchCommentsListener = FireApi.allSubmissionCommentsListener(setComments)
+        const fetchCommentsListener = FireApi.allSubmissionCommentsListener(setComments, setDoneFetching)
         document.addEventListener('click', toggleCommenter)
         return () => {
             fetchVotesListener()
@@ -154,18 +154,28 @@ const Hub = (props) => {
     if (feed === 'Personal') {
         posts = posts.filter(post => props.uid === post.uid)
         posts = sortByNewest(posts)
-        manyPosts = posts.map(post => {
-            return (
-                <ManyPost
-                    comments={comments.filter(comment => comment.pid === post.pid)}
-                    key={GenID()}
-                    customStyle={manyPostsCustomStyle}
-                    selectPost={selectPost}
-                    votes={votes.filter(vote => vote.pid === post.pid)}
-                    {...post}
-                />
-            )
-        })
+        if (!doneFetching) {
+            manyPosts = <CircularSpinner />
+        }
+        else if ((posts === undefined) || (posts.length === 0)) {
+            manyPosts = <div className={`middle-column__go-follow-posts`}>
+                <div className={``}>You haven't posted any barz yet!</div>
+            </div>
+        } else {
+            manyPosts = posts.map(post => {
+                return (
+                    <ManyPost
+                        comments={comments.filter(comment => comment.pid === post.pid)}
+                        key={GenID()}
+                        customStyle={manyPostsCustomStyle}
+                        selectPost={selectPost}
+                        votes={votes.filter(vote => vote.pid === post.pid)}
+                        {...post}
+                    />
+                )
+            })
+        }
+
     }
     if (feed === 'Following') {
         var myFollows = follows.filter(follow => follow.from === props.uid)
@@ -173,18 +183,28 @@ const Hub = (props) => {
         myFollows.forEach(follow => { followingUIDs.add(follow.to) })
         posts = posts.filter(post => followingUIDs.has(post.uid))
         posts = sortByNewest(posts)
-        manyPosts = posts.map(post => {
-            return (
-                <ManyPost
-                    comments={comments.filter(comment => comment.pid === post.pid)}
-                    key={GenID()}
-                    customStyle={manyPostsCustomStyle}
-                    selectPost={selectPost}
-                    votes={votes.filter(vote => vote.pid === post.pid)}
-                    {...post}
-                />
-            )
-        })
+        if (!doneFetching) {
+            manyPosts = <CircularSpinner />
+        }
+        else if ((posts === undefined) || (posts.length === 0)) {
+            manyPosts = <div className={`middle-column__go-follow-posts`}>
+                <div className={``}>You're not following anyone!</div>
+            </div>
+        } else {
+            manyPosts = posts.map(post => {
+                return (
+                    <ManyPost
+                        comments={comments.filter(comment => comment.pid === post.pid)}
+                        key={GenID()}
+                        customStyle={manyPostsCustomStyle}
+                        selectPost={selectPost}
+                        votes={votes.filter(vote => vote.pid === post.pid)}
+                        {...post}
+                    />
+                )
+            })
+        }
+
     }
 
 

@@ -33,7 +33,9 @@ class ManyView extends Component {
         postSelected: false,
         selectedPost: null,
         showDeleteComment: false,
-        cid: null
+        cid: null,
+        isDoneFetching: false
+
     }
 
     componentDidMount = () => {
@@ -47,6 +49,12 @@ class ManyView extends Component {
     }
 
 
+    setIsDoneFetching = (bool) => {
+        this.setState({
+            ...this.state,
+            isDoneFetching: bool
+        })
+    }
 
 
     toggleCommenter = (event) => {

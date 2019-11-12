@@ -19,7 +19,7 @@ const fetchPost = (setter, pid) => {
     var db = firebase.firestore()
     db.collection('submissions').doc(pid).get()
         .then(doc => {
-            setter({...doc.data(), pid: doc.id})
+            setter({ ...doc.data(), pid: doc.id })
         })
 }
 
@@ -98,7 +98,7 @@ const fetchFollows = (setter) => {
     return listener
 }
 
-const fetchSubmissionComments = (setter) => {
+const fetchSubmissionComments = (setter, setDoneFetching) => {
     const db = firebase.firestore()
     const listener = db.collection('postComments').onSnapshot((snapshot) => {
         var comments = []
@@ -109,7 +109,10 @@ const fetchSubmissionComments = (setter) => {
             }
             comments.push(comment)
         }
+        if (setDoneFetching) { setDoneFetching(true) }
         setter(comments)
+        
+
     })
     return listener
 }
