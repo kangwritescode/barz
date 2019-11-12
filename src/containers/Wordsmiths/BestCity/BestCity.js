@@ -5,10 +5,11 @@ export default function BestCity(props) {
 
     var timeDict = {
         'Last 24 Hours': '24h',
+        'Last 7 Days': '7d',
         'Last 30 Days': '30d',
         'Last 6 Months': '6mo',
         'Last 12 Months': '12mo',
-        'All Posts': 'All'
+        'All Time': 'All'
     }
     var sexDict = {
         'All Genders': 'All',
