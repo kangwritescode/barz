@@ -197,11 +197,11 @@
   .post-notification {
       position: absolute;
       z-index: 999;
-      top: 47%;
+      bottom: 32%;
       width: auto;
-      color: rgb(216, 216, 216);
+      color: rgb(237, 237, 237);
       font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-      font-size: 10pt;
+      font-size: 11pt;
       border-radius: .4em;
       padding: 1.1em;
       background-color: rgba(1, 29, 1, 0.637);
@@ -209,7 +209,7 @@
   }
   
   #negative-msg {
-      background-color: rgba(49, 3, 3, 0.651);
+      background-color: rgba(49, 3, 3, 0.803);
   }
   
   @keyframes fade-pop-in-out {
