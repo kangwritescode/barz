@@ -12,6 +12,7 @@ import PostComments from '../../../../../components/Scribble/MyBars/ViewedBar/Po
 var Commenter = (props) => {
 
     const [input, setInput] = useState('')
+    const [isCommenting, setIsCommenting] = useState(false)
 
 
     useEffect(() => {
@@ -20,6 +21,7 @@ var Commenter = (props) => {
 
     // firebase
     const addComment = () => {
+        setIsCommenting(true)
         var db = firebase.firestore()
         db.collection('postComments').add({
             comment: input,
@@ -33,9 +35,11 @@ var Commenter = (props) => {
         })
             .then(() => {
                 setInput('')
+                setIsCommenting(false)
             })
             .catch(err => {
-                console.log(err)
+                console.log(err.message)
+                setIsCommenting(false)
             })
     }
 
@@ -74,7 +78,7 @@ var Commenter = (props) => {
                         spellCheck="false">
                     </TextareaAutosize>
                     <button className={(!props.postSelected || input === '') ? 'disabled' : null}
-                        disabled={!props.postSelected || input === '' ? true : false}
+                        disabled={!props.postSelected || input === '' || isCommenting ? true : false}
                         onClick={event => { event.preventDefault(); addComment() }}>Post</button>
                 </form>
             </div>

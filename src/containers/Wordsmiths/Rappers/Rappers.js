@@ -6,7 +6,7 @@ import firebase from '../../../Firebase'
 import Pedestal from '../Pedestal/Pedestal'
 import BestCity from '../BestCity/BestCity'
 import BestCoast from '../BestCoast/BestCoast'
-import ProfileBox from '../../Hub/ProfileBox/ProfileBox'
+import Spotlight from '../Rappers/Spotlight/Spotlight'
 
 class Rappers extends Component {
 
@@ -172,7 +172,7 @@ class Rappers extends Component {
                             </div>
                         </div>
                         <div className='spotlight__profile-box-container'>
-                            <ProfileBox
+                            <Spotlight
                                 rapper={this.state.spotlightRapper}
                                 focus={this.state.spotlightFocus}
                                 wrappedBy='Rappers'

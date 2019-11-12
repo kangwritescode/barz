@@ -5,7 +5,7 @@ import firebase from 'firebase'
 import FireApi from '../../FireApi/FireApi'
 import yox from '../../assets/yox.m4v'
 import yoxIMG from '../../assets/yoxIMG.png'
-import ProfileBox from './ProfileBox/ProfileBox'
+import HubProfileBox from './ProfileBox/HubProfileBox'
 import UploadImage from './Profile/UploadImage/UploadImage'
 import AddHandles from './Profile/AddHandles/AddHandles'
 import FollowBox from './FollowBox/FollowBox'
@@ -209,7 +209,7 @@ const Hub = (props) => {
                 <div className='columns-container'>
                     <div className='left-column'>
                         <div className='left-column__profile-box-container'>
-                            <ProfileBox
+                            <HubProfileBox
                                 setShowPhotoModal={setShowPhotoModal}
                                 toggleUploadHandles={toggleUploadHandles}
                                 toggleDeleteAcc={toggleDeleteAcc}
