@@ -110,82 +110,68 @@ const AddHandles = (props) => {
 
 
 
+    // render ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    const handleData = [
+        {
+            url: fb,
+            input: input.fb,
+            propsValue: props.handles.facebook,
+            handleName: 'fb'
+        },
+        {
+            url: ig,
+            input: input.ig,
+            propsValue: props.handles.instagram,
+            handleName: 'ig'
+        },
+        {
+            url: sc,
+            input: input.sc,
+            propsValue: props.handles.soundcloud,
+            handleName: 'sc'
+        },
+        {
+            url: yt,
+            input: input.yt,
+            propsValue: props.handles.youtube,
+            handleName: 'yt'
+        },
+    ]
+
+    const inputRender = handleData.map(inputData => (
+        <div className={`handle-wrapper `}>
+            <div className="icon-holder">
+                <img alt="" id="add-fb" src={inputData.url} />
+            </div>
+            <input
+                className={`handle-input ${inputData.input !== inputData.propsValue ? 'staged' : null}`}
+                spellcheck="false"
+                value={inputData.input}
+                onChange={(event) => setInput({
+                    ...input,
+                    [inputData.handleName]: event.target.value
+                })}
+                placeholder={'-insert link-'}></input>
+            <img
+                alt=""
+                id="pencil"
+                src={pencil}></img>
+            <img
+                alt=""
+                className={`${inputData.input !== inputData.propsValue ? 'undo-staged' : 'undo'}`}
+                src={undoIMG}
+                onClick={() => undo(inputData.handleName)}></img>
+        </div>
+    ))
+
     return (
         <div>
             <div className="ul-img-backdrop" onClick={() => props.toggleUploadHandles(false)}></div>
             <div className="add-handles-modal">
                 <div id="closeUploadImage" onClick={() => props.toggleUploadHandles(false)}><i className="fa fa-close"></i></div>
                 <h1 id="handles-header">My Media</h1>
-
-                <div className={`handle-wrapper `}>
-                    <div className="icon-holder">
-                        <img alt="" id="add-fb" src={fb} />
-                    </div>
-                    <input
-                        className={`handle-input ${input.fb !== props.handles.facebook ? 'staged' : null}`}
-                        spellcheck="false"
-                        value={input.fb}
-                        onChange={(event) => setInput({
-                            ...input,
-                            fb: event.target.value
-                        })}
-                        placeholder={'-insert link-'}></input>
-                    <img alt="" id="pencil" src={pencil}></img>
-                    <img alt="" className={`${input.fb !== props.handles.facebook ? 'undo-staged' : 'undo'}`} src={undoIMG} onClick={() => undo('fb')}></img>
-                </div>
-
-                <div className="handle-wrapper">
-                    <div className="icon-holder">
-                        <img alt="" id="add-ig" src={ig} />
-                    </div>
-                    <input
-                        className={`handle-input ${input.ig !== props.handles.instagram ? 'staged' : null}`}
-                        spellcheck="false"
-                        value={input.ig}
-                        onChange={(event) => setInput({
-                            ...input,
-                            ig: event.target.value
-                        })}
-                        placeholder={'-insert handle-'}></input>
-                    <img alt="" id="pencil" src={pencil}></img>
-                    <img alt="" className={`${input.ig !== props.handles.instagram ? 'undo-staged' : 'undo'}`} src={undoIMG} onClick={() => undo('ig')}></img>
-                </div>
-
-                <div className="handle-wrapper">
-                    <div className="icon-holder">
-                        <img alt="" id="add-sc" src={sc} />
-                    </div>
-                    <input
-                        className={`handle-input ${input.sc !== props.handles.soundcloud ? 'staged' : null}`}
-                        spellcheck="false"
-                        value={input.sc}
-                        onChange={(event) => setInput({
-                            ...input,
-                            sc: event.target.value
-                        })}
-                        placeholder={'-insert link-'}></input>
-                    <img alt="" id="pencil" src={pencil}></img>
-                    <img alt="" className={`${input.sc !== props.handles.soundcloud ? 'undo-staged' : 'undo'}`} src={undoIMG} onClick={() => undo('sc')}></img>
-
-                </div>
-
-                <div className="handle-wrapper">
-                    <div className="icon-holder">
-                        <img alt="" id="add-yt" src={yt} />
-                    </div>
-                    <input
-                        className={`handle-input ${input.yt !== props.handles.youtube ? 'staged' : null}`}
-                        spellcheck="false"
-                        value={input.yt}
-                        onChange={(event) => setInput({
-                            ...input,
-                            yt: event.target.value
-                        })}
-                        placeholder={'-insert link-'}></input>
-                    <img alt="" id="pencil" src={pencil}></img>
-                    <img alt="" className={`${input.yt !== props.handles.youtube ? 'undo-staged' : 'undo'}`} src={undoIMG} onClick={() => undo('yt')}></img>
-
-                </div>
+                {inputRender}
                 <div className={hasStagedItems() ? 'button-staged' : 'confirm-handles'} onClick={updateHandles}>Update</div>
 
             </div>
