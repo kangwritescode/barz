@@ -88,8 +88,8 @@ $border-color: rgb(206, 206, 206);
         }
         .hide {
             opacity: 0;
-            transform: translateY(0%);
-            transition: all 0.1s ease-in;
+            transform: translateY(10%);
+            transition: opacity 0.1s ease-in, transform .3s ease-in;
         }
     }
 

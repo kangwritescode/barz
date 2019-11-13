@@ -114,7 +114,7 @@ const MyBars = (props) => {
                                 <span><i className="fas fa-comment" id="my-bars-comment"></i></span>
                                 {getCommentCount(post.pid, comments)}
                             </div>
-                            <p>{post.content.lineOne + "..."}</p>
+                            <p>{"\"" + post.content.lineOne + "...\""}</p>
                         </div>
                     )
                 })}

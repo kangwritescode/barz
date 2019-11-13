@@ -146,10 +146,12 @@
 
 .likes .vote-icon-container .hide {
   opacity: 0;
-  -webkit-transform: translateY(0%);
-          transform: translateY(0%);
-  -webkit-transition: all 0.1s ease-in;
-  transition: all 0.1s ease-in;
+  -webkit-transform: translateY(10%);
+          transform: translateY(10%);
+  -webkit-transition: opacity 0.1s ease-in, -webkit-transform .3s ease-in;
+  transition: opacity 0.1s ease-in, -webkit-transform .3s ease-in;
+  transition: opacity 0.1s ease-in, transform .3s ease-in;
+  transition: opacity 0.1s ease-in, transform .3s ease-in, -webkit-transform .3s ease-in;
 }
 
 .likes .total-score {
