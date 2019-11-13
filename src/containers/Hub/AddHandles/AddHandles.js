@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { UseState, Component, useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { postUserData } from '../../../store/actionCreators'
 
@@ -7,182 +7,190 @@ import sc from '../../../assets/modalHandles/add-sc.png'
 import yt from '../../../assets/modalHandles/add-yt.png'
 import pencil from '../../../assets/edit-pencil.png'
 import ig from '../../../assets/handles/ig.png'
-import undo from '../../../assets/undo.png'
+import undoIMG from '../../../assets/undo.png'
 import './AddHandles.css'
 
-class AddHandles extends Component {
+const AddHandles = (props) => {
 
-    state = {
-        fb_input: '',
-        ig_input: '',
-        sc_input: '',
-        yt_input: '',
+    const [input, setInput] = useState({
+        fb: '',
+        ig: '',
+        sc: '',
+        yt: ''
+    })
+    const [backup, setBackup] = useState({
+        fb: '',
+        ig: '',
+        sc: '',
+        yt: ''
+    })
 
-        backup_fb: '',
-        backup_ig: '',
-        backup_sc: '',
-        backup_yt: '',
-    }
 
-    componentDidMount = () => {
-        this.setState({
-            fb_input: this.props.handles.facebook,
-            ig_input: this.props.handles.instagram,
-            sc_input: this.props.handles.soundcloud,
-            yt_input: this.props.handles.youtube,
-
-            backup_fb: this.props.handles.facebook,
-            backup_ig: this.props.handles.instagram,
-            backup_sc: this.props.handles.soundcloud,
-            backup_yt: this.props.handles.youtube,
-
+    useEffect(() => {
+        console.log('yaaaha')
+        setInput({
+            fb: props.handles.facebook,
+            ig: props.handles.instagram,
+            sc: props.handles.soundcloud,
+            yt: props.handles.youtube
         })
-    }
-
-    handleInputHandler = (event, handle) => {
-        this.setState({
-            ...this.state,
-            [handle]: event.target.value
+        setBackup({
+            fb: props.handles.facebook,
+            ig: props.handles.instagram,
+            sc: props.handles.soundcloud,
+            yt: props.handles.youtube
         })
-    }
+        return () => {
+        };
+    }, [])
 
-    updateHandles = async () => {
+
+
+    const updateHandles = async () => {
 
         try {
-            await this.props.updateProfile(this.props.uid, {
+            await props.updateProfile(props.uid, {
                 handles: {
-                    facebook: this.state.fb_input,
-                    instagram: this.state.ig_input,
-                    soundcloud: this.state.sc_input,
-                    youtube: this.state.yt_input
+                    facebook: input.fb,
+                    instagram: input.ig,
+                    soundcloud: input.sc,
+                    youtube: input.yt
                 }
             })
-            this.setState({
-                ...this.state,
-                backup_fb: this.state.fb_input,
-                backup_ig: this.state.ig_input,
-                backup_sc: this.state.sc_input,
-                backup_yt: this.state.yt_input
+            setBackup({
+                fb: input.fb,
+                ig: input.ig,
+                sc: input.sc,
+                yt: input.yt
             })
         }
         catch (err) {
             console.log(err)
         }
-        
+
     }
 
-    undo = (handle) => {
+    const undo = (handle) => {
 
         switch (handle) {
             case 'fb':
-                this.setState({
-                    ...this.state,
-                    fb_input: this.state.backup_fb
+                return setInput({
+                    ...input,
+                    fb: backup.fb
                 })
-                break;
             case 'ig':
-                this.setState({
-                    ...this.state,
-                    ig_input: this.state.backup_ig
+                return setInput({
+                    ...input,
+                    ig: backup.ig
                 })
-                break;
             case 'sc':
-                this.setState({
-                    ...this.state,
-                    sc_input: this.state.backup_sc
+                return setInput({
+                    ...input,
+                    sc: backup.sc
                 })
-                break;
             case 'yt':
-                this.setState({
-                    ...this.state,
-                    yt_input: this.state.backup_yt
+                return setInput({
+                    ...input,
+                    yt: backup.yt
                 })
-                break;
             default:
                 break
         }
     }
 
-    hasStagedItems = () => {
-        if (this.state.fb_input !== this.props.handles.facebook || this.state.ig_input !== this.props.handles.instagram ||
-            this.state.sc_input !== this.props.handles.soundcloud || this.state.yt_input !== this.props.handles.youtube) {
+    const hasStagedItems = () => {
+        if ((input.fb !== props.handles.facebook)
+            || (input.ig !== props.handles.instagram)
+            || (input.sc !== props.handles.soundcloud)
+            || (input.yt !== props.handles.youtube)) {
             return true
         }
         return false
     }
 
-    render() {
 
-        return (
-            <div>
-                <div className="ul-img-backdrop" onClick={() => this.props.toggleUploadHandles(false)}></div>
-                <div className="add-handles-modal">
-                <div id="closeUploadImage" onClick={() => this.props.toggleUploadHandles(false)}><i className="fa fa-close"></i></div>
-                    <h1 id="handles-header">My Media</h1>
 
-                    <div className={`handle-wrapper `}>
-                        <div className="icon-holder">
-                            <img alt=""  id="add-fb" src={fb} />
-                        </div>
-                        <input
-                            className={`handle-input ${this.state.fb_input !== this.props.handles.facebook ? 'staged' : null}`}
-                            spellcheck="false"
-                            value={this.state.fb_input}
-                            onChange={(event) => this.handleInputHandler(event, 'fb_input')}
-                            placeholder={'-insert link-'}></input>
-                        <img alt=""  id="pencil" src={pencil}></img>
-                        <img alt=""  className={`${this.state.fb_input !== this.props.handles.facebook ? 'undo-staged' : 'undo'}`} src={undo} onClick={() => this.undo('fb')}></img>
+    return (
+        <div>
+            <div className="ul-img-backdrop" onClick={() => props.toggleUploadHandles(false)}></div>
+            <div className="add-handles-modal">
+                <div id="closeUploadImage" onClick={() => props.toggleUploadHandles(false)}><i className="fa fa-close"></i></div>
+                <h1 id="handles-header">My Media</h1>
+
+                <div className={`handle-wrapper `}>
+                    <div className="icon-holder">
+                        <img alt="" id="add-fb" src={fb} />
                     </div>
+                    <input
+                        className={`handle-input ${input.fb !== props.handles.facebook ? 'staged' : null}`}
+                        spellcheck="false"
+                        value={input.fb}
+                        onChange={(event) => setInput({
+                            ...input,
+                            fb: event.target.value
+                        })}
+                        placeholder={'-insert link-'}></input>
+                    <img alt="" id="pencil" src={pencil}></img>
+                    <img alt="" className={`${input.fb !== props.handles.facebook ? 'undo-staged' : 'undo'}`} src={undoIMG} onClick={() => undo('fb')}></img>
+                </div>
 
-                    <div className="handle-wrapper">
-                        <div className="icon-holder">
-                            <img alt=""  id="add-ig" src={ig} />
-                        </div>
-                        <input
-                            className={`handle-input ${this.state.ig_input !== this.props.handles.instagram ? 'staged' : null}`}
-                            spellcheck="false"
-                            value={this.state.ig_input}
-                            onChange={(event) => this.handleInputHandler(event, 'ig_input')}
-                            placeholder={'-insert handle-'}></input>
-                        <img alt=""  id="pencil" src={pencil}></img>
-                        <img alt=""  className={`${this.state.ig_input !== this.props.handles.instagram ? 'undo-staged' : 'undo'}`} src={undo} onClick={() => this.undo('ig')}></img>
+                <div className="handle-wrapper">
+                    <div className="icon-holder">
+                        <img alt="" id="add-ig" src={ig} />
                     </div>
+                    <input
+                        className={`handle-input ${input.ig !== props.handles.instagram ? 'staged' : null}`}
+                        spellcheck="false"
+                        value={input.ig}
+                        onChange={(event) => setInput({
+                            ...input,
+                            ig: event.target.value
+                        })}
+                        placeholder={'-insert handle-'}></input>
+                    <img alt="" id="pencil" src={pencil}></img>
+                    <img alt="" className={`${input.ig !== props.handles.instagram ? 'undo-staged' : 'undo'}`} src={undoIMG} onClick={() => undo('ig')}></img>
+                </div>
 
-                    <div className="handle-wrapper">
-                        <div className="icon-holder">
-                            <img alt=""  id="add-sc" src={sc} />
-                        </div>
-                        <input
-                            className={`handle-input ${this.state.sc_input !== this.props.handles.soundcloud ? 'staged' : null}`}
-                            spellcheck="false"
-                            value={this.state.sc_input}
-                            onChange={(event) => this.handleInputHandler(event, 'sc_input')}
-                            placeholder={'-insert link-'}></input>
-                        <img alt=""  id="pencil" src={pencil}></img>
-                        <img alt=""  className={`${this.state.sc_input !== this.props.handles.soundcloud ? 'undo-staged' : 'undo'}`} src={undo} onClick={() => this.undo('sc')}></img>
-
+                <div className="handle-wrapper">
+                    <div className="icon-holder">
+                        <img alt="" id="add-sc" src={sc} />
                     </div>
-
-                    <div className="handle-wrapper">
-                        <div className="icon-holder">
-                            <img alt=""  id="add-yt" src={yt} />
-                        </div>
-                        <input
-                            className={`handle-input ${this.state.yt_input !== this.props.handles.youtube ? 'staged' : null}`}
-                            spellcheck="false"
-                            value={this.state.yt_input}
-                            onChange={(event) => this.handleInputHandler(event, 'yt_input')}
-                            placeholder={'-insert link-'}></input>
-                        <img alt=""  id="pencil" src={pencil}></img>
-                        <img alt=""  className={`${this.state.yt_input !== this.props.handles.youtube ? 'undo-staged' : 'undo'}`} src={undo} onClick={() => this.undo('yt')}></img>
-
-                    </div>
-                    <div className={this.hasStagedItems() ? 'button-staged' : 'confirm-handles'} onClick={this.updateHandles.bind(this)}>Update</div>
+                    <input
+                        className={`handle-input ${input.sc !== props.handles.soundcloud ? 'staged' : null}`}
+                        spellcheck="false"
+                        value={input.sc}
+                        onChange={(event) => setInput({
+                            ...input,
+                            sc: event.target.value
+                        })}
+                        placeholder={'-insert link-'}></input>
+                    <img alt="" id="pencil" src={pencil}></img>
+                    <img alt="" className={`${input.sc !== props.handles.soundcloud ? 'undo-staged' : 'undo'}`} src={undoIMG} onClick={() => undo('sc')}></img>
 
                 </div>
+
+                <div className="handle-wrapper">
+                    <div className="icon-holder">
+                        <img alt="" id="add-yt" src={yt} />
+                    </div>
+                    <input
+                        className={`handle-input ${input.yt !== props.handles.youtube ? 'staged' : null}`}
+                        spellcheck="false"
+                        value={input.yt}
+                        onChange={(event) => setInput({
+                            ...input,
+                            yt: event.target.value
+                        })}
+                        placeholder={'-insert link-'}></input>
+                    <img alt="" id="pencil" src={pencil}></img>
+                    <img alt="" className={`${input.yt !== props.handles.youtube ? 'undo-staged' : 'undo'}`} src={undoIMG} onClick={() => undo('yt')}></img>
+
+                </div>
+                <div className={hasStagedItems() ? 'button-staged' : 'confirm-handles'} onClick={updateHandles}>Update</div>
+
             </div>
-        )
-    }
+        </div>
+    )
 }
 
 const mapStateToProps = state => {

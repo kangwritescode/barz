@@ -7,7 +7,7 @@ class ThesModal extends Component {
 
     checkResponsetype = (arr) => {
         try {
-            if (arr.length == 0 || arr.every(datum => typeof datum === 'string')) {
+            if (arr.length === 0 || arr.every(datum => typeof datum === 'string')) {
                 return 'suggestions'
             } else {
                 return 'definitions'
