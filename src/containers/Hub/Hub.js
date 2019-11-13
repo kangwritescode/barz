@@ -2,21 +2,21 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import './Hub.css'
 import firebase from 'firebase'
-import FireApi from '../../FireApi/FireApi'
+import FireApi from '../../Api/FireApi/FireApi'
 import yox from '../../assets/yox.m4v'
 import yoxIMG from '../../assets/yoxIMG.png'
-import HubProfileBox from './ProfileBox/HubProfileBox'
-import UploadImage from './Profile/UploadImage/UploadImage'
-import AddHandles from './Profile/AddHandles/AddHandles'
+import ProfileBox from './ProfileBox/ProfileBox'
+import UploadImage from './ProfileBox/UploadImage/UploadImage'
+import AddHandles from './AddHandles/AddHandles'
 import FollowBox from './FollowBox/FollowBox'
-import Turntable from '../../components/Scribble/Turntable/Turntable'
-import Commenter from '../Judge/JudgeBarz/ManyView/Commenter/Commenter'
+import Turntable from '../Scribble/Turntable/Turntable'
+import Commenter from '../Judge/ManyView/Commenter/Commenter'
 import HubNavBar from './HubNavBar/HubNavBar'
-import ManyPost from '../Judge/JudgeBarz/ManyView/ManyPost/ManyPost'
+import ManyPost from '../Judge/ManyView/ManyPost/ManyPost'
 import GenID from '../../shared/GenID'
-import DeleteComment from '../../components/Scribble/MyBars/ViewedBar/DeleteComment/DeleteComment'
+import DeleteComment from '../Scribble/MyBars/ViewedBar/DeleteComment/DeleteComment'
 import HubTools from './HubTools/HubTools'
-import DeleteAccount from './Profile/DeleteAccount/DeleteAccount'
+import DeleteAccount from './DeleteAccount/DeleteAccount'
 import CircularSpinner from '../../shared/CircularSpinner/CircularSpinner'
 
 
@@ -229,7 +229,7 @@ const Hub = (props) => {
                 <div className='columns-container'>
                     <div className='left-column'>
                         <div className='left-column__profile-box-container'>
-                            <HubProfileBox
+                            <ProfileBox
                                 setShowPhotoModal={setShowPhotoModal}
                                 toggleUploadHandles={toggleUploadHandles}
                                 toggleDeleteAcc={toggleDeleteAcc}

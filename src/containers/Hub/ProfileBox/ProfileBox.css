@@ -1,0 +1,371 @@
+@import url("https://fonts.googleapis.com/css?family=Antic+Slab&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Righteous&display=swap");
+.hub-profile-box {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.801);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.199);
+}
+
+.hub-profile-box .hub-profile-box__three-dots {
+  position: absolute;
+  z-index: 3;
+  top: 0.5em;
+  right: 0.4em;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.hub-profile-box .hub-profile-box__three-dots .dot {
+  position: relative;
+  height: 4px;
+  width: 4px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.678);
+  margin-left: 2px;
+}
+
+.hub-profile-box .hub-profile-box__drop-options {
+  position: absolute;
+  z-index: 5;
+  top: 1.1em;
+  right: 0.5em;
+  padding: 0.2em;
+  border-radius: 0.2em;
+  background-color: #0a0a0a;
+  cursor: pointer;
+}
+
+.hub-profile-box .hub-profile-box__drop-options .drop-options__log-out {
+  cursor: pointer;
+  position: relative;
+  width: 9em;
+  height: 2em;
+  font-size: 0.7em;
+  letter-spacing: 0.1em;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  background: rgba(255, 255, 255, 0.13);
+  color: rgba(255, 255, 255, 0.795);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.hub-profile-box .hub-profile-box__drop-options .drop-options__log-out:hover {
+  background: rgba(255, 255, 255, 0.178);
+}
+
+.hub-profile-box .hub-profile-box__drop-options .drop-options__log-out:active {
+  background: rgba(255, 255, 255, 0.205);
+}
+
+.hub-profile-box .hub-profile-box__settings {
+  position: absolute;
+  z-index: 3;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.548);
+  font-size: 0.7em;
+  left: 0.7em;
+  top: 0.5em;
+}
+
+.hub-profile-box .hub-profile-box__block-one {
+  position: relative;
+  z-index: 1;
+  height: 13.6em;
+  width: 100%;
+  color: rgba(255, 255, 255, 0.904);
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  padding-top: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.hub-profile-box .hub-profile-box__block-one .block-one__contents-wrapper {
+  height: 100%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-animation: gentle-fade-in 0.3s ease-in;
+          animation: gentle-fade-in 0.3s ease-in;
+}
+
+.hub-profile-box .hub-profile-box__block-one .block-one__contents-wrapper h2 {
+  position: relative;
+  top: 0em;
+  font-size: 1.3em;
+  color: "lightgrey";
+  font-family: "righteous";
+}
+
+.hub-profile-box .hub-profile-box__block-one .block-one__contents-wrapper .contents-wrapper__img-wrapper {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  background-color: white;
+}
+
+.hub-profile-box .hub-profile-box__block-one .block-one__contents-wrapper .contents-wrapper__img-wrapper img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+.hub-profile-box .hub-profile-box__block-one .block-one__contents-wrapper .contents-wrapper__username {
+  font-size: 1.1em;
+  margin-top: 0.3rem;
+  margin-bottom: 0.1rem;
+}
+
+.hub-profile-box .hub-profile-box__block-one .block-one__contents-wrapper .block-one__select-a-user {
+  position: absolute;
+  top: 4em;
+}
+
+.hub-profile-box .hub-profile-box__block-one .block-one__contents-wrapper .contents-wrapper__address-gender {
+  font-size: 0.7rem;
+  font-family: "antic slab";
+  margin-bottom: 0.7rem;
+}
+
+.hub-profile-box .hub-profile-box__block-one .block-one__contents-wrapper .contents-wrapper__handles-container {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  width: 45%;
+  height: 0.4em;
+  margin-bottom: 0.3rem;
+}
+
+.hub-profile-box .hub-profile-box__block-one .block-one__contents-wrapper .contents-wrapper__handles-container .icon {
+  color: white;
+  font-size: 0.7rem;
+  cursor: pointer;
+}
+
+.hub-profile-box .hub-profile-box__block-one .block-one__contents-wrapper .contents-wrapper__handles-container .fa-facebook-f {
+  color: blue;
+}
+
+.hub-profile-box .hub-profile-box__block-one .block-one__contents-wrapper .contents-wrapper__handles-container .fa-instagram {
+  color: purple;
+}
+
+.hub-profile-box .hub-profile-box__block-one .block-one__contents-wrapper .contents-wrapper__handles-container .fa-soundcloud {
+  color: orange;
+}
+
+.hub-profile-box .hub-profile-box__block-one .block-one__contents-wrapper .contents-wrapper__handles-container .fa-youtube {
+  color: red;
+}
+
+.hub-profile-box .hub-profile-box__block-one .block-one__contents-wrapper .contents-wrapper__handles-container .active-handle {
+  opacity: 0.6;
+}
+
+.hub-profile-box .hub-profile-box__block-one .block-one__contents-wrapper .contents-wrapper__blurb {
+  position: relative;
+  background: transparent;
+  resize: none;
+  margin-top: 1em;
+  font-family: "permanent marker";
+  color: rgba(255, 248, 248, 0.824);
+  text-align: center;
+  font-size: 0.8em;
+  line-height: 1.1em;
+  width: 70%;
+  height: 3.3em;
+  cursor: pointer;
+  border: none;
+  border: 1px dotted rgba(255, 255, 255, 0);
+}
+
+.hub-profile-box .hub-profile-box__block-one .block-one__contents-wrapper .contents-wrapper__blurb:focus {
+  cursor: text;
+  border: 1px dotted rgba(255, 255, 255, 0.24);
+}
+
+.hub-profile-box .hub-profile-box__block-one .block-one__contents-wrapper .contents-wrapper__blurb:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+
+.hub-profile-box .hub-profile-box__block-one .block-one__contents-wrapper .contents-wrapper__blurb:focus:-ms-input-placeholder {
+  color: transparent;
+}
+
+.hub-profile-box .hub-profile-box__block-one .block-one__contents-wrapper .contents-wrapper__blurb:focus::-ms-input-placeholder {
+  color: transparent;
+}
+
+.hub-profile-box .hub-profile-box__block-one .block-one__contents-wrapper .contents-wrapper__blurb:focus::placeholder {
+  color: transparent;
+}
+
+.hub-profile-box .hub-profile-box__block-two {
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.075);
+  font-family: "righteous";
+  color: rgba(255, 255, 255, 0.733);
+  font-size: 0.8em;
+  letter-spacing: 0.05em;
+  height: 5.5em;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.hub-profile-box .hub-profile-box__block-two .block-two__place-point-container {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-animation: gentle-fade-in 0.3s ease-in;
+          animation: gentle-fade-in 0.3s ease-in;
+}
+
+.hub-profile-box .hub-profile-box__block-two .follow-button {
+  position: absolute;
+  top: 0em;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  height: 2.2em;
+  width: 10em;
+  border-radius: 5em;
+  background-color: #151515;
+  -webkit-box-shadow: 2px 2px 2px black;
+          box-shadow: 2px 2px 2px black;
+  font-family: "righteous";
+  font-size: 0.3em;
+  border: 1px solid rgba(255, 255, 255, 0.214);
+  color: white;
+  letter-spacing: 0.07em;
+  z-index: 6;
+  cursor: pointer;
+}
+
+.hub-profile-box .hub-profile-box__block-two .follow-button:active {
+  -webkit-box-shadow: 0px 0px 5px black;
+          box-shadow: 0px 0px 5px black;
+  height: 2em;
+  width: 9.8em;
+}
+
+@-webkit-keyframes gentle-fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes gentle-fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/*# sourceMappingURL=ProfileBox.css.map */

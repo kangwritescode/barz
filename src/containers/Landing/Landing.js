@@ -6,7 +6,7 @@ import splashVid from '../../assets/splash-vid.m4v'
 import LandingNav from './LandingNav/LandingNav'
 import firebase from 'firebase'
 import RegForm from './RegForm/RegForm'
-import ForgotPassword from '../Authenticate/SignIn/ForgotPassword/ForgotPassword'
+import ForgotPassword from './ForgotPassword/ForgotPassword'
 
 const Landing = (props) => {
 

@@ -5,11 +5,9 @@ import * as actionTypes from '../../store/actions'
 import vinyl2 from '../../assets/vinyl2.mp4'
 import vinyl2_IMG from '../../assets/vinyl2_IMG.png'
 import nafla from '../../assets/nafla-blows.m4v'
-import JudgeNavBar from '../Judge/JudgeBarz/JudgeNavBar/JudgeNavBar'
-import ManyView from './JudgeBarz/ManyView/ManyView'
-import SingleView from './JudgeBarz/SingleView/SingleView'
-import ViewedPost from '../../components/Scribble/MyBars/ViewedBar/ViewedPost'
-import ProSpotlight from './ProSpotlight/ProSpotlight'
+import JudgeNavBar from './JudgeNavBar/JudgeNavBar'
+import ManyView from './ManyView/ManyView'
+import SingleView from './SingleView/SingleView'
 
 
 
@@ -24,9 +22,6 @@ class Judge extends Component {
 
         // manyView viewed post
         showPost: false,
-        viewedPost: '',
-
-        showProSpotlight: false,
         proRapper: null
     }
 
@@ -46,12 +41,6 @@ class Judge extends Component {
         })
     }
 
-    toggleProSpotlight = (bool) => {
-        this.setState({
-            ...this.state,
-            showProSpotlight: bool
-        })
-    }
 
 
     render() {
@@ -72,8 +61,7 @@ class Judge extends Component {
                     view={this.state.view}
                     coast={this.state.coast}
                     time={this.state.time}
-                    toggleModal={this.toggleModal}
-                    togglePro={this.toggleProSpotlight} />
+                    toggleModal={this.toggleModal}/>
             )
         }
         return (
@@ -90,8 +78,6 @@ class Judge extends Component {
                         coast={this.state.coast}
                         updateJudgeState={this.updateJudgeState} />
                     {view} 
-                    {this.state.showPost ? <ViewedPost toggleModal={this.toggleModal} pid={this.state.viewedPost} /> : null}
-                    {this.state.showProSpotlight ? <ProSpotlight toggleModal={this.toggleProSpotlight}/> : null}
                 </div>
             </div>
 

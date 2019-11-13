@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './Spotlight.css'
-import PhotoContainer from '../../../Hub/Profile/PhotoContainer/PhotoContainer'
+import PhotoContainer from '../../../Hub/ProfileBox/PhotoContainer/PhotoContainer'
 import * as actionTypes from '../../../../store/actions'
 import firebase from 'firebase'
 import { getOrdinal } from '../../../../shared/getOrdinal'
