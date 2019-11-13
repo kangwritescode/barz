@@ -197,12 +197,13 @@
   background-color: rgba(0, 0, 0, 0.034);
 }
 
-.commenter-body .post-comment button:active {
+.commenter-body .post-comment button:active, .commenter-body .post-comment button:focus {
   background-color: rgba(0, 0, 0, 0.075);
 }
 
 .commenter-body .post-comment .disabled {
   color: #6d6d6d;
+  cursor: not-allowed;
 }
 
 .commenter-body .post-comment .disabled:hover {

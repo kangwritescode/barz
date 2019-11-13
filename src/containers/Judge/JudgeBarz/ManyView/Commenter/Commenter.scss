@@ -145,19 +145,22 @@ $edges: 0.3em;
             letter-spacing: 0.1rem;
             font-size: 0.7rem;
             color: black;
+            ;
             //  text-shadow: 1.2px 1.2px rgb(207, 207, 207);
             &:hover {
                 background-color: rgba(0, 0, 0, 0.034);
             }
-            &:active {
+            &:active, &:focus {
                 background-color: rgba(0, 0, 0, 0.075);
             }
+
         }
         .disabled {
             color: rgb(109, 109, 109);
             &:hover {
                 background-color: transparent;
             }
+            cursor: not-allowed;
         }
     }
 }
