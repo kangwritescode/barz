@@ -86,7 +86,7 @@ const ManyPost = (props) => {
     }
     const coastColor = colorDict[props.address.region]
 
-    console.log(myVote, 'myVoteeeee')
+
     return (
 
         <div

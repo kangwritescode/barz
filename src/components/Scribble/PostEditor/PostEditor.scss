@@ -13,7 +13,7 @@
     right: 0em;
     z-index: 20;
     @include flex-centered(column);
-    animation: editor-in .3s ease-in;
+    animation: editor-in 0.3s ease-in;
 
     @keyframes editor-in {
         0% {
@@ -33,16 +33,72 @@
         left: 0em;
         right: 0em;
         background-color: rgba(0, 0, 0, 0.767);
-        z-index: 20;
+        z-index: 101;
     }
     .editor-layout__content-container {
         position: relative;
-        z-index: 30;
+        z-index: 102;
         @include flex-centered(row);
         align-items: flex-start;
         pointer-events: none;
-        .content-container-edit-container {
-            width: 18em;
+
+        .content-container__edit-comment-container {
+            position: relative;
+            width: 16em;
+            margin-left: 0.7em;
+            position: relative;
+            z-index: 5;
+            pointer-events: none;
+            .edit-comment-container__edit {
+                pointer-events: painted;
+                position: relative;
+                border-radius: 0.3em;
+                margin-bottom: 1.4em;
+                width: 100%;
+                height: 2.5em;
+                border: 2px solid rgba(255, 255, 255, 0.13);
+                background: rgba(0, 0, 0, 0.849);
+                font-size: 0.8em;
+                color: rgba(255, 255, 255, 0.762);
+                font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+                letter-spacing: 0.07em;
+                opacity: .8;
+                cursor: pointer;
+                &:hover {
+                    opacity: .9;
+                }
+                &:active {
+                    opacity: 1
+                }
+                .edit__header {
+                    height: 100%;
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .edit__body {
+                    position: relative;
+                    width: 100%;
+                    height: 70%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    .body__delete {
+                        z-index: 300;
+                        position: relative;
+                        height: 2.8em;
+                        width: 100%;
+                        background: transparent;
+                        letter-spacing: 0.05em;
+                        border: none;
+                        color: rgba(255, 255, 255, 0.68);
+                        font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+                        // border: none;
+                    }
+                }
+            }
         }
     }
 }

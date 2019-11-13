@@ -5,6 +5,7 @@ import FireApi from '../../../FireApi/FireApi'
 import ManyPost from '../../../containers/Judge/JudgeBarz/ManyView/ManyPost/ManyPost'
 import Commenter from '../../../containers/Judge/JudgeBarz/ManyView/Commenter/Commenter'
 import DeleteComment from '../MyBars/ViewedBar/DeleteComment/DeleteComment'
+import DeletePost from '../MyBars/ViewedBar/DeletePost/DeletePost'
 import DotSpinner from '../../../shared/DotSpinner/DotSpinner'
 import CircularSpinner from '../../../shared/CircularSpinner/CircularSpinner'
 
@@ -14,6 +15,7 @@ const PostEditor = (props) => {
     const [votes, setVotes] = useState([])
     const [post, setPost] = useState(null)
     const [cid, setCid] = useState(null)
+    const [pidForDelete, setPidForDelete] = useState(null)
 
     useEffect(() => {
 
@@ -27,7 +29,7 @@ const PostEditor = (props) => {
         };
     }, [props.pid])
 
-    var content = <CircularSpinner customStyle={{zIndex: '100'}}/>
+    var content = <CircularSpinner customStyle={{ zIndex: '110' }} />
     if (post) {
         content = (
             <div className={`editor-layout__content-container`}>
@@ -35,17 +37,25 @@ const PostEditor = (props) => {
                     comments={comments.filter(post => post.pid === props.pid)}
                     selectPost={() => null}
                     votes={votes.filter(vote => vote.pid === props.pid)}
+                    customStyle={{ paragraph: { width: '17em' } }}
                     {...post} />
-                <div className={`content-container-edit-container`}>
+                <div className={`content-container__edit-comment-container`}>
+                    <div
+                        className={`edit-comment-container__edit`}
+                        onClick={props.pid ? () => setPidForDelete(props.pid) : null}>
+                        <div className={`edit__header`}>
+                            <div>Options</div>
+                        </div>
+                    </div>
                     <Commenter
                         toggleDeleteCommentModal={(bool, cid) => setCid(cid)}
                         customStyle={{
                             body: {
-                                height: '16em',
+                                height: '19.6em',
                                 backgroundColor: 'rgba(255, 255, 255, 0.95)'
                             },
                             header: {
-                                backgroundColor: 'rgba(255, 255, 255, 0.95)'
+                                backgroundColor: 'rgba(255, 255, 255, 0.95)',
                             }
                         }}
                         selectedPost={post}
@@ -64,6 +74,14 @@ const PostEditor = (props) => {
                     toggleDeleteCommentModal={() => setCid(false)}
                 />
                 : null}
+            {pidForDelete ?
+                <DeletePost
+                    pid={pidForDelete}
+                    toggle={setPidForDelete}
+                    toggleEditor={props.toggleEditor}
+                />
+                : null}
+
             <div className='editor-backdrop' onClick={() => props.toggleEditor(null)} />
             {content}
         </div>

@@ -18,8 +18,8 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-animation: editor-in .3s ease-in;
-          animation: editor-in .3s ease-in;
+  -webkit-animation: editor-in 0.3s ease-in;
+          animation: editor-in 0.3s ease-in;
 }
 
 @-webkit-keyframes editor-in {
@@ -55,12 +55,12 @@
   left: 0em;
   right: 0em;
   background-color: rgba(0, 0, 0, 0.767);
-  z-index: 20;
+  z-index: 101;
 }
 
 .editor-layout .editor-layout__content-container {
   position: relative;
-  z-index: 30;
+  z-index: 102;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -80,7 +80,82 @@
   pointer-events: none;
 }
 
-.editor-layout .editor-layout__content-container .content-container-edit-container {
-  width: 18em;
+.editor-layout .editor-layout__content-container .content-container__edit-comment-container {
+  position: relative;
+  width: 16em;
+  margin-left: 0.7em;
+  position: relative;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.editor-layout .editor-layout__content-container .content-container__edit-comment-container .edit-comment-container__edit {
+  pointer-events: painted;
+  position: relative;
+  border-radius: 0.3em;
+  margin-bottom: 1.4em;
+  width: 100%;
+  height: 2.5em;
+  border: 2px solid rgba(255, 255, 255, 0.13);
+  background: rgba(0, 0, 0, 0.849);
+  font-size: 0.8em;
+  color: rgba(255, 255, 255, 0.762);
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  letter-spacing: 0.07em;
+  opacity: .8;
+  cursor: pointer;
+}
+
+.editor-layout .editor-layout__content-container .content-container__edit-comment-container .edit-comment-container__edit:hover {
+  opacity: .9;
+}
+
+.editor-layout .editor-layout__content-container .content-container__edit-comment-container .edit-comment-container__edit:active {
+  opacity: 1;
+}
+
+.editor-layout .editor-layout__content-container .content-container__edit-comment-container .edit-comment-container__edit .edit__header {
+  height: 100%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.editor-layout .editor-layout__content-container .content-container__edit-comment-container .edit-comment-container__edit .edit__body {
+  position: relative;
+  width: 100%;
+  height: 70%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.editor-layout .editor-layout__content-container .content-container__edit-comment-container .edit-comment-container__edit .edit__body .body__delete {
+  z-index: 300;
+  position: relative;
+  height: 2.8em;
+  width: 100%;
+  background: transparent;
+  letter-spacing: 0.05em;
+  border: none;
+  color: rgba(255, 255, 255, 0.68);
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
 /*# sourceMappingURL=PostEditor.css.map */
