@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import * as actionTypes from '../../../store/actions'
 import './Turntable.css'
@@ -6,48 +6,86 @@ import glare from '../../../assets/glare.png'
 import arm from '../../../assets/arm.png'
 import Slider from './Slider/Slider'
 
-class Turntable extends Component {
+const Turntable = (props) => {
+    const [animateOkay, setAnimateOkay] = useState(true)
 
-    playMusic = () => {
+    const getGenre = (num) => {
+        switch (num) {
+            case 1:
+                return 'lofi'
+            case 2:
+                return 'boombap'
+            case 3:
+                return 'dilla'
+            case 0:
+                return 'chillhop'
+            default:
+                return 'error'
+        }
+    }
+
+    useEffect(() => {
+        if (props.playing) {
+            setAnimateOkay(false)
+        }
+        return () => {
+
+        };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
+
+    const playMusic = () => {
 
         // change song, play music
-        var songs = Object.values(this.props.allStations)
-        this.props.changeURL(songs[this.props.songPointer])
-        this.props.playMusic()
+        if (!animateOkay) {
+            setAnimateOkay(true)
+        }
+        var songs = Object.values(props.allStations)
+        props.changeURL(songs[props.songPointer])
+        props.playMusic()
+        console.log(props.allStations)
 
         // stage correct pointer
-        if (this.props.songPointer === songs.length - 1) { this.props.setSongPointer(0) }
-        else { this.props.setSongPointer(this.props.songPointer + 1) }
+        if (props.songPointer === songs.length - 1) { props.setSongPointer(0) }
+        else { props.setSongPointer(props.songPointer + 1) }
     }
 
+    var initialAnimate = !animateOkay ? { animation: 'none' } : null
 
+    return (
+        <div className="turntable">
+            <div id="click-space" onClick={props.playing ? props.stopMusic : playMusic}></div>
+            <Slider customStyle={props.customStyle ? props.customStyle.slider : null} />
+            <div id="vinyl" style={props.customStyle ? props.customStyle.vinyl : null}>
 
-    render() {
+                {props.playing ?
+                    <h1
+                        className={`turntable__word-animation`}
+                        style={initialAnimate}>
+                        {getGenre(props.songPointer)}
+                    </h1> : null}
+                <img
+                    alt=""
+                    className={props.playing ? 'spinning' : null}
+                    style={props.customStyle ? props.customStyle.glare : null}
+                    id="glare" src={glare} />
+                <div id="inner-vinyl">
 
-
-        return (
-            <div className="turntable">
-                <div id="click-space" onClick={this.props.playing ? this.props.stopMusic : this.playMusic}></div>
-                <Slider customStyle={this.props.customStyle ? this.props.customStyle.slider : null}/>
-                <div id="vinyl" style={this.props.customStyle ? this.props.customStyle.vinyl : null}>
-                    <img 
-                        alt="" 
-                        className={this.props.playing ? 'spinning' : null} 
-                        style={this.props.customStyle ? this.props.customStyle.glare : null}
-                        id="glare" src={glare} />
-                    <div id="inner-vinyl"></div>
-                    <div id="dot"></div>
                 </div>
-                <div className={`arm-container ${this.props.playing ? 'record-play' : 'record-stop'}`} >
-                    <img alt="" id="arm" src={arm} />
-                </div>
-                <div id="buttons-container">
-                    <div className={`button`} id={`${this.props.playing ? null : 'button-active'}`}></div>
-                    <div className={`button`} id={`${this.props.playing ? 'button-active' : null}`}></div>
+                <div id="dot">
+
                 </div>
             </div>
-        )
-    }
+            <div className={`arm-container ${props.playing ? 'record-play' : 'record-stop'}`} >
+                <img alt="" id="arm" src={arm} />
+            </div>
+            <div id="buttons-container">
+                <div className={`button`} id={`${props.playing ? null : 'button-active'}`}></div>
+                <div className={`button`} id={`${props.playing ? 'button-active' : null}`}></div>
+            </div>
+        </div>
+    )
 }
 
 let mapStatetoProps = state => {

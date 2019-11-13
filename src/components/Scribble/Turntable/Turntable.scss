@@ -1,38 +1,61 @@
 .turntable {
-  position: relative;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.664);
-  color: rgb(139, 139, 139);
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.664);
+    color: rgb(139, 139, 139);
 
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .turntable #vinyl {
-  position: relative;
-  right: -1.8em;
-  height: 8em;
-  width: 8em;
-  border-radius: 100em;
-  background-color: rgb(211, 211, 211);
+    position: relative;
+    right: -1.8em;
+    height: 8em;
+    width: 8em;
+    border-radius: 100em;
+    background-color: rgb(211, 211, 211);
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .turntable__word-animation {
+      color: white;
+      font-family: "bangers", cursive;
+      z-index: 1000;
+      position: absolute;
+      bottom: -.2em;
+      font-size: 4em;
+      opacity: 0;
+      pointer-events: none;
+      animation: turntable-word 1.5s ease-in;
+      @keyframes turntable-word {
+        0% {
+          opacity: 1;
+          letter-spacing: .1em;
+        }
+        100% {
+          font-size: 4em;
+          opacity: 0;
+          letter-spacing: .2em;
+        }
+      }
+  }
 }
 
 .turntable #glare {
-  position: relative;
-  height: 7.2em;
+    position: relative;
+    height: 7.2em;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .spinning {
@@ -40,47 +63,52 @@
 }
 
 .turntable #inner-vinyl {
-  position: absolute;
-  height: 1.8em;
-  width: 1.8em;
-  border-radius: 100em;
-  border: 0.4em solid black;
+    position: absolute;
+    height: 1.8em;
+    width: 1.8em;
+    border-radius: 100em;
+    border: 0.4em solid black;
 }
 
 .turntable #dot {
-  position: absolute;
-  height: 0.5em;
-  width: 0.5em;
-  border-radius: 1005em;
-  background-color: black;
+    position: absolute;
+    height: 0.5em;
+    width: 0.5em;
+    border-radius: 1005em;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
 }
 
 .turntable .arm-container {
-  position: relative;
-  right: -.8em;
+    position: relative;
+    right: -0.8em;
 }
 
 .record-stop {
-  transform: rotate(0deg);
-  transition: all 1s;
+    transform: rotate(0deg);
+    transition: all 1s;
 }
 .record-play {
-  transition: all 1s;
-  transform: rotate(30deg) translate(-1.5em, .3em);
+    transition: all 1s;
+    transform: rotate(30deg) translate(-1.5em, 0.3em);
 }
 
 @keyframes play {
-  0% {
-    transform: rotate(0deg);
-  }
+    0% {
+        transform: rotate(0deg);
+    }
 
-  50% {
-    transform: rotate(180deg);
-  }
+    50% {
+        transform: rotate(180deg);
+    }
 
-  100% {
-    transform: rotate(360deg);
-  }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 #buttons-container {
     position: relative;
@@ -95,7 +123,7 @@
     height: 1.2em;
     width: 1.2em;
     bottom: -2em;
-    margin-top: .45em;
+    margin-top: 0.45em;
     background-color: rgb(218, 218, 218);
 }
 
@@ -109,7 +137,6 @@
     right: 0em;
     cursor: pointer;
 }
-
 
 #buttons-container #button-active {
     background-color: rgba(255, 255, 255, 0.473);
