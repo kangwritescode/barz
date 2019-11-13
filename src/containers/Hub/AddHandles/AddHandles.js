@@ -1,4 +1,4 @@
-import React, { UseState, Component, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { postUserData } from '../../../store/actionCreators'
 
@@ -65,7 +65,7 @@ const AddHandles = (props) => {
             })
         }
         catch (err) {
-            console.log(err)
+            console.log(err.message)
         }
 
     }
@@ -74,8 +74,7 @@ const AddHandles = (props) => {
 
         switch (handle) {
             case 'fb':
-                return setInput({
-                    ...input,
+                return setInput({...input,
                     fb: backup.fb
                 })
             case 'ig':
@@ -188,7 +187,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        updateProfile: (uid, data) => dispatch(postUserData(uid, data).bind(this))
+        updateProfile: (uid, data) => dispatch(postUserData(uid, data))
     }
 }
 

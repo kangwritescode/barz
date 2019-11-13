@@ -33,7 +33,7 @@ export default function BestCity(props) {
             </div> 
             <div id="best-city-value-container">
                 <div id="best-city-value">
-                    {props.bestCity}
+                    {props.bestCity.toLowerCase()}
                 </div>
             </div> 
         </div>

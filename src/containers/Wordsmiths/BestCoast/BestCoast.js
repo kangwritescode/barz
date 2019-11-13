@@ -32,7 +32,7 @@ export default function BestCoast(props) {
             </div>
             <div id="best-region-value-container">
                 <div id="best-region-value">
-                    {props.bestCoast}
+                    {props.bestCoast.toLowerCase()}
                 </div>
             </div>
         </div>

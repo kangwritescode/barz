@@ -15,32 +15,38 @@
     .follow-item__profile {
         display: flex;
         align-items: center;
+        position: relative;
         .profile__photo {
             background-color: white;
             border-radius: 50%;
             width: 20px;
             min-width: 20px;
+            height: 20px;
             margin-right: .5em;
         }
         .profile__details-container {
             .details-container__name {
-                font-size: .7em;
+                font-size: .8rem;
                 letter-spacing: .04em;
             }
             .details-container__details {
-                font-size: .1em;
+                font-size: .5rem;
                 font-family: 'antic slab';
             }
         }
     }
     .follow-item__follow-button {
         cursor: pointer;
-        position: relative;
-        top: .4em;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
         border-radius: 5em;
+        right: 0rem;
         font-family: 'righteous';
-        font-size: .1em;
-        width: 7.5em;
+        font-size: .45rem;
+        padding: 0rem .6rem;
+        height: 1rem;
+        padding-bottom: .1rem;
         border: 1px solid rgba(117, 117, 117, 0.63);
         background-color: rgb(8, 8, 8);
         color: rgba(255, 255, 255, 0.87);

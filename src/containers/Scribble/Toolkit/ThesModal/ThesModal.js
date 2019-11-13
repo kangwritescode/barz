@@ -40,10 +40,12 @@ class ThesModal extends Component {
             }
             else {
                 // filter
-                response = response.filter(entry => entry.meta.id.toLowerCase() === this.props.theWord.toLowerCase() || entry.hom && entry.meta.id === this.props.theWord + ':' + entry.hom)
+                response = response.filter(entry => (entry.meta.id.toLowerCase() === this.props.theWord.toLowerCase())
+                    || (entry.hom && entry.meta.id === this.props.theWord + ':' + entry.hom)
+                )
 
                 content = (
-                    <div  id="thes-modal-body">
+                    <div id="thes-modal-body">
                         <div id='thes-close-wrapper'>
                             <i className="fa fa-close" id="close-thes-modal" onClick={() => this.props.toggleModal('showthesJSON', false)}></i>
                         </div>
