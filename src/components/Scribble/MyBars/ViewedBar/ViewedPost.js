@@ -24,6 +24,7 @@ class ViewedPost extends Component {
         comments: []
     }
 
+    
 
     componentDidMount = () => {
         document.addEventListener('click', this.toggleDropdownListener)
