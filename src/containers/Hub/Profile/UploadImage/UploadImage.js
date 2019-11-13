@@ -26,10 +26,10 @@ class UploadImage extends Component {
 
 
     fileSelectedHandler = event => {
-        var targetFile = event.target.files[0]
+        let targetFile = event.target.files[0]
         if (targetFile) {
-            var reader = new FileReader()
-            var presentIMG = document.getElementById("uploadIMGPresent")
+            let reader = new FileReader()
+            let presentIMG = document.getElementById("uploadIMGPresent")
             presentIMG.title = targetFile.name
             reader.onload = event => {
                 presentIMG.src = event.target.result
@@ -48,9 +48,9 @@ class UploadImage extends Component {
             ...this.state,
             uploading: true
         })
-        var storageRef = firebase.storage().ref()
-        var imageRef = storageRef.child(`images/${this.props.uid}/userIMG.png`);
-        var uploadTask = imageRef.put(this.state.selectedFile)
+        let storageRef = firebase.storage().ref()
+        let imageRef = storageRef.child(`images/${this.props.uid}/userIMG.png`);
+        let uploadTask = imageRef.put(this.state.selectedFile)
         uploadTask.on('state_changed', snapshot => {
 
         }, (err) => {
@@ -85,7 +85,7 @@ class UploadImage extends Component {
 
 
     render() {
-        var theImage;
+        let theImage;
         if (this.state.selectedFile) {
             theImage = (<img id="uploadIMGPresent" alt={"what?"} src={this.state.selectedFile} />
 

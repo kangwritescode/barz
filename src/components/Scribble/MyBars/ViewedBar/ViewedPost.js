@@ -37,7 +37,7 @@ class ViewedPost extends Component {
 
     fetchPhotoURL = () => {
         if (this.props.photoRef) {
-            var storage = firebase.storage();
+            let storage = firebase.storage();
             storage.ref(this.props.photoRef).getDownloadURL().then(url => {
                 this.setState({
                     ...this.state,
@@ -50,11 +50,11 @@ class ViewedPost extends Component {
     }
 
     fetchComments = (pid) => {
-        var db = firebase.firestore()
+        let db = firebase.firestore()
         db.collection('postComments').where('pid', '==', this.props.pid).orderBy('date').onSnapshot(snapshot => {
-            var comments = []
+            let comments = []
             snapshot.forEach(doc => {
-                var comment = {
+                let comment = {
                     ...doc.data(),
                     cid: doc.id
                 }
@@ -70,10 +70,10 @@ class ViewedPost extends Component {
 
     fetchPost = (pid) => {
         // document.getElementById
-        var db = firebase.firestore()
+        let db = firebase.firestore()
         db.collection('submissions').doc(pid).get()
             .then(querySnapshot => {
-                var post = {
+                let post = {
                     ...querySnapshot.data(),
                     pid: pid
                 }
@@ -99,7 +99,7 @@ class ViewedPost extends Component {
     }
 
     countVotes = (voteObj) => {
-        var votes = 0
+        let votes = 0
         for (let key in voteObj) {
             votes += voteObj[key] === 1 ? 1 : 0
         }
@@ -146,9 +146,9 @@ class ViewedPost extends Component {
     }
 
     postComment = async event => {
-        var db = firebase.firestore()
+        let db = firebase.firestore()
         event.preventDefault()
-        var comment = this.generateComment()
+        let comment = this.generateComment()
         await db.collection('postComments').add(comment)
             .then(res => console.log('commented successfully'))
             .catch(err => console.log(err))
@@ -169,15 +169,15 @@ class ViewedPost extends Component {
 
     render() {
 
-        var editable = this.state.viewedPost && (this.props.uid === this.state.viewedPost.uid) ? true : false
-        var deleteOption = !editable ? null : (
+        let editable = this.state.viewedPost && (this.props.uid === this.state.viewedPost.uid) ? true : false
+        let deleteOption = !editable ? null : (
             <div className="post-drop-item" id="delete-post" onClick={() => this.toggleModal('showDeleteModal', true)}>Delete</div>
         )
-        var post = (
+        let post = (
             <div className="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
         )
         if (this.state.viewedPost) {
-            var bars = '"' + this.state.viewedPost.content.lineOne + ' / '
+            let bars = '"' + this.state.viewedPost.content.lineOne + ' / '
                 + this.state.viewedPost.content.lineTwo + ' / '
                 + this.state.viewedPost.content.lineThree + ' / '
                 + this.state.viewedPost.content.lineFour + '"'

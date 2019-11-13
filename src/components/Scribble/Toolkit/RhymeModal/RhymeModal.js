@@ -7,7 +7,7 @@ class RhymeModal extends Component {
 
     distribute = (arr) => {
 
-        var columns = {
+        let columns = {
             one: [],
             two: [],
             three: [],
@@ -32,18 +32,18 @@ class RhymeModal extends Component {
         // copy to clipboard
         copy(word)
 
-        var allNotifications = document.getElementsByClassName('notification')
+        let allNotifications = document.getElementsByClassName('notification')
         for (let item of allNotifications) {
             item.classList.remove('show-copy-notification')
         }
 
 
-        var notification = document.getElementById(`${word}-notification`)
+        let notification = document.getElementById(`${word}-notification`)
         notification.classList.add('show-copy-notification')
     }
 
     removeShowNotificationClass = (word) => {
-        var notification = document.getElementById(`${word}-notification`)
+        let notification = document.getElementById(`${word}-notification`)
         notification.classList.remove('show-copy-notification')
     }
 
@@ -52,9 +52,9 @@ class RhymeModal extends Component {
 
 
         // rhyme arra y
-        var rhymeArray = [...this.props.rhymeJSON]
-        var content = this.distribute(rhymeArray)
-        var theWords = []
+        let rhymeArray = [...this.props.rhymeJSON]
+        let content = this.distribute(rhymeArray)
+        let theWords = []
         for (let lineNumber in content) {
             theWords.push((
                 <div className='column' id={`column-${lineNumber}`} key={GenID()}>
@@ -75,7 +75,7 @@ class RhymeModal extends Component {
 
 
 
-        var bodyContent = (
+        let bodyContent = (
             <div id="rhyme-sugg-modal-body">
                 <i className="fa fa-close" id="close-rhyme-sugg-modal" onClick={() => this.props.toggleModal('showrhymeJSON', false)}></i>
                 <div id="suggestions-wrapper">

@@ -62,11 +62,11 @@ class SingleView extends Component {
 
 
     fetchSubmissions = async () => {
-        var db = firebase.firestore()
-        var submissions = []
+        let db = firebase.firestore()
+        let submissions = []
         return db.collection('submissions').get().then(querySnapshot => {
             querySnapshot.forEach((doc) => {
-                var post = {
+                let post = {
                     ...doc.data(),
                     pid: doc.id
                 }
@@ -82,11 +82,11 @@ class SingleView extends Component {
         })
     }
     fetchVotes = async () => {
-        var db = firebase.firestore()
+        let db = firebase.firestore()
         const votes = {}
         db.collection('postVotes').onSnapshot(querySnapshot => {
             querySnapshot.forEach((doc) => {
-                var vote = { ...doc.data() }
+                let vote = { ...doc.data() }
                 votes[doc.id] = vote
             })
             this.setState({
@@ -99,14 +99,14 @@ class SingleView extends Component {
     }
     // fetch function
     findVote = () => {
-        var submissions = [...this.state.submissions]
+        let submissions = [...this.state.submissions]
         submissions = this.sort_submissions(submissions)
         submissions = this.filter_submissions(submissions)
-        var currSub = submissions[this.state.pointer]
+        let currSub = submissions[this.state.pointer]
         if (currSub) {
-            var votes = this.state.votes
+            let votes = this.state.votes
             for (let key in votes) {
-                var vote = votes[key]
+                let vote = votes[key]
                 if (vote.pid === currSub.pid && vote.voterID === this.props.uid) {
                     return {
                         ...vote,
@@ -121,19 +121,19 @@ class SingleView extends Component {
     }
 
     sort_submissions = (submissions) => {
-        var submissions = [...submissions]
+        submissions = [...submissions]
         switch (this.props.sort) {
             case 'Newest':
                 submissions = submissions.sort((a, b) => {
-                    var first = a.createdOn.toDate()
-                    var second = b.createdOn.toDate()
+                    let first = a.createdOn.toDate()
+                    let second = b.createdOn.toDate()
                     return first > second ? -1 : 1
                 })
                 return submissions
             case 'Oldest':
                 submissions = submissions.sort((a, b) => {
-                    var first = a.createdOn.toDate()
-                    var second = b.createdOn.toDate()
+                    let first = a.createdOn.toDate()
+                    let second = b.createdOn.toDate()
                     return first < second ? -1 : 1
                 })
                 return submissions
@@ -146,15 +146,15 @@ class SingleView extends Component {
             return submissions
         }
         console.log('before submissions', submissions)
-        var submissions = [...submissions]
-        var votes = this.state.votes
+        submissions = [...submissions]
+        let votes = this.state.votes
         votes = Object.values(votes)
-        var myVotes = votes.filter(vote => vote.voterID === this.props.uid)
+        let myVotes = votes.filter(vote => vote.voterID === this.props.uid)
 
         submissions = submissions
             .filter(submission => {
-                var thisVotes = myVotes.filter(vote => vote.pid === submission.pid)
-                var unvoted = true
+                let thisVotes = myVotes.filter(vote => vote.pid === submission.pid)
+                let unvoted = true
                 thisVotes.forEach(vote => {
                     if (vote.value === 1 || vote.value === -1) {
                         unvoted = false
@@ -173,8 +173,8 @@ class SingleView extends Component {
     // increments single view post 
     incDec = async (num) => {
 
-        var newPointer;
-        var submissions = [...this.state.submissions]
+        let newPointer;
+        let submissions = [...this.state.submissions]
         submissions = this.sort_submissions(submissions)
         submissions = this.filter_submissions(submissions)
 
@@ -207,18 +207,18 @@ class SingleView extends Component {
     vote = async (vote) => {
 
         if (this.checkLoggedIn()) {
-            var db = firebase.firestore()
-            var myVote = this.findVote()
-            var value = myVote && myVote.value === vote ? 0 : vote
+            let db = firebase.firestore()
+            let myVote = this.findVote()
+            let value = myVote && myVote.value === vote ? 0 : vote
 
-            var submissions = [...this.state.submissions]
+            let submissions = [...this.state.submissions]
             submissions = this.sort_submissions(submissions)
             submissions = this.filter_submissions(submissions)
 
             const submission = submissions[this.state.pointer]
             console.log(submission, 'vote submission')
             if (myVote) {
-                var updatedVote = {
+                let updatedVote = {
                     ...myVote,
                     value: value,
                     date: new Date()
@@ -292,8 +292,8 @@ class SingleView extends Component {
     render() {
 
 
-        var content;
-        var submissions = [...this.state.submissions]
+        let content;
+        let submissions = [...this.state.submissions]
         submissions = this.sort_submissions(submissions)
         submissions = this.filter_submissions(submissions)
 
@@ -309,7 +309,7 @@ class SingleView extends Component {
         else {
 
 
-            var vote = this.findVote()
+            let vote = this.findVote()
             const upvoteStyle = vote && vote.value === 1 ? 'lit-up' : null
             const downvoteStyle = vote && vote.value === -1 ? 'lit-trash' : null
 

@@ -27,7 +27,7 @@ const FollowItem = (props) => {
 
 
     const follow = () => {
-        var db = firebase.firestore()
+        let db = firebase.firestore()
         db.collection('follows').add({
             from: props.myUID,
             to: props.user.uid
@@ -37,7 +37,7 @@ const FollowItem = (props) => {
     }
 
     const unfollow = () => {
-        var db = firebase.firestore()
+        let db = firebase.firestore()
         console.log(props.uid, props.user)
         db.collection('follows')
             .where('from', '==', props.myUID)

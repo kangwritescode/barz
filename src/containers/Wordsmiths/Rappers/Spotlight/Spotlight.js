@@ -32,7 +32,7 @@ function Spotlight(props) {
 
         const calcAmFollowing = (otherUID) => {
 
-            var follow = follows
+            let follow = follows
                 .filter(follow => {
                     return follow.to === otherUID && follow.from === props.uid
                 })
@@ -49,9 +49,9 @@ function Spotlight(props) {
     }, [props.photoURL, props.rapper, follows, props.uid, props.blurb])
 
     const fetchFollows = async () => {
-        var db = firebase.firestore()
-        var follows = await db.collection("follows").get().then(((querySnapshot) => {
-            var fetchedFollows = []
+        let db = firebase.firestore()
+        let follows = await db.collection("follows").get().then(((querySnapshot) => {
+            let fetchedFollows = []
             querySnapshot.forEach(doc => {
                 fetchedFollows.push({
                     ...doc.data(),
@@ -67,7 +67,7 @@ function Spotlight(props) {
 
     const follow = () => {
         setAmFollowing(true)
-        var db = firebase.firestore()
+        let db = firebase.firestore()
         db.collection('follows').add({
             from: props.uid,
             to: props.rapper.uid
@@ -78,7 +78,7 @@ function Spotlight(props) {
 
     const unfollow = () => {
         setAmFollowing(false)
-        var db = firebase.firestore()
+        let db = firebase.firestore()
         db.collection('follows')
             .where('from', '==', props.uid)
             .where('to', '==', props.rapper.uid)
@@ -106,15 +106,15 @@ function Spotlight(props) {
     }
 
 
-    var username = props.rapper ?
+    let username = props.rapper ?
         <div className='block-one__username'>{props.rapper ? props.rapper.username : null}</div>
         : <h2 className='block-one__select-a-user'>Select a User</h2>
-    var addressGender = props.rapper ?
+    let addressGender = props.rapper ?
         <div className='block-one__address-gender'>{props.rapper ? props.rapper.city : null}, {props.rapper ? props.rapper.state : null} | {props.rapper ? props.rapper.gender : null}</div>
         : null
 
 
-    var photo = props.rapper ?
+    let photo = props.rapper ?
         <div className='block-one__img-wrapper'>
             <div>
                 <img alt='' src={props.rapper.photoURL} />
@@ -129,11 +129,11 @@ function Spotlight(props) {
 
         </div>
         : null
-    var button = <button className='follow-button' onClick={follow}>follow</button>
+    let button = <button className='follow-button' onClick={follow}>follow</button>
     if (amFollowing) {
         button = <button className='follow-button' onClick={unfollow}>following</button>
     }
-    var handles = null;
+    let handles = null;
 
 
     if (props.rapper && (props.rapper.handles.facebook
@@ -159,7 +159,7 @@ function Spotlight(props) {
                 </a> : null}
         </div>)
     }
-    var blurb = null;
+    let blurb = null;
     if (props.rapper && props.rapper.blurb) {
         blurb = (
             <p className='block-one__blurb' style={{ cursor: 'text' }}>

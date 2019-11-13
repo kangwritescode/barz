@@ -41,7 +41,7 @@ const Turntable = (props) => {
         if (!animateOkay) {
             setAnimateOkay(true)
         }
-        var songs = Object.values(props.allStations)
+        let songs = Object.values(props.allStations)
         props.changeURL(songs[props.songPointer])
         props.playMusic()
         console.log(props.allStations)
@@ -51,7 +51,7 @@ const Turntable = (props) => {
         else { props.setSongPointer(props.songPointer + 1) }
     }
 
-    var initialAnimate = !animateOkay ? { animation: 'none' } : null
+    let initialAnimate = !animateOkay ? { animation: 'none' } : null
 
     return (
         <div className="turntable">

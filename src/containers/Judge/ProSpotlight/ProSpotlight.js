@@ -4,7 +4,7 @@ import './ProSpotlight.css'
 
 function ProSpotlight(props) {
 
-    var [bars, _ ] = useState(bars)
+    let [bars, _ ] = useState(bars)
     return (
         <div className='pro-spotlight-wrapper'>
             <div className='backdrop' onClick={() => props.toggleModal(false)}></div>

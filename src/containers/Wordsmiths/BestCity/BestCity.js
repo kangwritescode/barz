@@ -3,7 +3,7 @@ import './BestCity.css'
 
 export default function BestCity(props) {
 
-    var timeDict = {
+    let timeDict = {
         'Last 24 Hours': '24h',
         'Last 7 Days': '7d',
         'Last 30 Days': '30d',
@@ -11,13 +11,13 @@ export default function BestCity(props) {
         'Last 12 Months': '12mo',
         'All Time': 'All'
     }
-    var sexDict = {
+    let sexDict = {
         'All Genders': 'All',
         'Male': 'M',
         'Female': 'F'
     }
 
-    var location = 'All'
+    let location = 'All'
 
     if (props.state === 'All States' && props.coast !== 'All Coasts') {
         location = props.coast

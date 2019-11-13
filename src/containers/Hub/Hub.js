@@ -39,19 +39,19 @@ const Hub = (props) => {
     // follows
     const [follows, setFollows] = useState([])
     // posts
-    var [posts, setPosts] = useState([])
+    let [posts, setPosts] = useState([])
     const [postSelected, setPostSelected] = useState(false);
     const [selectedPost, setSelectedPost] = useState(null)
     // comments
     const [comments, setComments] = useState([])
     // feed related
-    var [feed, setFeed] = useState('Personal')
+    let [feed, setFeed] = useState('Personal')
 
 
     // componentDidMount
     useEffect(() => {
 
-        // unchanging variables
+        // unchanging letiables
         const closesCommenter = [
             'columns-container',
             'left-column',
@@ -84,9 +84,9 @@ const Hub = (props) => {
     useEffect(() => {
         if (votes.length !== 0) {
             setMyPlace(HubTools.myPlaceFinder(votes, props.uid))
-            var likes = votes.filter(vote => vote.receiverID === props.uid && vote.value === 1)
-            var dislikes = votes.filter(vote => vote.receiverID === props.uid && vote.value === -1)
-            var score = (Math.max(likes.length - dislikes.length, 0))
+            let likes = votes.filter(vote => vote.receiverID === props.uid && vote.value === 1)
+            let dislikes = votes.filter(vote => vote.receiverID === props.uid && vote.value === -1)
+            let score = (Math.max(likes.length - dislikes.length, 0))
             setMyScore(score)
         }
         return () => {
@@ -95,7 +95,7 @@ const Hub = (props) => {
 
 
     const selectPost = (pid) => {
-        var post = posts.filter(submission => submission.pid === pid)
+        let post = posts.filter(submission => submission.pid === pid)
         post = post[0]
         setPostSelected(true)
         setSelectedPost(post)
@@ -120,7 +120,7 @@ const Hub = (props) => {
     // render ~~~~~~~~~~~~
 
     // Custom Styles 
-    var manyPostsCustomStyle = {
+    let manyPostsCustomStyle = {
         username: {
             fontSize: '1em'
         },
@@ -132,7 +132,7 @@ const Hub = (props) => {
             backgroundColor: 'rgba(0, 0, 0, 0.81)'
         }
     }
-    var commenterCustomStyle = {
+    let commenterCustomStyle = {
         wrapper: {
             width: '16.5em',
         },
@@ -150,7 +150,7 @@ const Hub = (props) => {
 
     // Post Sorting and Filtering
 
-    var manyPosts;
+    let manyPosts;
     if (feed === 'Personal') {
         posts = posts.filter(post => props.uid === post.uid)
         posts = sortByNewest(posts)
@@ -178,8 +178,8 @@ const Hub = (props) => {
 
     }
     if (feed === 'Following') {
-        var myFollows = follows.filter(follow => follow.from === props.uid)
-        var followingUIDs = new Set()
+        let myFollows = follows.filter(follow => follow.from === props.uid)
+        let followingUIDs = new Set()
         myFollows.forEach(follow => { followingUIDs.add(follow.to) })
         posts = posts.filter(post => followingUIDs.has(post.uid))
         posts = sortByNewest(posts)

@@ -18,7 +18,7 @@ class Dashboard extends Component {
     }
 
     render() {
-        var content = <Profile changeWindow={this.setContent}/>
+        let content = <Profile changeWindow={this.setContent}/>
         if (this.state.content === "judgedBarz") {
             content = <h1>judgedBarz</h1>
         }

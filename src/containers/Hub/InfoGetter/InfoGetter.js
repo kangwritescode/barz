@@ -28,12 +28,12 @@ class InfoGetter extends Component {
     }
     componentDidMount = async () => {
 
-        var allUsernames = []
-        var db = firebase.firestore()
+        let allUsernames = []
+        let db = firebase.firestore()
         await db.collection("users").get()
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
-                    var user = doc.data()
+                    let user = doc.data()
                     if (!user.needsInfo) {
                         allUsernames.push(user.username)
                     }
@@ -85,8 +85,8 @@ class InfoGetter extends Component {
         })
     }
     validateZipCode = (elementValue) => {
-        var elementvalue = parseInt(elementValue)
-        var zipCodePattern = /^\d{5}$|^\d{5}-\d{4}$/;
+        let elementvalue = parseInt(elementValue)
+        let zipCodePattern = /^\d{5}$|^\d{5}-\d{4}$/;
         return zipCodePattern.test(elementValue);
     }
 
@@ -153,7 +153,7 @@ class InfoGetter extends Component {
 
             // new profile information
 
-            var username = this.state.username.toLowerCase()
+            let username = this.state.username.toLowerCase()
             
             const toUpload = {
                 username: username,
@@ -204,7 +204,7 @@ class InfoGetter extends Component {
 
     render() {
 
-        var isValid = this.formIsValid()
+        let isValid = this.formIsValid()
         return (
             <form className="InfoGetterContainer">
                 {this.state.processing ? <DotSpinner id={'info-getter-dot'}/> : null}

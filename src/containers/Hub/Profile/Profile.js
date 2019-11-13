@@ -30,7 +30,7 @@ class Profile extends Component {
 
     componentDidMount = () => {
 
-        var storage = firebase.storage();
+        let storage = firebase.storage();
         storage.ref(this.props.photoRef).getDownloadURL().then(url => {
 
             this.setState({

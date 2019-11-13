@@ -57,7 +57,7 @@ class SignIn extends Component {
                     this.setBadInput('email')
                     break;
                 case "auth/too-many-requests":
-                    var errMsg = "Too many unsuccessful login attempts. Please try again later."
+                    let errMsg = "Too many unsuccessful login attempts. Please try again later."
                     this.props.loginErrMsgHandler(errMsg, false)
                     this.setBadInput('password')
                     break;
@@ -88,7 +88,7 @@ class SignIn extends Component {
         return await firebase.auth().signInWithEmailAndPassword(userInput, passInput)
             .then(successObj => {
                 // now's date
-                var expirationDate = new Date()
+                let expirationDate = new Date()
                 // now's date + 1 hour
                 expirationDate.setHours(expirationDate.getHours() + 100)
                 localStorage.setItem('token', successObj.user.refreshToken)
@@ -120,7 +120,7 @@ class SignIn extends Component {
 
     render() {
 
-        var formIsValid = this.formIsValid()
+        let formIsValid = this.formIsValid()
 
         return (
             <div>

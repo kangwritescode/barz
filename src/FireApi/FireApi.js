@@ -1,7 +1,7 @@
 import firebase from 'firebase'
 
 const fetchPosts = (setter, setDoneFetching) => {
-    var db = firebase.firestore()
+    let db = firebase.firestore()
     const listener = db.collection('submissions').onSnapshot(snapshot => {
         const fetchedPosts = []
         snapshot.forEach(doc => {
@@ -20,7 +20,7 @@ const fetchPosts = (setter, setDoneFetching) => {
 }
 
 const fetchPost = (setter, pid) => {
-    var db = firebase.firestore()
+    let db = firebase.firestore()
     db.collection('submissions').doc(pid).get()
         .then(doc => {
             setter({ ...doc.data(), pid: doc.id })
@@ -28,10 +28,10 @@ const fetchPost = (setter, pid) => {
 }
 
 const fetchUserSortedPosts = (setter, uid) => {
-    var db = firebase.firestore()
+    let db = firebase.firestore()
     const listener = db.collection('submissions').where("uid", "==", uid).orderBy('createdOn', 'desc')
         .onSnapshot(querySnapshot => {
-            var posts = []
+            let posts = []
             querySnapshot.forEach(doc => { posts.push({ pid: doc.id, ...doc.data() }) })
             setter(posts)
         }, err => console.log(err))
@@ -39,11 +39,11 @@ const fetchUserSortedPosts = (setter, uid) => {
 }
 
 const fetchVotes = (setter) => {
-    var db = firebase.firestore()
+    let db = firebase.firestore()
     const listener = db.collection('postVotes').onSnapshot(snapshot => {
         console.log('votes listener detected a change')
-        var fetchedVote;
-        var fetchedVotes = []
+        let fetchedVote;
+        let fetchedVotes = []
         snapshot.forEach(vote => {
             fetchedVote = {
                 ...vote.data(),
@@ -56,11 +56,11 @@ const fetchVotes = (setter) => {
     return listener
 }
 const fetchVotesForPost = (setter, pid) => {
-    var db = firebase.firestore()
+    let db = firebase.firestore()
     const listener = db.collection('postVotes').where('pid', '==', pid).onSnapshot(snapshot => {
         console.log('votes listener detected a change')
-        var fetchedVote;
-        var fetchedVotes = []
+        let fetchedVote;
+        let fetchedVotes = []
         snapshot.forEach(vote => {
             fetchedVote = {
                 ...vote.data(),
@@ -74,11 +74,11 @@ const fetchVotesForPost = (setter, pid) => {
 }
 
 const fetchVotesForUID = (setter, uid) => {
-    var db = firebase.firestore()
+    let db = firebase.firestore()
     const listener = db.collection('postVotes').where('receiverID', '==', uid).onSnapshot(querySnapshot => {
-        var votes = {}
+        let votes = {}
         querySnapshot.forEach(doc => {
-            var vote = doc.data()
+            let vote = doc.data()
             if (vote.value === 1) {
                 votes[vote.pid] = votes[vote.pid] ? votes[vote.pid] + 1 : 1
             }
@@ -93,7 +93,7 @@ const fetchVotesForUID = (setter, uid) => {
 const fetchFollows = (setter) => {
     const db = firebase.firestore()
     const listener = db.collection('follows').onSnapshot(snapshot => {
-        var fetchedFollows = []
+        let fetchedFollows = []
         snapshot.forEach(doc => {
             fetchedFollows.push(doc.data())
         })
@@ -105,8 +105,8 @@ const fetchFollows = (setter) => {
 const fetchSubmissionComments = (setter) => {
     const db = firebase.firestore()
     const listener = db.collection('postComments').onSnapshot((snapshot) => {
-        var comments = []
-        for (var comment of snapshot.docs) {
+        let comments = []
+        for (let comment of snapshot.docs) {
             comment = {
                 ...comment.data(),
                 cid: comment.id
@@ -122,8 +122,8 @@ const fetchSubmissionComments = (setter) => {
 const fetchSubmissionCommentsForPost = (setter, pid) => {
     const db = firebase.firestore()
     const listener = db.collection('postComments').where('pid', '==', pid).onSnapshot((snapshot) => {
-        var comments = []
-        for (var comment of snapshot.docs) {
+        let comments = []
+        for (let comment of snapshot.docs) {
             comment = {
                 ...comment.data(),
                 cid: comment.id

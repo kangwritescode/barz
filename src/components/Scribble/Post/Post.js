@@ -95,13 +95,13 @@ class Post extends Component {
     checkPostsLeft = async () => {
 
         //firestore stuff
-        var db = firebase.firestore()
+        let db = firebase.firestore()
         return db.collection("submissions").where('uid', '==', this.props.uid).get()
             .then((querySnapshot) => {
-                var postsToday = 0
+                let postsToday = 0
                 querySnapshot.forEach((doc) => {
-                    var post = doc.data()
-                    var submissionDate = post.createdOn.toDate().toDateString()
+                    let post = doc.data()
+                    let submissionDate = post.createdOn.toDate().toDateString()
                     if (submissionDate === new Date().toDateString()) {
                         postsToday += 1
                     }
@@ -117,7 +117,7 @@ class Post extends Component {
             })
     }
     postSubmission = async (submission) => {
-        var db = firebase.firestore()
+        let db = firebase.firestore()
         return db.collection("submissions").add({ ...submission })
             .then(() => {
                 console.log(`submission for ${this.props.uid} successful!`);
@@ -129,7 +129,7 @@ class Post extends Component {
 
     generateSubmission = () => {
 
-        var content = { 
+        let content = { 
             ...this.state.submission
         }
         // trim initial whitespaces
@@ -150,7 +150,7 @@ class Post extends Component {
 
     // helper function that trims empty spaces (e.g. ' ') in the beginning of string
     trimInitialSpaces = (str) => {
-        var i = 0;
+        let i = 0;
         while (i < str.length) {
             if (str.charAt(i) === ' ') {
                 i += 1
@@ -164,7 +164,7 @@ class Post extends Component {
 
     submit = async (event) => {
         event.preventDefault()
-        var submission = this.generateSubmission()
+        let submission = this.generateSubmission()
         try {
             this.toggleSpinner(true)
             //        ***CHECKS START***
@@ -206,7 +206,7 @@ class Post extends Component {
         let fourLinesId = focused ? 'four-lines-expanded' : 'four-lines-compressed'
 
         // input elements
-        var inputArr = []
+        let inputArr = []
         for (let key in this.state.inputData) {
             inputArr.push(this.state.inputData[key])
         }

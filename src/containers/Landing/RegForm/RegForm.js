@@ -11,20 +11,20 @@ function RegForm(props) {
     // State
 
     // data 
-    var [allEmails, setAllEmails] = useState([])
-    var [allUsernames, setAllUsernames] = useState([])
-    var [mysteryManBlob, setMysteryManBlob] = useState(null)
+    let [allEmails, setAllEmails] = useState([])
+    let [allUsernames, setAllUsernames] = useState([])
+    let [mysteryManBlob, setMysteryManBlob] = useState(null)
 
     // ui
-    var [step, setStep] = useState('account')
-    var [spinning, setSpinner] = useState(false)
+    let [step, setStep] = useState('account')
+    let [spinning, setSpinner] = useState(false)
 
     //profile
-    var [email, setEmail] = useState('')
-    var [password, setPass] = useState('')
-    var [username, setUsername] = useState('')
-    var [zipcode, setZipcode] = useState('')
-    var [gender, pickGender] = useState('')
+    let [email, setEmail] = useState('')
+    let [password, setPass] = useState('')
+    let [username, setUsername] = useState('')
+    let [zipcode, setZipcode] = useState('')
+    let [gender, pickGender] = useState('')
 
 
 
@@ -39,10 +39,10 @@ function RegForm(props) {
     // api calls
     const fetchEmailsAndUsernames = async () => {
         const db = firebase.firestore()
-        var emailsAndUsernames = await db.collection('users').get()
+        let emailsAndUsernames = await db.collection('users').get()
             .then(snapshots => {
-                var emails = []
-                var usernames = []
+                let emails = []
+                let usernames = []
                 snapshots.forEach(snapshot => {
                     emails.push(snapshot.data().email)
                     usernames.push(snapshot.data().username)
@@ -73,8 +73,8 @@ function RegForm(props) {
 
     // uploades mysteryman and then...
     const uploadMysteryMan = async (uid) => {
-        var storageRef = firebase.storage().ref();
-        var photoRef = storageRef.child(`images/${uid}/userIMG.png`);
+        let storageRef = firebase.storage().ref();
+        let photoRef = storageRef.child(`images/${uid}/userIMG.png`);
         return photoRef.put(mysteryManBlob)
             .then(async (successObj) => {
                 // fetches and returns the download URL
@@ -85,13 +85,13 @@ function RegForm(props) {
     }
 
     const fetchMysteryMan = () => {
-        var storage = firebase.storage()
+        let storage = firebase.storage()
         storage.ref('mysteryman/mysteryman.png').getDownloadURL()
             .then(url => {
-                var xhr = new XMLHttpRequest();
+                let xhr = new XMLHttpRequest();
                 xhr.responseType = 'blob';
                 xhr.onload = event => {
-                    var blob = xhr.response;
+                    let blob = xhr.response;
                     setMysteryManBlob(blob)
                 };
                 xhr.open('GET', url);
@@ -102,7 +102,7 @@ function RegForm(props) {
             });
     }
     const createFirebaseUser = async (email, uid, address, photoURL) => {
-        var db = firebase.firestore();
+        let db = firebase.firestore();
 
         const user = {
             email: email,
@@ -263,7 +263,7 @@ function RegForm(props) {
 
 
     // form
-    var form = (
+    let form = (
         <div className={`account-wrapper`}>
             <div className='reg-detail'>Account Info</div>
             <input

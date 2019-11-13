@@ -11,16 +11,16 @@ import ForgotPassword from '../Authenticate/SignIn/ForgotPassword/ForgotPassword
 const Landing = (props) => {
 
     // ui state
-    var [isReg, updateReg] = useState(false)
-    var [showErr, setShowErr] = useState(false)
-    var [errMsg, setErrMsg] = useState('')
-    var [errSentiment, setErrSentiment] = useState(false)
+    let [isReg, updateReg] = useState(false)
+    let [showErr, setShowErr] = useState(false)
+    let [errMsg, setErrMsg] = useState('')
+    let [errSentiment, setErrSentiment] = useState(false)
 
-    var [showForgotPass, toggleForgotPass] = useState(false)
+    let [showForgotPass, toggleForgotPass] = useState(false)
 
     // login
-    var [email, setEmail] = useState('')
-    var [password, setPassword] = useState('')
+    let [email, setEmail] = useState('')
+    let [password, setPassword] = useState('')
 
 
 
@@ -38,7 +38,7 @@ const Landing = (props) => {
                     console.log(err.message)
                     break;
                 case "auth/too-many-requests":
-                    var errMsg = "Too many unsuccessful login attempts. Please try again later."
+                    let errMsg = "Too many unsuccessful login attempts. Please try again later."
                     console.log(errMsg)
                     break;
                 case 'auth/user-not-found':
@@ -58,7 +58,7 @@ const Landing = (props) => {
         return await firebase.auth().signInWithEmailAndPassword(email, password)
             .then(successObj => {
                 // now's date
-                var expirationDate = new Date()
+                let expirationDate = new Date()
                 // now's date + 1 hour
                 expirationDate.setHours(expirationDate.getHours() + 100)
                 localStorage.setItem('token', successObj.user.refreshToken)
@@ -80,15 +80,15 @@ const Landing = (props) => {
 
 
     // header-text 
-    var blurOne = isReg ? 'blurOne' : null
-    var blurTwo = isReg ? 'blurTwo' : null
-    var blurThree = isReg ? 'blurThree' : null
+    let blurOne = isReg ? 'blurOne' : null
+    let blurTwo = isReg ? 'blurTwo' : null
+    let blurThree = isReg ? 'blurThree' : null
 
     // register form
-    var registerBody = isReg ? 'expanded' : null
-    var regText = isReg ? 'register-text-hidden' : null
+    let registerBody = isReg ? 'expanded' : null
+    let regText = isReg ? 'register-text-hidden' : null
 
-    var regForm = null;
+    let regForm = null;
     if (isReg) {
         regForm = (
             <RegForm

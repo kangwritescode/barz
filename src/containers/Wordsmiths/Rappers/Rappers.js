@@ -25,12 +25,12 @@ class Rappers extends Component {
 
     componentDidUpdate = (prevProps, prevState) => {
         if (prevProps.rappers !== this.props.rappers) {
-            var totalNo = this.props.rappers.length
+            let totalNo = this.props.rappers.length
 
             // how much will you deque initially ?
-            var dequedNo = Math.min(totalNo, Rappers.pageLen)
+            let dequedNo = Math.min(totalNo, Rappers.pageLen)
             // how much do you have left to toDeque
-            var toDeque = totalNo <= Rappers.pageLen ? 0 : totalNo - Rappers.pageLen
+            let toDeque = totalNo <= Rappers.pageLen ? 0 : totalNo - Rappers.pageLen
 
             this.setState({
                 ...this.state,
@@ -61,7 +61,7 @@ class Rappers extends Component {
     }
 
     findRapper = () => {
-        var rapper = this.state.rappers.filter(rapper => rapper.uid === this.props.uid)[0]
+        let rapper = this.state.rappers.filter(rapper => rapper.uid === this.props.uid)[0]
         return rapper
     }
 
@@ -103,7 +103,7 @@ class Rappers extends Component {
     }
 
     render() {
-        var placeholder = (
+        let placeholder = (
             <div className="Rappers">
                 <div id="table-header">
                     <div className="headerDetail" id="votes">Score</div>
@@ -117,7 +117,7 @@ class Rappers extends Component {
             </div>
         )
 
-        var tableHeader = (
+        let tableHeader = (
             <div id="table-header">
                 <div className="headerDetail" id="votes">Score</div>
                 <div className="headerDetail" id="right-border">Username</div>
@@ -129,12 +129,12 @@ class Rappers extends Component {
 
 
 
-        var rappers = this.state.rappers.length === 0 ? placeholder : (
+        let rappers = this.state.rappers.length === 0 ? placeholder : (
             <div className="Rappers">
                 {tableHeader}
                 {this.state.rappers.slice(0, this.state.dequedNo).map((rapper, index) => {
 
-                    var style = (index % 2) === 0 ? 'lighter' : 'darker'
+                    let style = (index % 2) === 0 ? 'lighter' : 'darker'
 
                     return <Rapper
                         rank={index + 1}

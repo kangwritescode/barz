@@ -80,8 +80,8 @@ class ManyView extends Component {
     fetchSubmissionComments = () => {
         const db = firebase.firestore()
         db.collection('postComments').onSnapshot((snapshot) => {
-            var comments = []
-            for (var comment of snapshot.docs) {
+            let comments = []
+            for (let comment of snapshot.docs) {
                 comment = {
                     ...comment.data(),
                     cid: comment.id
@@ -99,8 +99,8 @@ class ManyView extends Component {
     fetchSubmissions = () => {
         const db = firebase.firestore()
         db.collection('submissions').onSnapshot((snapshot) => {
-            var submissions = []
-            for (var submission of snapshot.docs) {
+            let submissions = []
+            for (let submission of snapshot.docs) {
                 submission = {
                     ...submission.data(),
                     pid: submission.id
@@ -116,12 +116,12 @@ class ManyView extends Component {
     }
 
     fetchVotes = () => {
-        var db = firebase.firestore()
+        let db = firebase.firestore()
 
         db.collection('postVotes').onSnapshot(querySnapshot => {
             const votes = []
             querySnapshot.forEach((doc) => {
-                var vote = {
+                let vote = {
                     ...doc.data(),
                     vid: doc.id
                 }
@@ -139,15 +139,15 @@ class ManyView extends Component {
 
 
     submissionLikes = (pid) => {
-        var votes = Object.values(this.state.votes)
-        var postVotes = votes.filter(vote => vote.pid === pid && vote.value === 1)
+        let votes = Object.values(this.state.votes)
+        let postVotes = votes.filter(vote => vote.pid === pid && vote.value === 1)
         console.log(postVotes)
         return postVotes.length
     }
 
     submissionComments = (pid) => {
-        var comments = [...this.state.comments]
-        var postComments = comments.filter(comment => comment.pid === pid)
+        let comments = [...this.state.comments]
+        let postComments = comments.filter(comment => comment.pid === pid)
         return postComments.length
     }
 
@@ -156,29 +156,29 @@ class ManyView extends Component {
         switch (this.props.sort) {
             case 'Newest':
                 submissions = submissions.sort((a, b) => {
-                    var first = a.createdOn.toDate()
-                    var second = b.createdOn.toDate()
+                    let first = a.createdOn.toDate()
+                    let second = b.createdOn.toDate()
                     return first > second ? -1 : 1
                 })
                 break;
             case 'Oldest':
                 submissions = submissions.sort((a, b) => {
-                    var first = a.createdOn.toDate()
-                    var second = b.createdOn.toDate()
+                    let first = a.createdOn.toDate()
+                    let second = b.createdOn.toDate()
                     return first < second ? -1 : 1
                 })
                 break;
             case 'Likes':
                 submissions = submissions.sort((a, b) => {
-                    var aVotes = this.submissionLikes(a.pid)
-                    var bVotes = this.submissionLikes(b.pid)
+                    let aVotes = this.submissionLikes(a.pid)
+                    let bVotes = this.submissionLikes(b.pid)
                     return aVotes > bVotes ? -1 : 1
                 })
                 break;
             case 'Comments':
                 submissions = submissions.sort((a, b) => {
-                    var aComments = this.submissionComments(a.pid)
-                    var bComments = this.submissionComments(b.pid)
+                    let aComments = this.submissionComments(a.pid)
+                    let bComments = this.submissionComments(b.pid)
                     return aComments > bComments ? -1 : 1
                 })
                 break;
@@ -193,12 +193,12 @@ class ManyView extends Component {
 
         // Voted / Unvoted filter
         if (this.props.filter !== 'All Posts') {
-            var votes = this.state.votes
-            var myVotes = votes.filter(vote => vote.voterID === this.props.uid)
+            let votes = this.state.votes
+            let myVotes = votes.filter(vote => vote.voterID === this.props.uid)
             submissions = submissions
                 .filter(submission => {
-                    var thisVotes = myVotes.filter(vote => vote.pid === submission.pid)
-                    var unvoted = true
+                    let thisVotes = myVotes.filter(vote => vote.pid === submission.pid)
+                    let unvoted = true
                     thisVotes.forEach(vote => {
                         if (vote.value === 1 || vote.value === -1) {
                             unvoted = false
@@ -232,9 +232,9 @@ class ManyView extends Component {
         }
         // Time filter
         submissions = submissions.filter(submission => {
-            var now = new Date()
-            var passedMilliseconds = now - submission.createdOn.toDate().getTime()
-            var passedDays = (passedMilliseconds / 1000 / 60 / 60 / 24)
+            let now = new Date()
+            let passedMilliseconds = now - submission.createdOn.toDate().getTime()
+            let passedDays = (passedMilliseconds / 1000 / 60 / 60 / 24)
             return passedDays < timeDict[this.props.time]
         })
         return submissions
@@ -242,7 +242,7 @@ class ManyView extends Component {
 
 
     selectPost = (pid) => {
-        var post = this.state.submissions.filter(submission => submission.pid === pid)
+        let post = this.state.submissions.filter(submission => submission.pid === pid)
         post = post[0]
         this.setState({
             postSelected: true,
@@ -255,10 +255,10 @@ class ManyView extends Component {
 
         console.log(this.state.votes)
 
-        var submissions = [...this.state.submissions]
+        let submissions = [...this.state.submissions]
         submissions = this.sort_submissions(submissions)
         submissions = this.filter_submissions(submissions)
-        var manyPosts = <CircularSpinner />
+        let manyPosts = <CircularSpinner />
         if (submissions.length > 0) {
             manyPosts = submissions.map((submission, index) => {
 

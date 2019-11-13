@@ -38,7 +38,7 @@ class Toolkit extends Component {
     fetchJSON = async (type, input, event) => {
         event.preventDefault()
         this.toggleSpinner(true)
-        var URL = ''
+        let URL = ''
         switch (type) {
             case 'dictJSON': URL = `https://cors-anywhere.herokuapp.com/https://www.dictionaryapi.com/api/v3/references/collegiate/json/${input}?key=${Toolkit.dictKEY}`; break;
             case 'thesJSON': URL = `https://cors-anywhere.herokuapp.com/https://www.dictionaryapi.com/api/v3/references/thesaurus/json/${input}?key=${Toolkit.thesKey}`; break;

@@ -23,20 +23,20 @@ class DeleteAccount extends Component {
 
     deleteAccount = async () => {
 
-        var user = firebase.auth().currentUser;
-        var credentials = firebase.auth.EmailAuthProvider.credential(
+        let user = firebase.auth().currentUser;
+        let credentials = firebase.auth.EmailAuthProvider.credential(
             user.email,
             this.state.password
         );
         // first reauthenticate
         user.reauthenticateWithCredential(credentials)
             .then(async () => {
-                var db = firebase.firestore()
+                let db = firebase.firestore()
 
                 // delete submissions
                 await db.collection("submissions").get().then(snapshot => {
                     snapshot.forEach(doc => {
-                        var post = doc.data()
+                        let post = doc.data()
                         if (post.uid === this.props.uid) {
                             doc.ref.delete()
                         }
@@ -46,7 +46,7 @@ class DeleteAccount extends Component {
                 // delete follows
                 await db.collection("follows").get().then(snapshot => {
                     snapshot.forEach(doc => {
-                        var follow = doc.data()
+                        let follow = doc.data()
                         if (follow.from === this.props.uid
                             || follow.to === this.props.uid) {
                             doc.ref.delete()
@@ -58,7 +58,7 @@ class DeleteAccount extends Component {
                 // delete votes
                 await db.collection("postVotes").get().then(snapshot => {
                     snapshot.forEach(doc => {
-                        var vote = doc.data()
+                        let vote = doc.data()
                         if (vote.receiverID === this.props.uid
                             || vote.voterID === this.props.uid) {
                             doc.ref.delete()
@@ -70,7 +70,7 @@ class DeleteAccount extends Component {
                 await db.collection("postComments").get().then(querySnapshot => {
                     querySnapshot.forEach(doc => {
 
-                        var comment = doc.data()
+                        let comment = doc.data()
                         if (comment.uid === this.props.uid
                             || comment.receiverUID === this.props.uid) {
                             doc.ref.delete()
@@ -82,9 +82,9 @@ class DeleteAccount extends Component {
 
 
                 //  remove profile image
-                var storage = firebase.storage();
-                var storageRef = storage.ref();
-                var imgRef = storageRef.child(`images/${this.props.uid}/userIMG.png`)
+                let storage = firebase.storage();
+                let storageRef = storage.ref();
+                let imgRef = storageRef.child(`images/${this.props.uid}/userIMG.png`)
                 await imgRef.delete()
                     .then(() => console.log('profile image deleted successfully'))
                     .catch((err) => { throw err })

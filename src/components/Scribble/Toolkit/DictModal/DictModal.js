@@ -23,10 +23,10 @@ class DictModal extends Component {
 
 
 
-        var content = null
-        var response = this.props.dictJSON
+        let content = null
+        let response = this.props.dictJSON
         if (response) {
-            var responseType = this.checkResponsetype(response)
+            let responseType = this.checkResponsetype(response)
             if (responseType === 'suggestions') {
                 content = (
                     <div id="dict-sugg-modal-body">

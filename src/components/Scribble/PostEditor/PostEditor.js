@@ -29,7 +29,7 @@ const PostEditor = (props) => {
         };
     }, [props.pid])
 
-    var content = <CircularSpinner customStyle={{ zIndex: '110' }} />
+    let content = <CircularSpinner customStyle={{ zIndex: '110' }} />
     if (post) {
         content = (
             <div className={`editor-layout__content-container`}>

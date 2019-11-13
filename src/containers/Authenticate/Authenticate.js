@@ -58,7 +58,7 @@ class Authenticate extends Component {
     render() {
 
 
-        var content = (
+        let content = (
                 <SignIn
                     userInput={this.state.userInput}
                     encryptInput={this.state.encryptInput}

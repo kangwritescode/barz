@@ -21,11 +21,11 @@ class ThesModal extends Component {
     render() {
 
 
-        var content = null
-        var response = this.props.thesJSON
+        let content = null
+        let response = this.props.thesJSON
 
         if (response) {
-            var responseType = this.checkResponsetype(response)
+            let responseType = this.checkResponsetype(response)
             if (responseType === 'suggestions') {
 
                 content = (
@@ -69,7 +69,7 @@ class ThesModal extends Component {
                                                 <div key={GenID()}>
                                                     <div id="a-syn-list">
                                                         {synList.map((word, index) => {
-                                                            var comma = index === synList.length - 1 ? null : ', '
+                                                            let comma = index === synList.length - 1 ? null : ', '
                                                             return word + comma
                                                         })}
                                                     </div>

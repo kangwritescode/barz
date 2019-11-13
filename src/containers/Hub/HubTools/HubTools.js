@@ -7,9 +7,9 @@ const myPlaceFinder = (votes, myUID) => {
             dict[vote.receiverID] = vote.value
         }
     })
-    var arr = []
+    let arr = []
     for (let key in dict) {
-        var obj = { uid: key, score: dict[key] }
+        let obj = { uid: key, score: dict[key] }
         arr.push(obj)
     }
     arr = arr.sort((a, b) => {
@@ -17,7 +17,7 @@ const myPlaceFinder = (votes, myUID) => {
             return -1
         } return 1
     })
-    var myPosition
+    let myPosition
     arr.forEach((item, index) => {
         if (item.uid === myUID) {
             myPosition = index + 1

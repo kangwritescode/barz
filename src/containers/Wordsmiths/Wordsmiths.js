@@ -33,17 +33,17 @@ class Wordsmiths extends Component {
         try {
 
             this.toggleFetching(true)
-            var rappers = {}
-            var submissions = await this.fetchSubmissions()
-            var votes = await this.fetchVotes()
-            var users = await this.fetchUsers()
+            let rappers = {}
+            let submissions = await this.fetchSubmissions()
+            let votes = await this.fetchVotes()
+            let users = await this.fetchUsers()
 
             // for every single submission
             submissions.forEach(submission => {
                 console.log(users[submission.uid])
 
                 // find the votes for that submission
-                var filteredVotes = votes.filter(vote => vote.pid === submission.pid)
+                let filteredVotes = votes.filter(vote => vote.pid === submission.pid)
                 if (!rappers[submission.uid]) {
                     rappers[submission.uid] = {
                         uid: submission.uid,
@@ -77,10 +77,10 @@ class Wordsmiths extends Component {
 
     // fetch ALL submissions
     fetchSubmissions = async () => {
-        var db = firebase.firestore()
+        let db = firebase.firestore()
         return db.collection("submissions").get()
             .then((querySnapshot) => {
-                var submissions = []
+                let submissions = []
                 querySnapshot.forEach((doc) => {
                     submissions.push({
                         ...doc.data(),
@@ -93,10 +93,10 @@ class Wordsmiths extends Component {
     }
     // fetch ALl votes
     fetchVotes = async () => {
-        var db = firebase.firestore()
+        let db = firebase.firestore()
         return db.collection("postVotes").get()
             .then((querySnapshot) => {
-                var votes = []
+                let votes = []
                 querySnapshot.forEach((doc) => {
                     votes.push(doc.data())
                 });
@@ -108,10 +108,10 @@ class Wordsmiths extends Component {
 
     // fetch ALl votes
     fetchUsers = async () => {
-        var db = firebase.firestore()
+        let db = firebase.firestore()
         return db.collection("users").get()
             .then((querySnapshot) => {
-                var users = {}
+                let users = {}
                 querySnapshot.forEach((doc) => {
                     users[doc.id] = { ...doc.data(), uid: doc.id }
                 });
@@ -157,9 +157,9 @@ class Wordsmiths extends Component {
 
     render() {
 
-        var rappers = { ...this.state.rappers }
+        let rappers = { ...this.state.rappers }
         console.log(rappers)
-        var allVotes = this.state.votes ? Object.values(this.state.votes) : []
+        let allVotes = this.state.votes ? Object.values(this.state.votes) : []
 
         // states, coast, and gender filter
         if (this.state.state !== "All States") { rappers = Object.fromEntries(Object.entries(rappers).filter(([k, rapper]) => rapper.address.state === this.state.state)) }
@@ -168,12 +168,12 @@ class Wordsmiths extends Component {
 
         // tally user points
         for (let uid in rappers) {
-            var rapper = rappers[uid]
-            var tally = 0
+            let rapper = rappers[uid]
+            let tally = 0
             allVotes.forEach((vote) => {
-                var now = new Date()
-                var passedMilliseconds = now - vote.postDate.toDate().getTime()
-                var passedDays = (passedMilliseconds / 1000 / 60 / 60 / 24)
+                let now = new Date()
+                let passedMilliseconds = now - vote.postDate.toDate().getTime()
+                let passedDays = (passedMilliseconds / 1000 / 60 / 60 / 24)
                 // tally if within given time 
                 if (!(passedDays > timeDict[this.state.time]) && uid === vote.receiverID) {
                     tally += vote.value
@@ -183,13 +183,13 @@ class Wordsmiths extends Component {
             rapper['tally'] = tally < 0 ? 0 : tally
 
             // submissionCount
-            var filteredSubmissions = this.state.submissions.filter(submission => {
-                var now = new Date()
-                var passedMilliseconds = now - submission.createdOn.toDate().getTime()
-                var passedDays = (passedMilliseconds / 1000 / 60 / 60 / 24)
+            let filteredSubmissions = this.state.submissions.filter(submission => {
+                let now = new Date()
+                let passedMilliseconds = now - submission.createdOn.toDate().getTime()
+                let passedDays = (passedMilliseconds / 1000 / 60 / 60 / 24)
                 return !(passedDays > timeDict[this.state.time]) && submission.uid === uid
             })
-            var noOfSubmissions = filteredSubmissions.length
+            let noOfSubmissions = filteredSubmissions.length
             rapper['submissionCount'] = noOfSubmissions
 
 
@@ -206,8 +206,8 @@ class Wordsmiths extends Component {
             })
 
         // tally city and coast votes
-        var cityVotes = {}
-        var coastVotes = {}
+        let cityVotes = {}
+        let coastVotes = {}
         rappers.forEach(rapper => {
             const cityState = `${rapper.address.city}, ${rapper.address.state}`
             if (rapper.tally > 0) {

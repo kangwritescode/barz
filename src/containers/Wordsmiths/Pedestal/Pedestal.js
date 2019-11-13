@@ -29,12 +29,12 @@ class Pedestal extends Component {
                 ...this.state,
                 fetching: true
             })
-            var db = firebase.firestore()
-            var user = await db.collection('users').doc(this.props.rapper.uid).get()
+            let db = firebase.firestore()
+            let user = await db.collection('users').doc(this.props.rapper.uid).get()
                 .then(doc => {
                     return doc.data()
                 })
-            var photoURL = await this.fetchRapperPhotoURL(user.photoRef)
+            let photoURL = await this.fetchRapperPhotoURL(user.photoRef)
 
             this.setState({
                 ...this.state,
@@ -47,7 +47,7 @@ class Pedestal extends Component {
 
     fetchRapperPhotoURL = async (photoRef) => {
 
-        var storage = firebase.storage()
+        let storage = firebase.storage()
         return storage.ref(photoRef).getDownloadURL()
             .then(url => {
                 return url
@@ -60,8 +60,8 @@ class Pedestal extends Component {
 
     // credit to stackoverflow.com/questions/13627308
     getOrdinal = (i) => {
-        var j = i % 10
-        var k = i % 100
+        let j = i % 10
+        let k = i % 100
         if (j === 1 && k !== 11) { return "st" }
         if (j === 2 && k !== 12) { return "nd" }
         if (j === 3 && k !== 13) { return "rd" }
@@ -96,29 +96,29 @@ class Pedestal extends Component {
 
 
         // fetching ?
-        var fetching = this.state.fetching ? 'fetching' : null
+        let fetching = this.state.fetching ? 'fetching' : null
         console.log(fetching, 'sfsdfsd')
 
         // relevantRapper
-        var releventRapper = this.props.rapper
+        let releventRapper = this.props.rapper
         // general information
-        var username = releventRapper ? releventRapper.username : 'Select a User'
-        var city = releventRapper ? releventRapper.city : null
-        var state = releventRapper ? releventRapper.state : null
-        var gender = releventRapper ? releventRapper.gender : null
-        var cityStateGender = releventRapper ? `${city}, ${state} | ${gender}` : null
-        var rank = releventRapper ? releventRapper.rank + this.getOrdinal(releventRapper.rank) : null
-        var subCount = releventRapper ? releventRapper.submissionCount : null
-        var score = releventRapper ? releventRapper.votes : null
+        let username = releventRapper ? releventRapper.username : 'Select a User'
+        let city = releventRapper ? releventRapper.city : null
+        let state = releventRapper ? releventRapper.state : null
+        let gender = releventRapper ? releventRapper.gender : null
+        let cityStateGender = releventRapper ? `${city}, ${state} | ${gender}` : null
+        let rank = releventRapper ? releventRapper.rank + this.getOrdinal(releventRapper.rank) : null
+        let subCount = releventRapper ? releventRapper.submissionCount : null
+        let score = releventRapper ? releventRapper.votes : null
 
         // databaseUser
-        var firebaseUser = this.state.user
+        let firebaseUser = this.state.user
 
         // handles
-        var hasFB = firebaseUser && firebaseUser.handles.facebook ? firebaseUser.handles.facebook : null
-        var hasIG = firebaseUser && firebaseUser.handles.instagram ? firebaseUser.handles.instagram : null
-        var hasSC = firebaseUser && firebaseUser.handles.soundcloud ? firebaseUser.handles.soundcloud : null
-        var hasYT = firebaseUser && firebaseUser.handles.youtube ? firebaseUser.handles.youtube : null
+        let hasFB = firebaseUser && firebaseUser.handles.facebook ? firebaseUser.handles.facebook : null
+        let hasIG = firebaseUser && firebaseUser.handles.instagram ? firebaseUser.handles.instagram : null
+        let hasSC = firebaseUser && firebaseUser.handles.soundcloud ? firebaseUser.handles.soundcloud : null
+        let hasYT = firebaseUser && firebaseUser.handles.youtube ? firebaseUser.handles.youtube : null
 
         // everything ( firebaseUser, relevantUser, photoRef) is loaded
 

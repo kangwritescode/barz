@@ -48,13 +48,13 @@ const MyBars = (props) => {
 
     const insertDateHeaders = (inputArr) => {
         // create a copy
-        var arr = [...inputArr]
-        var currYear = 0
-        var currMonth = 0
-        var i = 0
+        let arr = [...inputArr]
+        let currYear = 0
+        let currMonth = 0
+        let i = 0
         while (i < arr.length) {
-            var postYear = arr[i].createdOn.toDate().getUTCFullYear()
-            var postMonth = arr[i].createdOn.toDate().getUTCMonth() + 1
+            let postYear = arr[i].createdOn.toDate().getUTCFullYear()
+            let postMonth = arr[i].createdOn.toDate().getUTCMonth() + 1
 
             // if a new year is introduced, update
             if (postYear !== currYear) {
@@ -69,7 +69,7 @@ const MyBars = (props) => {
                 i += 1
             }
         }
-        // return copy with inserted variables
+        // return copy with inserted letiables
         return arr
     }
 
@@ -96,7 +96,7 @@ const MyBars = (props) => {
 
     // insert the date headers into the array
 
-    var preppedPosts = insertDateHeaders(posts)
+    let preppedPosts = insertDateHeaders(posts)
 
     return (
         <div className="my-bars" id={myBarsId}>

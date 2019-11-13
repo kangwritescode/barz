@@ -32,7 +32,7 @@ class ForgotPassword extends Component {
     requestPassReset = (event) => {
         event.preventDefault()
         this.toggleProcessing(true)
-        var auth = firebase.auth()
+        let auth = firebase.auth()
         auth.sendPasswordResetEmail(this.state.emailInput)
             .then(() => {
 
@@ -49,7 +49,7 @@ class ForgotPassword extends Component {
             })
             .catch(err => {
                 this.toggleProcessing(false)
-                var msg = err.message
+                let msg = err.message
                 this.setState({
                     ...this.state,
                     showNotification: true,

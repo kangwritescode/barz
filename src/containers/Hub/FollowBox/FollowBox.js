@@ -35,9 +35,9 @@ function FollowBox(props) {
     // attach listeners for users, following, followers
     useEffect(() => {
         if (props.follows) {
-            var followersCount = 0;
-            var followingCount = 0;
-            var arr = []
+            let followersCount = 0;
+            let followingCount = 0;
+            let arr = []
             props.follows.forEach(follow => {
                 if (follow.from === props.uid) {
                     followingCount += 1
@@ -57,10 +57,10 @@ function FollowBox(props) {
     // fetch followerUsers and followingUsers
     useEffect(() => {
         if (focusOn) {
-            var db = firebase.firestore()
+            let db = firebase.firestore()
             db.collection('users').get()
                 .then(snapshot => {
-                    var arr = []
+                    let arr = []
                     snapshot.forEach(doc => {
                         arr.push({ ...doc.data() })
                     })
@@ -113,7 +113,7 @@ function FollowBox(props) {
     const followingFocused = focusOn === 'following' ? 'focused' : null
 
     // focus bar style
-    var focusedBarStyle = null;
+    let focusedBarStyle = null;
     if (focusOn === 'following') {
         focusedBarStyle = 'under-following'
     } else if (focusOn === 'followers') {
@@ -125,10 +125,10 @@ function FollowBox(props) {
     const followingUIDs = myFollowingUIDs(follows)
     const followersUIDs = myFollowersUIDs(follows)
 
-    var followingUsers = getFilteredUsers(users, followingUIDs)
-    var followedUsers = getFilteredUsers(users, followersUIDs)
+    let followingUsers = getFilteredUsers(users, followingUIDs)
+    let followedUsers = getFilteredUsers(users, followersUIDs)
 
-    var displayedUsers;
+    let displayedUsers;
     if (focusOn === 'following') {
         displayedUsers = followingUsers.map(user => {
             return <FollowItem follows={follows} user={user} />

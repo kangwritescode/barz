@@ -35,9 +35,10 @@ class JudgeNavBar extends Component {
 
 
     render() {
-        var sortDropItems = ['Newest', 'Oldest']
+        let sortDropItems = ['Newest', 'Oldest']
+        let timeItem = null;
         if (this.props.view === 'Explore') {
-            var timeItem = (
+            timeItem = (
                 <JudgeNavItem
                     dropItems={['Last 24 Hours', 'Last 7 Days', 'Last 30 Days', 'Last 6 Months', 'Last 12 Months', 'All Time']}
                     type="time"

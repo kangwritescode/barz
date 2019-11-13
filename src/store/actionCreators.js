@@ -8,8 +8,8 @@ import 'firebase/firestore'
 
 export function fetchUserData(uid) {
     return dispatch => {
-        var db = firebase.firestore()
-        var docRef = db.collection(`users/`).doc(`${uid}`);
+        let db = firebase.firestore()
+        let docRef = db.collection(`users/`).doc(`${uid}`);
         docRef.get().then((doc) => {
             if (doc.exists) {
                 dispatch({ type: actionTypes.SET_USER_DATA, data: doc.data() })
@@ -27,7 +27,7 @@ export const postUserData = (uid, newInfo) => {
 
     return dispatch => {
 
-        var db = firebase.firestore()
+        let db = firebase.firestore()
         db.collection("users").doc(uid).update(newInfo)
             .then(function () {
                 console.log("Document successfully updated!");
@@ -42,7 +42,7 @@ export const postUserData = (uid, newInfo) => {
 
 export const fetchPhotoURL = (photoRef) => {
     return dispatch => {
-        var storage = firebase.storage();
+        let storage = firebase.storage();
             storage.ref(photoRef).getDownloadURL()
             .then(url => {
                 dispatch({ type: actionTypes.SET_PHOTO_URL, photoURL: url})

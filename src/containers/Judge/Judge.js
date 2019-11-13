@@ -56,7 +56,7 @@ class Judge extends Component {
 
     render() {
 
-        var view = (
+        let view = (
             <SingleView
                 uid={this.props.uid}
                 toggleModal={this.toggleModal}

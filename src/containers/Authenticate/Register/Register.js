@@ -28,13 +28,13 @@ class Register extends Component {
     }
 
     fetchMysteryMan = () => {
-        var storage = firebase.storage()
+        let storage = firebase.storage()
         storage.ref('mysteryman/mysteryman.png').getDownloadURL()
             .then(url => {
-                var xhr = new XMLHttpRequest();
+                let xhr = new XMLHttpRequest();
                 xhr.responseType = 'blob';
                 xhr.onload = event => {
-                    var blob = xhr.response;
+                    let blob = xhr.response;
                     this.setState({
                         ...this.state,
                         mysteryManBlob: blob
@@ -135,7 +135,7 @@ class Register extends Component {
 
 
     createFirebaseUser = async (email, uid, photoRef) => {
-        var db = firebase.firestore();
+        let db = firebase.firestore();
         return db.collection('users').doc(uid).set({
             email: email,
             uid: uid,
@@ -155,8 +155,8 @@ class Register extends Component {
 
     uploadMysteryMan(uid) {
         return new Promise((resolve, reject) => {
-            var storageRef = firebase.storage().ref();
-            var photoRef = storageRef.child(`images/${uid}/userIMG.png`);
+            let storageRef = firebase.storage().ref();
+            let photoRef = storageRef.child(`images/${uid}/userIMG.png`);
             photoRef.put(this.state.mysteryManBlob)
                 .then(snapshot => { resolve(photoRef) })
                 .catch(err => { console.log(err) })
@@ -175,7 +175,7 @@ class Register extends Component {
 
     render() {
 
-        var formIsValid = this.formIsValid()
+        let formIsValid = this.formIsValid()
 
 
         return (
