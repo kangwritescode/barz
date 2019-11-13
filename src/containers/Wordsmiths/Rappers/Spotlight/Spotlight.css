@@ -136,6 +136,7 @@
 }
 
 .spotlight .spotlight__block-one .block-one__img-wrapper {
+  position: relative;
   height: 50px;
   width: 50px;
   border-radius: 50%;
@@ -149,6 +150,16 @@
   height: 50px;
   width: 50px;
   border-radius: 50%;
+}
+
+.spotlight .spotlight__block-one .block-one__img-wrapper .crown {
+  position: absolute;
+  top: 0em;
+  right: 50%;
+  -webkit-transform: translate(50%, -85%);
+          transform: translate(50%, -85%);
+  font-size: 1.5em;
+  color: gold;
 }
 
 .spotlight .spotlight__block-one .block-one__username {

@@ -95,7 +95,7 @@ const ManyPost = (props) => {
             style={props.customStyle ? props.customStyle.body : null}>
             <header onClick={() => props.selectPost(props.pid)}>
                 <div className='many-post-details' id={props.pid}>
-                    <img className='many-post-pic' src={props.myPhotoURL} alt='pic'></img>
+                    <img className='many-post-pic' src={props.photoURL} alt='pic'></img>
                     <div className='many-post-name-date-container'>
                         <h6 style={props.customStyle ? props.customStyle.username : null}>{props.username}</h6>
                         <p>{date}</p>

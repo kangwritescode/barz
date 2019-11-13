@@ -23,12 +23,14 @@ const PostLikes = (props) => {
             window.clearTimeout(closeTimeout)
             openTimeout = window.setTimeout(function () {
                 voter.classList.add('show')
+                voter.classList.remove('hide')
             }, 750);
         }
         const removeTimeOut = () => {
             window.clearTimeout(openTimeout)
             closeTimeout = window.setTimeout(function () {
                 voter.classList.remove('show')
+                voter.classList.add('hide')
             }, 750)
         }
 
@@ -84,6 +86,7 @@ const PostLikes = (props) => {
     const vote = (newValue) => {
         const voter = document.getElementById('voter')
         voter.classList.remove('show')
+        voter.classList.add('hide')
         const db = firebase.firestore()
         if (myVote.length === 0) {
             var newVote = {
@@ -139,7 +142,7 @@ const PostLikes = (props) => {
                 id={`vote-icon`}>
                 {iconStyle}
                 <div className={`vote-icon-container-hover-div`} onClick={myVote && myVote[0] && myVote[0].value === -1 ? () => vote(-1) : () => vote(1)}></div>
-                <div className={`vote-icon-container__pop-up-voter`} id={`voter`}>
+                <div className={`vote-icon-container__pop-up-voter hide`} id={`voter`}>
                     <div className={`pop-up-voter__icon-wrapper left`} onClick={() => vote(-1)}><i className={`fa fa-trash lit-trash voter-icon`} aria-hidden="true"></i></div>
                     <div className={`pop-up-voter__icon-wrapper right`} onClick={() => vote(1)}><i className={`fa fa-fire lit voter-icon`} aria-hidden="true"></i></div>
                 </div>

@@ -86,13 +86,13 @@ function PostComment(props) {
             </div>
         )
     }
-
+    console.log(props.data.photoURL)
     return (
         <div
             className='posted-comment'
             onMouseLeave={(event) => { closeDropdowns(event) }}>
             <div className='posted-comment__img-container'>
-                <img alt='' src={props.myPhotoURL}></img>
+                <img alt='' src={props.data.photoURL}></img>
             </div>
             <div className='posted-comment__content'>
                 <b>{data.username}</b> {data.comment} <br />

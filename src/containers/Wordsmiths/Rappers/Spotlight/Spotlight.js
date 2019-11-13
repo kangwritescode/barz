@@ -12,7 +12,6 @@ import { postUserData } from '../../../../store/actionCreators'
 function Spotlight(props) {
 
     const [showDropOptions, toggleDropOptions] = useState(false)
-    const [imgURL, setImgURL] = useState(null)
     const [follows, setFollows] = useState([])
     const [amFollowing, setAmFollowing] = useState(false)
     const [blurbText, setBlurbText] = useState('')
@@ -42,13 +41,12 @@ function Spotlight(props) {
 
         if (props.rapper) {
             console.log(props.rapper)
-            setImgURL(props.rapper.photoURL)
             calcAmFollowing(props.rapper.uid)
         }
         if (props.blurb) {
             setBlurbText(props.blurb)
         }
-    }, [props.photoRef, props.rapper, follows, props.uid, props.blurb])
+    }, [props.photoURL, props.rapper, follows, props.uid, props.blurb])
 
     const fetchFollows = async () => {
         var db = firebase.firestore()
@@ -118,7 +116,17 @@ function Spotlight(props) {
 
     var photo = props.rapper ?
         <div className='block-one__img-wrapper'>
-            <img alt='' src={imgURL} />
+            <div>
+                <img alt='' src={props.rapper.photoURL} />
+                {props.rapper.rank === 1 ? 
+                    <i class="fas fa-crown crown"></i> 
+                    : null}
+                {props.rapper.rank === 2 ? 
+                    <i class="fas fa-crown crown" style={{color: 'silver'}}></i> 
+                    : null}
+                    
+            </div>
+
         </div>
         : null
     var button = <button className='follow-button' onClick={follow}>follow</button>
@@ -126,7 +134,8 @@ function Spotlight(props) {
         button = <button className='follow-button' onClick={unfollow}>following</button>
     }
     var handles = null;
-    console.log(props.rapper)
+
+
     if (props.rapper && (props.rapper.handles.facebook
         || props.rapper.handles.soundcloud
         || props.rapper.handles.instagram
@@ -150,7 +159,15 @@ function Spotlight(props) {
                 </a> : null}
         </div>)
     }
-
+    var blurb = null;
+    if (props.rapper && props.rapper.blurb) {
+        blurb = (
+            <p className='block-one__blurb' style={{ cursor: 'text' }}>
+                    {props.rapper ? props.rapper.blurb : null}
+                </p>
+        )
+    }
+    console.log(props.rapper)
     return (
         <div className='spotlight' >
             <div className='spotlight__block-one'>
@@ -159,10 +176,7 @@ function Spotlight(props) {
                 {username}
                 {addressGender}
                 {handles}
-
-                <p className='block-one__blurb' style={{ cursor: 'text' }}>
-                    {props.rapper ? props.rapper.blurb : null}
-                </p>
+                {blurb}
             </div>
             <div className='spotlight__block-two' style={{ fontSize: '.7em' }}>
                 {props.focus === 'them' ? button : null}

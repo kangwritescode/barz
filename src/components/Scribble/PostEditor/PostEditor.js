@@ -51,7 +51,7 @@ const PostEditor = (props) => {
                         toggleDeleteCommentModal={(bool, cid) => setCid(cid)}
                         customStyle={{
                             body: {
-                                height: '19.6em',
+                                height: '17.5em',
                                 backgroundColor: 'rgba(255, 255, 255, 0.95)'
                             },
                             header: {
