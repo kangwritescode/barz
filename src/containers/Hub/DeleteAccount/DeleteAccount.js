@@ -3,7 +3,8 @@ import firebase from 'firebase'
 import { connect } from 'react-redux'
 import './DeleteAccount.css'
 import trash from '../../../assets/trash.png'
-import * as actionTypes from '../../../store/actions'
+import * as actionTypes from '../../../store/actions/actionsTypes'
+import * as actions from '../../../store/actions/index'
 
 class DeleteAccount extends Component {
 
@@ -139,7 +140,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        logout: () => dispatch({ type: actionTypes.LOG_OUT })
+        logout: () => dispatch(actions.logOut())
     }
 }
 

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import './Spotlight.css'
 import PhotoContainer from '../../../Hub/ProfileBox/PhotoContainer/PhotoContainer'
-import * as actionTypes from '../../../../store/actions'
+import * as actionTypes from '../../../../store/actions/actionsTypes'
+import * as actions from '../../../../store/actions/index'
 import firebase from 'firebase'
 import { getOrdinal } from '../../../../shared/getOrdinal'
 import { connect } from 'react-redux'
-import { postUserData } from '../../../../store/actionCreators'
+import { postUserData } from '../../../../store/actions/auth'
 
 
 
@@ -210,7 +211,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         postUserData: (uid, data) => dispatch(postUserData(uid, data)),
-        logout: () => dispatch({ type: actionTypes.LOG_OUT })
+        logout: () => dispatch(actions.logOut())
     }
 }
 

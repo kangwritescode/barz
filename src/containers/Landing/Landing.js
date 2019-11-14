@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './Landing.css'
-import { fetchUserData } from '../../store/actionCreators'
+import { fetchUserData } from '../../store/actions/auth'
 import { connect } from 'react-redux'
 import splashVid from '../../assets/splash-vid.m4v'
 import LandingNav from './LandingNav/LandingNav'

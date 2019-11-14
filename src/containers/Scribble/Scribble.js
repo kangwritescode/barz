@@ -1,7 +1,8 @@
 import React, { Component, useState } from 'react'
 import { connect } from 'react-redux'
 import 'firebase/firestore'
-import * as actionTypes from '../../store/actions'
+import * as actionTypes from '../../store/actions/actionsTypes'
+import * as actions from '../../store/actions/index'
 import './Scribble.css'
 import vinyl from '../../assets/vinyl.mov'
 import vinyIMG from '../../assets/vinylIMG.png'
@@ -60,10 +61,10 @@ let mapStatetoProps = state => {
 }
 let mapDispatchToProps = dispatch => {
     return {
-        playMusic: () => dispatch({ type: actionTypes.PLAY_MUSIC }),
-        stopMusic: () => dispatch({ type: actionTypes.STOP_MUSIC }),
-        changeURL: (newURL) => dispatch({ type: actionTypes.CHANGE_MUSIC_URL, musicURL: newURL }),
-        changeVol: (volume) => dispatch({ type: actionTypes.CHANGE_VOLUME, volume: volume })
+        playMusic: () => dispatch(actions.playMusic()),
+        stopMusic: () => dispatch(actions.stopMusic()),
+        changeURL: (newURL) => dispatch(actions.changeURL(newURL)),
+        changeVol: (volume) => dispatch(actions.changeVol(volume)),
     }
 }
 

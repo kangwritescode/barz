@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './Judge.css'
 import { connect } from 'react-redux'
-import * as actionTypes from '../../store/actions'
+import * as actionTypes from '../../store/actions/actionsTypes'
 import vinyl2 from '../../assets/vinyl2.mp4'
 import vinyl2_IMG from '../../assets/vinyl2_IMG.png'
 import nafla from '../../assets/nafla-blows.m4v'

@@ -3,7 +3,7 @@ import './DeletePost.css'
 import firebase from '../../../../../Firebase'
 import 'firebase/firestore'
 import { connect } from 'react-redux';
-import * as actionTypes from '../../../../../store/actions'
+import * as actionTypes from '../../../../../store/actions/actionsTypes'
 
 const DeletePost = (props) => {
 

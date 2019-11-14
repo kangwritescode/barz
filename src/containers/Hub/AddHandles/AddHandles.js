@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { postUserData } from '../../../store/actionCreators'
+import { postUserData } from '../../../store/actions/auth'
 
 import fb from '../../../assets/modalHandles/fb.png'
 import sc from '../../../assets/modalHandles/add-sc.png'

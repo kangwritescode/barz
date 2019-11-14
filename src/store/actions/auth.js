@@ -1,20 +1,16 @@
 
-import * as actionTypes from './actions'
-import firebase from '../Firebase'
+import * as actionTypes from './actionsTypes'
+import firebase from '../../Firebase'
 import 'firebase/firestore'
+let db = firebase.firestore()
 
-
-// asynchronous actionCreators
-
-export function fetchUserData(uid) {
+export const fetchUserData = (uid) => {
     return dispatch => {
-        let db = firebase.firestore()
-        let docRef = db.collection(`users/`).doc(`${uid}`);
+        let docRef = db.collection(`users/`).doc(uid);
         docRef.get().then((doc) => {
             if (doc.exists) {
-                dispatch({ type: actionTypes.SET_USER_DATA, data: doc.data() })
+                dispatch(setUserData(doc.data()))
             } else {
-                // doc.data() will be undefined in this case
                 console.log("No such document!");
             }
         }).catch(function (error) {
@@ -23,45 +19,47 @@ export function fetchUserData(uid) {
     }
 }
 
+export const setUserData = (data) => {
+    return {
+        type: actionTypes.SET_USER_DATA, data: data
+    }
+}
+
 export const postUserData = (uid, newInfo) => {
-
     return dispatch => {
-
-        let db = firebase.firestore()
         db.collection("users").doc(uid).update(newInfo)
             .then(function () {
                 console.log("Document successfully updated!");
-                dispatch({ type: actionTypes.SET_USER_DATA, data: newInfo })
+                dispatch(setUserData(newInfo))
             })
             .catch(function (error) {
-                // The document probably doesn't exist.
                 console.error("Error updating document: ", error);
             });
-    }   
+    }
 }
 
-
-
-// synchronous action creators
-
-export function authCheckState() {
+export const authCheckState = () => {
     return dispatch => {
         const token = localStorage.getItem('token')
         if (!token) {
             firebase.auth().signOut()
-            dispatch({ type: actionTypes.LOG_OUT })
+            dispatch(logOut())
         } else {
             const expirationTime = new Date(localStorage.getItem('expirationDate'))
             if (expirationTime < new Date()) {
-                console.log("would've logged out")
                 firebase.auth().signOut()
-                dispatch({ type: actionTypes.LOG_OUT })
+                dispatch(logOut())
             } else {
                 const uid = localStorage.getItem('uid')
                 dispatch(fetchUserData(uid))
             }
-
         }
+    }
+}
+
+export const logOut = () => {
+    return {
+        type: actionTypes.LOG_OUT
     }
 }
 

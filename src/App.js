@@ -6,7 +6,7 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import ReactPlayer from 'react-player'
 import { connect } from 'react-redux'
 import Judge from './containers/Judge/Judge'
-import { fetchUserData, authCheckState } from './store/actionCreators'
+import { fetchUserData, authCheckState } from './store/actions/auth'
 import Wordsmiths from './containers/Wordsmiths/Wordsmiths'
 import './App.css'
 import Landing from './containers/Landing/Landing';

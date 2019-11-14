@@ -4,7 +4,7 @@ import firebase from 'firebase'
 import 'firebase/firestore'
 import { connect } from 'react-redux'
 import shuffle from 'shuffle-array'
-import * as actionTypes from '../../../store/actions'
+import * as actionTypes from '../../../store/actions/actionsTypes'
 import FourBars from './FourBars/FourBars'
 
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import * as actionTypes from '../../../../store/actions'
+import * as actionTypes from '../../../../store/actions/actionsTypes'
+import * as actions from '../../../../store/actions/index'
 import './Slider.css'
 
 class Slider extends Component {
@@ -29,7 +30,7 @@ let mapStatetoProps = state => {
 }
 let mapDispatchToProps = dispatch => {
     return {
-        changeVol: (volume) => dispatch({ type: actionTypes.CHANGE_VOLUME, volume: volume }),
+        changeVol: (volume) => dispatch(actions.changeVol(volume)),
     }
 }
 

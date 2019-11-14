@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import './ProfileBox.css'
 import PhotoContainer from './PhotoContainer/PhotoContainer'
-import * as actionTypes from '../../../store/actions'
+import * as actionTypes from '../../../store/actions/actionsTypes'
 import firebase from 'firebase'
 import { getOrdinal } from '../../../shared/getOrdinal'
 import { connect } from 'react-redux'
-import { postUserData } from '../../../store/actionCreators'
-import DotSpinner from '../../../shared/DotSpinner/DotSpinner'
+import { postUserData } from '../../../store/actions/auth'
+import * as actions from '../../../store/actions/index'
 
 
 
@@ -156,7 +156,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         postUserData: (uid, data) => dispatch(postUserData(uid, data)),
-        logout: () => dispatch({ type: actionTypes.LOG_OUT })
+        logout: () => dispatch(actions.logOut())
     }
 }
 

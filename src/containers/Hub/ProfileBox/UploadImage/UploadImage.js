@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import './UploadImage.css'
 import { connect } from 'react-redux'
 import firebase from 'firebase'
-import * as actionTypes from '../../../../store/actions'
+import * as actionTypes from '../../../../store/actions/actionsTypes'
+import * as actions from '../../../../store/actions/index'
 
 class UploadImage extends Component {
 
@@ -141,7 +142,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        setUserData: (photoURL) => dispatch({type: actionTypes.SET_USER_DATA, data: {photoURL: photoURL}})
+        setUserData: (photoURL) => dispatch(actions.setUserData({photoURL: photoURL}))
     }
 }
 
