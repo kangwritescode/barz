@@ -163,6 +163,7 @@ const Hub = (props) => {
             </div>
         } else {
             manyPosts = posts.map(post => {
+                console.log(post)
                 return (
                     <ManyPost
                         comments={comments.filter(comment => comment.pid === post.pid)}
@@ -267,7 +268,6 @@ const Hub = (props) => {
 const mapStateToProps = state => {
     return {
         loggedIn: state.loggedIn,
-        autoSignInOver: state.autoSignInOver,
         email: state.email,
         username: state.username,
         sex: state.sex,

@@ -62,7 +62,7 @@ class UploadImage extends Component {
             })
         }, () => {
             uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-                this.props.setPhotoURL(downloadURL)
+                this.props.setUserData(downloadURL)
                 this.setState({
                     ...this.state,
                     uploading: false,
@@ -141,7 +141,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        setPhotoURL: (photoURL) => dispatch({type: actionTypes.SET_PHOTO_URL, photoURL: photoURL})
+        setUserData: (photoURL) => dispatch({type: actionTypes.SET_USER_DATA, data: {photoURL: photoURL}})
     }
 }
 

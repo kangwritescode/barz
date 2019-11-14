@@ -32,7 +32,7 @@ class Judge extends Component {
             [newState]: value
         })
     }
-    
+
     toggleModal = (modal, value, pid) => {
         this.setState({
             ...this.state,
@@ -61,7 +61,7 @@ class Judge extends Component {
                     view={this.state.view}
                     coast={this.state.coast}
                     time={this.state.time}
-                    toggleModal={this.toggleModal}/>
+                    toggleModal={this.toggleModal} />
             )
         }
         return (
@@ -70,14 +70,14 @@ class Judge extends Component {
                     <img id='backup-img' src={vinyl2_IMG} alt=''></img>
                     <video src={vinyl2} autoPlay={true} loop={true} playsInline={true} muted />
                     <div id="judgeOverlay" />
-                    <JudgeNavBar 
+                    <JudgeNavBar
                         sort={this.state.sort}
                         filter={this.state.filter}
                         view={this.state.view}
                         time={this.state.time}
                         coast={this.state.coast}
                         updateJudgeState={this.updateJudgeState} />
-                    {view} 
+                    {view}
                 </div>
             </div>
 
@@ -94,7 +94,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        changeBg: (video, style) => dispatch({ type: actionTypes.SET_GLOBAL_BACKGROUND, video: video, style: style })
     }
 }
 

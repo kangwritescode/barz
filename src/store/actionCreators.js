@@ -40,20 +40,6 @@ export const postUserData = (uid, newInfo) => {
     }   
 }
 
-export const fetchPhotoURL = (photoRef) => {
-    return dispatch => {
-        let storage = firebase.storage();
-            storage.ref(photoRef).getDownloadURL()
-            .then(url => {
-                dispatch({ type: actionTypes.SET_PHOTO_URL, photoURL: url})
-            })
-            .catch(function (error) { console.log("error in Profile.js: ", error) });
-            return () => {
-                // cleanup
-            };
-    }
-}
-
 
 
 // synchronous action creators

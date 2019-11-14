@@ -9,7 +9,6 @@ import Judge from './containers/Judge/Judge'
 import { fetchUserData, authCheckState } from './store/actionCreators'
 import Wordsmiths from './containers/Wordsmiths/Wordsmiths'
 import './App.css'
-import {fetchPhotoURL} from './store/actionCreators'
 import Landing from './containers/Landing/Landing';
 
 

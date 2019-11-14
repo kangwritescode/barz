@@ -1,6 +1,6 @@
 import * as actionTypes from './actions';
 import vinyl from '../assets/vinyl.mov'
-import firebase from '../Firebase'
+import { updateObject } from '../shared/utility'
 
 const initialState = {
 
@@ -19,12 +19,11 @@ const initialState = {
         dilla: 'https://www.youtube.com/watch?v=XKB5h2tJQHQ',
         chillhop: 'https://www.youtube.com/watch?v=DKSzY7Dg-rA'
     },
-    
+
     // user related,
     loggedIn: false,
     needsInfo: true,
     autoSignInOver: false,
-    
     uid: '',
     email: '',
     username: '',
@@ -44,73 +43,66 @@ const initialState = {
 
 }
 
-const reducer = (state=initialState, action) => {
+const toggleMusic = (state, action, bool) => {
+    return updateObject(state, {
+        playing: bool
+    })
+}
+const changeMusicUrl = (state, action) => {
+    return updateObject(state, {
+        musicURL: action.musicURL
+    })
+}
+const changeMusicVolume = (state, action) => {
+    return updateObject(state, {
+        volume: action.volume
+    })
+}
+const setSongPointer = (state, action) => {
+    return updateObject(state, {
+        songPointer: action.value
+    })
+}
+
+const authenticate = (state, action) => {
+    return updateObject(state, {
+        loggedIn: true,
+        email: action.email
+    })
+}
+
+const setUserData = (state, action) => {
+    return updateObject(state, {
+        ...action.data,
+        loggedIn: true,
+        autoSignInOver: true,
+    })
+}
+
+const logOut = (state, action) => {
+    localStorage.removeItem('token')
+    localStorage.removeItem('expirationDate')
+    localStorage.removeItem('uid')
+    return updateObject(state, {
+        ...initialState,
+        autoSignInOver: true
+    })
+}
+
+
+const reducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case actionTypes.PLAY_MUSIC:
+        // music related
+        case actionTypes.PLAY_MUSIC: return toggleMusic(state, action, true)
+        case actionTypes.STOP_MUSIC: return toggleMusic(state, action, false)
+        case actionTypes.CHANGE_MUSIC_URL: return changeMusicUrl(state, action)
+        case actionTypes.CHANGE_VOLUME: return changeMusicVolume(state, action)
+        case actionTypes.SET_SONG_POINTER: return setSongPointer(state, action)
 
-            return {
-                ...state,
-                playing: true
-            }
-        case actionTypes.STOP_MUSIC:
-
-            return {
-                ...state,
-                playing: false
-            }
-        case actionTypes.CHANGE_MUSIC_URL:
-            return {
-                ...state,
-                musicURL: action.musicURL
-            }
-        case actionTypes.CHANGE_VOLUME:
-            return {
-                ...state,
-                volume: action.volume
-            }
-        case actionTypes.AUTHENTICATE:
-            return {
-                ...state,
-                loggedIn: true,
-                email: action.email
-            }
-        case actionTypes.SET_USER_DATA:
-            return {
-                ...state,
-                loggedIn: true,
-                autoSignInOver: true,
-                ...action.data
-            }
-        case actionTypes.LOG_OUT:
-            localStorage.removeItem('token')
-            localStorage.removeItem('expirationDate')
-            localStorage.removeItem('uid')
-            return {
-                ...initialState,
-            autoSignInOver: true
-            };
-            
-        case actionTypes.SET_GLOBAL_BACKGROUND:
-            return {
-                ...state,
-                bgvideo: action.bgvideo,
-            }
-        case actionTypes.SET_SONG_POINTER:
-            return {
-                ...state,
-                songPointer: action.value
-            }
-        case actionTypes.SET_SHOULD_REFETCH_POSTS:
-            return {
-                ...state,
-                shouldRefetchPosts: action.bool
-            }
-        case actionTypes.SET_PHOTO_URL:
-            return {
-                ...state,
-                photoURL: action.photoURL
-            }
+        case actionTypes.AUTHENTICATE: return authenticate(state, action)
+        case actionTypes.SET_USER_DATA: return setUserData(state, action)
+        case actionTypes.LOG_OUT: return logOut(state, action)
         default:
             return state
     }
