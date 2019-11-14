@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import copy from 'clipboard-copy'
 import './RhymeModal.css'
-import GenID from '../../../../shared/GenID'
+import {GenID} from '../../../../shared/utility'
 
 class RhymeModal extends Component {
 

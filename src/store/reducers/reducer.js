@@ -1,4 +1,4 @@
-import vinyl from '../../assets/vinyl.mov';
+import vinyl from '../../assets/videos/vinyl.mov';
 import { updateObject } from '../../shared/utility';
 import * as actionTypes from '../actions/actionsTypes';
 

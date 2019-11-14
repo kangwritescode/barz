@@ -1,7 +1,7 @@
 import firebase from 'firebase'
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import splashVid from '../../assets/splash-vid.m4v'
+import splashVid from '../../assets/videos/splash-vid.m4v'
 import { fetchUserData } from '../../store/actions/auth'
 import ForgotPassword from './ForgotPassword/ForgotPassword'
 import './Landing.css'

@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { postUserData } from '../../../store/actions/auth'
 
-import fb from '../../../assets/modalHandles/fb.png'
-import sc from '../../../assets/modalHandles/add-sc.png'
-import yt from '../../../assets/modalHandles/add-yt.png'
-import pencil from '../../../assets/edit-pencil.png'
-import ig from '../../../assets/handles/ig.png'
-import undoIMG from '../../../assets/undo.png'
+import fb from '../../../assets/images/modalHandles/fb.png'
+import sc from '../../../assets/images/modalHandles/add-sc.png'
+import yt from '../../../assets/images/modalHandles/add-yt.png'
+import pencil from '../../../assets/images/edit-pencil.png'
+import ig from '../../../assets/images/ig.png'
+import undoIMG from '../../../assets/images/undo.png'
 import './AddHandles.css'
 
 const AddHandles = (props) => {

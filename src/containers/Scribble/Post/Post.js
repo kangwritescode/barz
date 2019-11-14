@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import firebase from '../../../Firebase'
 import './Post.css'
-import GenID from '../../../shared/GenID'
 
 class Post extends Component {
 

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import './ForgotPassword.css'
-import passIcon from '../../../assets/pass-icon.png'
+import passIcon from '../../../assets/images/pass-icon.png'
 import firebase from 'firebase'
 import validator from 'validator'
-import DotSpinner from '../../../shared/DotSpinner/DotSpinner'
+import DotSpinner from '../../../components/DotSpinner/DotSpinner'
 
 class ForgotPassword extends Component {
 

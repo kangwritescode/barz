@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './ThesModal.css'
-import GenID from '../../../../shared/GenID'
+import {GenID} from '../../../../shared/utility'
 
 class ThesModal extends Component {
 

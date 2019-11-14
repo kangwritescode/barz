@@ -4,7 +4,7 @@ import firebase from 'firebase'
 import { regions } from '../../../shared/regions'
 import './RegForm.css'
 import axios from 'axios'
-import { errorCreater } from '../../../shared/errorCreator'
+import { errorCreater } from '../../../shared/utility'
 
 function RegForm(props) {
 

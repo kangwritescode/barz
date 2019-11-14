@@ -53,14 +53,5 @@ export const regions = {
     "AR": "South",
     "LA": "South",
     
-    
-
-
-
-
-
-
-
-
 
 }

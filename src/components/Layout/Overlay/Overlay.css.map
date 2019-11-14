@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,QAAQ,CAAC;EACL,OAAO,EAAE,CAAC;EACV,QAAQ,EAAE,KAAK;EACf,UAAU,EAAE,sBAAsB;EAClC,IAAI,EAAE,GAAG;EACT,KAAK,EAAE,GAAG;EACV,GAAG,EAAE,GAAG;EACR,MAAM,EAAE,GAAG;CACZ",
-    "sources": [
-        "Overlay.scss"
-    ],
-    "names": [],
-    "file": "Overlay.css"
-}

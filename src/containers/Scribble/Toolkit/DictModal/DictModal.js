@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './DictModal.css'
-import GenID from '../../../../shared/GenID'
+import {GenID} from '../../../../shared/utility'
 
 class DictModal extends Component {
 

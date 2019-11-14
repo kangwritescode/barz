@@ -2,7 +2,7 @@ import React, { Component, useState, useEffect } from 'react'
 import firebase from 'firebase'
 import { connect } from 'react-redux'
 import './MyBars.css'
-import GenID from '../../../shared/GenID'
+import {GenID} from '../../../shared/utility'
 import FireApi from '../../../Api/FireApi/FireApi'
 
 

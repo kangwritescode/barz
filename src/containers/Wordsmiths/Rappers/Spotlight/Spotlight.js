@@ -1,7 +1,7 @@
 import firebase from 'firebase'
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { getOrdinal } from '../../../../shared/getOrdinal'
+import { getOrdinal } from '../../../../shared/utility'
 import { postUserData } from '../../../../store/actions/auth'
 import * as actions from '../../../../store/actions/index'
 import './Spotlight.css'
