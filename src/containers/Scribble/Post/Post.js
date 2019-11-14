@@ -253,14 +253,14 @@ class Post extends Component {
 
 const mapStateToProps = state => {
     return {
-        uid: state.uid,
-        email: state.email,
-        username: state.username,
-        gender: state.gender,
-        address: state.address,
-        loggedIn: state.loggedIn,
-        needsInfo: state.needsInfo,
-        photoURL: state.photoURL,
+        uid: state.user.uid,
+        email: state.user.email,
+        username: state.user.username,
+        gender: state.user.gender,
+        address: state.user.address,
+        loggedIn: state.user.loggedIn,
+        needsInfo: state.user.needsInfo,
+        photoURL: state.user.photoURL,
     };
 };
 

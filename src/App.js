@@ -49,13 +49,13 @@ class App extends Component {
 }
 const mapStateToProps = state => {
   return {
-    playing: state.playing,
-    musicURL: state.musicURL,
-    volume: state.volume,
-    authenticated: state.loggedIn,
-    email: state.email,
-    autoSignInOver: state.autoSignInOver,
-    photoURL: state.photoURL
+    playing: state.music.playing,
+    musicURL: state.music.musicURL,
+    volume: state.music.volume,
+    authenticated: state.user.loggedIn,
+    email: state.user.email,
+    autoSignInOver: state.user.autoSignInOver,
+    photoURL: state.user.photoURL
   }
 }
 

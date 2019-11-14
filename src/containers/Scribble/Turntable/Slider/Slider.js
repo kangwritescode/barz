@@ -24,7 +24,7 @@ class Slider extends Component {
 
 let mapStatetoProps = state => {
     return {
-        volume: state.volume,
+        volume: state.music.volume,
     }
 }
 let mapDispatchToProps = dispatch => {

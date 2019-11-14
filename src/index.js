@@ -5,11 +5,20 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux'
-import { createStore, compose, applyMiddleware } from 'redux' 
-import reducer from './store/reducer'
+import { createStore, compose, applyMiddleware, combineReducers } from 'redux' 
+import reducer from './store/reducers/reducer'
 import thunk from 'redux-thunk'
+import musicReducer from './store/reducers/music'
+import userReducer from './store/reducers/user'
 
-const store = createStore(reducer, compose(
+const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
+
+const rootReducer = combineReducers({
+    music: musicReducer,
+    user: userReducer
+});
+
+const store = createStore(rootReducer, compose(
     applyMiddleware(thunk)))
     
 const app = (

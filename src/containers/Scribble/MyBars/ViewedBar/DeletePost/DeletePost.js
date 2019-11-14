@@ -30,7 +30,6 @@ const DeletePost = (props) => {
         await db.collection('submissions').doc(pid).delete()
             .catch(err => { setSpinner(false) })
         props.toggleEditor(null)
-        setSpinner(false)
 
 
     }

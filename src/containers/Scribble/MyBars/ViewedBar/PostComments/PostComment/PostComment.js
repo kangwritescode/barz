@@ -105,8 +105,8 @@ function PostComment(props) {
 
 const mapStateToProps = state => {
     return {
-        uid: state.uid,
-        myPhotoURL: state.photoURL
+        uid: state.user.uid,
+        myPhotoURL: state.user.photoURL
     }
 }
 

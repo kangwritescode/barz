@@ -137,17 +137,17 @@ function ProfileBox(props) {
 
 const mapStateToProps = state => {
     return {
-        uid: state.uid,
-        email: state.email,
-        username: state.username,
-        sex: state.gender,
-        address: state.address,
-        zipcode: state.address.zip_code,
-        city: state.address.city,
-        state: state.address.state,
-        needsInfo: state.needsInfo,
-        photoURL: state.photoURL,
-        blurb: state.blurb
+        uid: state.user.uid,
+        email: state.user.email,
+        username: state.user.username,
+        sex: state.user.gender,
+        address: state.user.address,
+        zipcode: state.user.address.zip_code,
+        city: state.user.address.city,
+        state: state.user.address.state,
+        needsInfo: state.user.needsInfo,
+        photoURL: state.user.photoURL,
+        blurb: state.user.blurb
     }
 }
 

@@ -160,7 +160,7 @@ const PostLikes = (props) => {
 
 const mapStatetoProps = state => {
     return {
-        myUID: state.uid
+        myUID: state.user.uid
     }
 }
 

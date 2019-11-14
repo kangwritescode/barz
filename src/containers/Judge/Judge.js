@@ -88,7 +88,7 @@ class Judge extends Component {
 
 const mapStateToProps = state => {
     return {
-        uid: state.uid
+        uid: state.user.uid
     }
 }
 

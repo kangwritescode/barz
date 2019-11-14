@@ -159,7 +159,7 @@ function FollowBox(props) {
 
 const mapStateToProps = state => {
     return {
-        uid: state.uid,
+        uid: state.user.uid,
     }
 }
 

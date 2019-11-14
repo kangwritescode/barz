@@ -50,11 +50,11 @@ const Scribble = () => {
 }
 let mapStatetoProps = state => {
     return {
-        musicURL: state.musicURL,
-        volume: state.volume,
-        playing: state.playing,
+        musicURL: state.music.musicURL,
+        volume: state.music.volume,
+        playing: state.music.playing,
         allStations: {
-            ...state.allStations
+            ...state.music.allStations
         }
     }
 }

@@ -267,12 +267,12 @@ const Hub = (props) => {
 
 const mapStateToProps = state => {
     return {
-        loggedIn: state.loggedIn,
-        email: state.email,
-        username: state.username,
-        sex: state.sex,
-        photoURL: state.photoURL,
-        uid: state.uid
+        loggedIn: state.user.loggedIn,
+        email: state.user.email,
+        username: state.user.username,
+        sex: state.user.sex,
+        photoURL: state.user.photoURL,
+        uid: state.user.uid
     }
 }
 

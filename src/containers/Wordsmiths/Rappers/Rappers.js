@@ -202,9 +202,9 @@ class Rappers extends Component {
 
 const mapStateToProps = state => {
     return {
-        uid: state.uid,
-        photoURL: state.photoURL,
-        username: state.username
+        uid: state.user.uid,
+        photoURL: state.user.photoURL,
+        username: state.user.username
     }
 }
 export default connect(mapStateToProps, null)(Rappers)

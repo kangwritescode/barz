@@ -135,8 +135,8 @@ const ManyPost = (props) => {
 
 const mapStateToProps = state => {
     return {
-        myUID: state.uid,
-        myPhotoURL: state.photoURL
+        myUID: state.user.uid,
+        myPhotoURL: state.user.photoURL
     }
 }
 

@@ -342,10 +342,8 @@ class SingleView extends Component {
 
 const mapStateToProps = state => {
     return {
-        uid: state.uid,
-        needsInfo: state.needsInfo,
-        shouldRefetchPosts: state.shouldRefetchPosts
-    }
+        uid: state.user.uid,
+        needsInfo: state.user.needsInfo,}
 }
 
 

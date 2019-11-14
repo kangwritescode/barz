@@ -17,7 +17,7 @@ function Rapper(props) {
 
 const mapStateToProps = state => {
     return {
-        myUsername: state.username,
+        myUsername: state.user.username,
     }
 }
 

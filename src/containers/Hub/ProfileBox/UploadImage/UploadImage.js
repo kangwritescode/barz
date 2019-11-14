@@ -134,8 +134,8 @@ class UploadImage extends Component {
 
 const mapStateToProps = state => {
     return {
-        uid: state.uid,
-        photoURL: state.photoURL,
+        uid: state.user.uid,
+        photoURL: state.user.photoURL,
     }
 }
 

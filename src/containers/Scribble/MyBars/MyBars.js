@@ -124,7 +124,7 @@ const MyBars = (props) => {
 
 const mapStateToProps = state => {
     return {
-        myUID: state.uid
+        myUID: state.user.uid
     }
 }
 

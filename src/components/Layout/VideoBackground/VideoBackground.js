@@ -11,7 +11,6 @@ function VideoBackground(props) {
 
 const mapStateToProps = state => {
   return {
-    bgvideo: state.bgvideo
   }
 }
 

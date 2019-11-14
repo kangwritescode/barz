@@ -180,8 +180,8 @@ const AddHandles = (props) => {
 
 const mapStateToProps = state => {
     return {
-        uid: state.uid,
-        handles: state.handles
+        uid: state.user.uid,
+        handles: state.user.handles
     }
 }
 

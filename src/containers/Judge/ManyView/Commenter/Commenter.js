@@ -87,11 +87,11 @@ var Commenter = (props) => {
 
 const mapStateToProps = state => {
     return {
-        uid: state.uid,
-        username: state.username,
-        state: state.address.state,
-        photoURL: state.photoURL,
-        handles: state.handles,
+        uid: state.user.uid,
+        username: state.user.username,
+        state: state.user.address.state,
+        photoURL: state.user.photoURL,
+        handles: state.user.handles,
     }
 }
 
