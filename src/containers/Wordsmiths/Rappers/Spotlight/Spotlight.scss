@@ -90,7 +90,7 @@
             color: "lightgrey";
             font-family: "righteous";
         }
-        $content-margin: .4rem;
+        $content-margin: 0.4rem;
         .block-one__img-wrapper {
             position: relative;
             height: 50px;
@@ -115,17 +115,18 @@
         }
         .block-one__username {
             font-size: 1.1em;
-            margin-bottom: $content-margin;
+
         }
         .block-one__select-a-user {
             position: absolute;
-            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
             top: 4em;
+            bottom: 3px;
         }
         .block-one__address-gender {
             font-size: 0.7rem;
             font-family: "antic slab";
-            margin-bottom: $content-margin;
+            margin-bottom: 4px;
         }
         .block-one__handles-container {
             position: relative;
@@ -133,12 +134,13 @@
             justify-content: space-evenly;
             width: auto;
             height: 0.4em;
-            margin-bottom: $content-margin;
+            margin-top: 5px;
+            margin-bottom: 5px;
 
             .icon {
                 color: white;
                 font-size: 0.7rem;
-                margin: 0em .4rem;
+                margin: 0em 0.4rem;
                 cursor: pointer;
             }
             .fa-facebook-f {
@@ -172,7 +174,7 @@
             cursor: pointer;
             border: none;
             border: 1px dotted rgba(255, 255, 255, 0);
-            margin-block-start: .2em;
+            margin-top: 10px;
             margin-block-end: 0em;
             &:focus {
                 cursor: text;
