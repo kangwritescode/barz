@@ -10,27 +10,19 @@ import './Spotlight.css'
 
 function Spotlight(props) {
 
-    const [showDropOptions, toggleDropOptions] = useState(false)
     const [follows, setFollows] = useState([])
     const [amFollowing, setAmFollowing] = useState(false)
-    const [blurbText, setBlurbText] = useState('')
-
-
 
     // componentDidMount
     useEffect(() => {
-        document.addEventListener('click', closeDropOptions)
         fetchFollows()
         return () => {
-            document.removeEventListener('click', closeDropOptions)
         };
     }, [])
 
     // componentDidUpdate
     useEffect(() => {
-
         const calcAmFollowing = (otherUID) => {
-
             let follow = follows
                 .filter(follow => {
                     return follow.to === otherUID && follow.from === props.uid
@@ -39,12 +31,9 @@ function Spotlight(props) {
         }
 
         if (props.rapper) {
-            console.log(props.rapper)
             calcAmFollowing(props.rapper.uid)
         }
-        if (props.blurb) {
-            setBlurbText(props.blurb)
-        }
+
     }, [props.photoURL, props.rapper, follows, props.uid, props.blurb])
 
     const fetchFollows = async () => {
@@ -98,13 +87,6 @@ function Spotlight(props) {
         return url;
     }
 
-    const closeDropOptions = (event) => {
-        if (!event.target.classList.contains('spotlight__three-dots') && !event.target.classList.contains('dot')) {
-            toggleDropOptions(false)
-        }
-    }
-
-
     let username = props.rapper ?
         <div className='block-one__username'>{props.rapper ? props.rapper.username : null}</div>
         : <h2 className='block-one__select-a-user'>Select a User</h2>
@@ -117,13 +99,13 @@ function Spotlight(props) {
         <div className='block-one__img-wrapper'>
             <div>
                 <img alt='' src={props.rapper.photoURL} />
-                {props.rapper.rank === 1 ? 
-                    <i class="fas fa-crown crown"></i> 
+                {props.rapper.rank === 1 ?
+                    <i class="fas fa-crown crown"></i>
                     : null}
-                {props.rapper.rank === 2 ? 
-                    <i class="fas fa-crown crown" style={{color: 'silver'}}></i> 
+                {props.rapper.rank === 2 ?
+                    <i class="fas fa-crown crown" style={{ color: 'silver' }}></i>
                     : null}
-                    
+
             </div>
 
         </div>
@@ -162,8 +144,8 @@ function Spotlight(props) {
     if (props.rapper && props.rapper.blurb) {
         blurb = (
             <p className='block-one__blurb' style={{ cursor: 'text' }}>
-                    {props.rapper ? props.rapper.blurb : null}
-                </p>
+                {props.rapper ? props.rapper.blurb : null}
+            </p>
         )
     }
     console.log(props.rapper)

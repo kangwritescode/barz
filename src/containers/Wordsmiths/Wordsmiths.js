@@ -158,7 +158,6 @@ class Wordsmiths extends Component {
     render() {
 
         let rappers = { ...this.state.rappers }
-        console.log(rappers)
         let allVotes = this.state.votes ? Object.values(this.state.votes) : []
 
         // states, coast, and gender filter

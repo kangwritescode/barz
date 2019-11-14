@@ -131,13 +131,14 @@
             position: relative;
             @include flex-centered(row);
             justify-content: space-evenly;
-            width: 45%;
+            width: auto;
             height: 0.4em;
             margin-bottom: $content-margin;
 
             .icon {
                 color: white;
                 font-size: 0.7rem;
+                margin: 0em .4rem;
                 cursor: pointer;
             }
             .fa-facebook-f {

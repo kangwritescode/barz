@@ -197,7 +197,7 @@
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
-  width: 45%;
+  width: auto;
   height: 0.4em;
   margin-bottom: 0.4rem;
 }
@@ -205,6 +205,7 @@
 .spotlight .spotlight__block-one .block-one__handles-container .icon {
   color: white;
   font-size: 0.7rem;
+  margin: 0em .4rem;
   cursor: pointer;
 }
 

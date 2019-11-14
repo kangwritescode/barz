@@ -97,25 +97,12 @@ class Rappers extends Component {
                 spotlightFocus: value,
             })
         }
-        
+
     }
 
     render() {
-        let placeholder = (
-            <div className="Rappers">
-                <div id="table-header">
-                    <div className="headerDetail" id="votes">Score</div>
-                    <div className="headerDetail" id="right-border">Username</div>
-                    <div className="headerDetail" id="right-border">Location</div>
-                    <div className="headerDetail" id="right-border">Region</div>
-                    <div className="headerDetail">Gender</div>
-                </div>
-                {this.props.rappers.length === 0 && !this.props.fetching ? <div id='no-rappers'><div id="no-rappers-text">No rappers for that search!</div></div> : <div className="loader" id="rappers-loader">Loading...</div>}
 
-            </div>
-        )
-
-        let tableHeader = (
+        const tableHeader = (
             <div id="table-header">
                 <div className="headerDetail" id="votes">Score</div>
                 <div className="headerDetail" id="right-border">Username</div>
@@ -124,10 +111,14 @@ class Rappers extends Component {
                 <div className="headerDetail">Gender</div>
             </div>
         )
+        let placeholder = (
+            <div className="Rappers">
+                {tableHeader}
+                {this.props.rappers.length === 0 && !this.props.fetching ? <div id='no-rappers'><div id="no-rappers-text">No rappers for that search!</div></div> : <div className="loader" id="rappers-loader">Loading...</div>}
+            </div>
+        )
 
-
-
-        let rappers = this.state.rappers.length === 0 ? placeholder : (
+        const rappers = this.state.rappers.length === 0 ? placeholder : (
             <div className="Rappers">
                 {tableHeader}
                 {this.state.rappers.slice(0, this.state.dequedNo).map((rapper, index) => {
@@ -165,7 +156,7 @@ class Rappers extends Component {
                 <div className="Winners-container">
                     <div className='Winners-container__spotlight'>
                         <div className='spotlight__header'>
-                            <div className={`header__section`} onClick={this.state.spotlightRapper && this.state.spotlightRapper.username === this.props.username ? () => alert('Select a rapper!'): () => this.setSpotlightFocus('them')}>
+                            <div className={`header__section`} onClick={this.state.spotlightRapper && this.state.spotlightRapper.username === this.props.username ? () => alert('Select a rapper!') : () => this.setSpotlightFocus('them')}>
                                 <span className='section__word'>Wordsmith</span>
                             </div>
                         </div>
@@ -175,7 +166,7 @@ class Rappers extends Component {
                                 focus={this.state.spotlightFocus}
                                 wrappedBy='Rappers'
                                 setShowPhotoModal={this.props.setShowPhotoModal}
-                                toggleUploadHandles={this.props.toggleUploadHandles}/>
+                                toggleUploadHandles={this.props.toggleUploadHandles} />
                         </div>
                     </div>
                     <BestCoast
