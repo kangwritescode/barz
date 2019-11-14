@@ -69,7 +69,8 @@ class Post extends Component {
         if (event.key === "Enter") {
             event.preventDefault()
         }
-        if (event.key === "Enter" && event.target.id !== 'lineFour' || event.key === "ArrowDown" && event.target.id !== 'lineFour') {
+        if (event.key === "Enter"
+            && ((event.target.id !== 'lineFour') || (event.key === "ArrowDown" && event.target.id !== 'lineFour'))) {
             return event.target.nextElementSibling.focus();
         }
         if (event.key == "ArrowUp" && event.target.id !== 'lineOne') {
@@ -128,7 +129,7 @@ class Post extends Component {
 
     generateSubmission = () => {
 
-        let content = { 
+        let content = {
             ...this.state.submission
         }
         // trim initial whitespaces
@@ -213,24 +214,22 @@ class Post extends Component {
         return (
 
             <div className={`the-notepad`} id={theNotepadId}>
-
                 <div className={`post-widget-header`} id={postWidgetHeader} onClick={!focused ? this.props.toggle : null}>Post</div>
-
-                <form className={'four-lines'}  autoComplete='false' id={fourLinesId}>
+                <form className={'four-lines'} autoComplete='false' id={fourLinesId}>
                     {this.state.showNotification ? <div className="post-notification" id={!this.state.notificationStatus ? 'negative-msg' : null} onAnimationEnd={() => this.toggleNotification('', false, false)}>{this.state.notificationMessage}</div> : null}
 
                     {inputArr.map((obj, index) => {
                         return (
-                                <input
-                                    {...this.state.inputUniversalProps}
-                                    autoComplete="false"
-                                    className={'input-line lines-expanded'}
-                                    id={obj.id}
-                                    value={this.state.submission[obj.id]}
-                                    onChange={(event) => this.onChangeHandler(obj.id, event)}
-                                    key={index}
-                                    onKeyDown={this.arrowKeyHandler}
-                                    disabled={this.props.loggedIn ? false : true} />
+                            <input
+                                {...this.state.inputUniversalProps}
+                                autoComplete="false"
+                                className={'input-line lines-expanded'}
+                                id={obj.id}
+                                value={this.state.submission[obj.id]}
+                                onChange={(event) => this.onChangeHandler(obj.id, event)}
+                                key={index}
+                                onKeyDown={this.arrowKeyHandler}
+                                disabled={this.props.loggedIn ? false : true} />
 
                         )
                     })}

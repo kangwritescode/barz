@@ -6,7 +6,7 @@ import ManyPost from '../../Judge/ManyView/ManyPost/ManyPost'
 import Commenter from '../../Judge/ManyView/Commenter/Commenter'
 import DeleteComment from '../MyBars/ViewedBar/DeleteComment/DeleteComment'
 import DeletePost from '../MyBars/ViewedBar/DeletePost/DeletePost'
-import CircularSpinner from '../../../shared/CircularSpinner/CircularSpinner'
+import CircularSpinner from '../../../components/CircularSpinner/CircularSpinner'
 
 const PostEditor = (props) => {
 

@@ -9,7 +9,7 @@ import Turntable from '../../Scribble/Turntable/Turntable'
 import Commenter from './Commenter/Commenter'
 import Community from './Community/Community'
 import DeleteComment from '../../Scribble/MyBars/ViewedBar/DeleteComment/DeleteComment'
-import CircularSpinner from '../../../shared/CircularSpinner/CircularSpinner'
+import CircularSpinner from '../../../components/CircularSpinner/CircularSpinner'
 
 
 class ManyView extends Component {
