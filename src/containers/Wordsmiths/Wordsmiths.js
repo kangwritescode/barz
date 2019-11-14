@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
-import joey from '../../assets/joey.m4v'
-import './Wordsmiths.css'
-import WordNavBar from './WordNavBar/WordNavBar'
-import Rappers from './Rappers/Rappers'
-import shuffle from 'shuffle-array'
-import firebase from '../../Firebase'
 import 'firebase/firestore'
-import timeDict from './WordSmithsTools/timeDict'
+import React, { Component } from 'react'
+import shuffle from 'shuffle-array'
+import joey from '../../assets/joey.m4v'
 import joeyIMG from '../../assets/joeyIMG.png'
+import firebase from '../../Firebase'
+import Rappers from './Rappers/Rappers'
+import WordNavBar from './WordNavBar/WordNavBar'
+import './Wordsmiths.css'
+import timeDict from './WordSmithsTools/timeDict'
 
 
 

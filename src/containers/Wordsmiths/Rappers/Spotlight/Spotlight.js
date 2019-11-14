@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import './Spotlight.css'
-import PhotoContainer from '../../../Hub/ProfileBox/PhotoContainer/PhotoContainer'
-import * as actionTypes from '../../../../store/actions/actionsTypes'
-import * as actions from '../../../../store/actions/index'
 import firebase from 'firebase'
-import { getOrdinal } from '../../../../shared/getOrdinal'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
+import { getOrdinal } from '../../../../shared/getOrdinal'
 import { postUserData } from '../../../../store/actions/auth'
+import * as actions from '../../../../store/actions/index'
+import './Spotlight.css'
 
 
 

@@ -1,17 +1,15 @@
-import React, { Component, useState } from 'react'
-import { connect } from 'react-redux'
 import 'firebase/firestore'
-import * as actionTypes from '../../store/actions/actionsTypes'
-import * as actions from '../../store/actions/index'
-import './Scribble.css'
+import React, { useState } from 'react'
+import { connect } from 'react-redux'
 import vinyl from '../../assets/vinyl.mov'
 import vinyIMG from '../../assets/vinylIMG.png'
-import Post from './Post/Post'
+import * as actions from '../../store/actions/index'
 import MyBars from './MyBars/MyBars'
+import Post from './Post/Post'
+import PostEditor from './PostEditor/PostEditor'
+import './Scribble.css'
 import Toolkit from './Toolkit/Toolkit'
 import Turntable from './Turntable/Turntable'
-import nafla from '../../assets/nafla-blows.m4v'
-import PostEditor from './PostEditor/PostEditor'
 
 
 const Scribble = () => {

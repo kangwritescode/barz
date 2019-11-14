@@ -1,12 +1,12 @@
+import firebase from 'firebase'
 import React, { useState } from 'react'
-import './Landing.css'
-import { fetchUserData } from '../../store/actions/auth'
 import { connect } from 'react-redux'
 import splashVid from '../../assets/splash-vid.m4v'
-import LandingNav from './LandingNav/LandingNav'
-import firebase from 'firebase'
-import RegForm from './RegForm/RegForm'
+import { fetchUserData } from '../../store/actions/auth'
 import ForgotPassword from './ForgotPassword/ForgotPassword'
+import './Landing.css'
+import LandingNav from './LandingNav/LandingNav'
+import RegForm from './RegForm/RegForm'
 
 const Landing = (props) => {
 

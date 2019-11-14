@@ -44,10 +44,6 @@ class WordNavBar extends Component {
                             display={this.props.rank}
                             sortAndFilter={this.props.sortAndFilter.bind(this)} />
                     </div>
-                    {/* <div className="ConsiderContainer">
-                        <p id="filter">Time:</p>
-
-                    </div> */}
                     <div className="FilterContainer">
                         <p id="filter">Filter:</p>
                         <WordNavItem

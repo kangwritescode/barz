@@ -1,11 +1,10 @@
-import React, { Component, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import * as actionTypes from '../../../store/actions/actionsTypes'
-import * as actions from '../../../store/actions/index'
-import './Turntable.css'
-import glare from '../../../assets/glare.png'
 import arm from '../../../assets/arm.png'
+import glare from '../../../assets/glare.png'
+import * as actions from '../../../store/actions/index'
 import Slider from './Slider/Slider'
+import './Turntable.css'
 
 const Turntable = (props) => {
     const [animateOkay, setAnimateOkay] = useState(true)

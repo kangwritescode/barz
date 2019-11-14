@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import {connect} from 'react-redux'
+import React from 'react'
+import { connect } from 'react-redux'
 import './Rapper.css'
 
 function Rapper(props) {

@@ -1,6 +1,6 @@
+import vinyl from '../../assets/vinyl.mov';
+import { updateObject } from '../../shared/utility';
 import * as actionTypes from '../actions/actionsTypes';
-import vinyl from '../../assets/vinyl.mov'
-import { updateObject } from '../../shared/utility'
 
 const initialState = {
 

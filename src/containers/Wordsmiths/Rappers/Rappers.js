@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import './Rappers.css'
-import Rapper from './Rapper/Rapper'
 import { connect } from 'react-redux'
 import BestCity from '../BestCity/BestCity'
 import BestCoast from '../BestCoast/BestCoast'
 import Spotlight from '../Rappers/Spotlight/Spotlight'
+import Rapper from './Rapper/Rapper'
+import './Rappers.css'
 
 class Rappers extends Component {
 
