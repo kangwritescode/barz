@@ -12,6 +12,8 @@ import Toolkit from './Toolkit/Toolkit'
 import Turntable from './Turntable/Turntable'
 
 
+
+
 const Scribble = () => {
 
     const [viewFocus, setViewFocus] = useState('Post')
