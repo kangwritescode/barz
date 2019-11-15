@@ -18,8 +18,8 @@ const Judge = props => {
         filter: 'All Posts',
         time: 'All Time',
         coast: 'All Coasts',
-
     })
+
     const [keyPressed, setKeyPressed] = useState(null)
     useEffect(() => {
         const assignRedirect = (event) => {
@@ -44,14 +44,6 @@ const Judge = props => {
         })
     }
 
-    const toggleModal = (modal, value, pid) => {
-        this.setState({
-            ...sortFilterState,
-            [modal]: value,
-            viewedPost: pid
-        })
-    }
-
 
     let view = (
         <SingleView
@@ -67,8 +59,7 @@ const Judge = props => {
                 filter={sortFilterState.filter}
                 view={sortFilterState.view}
                 coast={sortFilterState.coast}
-                time={sortFilterState.time}
-                toggleModal={toggleModal} />
+                time={sortFilterState.time}/>
         )
     }
     

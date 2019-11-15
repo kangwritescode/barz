@@ -1,5 +1,6 @@
 import 'firebase/firestore'
 import React, { Component, useState, useEffect } from 'react'
+import {Redirect} from 'react-router'
 import shuffle from 'shuffle-array'
 import joey from '../../assets/videos/joey.m4v'
 import joeyIMG from '../../assets/images/joeyIMG.png'
@@ -25,6 +26,8 @@ const Wordsmiths = (props) => {
     const [submissions, setSubmissions] = useState([])
     const [fetching, setFetching] = useState(true)
     const [votes, setVotes] = useState([])
+
+    const [keyPressed, setKeyPressed] = useState(null)
 
     useEffect(() => {
         try {
@@ -69,6 +72,21 @@ const Wordsmiths = (props) => {
             console.log(err)
         }
         return () => {
+        };
+    }, [])
+
+    useEffect(() => {
+        const assignRedirect = (event) => {
+            switch (event.key) {
+                case '1': return setKeyPressed(1)
+                case '2': return setKeyPressed(2)
+                case '3': return setKeyPressed(3)
+                default: break;
+            }
+        }
+        document.addEventListener('keydown', assignRedirect)
+        return () => {
+            document.removeEventListener('keydown', assignRedirect)
         };
     }, [])
 
@@ -185,7 +203,10 @@ const Wordsmiths = (props) => {
     let bestCoast = Object.keys(coastVotes).length ? Object.keys(coastVotes).reduce((a, b) => coastVotes[a] > coastVotes[b] ? a : b) : 'N/A'
 
 
-    return (
+
+
+
+    var content = (
         <div className="WordsmithsContainer">
             <img id="backup-img" src={joeyIMG} alt="" />
 
@@ -211,6 +232,14 @@ const Wordsmiths = (props) => {
                 fetching={fetching}/>
         </div>
     )
+    switch (keyPressed) {
+        case 1: return content = <Redirect to='/hub'></Redirect>
+        case 2: return content = <Redirect to='/scribble'></Redirect>
+        case 3: return content = <Redirect to='/judge'></Redirect>
+        default: break;
+
+    }
+    return content
 }
 
 export default Wordsmiths
