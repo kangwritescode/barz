@@ -10,6 +10,7 @@ import Post from './Post/Post'
 import './Scribble.css'
 import Toolkit from './Toolkit/Toolkit'
 import Turntable from './Turntable/Turntable'
+import PostEditor from '../Scribble/PostEditor/PostEditor'
 
 
 
@@ -18,11 +19,13 @@ const Scribble = () => {
 
     const [viewFocus, setViewFocus] = useState('Post')
     const [keyPressed, setKeyPressed] = useState(null)
-
+    const [editedPost, setEditedPost] = useState(null)
     const toggleView = () => {
         return viewFocus === 'Post' ? setViewFocus('MyBars') : setViewFocus('Post')
     }
-    
+    const editPost = (pid) => {
+        setEditedPost(pid)
+    }
     useEffect(() => {
         const assignRedirect = (event) => {
             switch (event.key) {
@@ -42,8 +45,9 @@ const Scribble = () => {
             <img id='backup-img' src={vinyIMG} alt=''></img>
             <video src={vinyl} autoPlay={true} loop={true} playsInline={true} muted />
             <div id="scribbleOverlay" />
+            {editedPost ? <PostEditor pid={editedPost} toggleEditor={setEditedPost}/> : null}
             <div className="row-one">
-                <MyBars focused={viewFocus} toggle={toggleView} />
+                <MyBars focused={viewFocus} toggle={toggleView} editPost={editPost}/>
                 <Post focused={viewFocus} toggle={toggleView} />
                 <div></div>
             </div>
