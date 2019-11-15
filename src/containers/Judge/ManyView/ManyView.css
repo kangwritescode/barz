@@ -1,5 +1,4 @@
 .many-view-layout {
-  border: 1px solid green;
   position: fixed;
   top: 5.3em;
   left: 0em;
@@ -20,6 +19,7 @@
       -ms-flex-pack: center;
           justify-content: center;
   padding-top: 4em;
+  scroll-behavior: smooth;
 }
 
 .many-view-layout .many-view__posts {
@@ -47,7 +47,7 @@
 .many-view-layout .many-view__modules {
   position: -webkit-sticky;
   position: sticky;
-  top: 0em;
+  top: .06em;
   width: 16.8em;
 }
 

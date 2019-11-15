@@ -89,7 +89,7 @@ const ManyPost = (props) => {
     }
     const coastColor = colorDict[props.address.region]
 
-
+    console.log(`scrollTo${props.pid}`, content)
     return (
 
         <div

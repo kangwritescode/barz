@@ -21,7 +21,6 @@
 }
 
 .many-view-layout {
-    border: 1px solid green;
     position: fixed;
     top: 5.3em;
     left: 0em;
@@ -33,6 +32,7 @@
     align-items: flex-start;
     justify-content: center;
     padding-top: 4em;
+    scroll-behavior: smooth;
     .many-view__posts {
         position: relative;
         // border: 1px solid pink;
@@ -47,7 +47,7 @@
     }
     .many-view__modules {
         position: sticky;
-        top: 0em;
+        top: .06em;
         width: 16.8em;
         .turntable-wrapper {
             margin-top: 1.8em;

@@ -44,6 +44,8 @@ class ManyView extends Component {
         this.fetchVotes()
         this.fetchSubmissionComments()
         document.addEventListener('click', this.toggleCommenter)
+
+
     }
     componentWillUnmount = () => {
         document.removeEventListener('click', this.toggleCommenter)
@@ -240,17 +242,22 @@ class ManyView extends Component {
         })
         return submissions
     }
+    scrollToPost = (postID) => {
+        var myElement = document.getElementById(postID);
+        var topPos = myElement.offsetTop;
+        document.getElementById('many-view-layout').scrollTop = topPos;
+    }
 
 
     selectPost = (pid) => {
         let post = this.state.submissions.filter(submission => submission.pid === pid)
         post = post[0]
+        this.scrollToPost(`scrollTo${pid}`)
         this.setState({
             postSelected: true,
             selectedPost: post
         })
     }
-
 
     render() {
 
@@ -278,6 +285,9 @@ class ManyView extends Component {
                 )
             })
         }
+        
+
+
 
         return (
             <div className='many-view-layout' id='many-view-layout'>
