@@ -54,6 +54,16 @@
             height: 10em;
         }
     }
+    .many-view-layout__backdrop {
+        position: fixed;
+        top: 0em;
+        bottom: 0em;
+        left: 0em;
+        right: 0em;
+        z-index: 100;
+        background: rgba(0, 0, 0, 0.438);
+        
+    }
 }
 
 .many-view {

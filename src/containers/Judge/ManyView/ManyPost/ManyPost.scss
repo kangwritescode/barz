@@ -16,6 +16,9 @@ $edges: 0.2em;
 
     $bar-colors: rgba(0, 0, 0, 0.137);
 
+    &:hover {
+        border: 1px solid rgba(255, 255, 255, 0.25);
+    }
 
     header {
         position: relative;
@@ -161,4 +164,9 @@ $edges: 0.2em;
     }
 }
 
-
+.focused-many-post {
+    border: 1px solid rgba(255, 255, 255, 0.397);
+    &:hover {
+        border: 1px solid rgba(255, 255, 255, 0.397);
+    }
+}

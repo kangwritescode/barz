@@ -12,7 +12,6 @@ const ManyPost = (props) => {
 
     // vote
     const [myVote, setMyVote] = useState([])
-    const [myRef, setMyRef] = useState(useRef(null))
 
 
     useEffect(() => {
@@ -89,11 +88,9 @@ const ManyPost = (props) => {
     }
     const coastColor = colorDict[props.address.region]
 
-    console.log(`scrollTo${props.pid}`, content)
     return (
 
         <div
-            ref={myRef}
             className={`many-post scrollTo${props.pid}`}
             id={`scrollTo${props.pid}`}
             style={props.customStyle ? props.customStyle.body : null}>

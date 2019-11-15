@@ -102,16 +102,17 @@
 }
 
 #mv-cred {
+  z-index: 999;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   position: fixed;
   bottom: 5px;
-  left: 10px;
+  right: 10px;
   opacity: 0;
   color: white;
-  font-family: "Rock Salt", cursive;
-  font-size: 9px;
+  font-family: "permanent marker", cursive;
+  font-size: 11px;
   letter-spacing: 2px;
   -webkit-animation: fade-in-and-out 5s forwards;
           animation: fade-in-and-out 5s forwards;

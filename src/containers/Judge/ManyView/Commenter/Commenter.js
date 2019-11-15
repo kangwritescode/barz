@@ -15,7 +15,8 @@ var Commenter = (props) => {
 
     useEffect(() => {
         setInput('')
-    }, [props.selectedPost])
+        document.getElementById('post-comment__text-area').focus()
+    }, [props.selectedPost, props.postSelected])
 
     // firebase
     const addComment = () => {
@@ -67,6 +68,7 @@ var Commenter = (props) => {
                 <form className='post-comment'>
                     <div className='img-wrapper'><img alt='' src={props.photoURL} className='comment-user-img'></img></div>
                     <TextareaAutosize
+                        id='post-comment__text-area'
                         disabled={!props.postSelected}
                         placeholder='Thoughts...'
                         value={input}

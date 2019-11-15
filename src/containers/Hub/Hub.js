@@ -222,7 +222,7 @@ const Hub = (props) => {
             <img id="backup-img" src={yoxIMG} alt="" />
             <video className='yox' id="yox" src={yox} autoPlay={true} loop={true} playsInline={true} muted />
             <div id="yoxOverlay" />
-            <div id="mv-cred">YEAR OF THE OX - MOOD CONTROL CYPHER</div>
+            <div id="mv-cred">Year of the Ox - "Mood Control Cypher"</div>
 
             {/* main content */}
             <div className={`hub-layout__body-wrapper`}>

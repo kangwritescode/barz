@@ -32,6 +32,7 @@ class ManyView extends Component {
         comments: [],
         postSelected: false,
         selectedPost: null,
+        focusedElement: null,
         showDeleteComment: false,
         cid: null,
         isDoneFetching: false
@@ -63,9 +64,11 @@ class ManyView extends Component {
     toggleCommenter = (event) => {
         this.props.closesCommenter.forEach(className => {
             if (event.target.classList.contains(className)) {
+                this.state.focusedElement.classList.remove('focused-many-post')
                 this.setState({
                     ...this.state,
-                    postSelected: false
+                    postSelected: false,
+                    focusedElement: null
                 })
             }
         });
@@ -242,9 +245,8 @@ class ManyView extends Component {
         })
         return submissions
     }
-    scrollToPost = (postID) => {
-        var myElement = document.getElementById(postID);
-        var topPos = myElement.offsetTop;
+    scrollToPost = (element) => {
+        var topPos = element.offsetTop;
         document.getElementById('many-view-layout').scrollTop = topPos;
     }
 
@@ -252,10 +254,23 @@ class ManyView extends Component {
     selectPost = (pid) => {
         let post = this.state.submissions.filter(submission => submission.pid === pid)
         post = post[0]
-        this.scrollToPost(`scrollTo${pid}`)
+        
+        // if there is a focusedElement, unfocus it
+        if (this.state.focusedElement) {
+            this.state.focusedElement.classList.remove('focused-many-post')
+        }
+
+        // focus selected element
+        var myElement = document.getElementById(`scrollTo${pid}`);
+        myElement.classList.add('focused-many-post')
+
+        // scroll to selected element
+        this.scrollToPost(myElement)
+
         this.setState({
             postSelected: true,
-            selectedPost: post
+            selectedPost: post,
+            focusedElement: myElement
         })
     }
 
@@ -285,13 +300,14 @@ class ManyView extends Component {
                 )
             })
         }
-        
+
 
 
 
         return (
             <div className='many-view-layout' id='many-view-layout'>
                 {this.state.showDeleteComment ? <DeleteComment cid={this.state.cid} toggleDeleteCommentModal={this.toggleDeleteCommentModal} /> : null}
+                {/* {this.state.postSelected ? <div className={`many-view-layout__backdrop`}></div> : null} */}
                 <div className='many-view__posts'>
                     {manyPosts}
                 </div>

@@ -12,6 +12,10 @@
   pointer-events: painted;
 }
 
+.many-post:hover {
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
 .many-post header {
   position: relative;
   top: 0em;
@@ -201,5 +205,13 @@
 .many-post .vote-box .like-button {
   border-bottom-right-radius: 0.2em;
   font-size: 1.1em;
+}
+
+.focused-many-post {
+  border: 1px solid rgba(255, 255, 255, 0.397);
+}
+
+.focused-many-post:hover {
+  border: 1px solid rgba(255, 255, 255, 0.397);
 }
 /*# sourceMappingURL=ManyPost.css.map */
