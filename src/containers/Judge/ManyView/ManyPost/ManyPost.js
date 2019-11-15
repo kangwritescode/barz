@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from 'react'
+import React, { Component, useState, useEffect, useRef } from 'react'
 import './ManyPost.css'
 import { connect } from 'react-redux'
 import firebase from 'firebase'
@@ -6,10 +6,13 @@ import 'firebase/firestore'
 
 
 
+
+
 const ManyPost = (props) => {
 
     // vote
     const [myVote, setMyVote] = useState([])
+    const [myRef, setMyRef] = useState(useRef(null))
 
 
     useEffect(() => {
@@ -90,6 +93,7 @@ const ManyPost = (props) => {
     return (
 
         <div
+            ref={myRef}
             className={`many-post scrollTo${props.pid}`}
             id={`scrollTo${props.pid}`}
             style={props.customStyle ? props.customStyle.body : null}>
@@ -110,6 +114,7 @@ const ManyPost = (props) => {
                     <i className="fas fa-fire" id='manyFlame' aria-hidden="true"></i>
                     {score.length}
                 </div>
+                
             </header>
             <div className='many-post-body' onClick={() => props.selectPost(props.pid)}>
 

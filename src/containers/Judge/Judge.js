@@ -25,6 +25,8 @@ class Judge extends Component {
         proRapper: null
     }
 
+    
+
     updateJudgeState = (newState, value) => {
         // console.log('boop', newState, value)
         this.setState({
@@ -67,6 +69,7 @@ class Judge extends Component {
         return (
             <div>
                 <div className="JudgeContainer">
+
                     <img id='backup-img' src={vinyl2_IMG} alt=''></img>
                     <video src={vinyl2} autoPlay={true} loop={true} playsInline={true} muted />
                     <div id="judgeOverlay" />

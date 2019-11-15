@@ -39,6 +39,7 @@ class ManyView extends Component {
     }
 
     componentDidMount = () => {
+
         this.fetchSubmissions()
         this.fetchVotes()
         this.fetchSubmissionComments()
@@ -65,7 +66,7 @@ class ManyView extends Component {
                     postSelected: false
                 })
             }
-        });   
+        });
     }
 
     toggleDeleteCommentModal = (bool, cid) => {
@@ -253,7 +254,8 @@ class ManyView extends Component {
 
     render() {
 
-        console.log(this.state.votes)
+
+
 
         let submissions = [...this.state.submissions]
         submissions = this.sort_submissions(submissions)
@@ -263,6 +265,7 @@ class ManyView extends Component {
             manyPosts = submissions.map((submission, index) => {
 
                 return (
+
                     <ManyPost
                         key={submission.pid}
                         comments={this.state.comments.filter(comment => comment.pid === submission.pid)}
@@ -270,30 +273,28 @@ class ManyView extends Component {
                         selectPost={this.selectPost}
                         votes={this.state.votes.filter(vote => vote.pid === submission.pid)}
                         {...submission} />
+
+
                 )
             })
         }
 
         return (
-            <div className='many-view-layout'>
-                {this.state.showDeleteComment ? <DeleteComment cid={this.state.cid} toggleDeleteCommentModal={this.toggleDeleteCommentModal}/> : null}
-                <div className='many-view'>
-                    <div className='many-view__posts'>
-                        {manyPosts}
-                    </div>
-                    <div className='many-view__modules'>
-                        <div className='sticky-wrapper'>
-                            <Commenter
-                                customStyle={{body: {backgroundColor: 'rgba(255, 255, 255, 0.95)'}, header: {backgroundColor: 'rgba(255, 255, 255, 0.95)'}}}
-                                selectedPost={this.state.selectedPost}
-                                postSelected={this.state.postSelected}
-                                comments={this.state.comments}
-                                toggleDeleteCommentModal={this.toggleDeleteCommentModal} />
-                            <Community submissions={this.state.submissions} />
-                            <div className='turntable-wrapper'>
-                                <Turntable />
-                            </div>
-                        </div>
+            <div className='many-view-layout' id='many-view-layout'>
+                {this.state.showDeleteComment ? <DeleteComment cid={this.state.cid} toggleDeleteCommentModal={this.toggleDeleteCommentModal} /> : null}
+                <div className='many-view__posts'>
+                    {manyPosts}
+                </div>
+                <div className='many-view__modules'>
+                    <Commenter
+                        customStyle={{ body: { backgroundColor: 'rgba(255, 255, 255, 0.95)' }, header: { backgroundColor: 'rgba(255, 255, 255, 0.95)' } }}
+                        selectedPost={this.state.selectedPost}
+                        postSelected={this.state.postSelected}
+                        comments={this.state.comments}
+                        toggleDeleteCommentModal={this.toggleDeleteCommentModal} />
+                    <Community submissions={this.state.submissions} />
+                    <div className='turntable-wrapper'>
+                        <Turntable />
                     </div>
                 </div>
             </div>

@@ -21,40 +21,45 @@
 }
 
 .many-view-layout {
+    border: 1px solid green;
     position: fixed;
     top: 5.3em;
     left: 0em;
     right: 0em;
     bottom: 0em;
     overflow: auto;
-    @include flex-center(column);
-}
-
-.many-view {
-
-    position: relative;
-    top: 3.5em;
     display: flex;
     flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 4em;
     .many-view__posts {
         position: relative;
         // border: 1px solid pink;
         height: auto;
         margin-right: 1.5em;
-        padding-bottom: 30em;
         min-width: 33em;
         @include flex-center(column);
-    }
-    .many-view__modules {
-        position: relative;
-        .sticky-wrapper {
-             position: sticky;
-             top: 3.5em;
-             width: 17em;
-            .turntable-wrapper {
-                margin-top: 1.8em;
-                height: 10em;
-            }
+        &::after {
+            content: '';
+            height: 30em;
         }
     }
+    .many-view__modules {
+        position: sticky;
+        top: 0em;
+        width: 16.8em;
+        .turntable-wrapper {
+            margin-top: 1.8em;
+            height: 10em;
+        }
+    }
+}
+
+.many-view {
+    position: relative;
+    top: 3.5em;
+    display: flex;
+    flex-direction: row;
+    
 }

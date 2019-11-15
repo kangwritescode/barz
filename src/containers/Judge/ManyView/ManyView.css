@@ -1,4 +1,5 @@
 .many-view-layout {
+  border: 1px solid green;
   position: fixed;
   top: 5.3em;
   left: 0em;
@@ -8,32 +9,23 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
-.many-view {
-  position: relative;
-  top: 3.5em;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-top: 4em;
 }
 
-.many-view .many-view__posts {
+.many-view-layout .many-view__posts {
   position: relative;
   height: auto;
   margin-right: 1.5em;
-  padding-bottom: 30em;
   min-width: 33em;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -47,19 +39,32 @@
           flex-direction: column;
 }
 
-.many-view .many-view__modules {
-  position: relative;
+.many-view-layout .many-view__posts::after {
+  content: '';
+  height: 30em;
 }
 
-.many-view .many-view__modules .sticky-wrapper {
+.many-view-layout .many-view__modules {
   position: -webkit-sticky;
   position: sticky;
-  top: 3.5em;
-  width: 17em;
+  top: 0em;
+  width: 16.8em;
 }
 
-.many-view .many-view__modules .sticky-wrapper .turntable-wrapper {
+.many-view-layout .many-view__modules .turntable-wrapper {
   margin-top: 1.8em;
   height: 10em;
+}
+
+.many-view {
+  position: relative;
+  top: 3.5em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
 }
 /*# sourceMappingURL=ManyView.css.map */
