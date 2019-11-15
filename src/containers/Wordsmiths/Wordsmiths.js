@@ -69,7 +69,6 @@ const Wordsmiths = (props) => {
         }
         catch (err) {
             setFetching(false)
-            console.log(err)
         }
         return () => {
         };
