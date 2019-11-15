@@ -99,27 +99,24 @@ const Hub = (props) => {
         };
     }, [props.uid, votes])
 
-    // useEffect(() => {
-    //     if (postState.focusedElement) {
-    //         postState.focusedElement.classList.add('focused-many-post')
-    //     }
-    //     return () => {
-            
-    //     };
-    // }, [postState.focusedElement])
-
+    useEffect(() => {
+        
+        setPostState({
+            postSelected: false,
+            selectedPost: null,
+            focusedElement: null
+        })
+        document.getElementById('hub-layout__body-wrapper').scrollTop = 0;
+        return () => {
+        };
+    }, [feed])
     const selectPost = (pid) => {
         let post = posts.filter(submission => submission.pid === pid)
         post = post[0]
-        // if there is a focusedElement, unfocus it
-        // if (postState.focusedElement) {
-        //     postState.focusedElement.classList.remove('focused-many-post')
-        // }
 
         // focus selected element
         var myElement = document.querySelector(`#scrollTo${pid}`);
-        // myElement.classList.add('focused-many-post')
-       
+
         scrollToPost(myElement)
         // scroll to selected element
         setPostState({
@@ -128,7 +125,7 @@ const Hub = (props) => {
             selectedPost: post,
             postSelected: true
         })
-        
+
 
     }
 
@@ -149,7 +146,7 @@ const Hub = (props) => {
     const scrollToPost = (element) => {
         var topPos = element.offsetTop;
         document.getElementById('hub-layout__body-wrapper').scrollTop = topPos - 45;
-        
+
     }
 
 
@@ -167,6 +164,13 @@ const Hub = (props) => {
         },
         whole: {
             backgroundColor: 'rgba(0, 0, 0, 0.81)'
+        }
+    }
+    var withSelectedPostStyle = {
+        ...manyPostsCustomStyle,
+        whole: {
+            ...manyPostsCustomStyle.whole,
+            border: '1px solid grey'
         }
     }
     const commenterCustomStyle = {
@@ -202,13 +206,7 @@ const Hub = (props) => {
             manyPosts = displayedPosts.map(post => {
                 var style = manyPostsCustomStyle
                 if (postState.selectedPost && post.pid === postState.selectedPost.pid) {
-                    style = {
-                        ...manyPostsCustomStyle,
-                        whole: {
-                            ...manyPostsCustomStyle.whole,
-                            border: '1px solid grey'
-                        }
-                    }
+                    style = withSelectedPostStyle
                 }
                 return (
                     <ManyPost
@@ -239,11 +237,15 @@ const Hub = (props) => {
             </div>
         } else {
             manyPosts = displayedPosts.map(post => {
+                var style = manyPostsCustomStyle
+                if (postState.selectedPost && post.pid === postState.selectedPost.pid) {
+                    style = withSelectedPostStyle
+                }
                 return (
                     <ManyPost
                         comments={comments.filter(comment => comment.pid === post.pid)}
                         key={GenID()}
-                        customStyle={manyPostsCustomStyle}
+                        customStyle={style}
                         selectPost={selectPost}
                         votes={votes.filter(vote => vote.pid === post.pid)}
                         {...post}

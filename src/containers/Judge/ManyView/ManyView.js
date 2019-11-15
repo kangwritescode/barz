@@ -51,6 +51,15 @@ class ManyView extends Component {
     componentWillUnmount = () => {
         document.removeEventListener('click', this.toggleCommenter)
     }
+    componentDidUpdate = (prevProps, prevState) => {
+        if (prevProps.sort !== this.props.sort ||
+            prevProps.filter !== this.props.filter ||
+            prevProps.view !== this.props.view ||
+            prevProps.coast !== this.props.coast ||
+            prevProps.time !== this.props.time) {
+                document.getElementById('many-view-layout').scrollTop = 0;
+            }
+    }
 
 
     setIsDoneFetching = (bool) => {
