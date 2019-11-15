@@ -58,6 +58,20 @@ class SingleView extends Component {
             ...this.state,
             showBars: true
         })
+        document.addEventListener('keydown', this.keyController)
+    }
+    componentWillUnmount = () => {
+        document.removeEventListener('keydown', this.keyController)
+    }
+    keyController = event => {
+
+        switch (event.key) {
+            case 'ArrowLeft': return this.incDec(-1);
+            case 'ArrowRight': return this.incDec(1);
+            case 'ArrowUp': return this.vote(1);
+            case 'ArrowDown': return this.vote(-1);
+            default: break;
+        }
     }
 
 

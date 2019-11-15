@@ -17,12 +17,12 @@ class WordNavBar extends Component {
 
 
     toggleDropdown(event) {
-        const rankDrop = document.getElementById("rank");
+        // const rankDrop = document.getElementById("rank");
         const timeDrop = document.getElementById("time");
         const stateDrop = document.getElementById("state");
         const coastDrop = document.getElementById("coast");
         const genderDrop = document.getElementById("gender");
-        event.target.classList.contains('rank') ? rankDrop.classList.toggle('show') : rankDrop.classList.remove('show');
+        // event.target.classList.contains('rank') ? rankDrop.classList.toggle('show') : rankDrop.classList.remove('show');
         event.target.classList.contains('time') ? timeDrop.classList.toggle('show') : timeDrop.classList.remove('show');
         event.target.classList.contains('state') ? stateDrop.classList.toggle('show') : stateDrop.classList.remove('show');
         event.target.classList.contains('coast') ? coastDrop.classList.toggle('show') : coastDrop.classList.remove('show');
@@ -36,14 +36,14 @@ class WordNavBar extends Component {
         return (
             <div className="WordNavBar">
                 <div className="WordNavSectionContainer">
-                    <div className="SortContainer">
+                    {/* <div className="SortContainer">
                         <p id="sort">Sort:</p>
                         <WordNavItem
                             dropItems={['Best', 'Random']}
                             type="rank"
                             display={this.props.rank}
                             sortAndFilter={this.props.sortAndFilter.bind(this)} />
-                    </div>
+                    </div> */}
                     <div className="FilterContainer">
                         <p id="filter">Filter:</p>
                         <WordNavItem

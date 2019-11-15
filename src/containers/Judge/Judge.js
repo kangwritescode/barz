@@ -31,10 +31,13 @@ const Judge = props => {
             }
         }
         document.addEventListener('keydown', assignRedirect)
+
         return () => {
             document.removeEventListener('keydown', assignRedirect)
         };
     }, [])
+
+ 
 
 
     const updateJudgeState = (newState, value) => {

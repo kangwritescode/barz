@@ -207,3 +207,25 @@
 .button-staged:active {
     background-color: rgb(107, 107, 107);
 }
+
+.close-add-handles {
+    position: absolute;
+    z-index: 1000;
+    top: 12px;
+    right: 12px;
+    cursor: pointer;
+}
+
+.red {
+    color: red;
+}
+.orange {
+    color: orange;
+}
+
+.purple {
+    color: purple;
+}
+.blue {
+    color: blue;
+}

@@ -9,6 +9,8 @@ import pencil from '../../../assets/images/edit-pencil.png'
 import ig from '../../../assets/images/ig.png'
 import undoIMG from '../../../assets/images/undo.png'
 import './AddHandles.css'
+import DotSpinner from '../../../components/DotSpinner/DotSpinner'
+
 
 const AddHandles = (props) => {
 
@@ -24,10 +26,10 @@ const AddHandles = (props) => {
         sc: '',
         yt: ''
     })
+    const [loading, setLoading] = useState(false)
 
 
     useEffect(() => {
-        console.log('yaaaha')
         setInput({
             fb: props.handles.facebook,
             ig: props.handles.instagram,
@@ -49,6 +51,7 @@ const AddHandles = (props) => {
     const updateHandles = async () => {
 
         try {
+            setLoading(true)
             await props.updateProfile(props.uid, {
                 handles: {
                     facebook: input.fb,
@@ -56,7 +59,7 @@ const AddHandles = (props) => {
                     soundcloud: input.sc,
                     youtube: input.yt
                 }
-            })
+            }, setLoading)
             setBackup({
                 fb: input.fb,
                 ig: input.ig,
@@ -66,6 +69,8 @@ const AddHandles = (props) => {
         }
         catch (err) {
             console.log(err.message)
+            setLoading(false)
+
         }
 
     }
@@ -74,7 +79,8 @@ const AddHandles = (props) => {
 
         switch (handle) {
             case 'fb':
-                return setInput({...input,
+                return setInput({
+                    ...input,
                     fb: backup.fb
                 })
             case 'ig':
@@ -116,32 +122,45 @@ const AddHandles = (props) => {
             url: fb,
             input: input.fb,
             propsValue: props.handles.facebook,
-            handleName: 'fb'
+            handleName: 'fb',
+            className: 'fab fa-facebook-f',
+            color: props.handles.facebook ? 'blue' : null
         },
         {
             url: ig,
             input: input.ig,
             propsValue: props.handles.instagram,
-            handleName: 'ig'
+            handleName: 'ig',
+
+            className: 'fab fa-instagram',
+            color: props.handles.instagram ? 'purple' : null
         },
         {
             url: sc,
             input: input.sc,
             propsValue: props.handles.soundcloud,
-            handleName: 'sc'
+            handleName: 'sc',
+
+            className: 'fab fa-soundcloud',
+            color: props.handles.soundcloud ? 'orange' : null
+
         },
         {
             url: yt,
             input: input.yt,
             propsValue: props.handles.youtube,
-            handleName: 'yt'
+            handleName: 'yt',
+
+            className: 'fab fa-youtube',
+            color: props.handles.youtube ? 'red' : null
+
         },
     ]
 
     const inputRender = handleData.map(inputData => (
         <div className={`handle-wrapper `}>
             <div className="icon-holder">
-                <img alt="" id="add-fb" src={inputData.url} />
+                <i className={`${inputData.className} ${inputData.color}`}></i>
             </div>
             <input
                 className={`handle-input ${inputData.input !== inputData.propsValue ? 'staged' : null}`}
@@ -168,7 +187,8 @@ const AddHandles = (props) => {
         <div>
             <div className="ul-img-backdrop" onClick={() => props.toggleUploadHandles(false)}></div>
             <div className="add-handles-modal">
-                <div id="closeUploadImage" onClick={() => props.toggleUploadHandles(false)}><i className="fa fa-close"></i></div>
+                {loading ? <DotSpinner customStyle={{position: 'absolute', zIndex: '999', bottom: '-4em', left: '6em'}}/> : false}
+                <i className="fa fa-close close-add-handles" onClick={() => props.toggleUploadHandles(false)}></i>
                 <h1 id="handles-header">My Media</h1>
                 {inputRender}
                 <div className={hasStagedItems() ? 'button-staged' : 'confirm-handles'} onClick={updateHandles}>Update</div>
@@ -187,7 +207,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        updateProfile: (uid, data) => dispatch(postUserData(uid, data))
+        updateProfile: (uid, data, setSpinner) => dispatch(postUserData(uid, data, setSpinner))
     }
 }
 

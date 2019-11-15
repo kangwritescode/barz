@@ -24,6 +24,10 @@
   justify-content: center;
 }
 
+img {
+  object-fit: cover;
+}
+
 
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 

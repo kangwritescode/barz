@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import firebase from 'firebase'
 import * as actionTypes from '../../../../store/actions/actionsTypes'
 import * as actions from '../../../../store/actions/index'
+import DotSpinner from '../../../../components/DotSpinner/DotSpinner'
 
 class UploadImage extends Component {
 
@@ -43,7 +44,7 @@ class UploadImage extends Component {
         }
     }
 
-    fileUploadHandler() {
+    fileUploadHandler = () => {
         this.setState({
             ...this.state,
             uploading: true
@@ -67,7 +68,8 @@ class UploadImage extends Component {
                 this.setState({
                     ...this.state,
                     uploading: false,
-                    showNotification: true
+                    showNotification: true,
+                    hasChanged: false
                 })
             });
         });
@@ -99,7 +101,10 @@ class UploadImage extends Component {
                 <div className="ul-img-backdrop" onClick={() => this.props.setShowPhotoModal(false)}></div>
 
                 <div id="UploadImage">
-                    {this.state.uploading ? <div id="dotdotLoader"></div> : null}
+                    <div className={`upload-image__header`}>
+                        <div>Set Photo</div>
+                    </div>
+                    {this.state.uploading ? <DotSpinner customStyle={{position: 'absolute', zIndex: 500, color: 'orange', top: '-10em'}}/> : null}
                     {this.state.showNotification ?
                         <div
                             className="upload-photo-success-msg"
@@ -108,22 +113,19 @@ class UploadImage extends Component {
                             {this.state.notificationMessage}
                         </div> : null}
 
-                    <div id="closeUploadImage" onClick={() => this.props.setShowPhotoModal(false)}><i className="fa fa-close"></i></div>
+                    <div className={`upload-image__content-container`}>
+                        <i className="fa fa-close closeUploadImage" onClick={() => this.props.setShowPhotoModal(false)}></i>
 
-                    {/* <img alt="" src={portrait}></img> */}
-                    <h1>Set Photo</h1>
-                    <div id="IMG_Border">
+                        {/* <img alt="" src={portrait}></img> */}
+                        {/* <h1>Set Photo</h1> */}
                         {theImage}
-                    </div>
-
-
-
-                    <div id="UploadButtons">
                         <input onChange={this.fileSelectedHandler} type="file" id="files" className="hidden" accept="image/x-png, image/jpeg" />
-                        <label id="uploadIMG" htmlFor="files">Choose File</label>
-                        {this.state.hasChanged ?
-                            <button onClick={() => this.fileUploadHandler()}>Confirm</button> :
-                            <button onClick={() => this.props.setShowPhotoModal(false)}>Cancel</button>}
+                            
+                        <div id="UploadButtons">
+                            {!this.state.hasChanged ? <label id="uploadIMG" htmlFor="files">{'Choose File'}</label>
+                            : <button id='uploadIMG' onClick={this.fileUploadHandler}>Confirm</button>}
+                            
+                        </div>
                     </div>
 
                 </div>
@@ -142,7 +144,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        setUserData: (photoURL) => dispatch(actions.setUserData({photoURL: photoURL}))
+        setUserData: (photoURL) => dispatch(actions.setUserData({ photoURL: photoURL }))
     }
 }
 

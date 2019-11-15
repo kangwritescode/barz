@@ -73,8 +73,12 @@ class Post extends Component {
             && ((event.target.id !== 'lineFour') || (event.key === "ArrowDown" && event.target.id !== 'lineFour'))) {
             return event.target.nextElementSibling.focus();
         }
-        if (event.key == "ArrowUp" && event.target.id !== 'lineOne') {
+        if (event.key === "ArrowUp" && event.target.id !== 'lineOne') {
             return event.target.previousElementSibling.focus();
+        }
+        
+        if (event.key === "ArrowDown" && event.target.id !== 'lineFour') {
+            return event.target.nextElementSibling.focus();
         }
     };
 
@@ -215,15 +219,16 @@ class Post extends Component {
 
             <div className={`the-notepad`} id={theNotepadId}>
                 <div className={`post-widget-header`} id={postWidgetHeader} onClick={!focused ? this.props.toggle : null}>Post</div>
-                <form className={'four-lines'} autoComplete='false' id={fourLinesId}>
+                <form className={'four-lines'} autoComplete="new-password" id={fourLinesId}>
                     {this.state.showNotification ? <div className="post-notification" id={!this.state.notificationStatus ? 'negative-msg' : null} onAnimationEnd={() => this.toggleNotification('', false, false)}>{this.state.notificationMessage}</div> : null}
 
                     {inputArr.map((obj, index) => {
                         return (
                             <input
                                 {...this.state.inputUniversalProps}
-                                autoComplete="false"
+                                autoComplete="new-password"
                                 className={'input-line lines-expanded'}
+                                type="text"
                                 id={obj.id}
                                 value={this.state.submission[obj.id]}
                                 onChange={(event) => this.onChangeHandler(obj.id, event)}

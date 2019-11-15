@@ -25,14 +25,19 @@ export const setUserData = (data) => {
     }
 }
 
-export const postUserData = (uid, newInfo) => {
+export const postUserData = (uid, newInfo, setSpinner) => {
     return dispatch => {
         db.collection("users").doc(uid).update(newInfo)
             .then(function () {
-                console.log("Document successfully updated!");
+                if (setSpinner) {
+                    setSpinner(false)
+                }
                 dispatch(setUserData(newInfo))
             })
             .catch(function (error) {
+                if (setSpinner) {
+                    setSpinner(false)
+                }
                 console.error("Error updating document: ", error);
             });
     }

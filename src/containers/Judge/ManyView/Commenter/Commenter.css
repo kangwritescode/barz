@@ -158,6 +158,8 @@
   height: 100%;
   width: 100%;
   border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .commenter-body .post-comment input {

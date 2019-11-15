@@ -150,6 +150,8 @@
   height: 50px;
   width: 50px;
   border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .spotlight .spotlight__block-one .block-one__img-wrapper .crown {
