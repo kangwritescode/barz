@@ -18,7 +18,21 @@ const fetchPosts = (setter, setDoneFetching) => {
     })
     return listener
 }
-
+const fetchPostsOnce = async () => {
+    let db = firebase.firestore()
+    return db.collection("submissions").get()
+        .then((querySnapshot) => {
+            let submissions = []
+            querySnapshot.forEach((doc) => {
+                submissions.push({
+                    ...doc.data(),
+                    pid: doc.id
+                })
+            });
+            return submissions
+        })
+        .catch(err => { throw err })
+}
 const fetchPost = (setter, pid) => {
     let db = firebase.firestore()
     db.collection('submissions').doc(pid).get()
@@ -55,6 +69,20 @@ const fetchVotes = (setter) => {
     })
     return listener
 }
+const fetchVotesOnce = async () => {
+    let db = firebase.firestore()
+    return db.collection("postVotes").get()
+        .then((querySnapshot) => {
+            let votes = []
+            querySnapshot.forEach((doc) => {
+                votes.push(doc.data())
+            });
+            return votes
+
+        })
+        .catch(err => { throw err })
+}
+
 const fetchVotesForPost = (setter, pid) => {
     let db = firebase.firestore()
     const listener = db.collection('postVotes').where('pid', '==', pid).onSnapshot(snapshot => {
@@ -144,6 +172,7 @@ export default {
     userSortedPostsListener: fetchUserSortedPosts,
     votesForPostListener: fetchVotesForPost,
     submissionCommentsForPostListener: fetchSubmissionCommentsForPost,
-    fetchSinglePost: fetchPost
-
+    fetchSinglePost: fetchPost,
+    fetchPostsOnce: fetchPostsOnce,
+    fetchVotesOnce: fetchVotesOnce
 }

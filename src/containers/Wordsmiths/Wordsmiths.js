@@ -8,6 +8,7 @@ import Rappers from './Rappers/Rappers'
 import WordNavBar from './WordNavBar/WordNavBar'
 import './Wordsmiths.css'
 import timeDict from './WordSmithsTools/timeDict'
+import FireApi from '../../Api/FireApi/FireApi'
 
 
 
@@ -25,9 +26,6 @@ class Wordsmiths extends Component {
         submissions: [],
         fetching: true,
         follows: [],
-        followsRef: null,
-        keyPressed: null
-
     }
     componentDidMount = async () => {
 
@@ -35,8 +33,8 @@ class Wordsmiths extends Component {
 
             this.toggleFetching(true)
             let rappers = {}
-            let submissions = await this.fetchSubmissions()
-            let votes = await this.fetchVotes()
+            let submissions = await FireApi.fetchPostsOnce()
+            let votes = await FireApi.fetchVotesOnce()
             let users = await this.fetchUsers()
 
             // for every single submission
@@ -74,37 +72,6 @@ class Wordsmiths extends Component {
             console.log(err)
         }
 
-    }
-
-    // fetch ALL submissions
-    fetchSubmissions = async () => {
-        let db = firebase.firestore()
-        return db.collection("submissions").get()
-            .then((querySnapshot) => {
-                let submissions = []
-                querySnapshot.forEach((doc) => {
-                    submissions.push({
-                        ...doc.data(),
-                        pid: doc.id
-                    })
-                });
-                return submissions
-            })
-            .catch(err => { throw err })
-    }
-    // fetch ALl votes
-    fetchVotes = async () => {
-        let db = firebase.firestore()
-        return db.collection("postVotes").get()
-            .then((querySnapshot) => {
-                let votes = []
-                querySnapshot.forEach((doc) => {
-                    votes.push(doc.data())
-                });
-                return votes
-
-            })
-            .catch(err => { throw err })
     }
 
     // fetch ALl votes
@@ -161,12 +128,14 @@ class Wordsmiths extends Component {
         let rappers = { ...this.state.rappers }
         let allVotes = this.state.votes ? Object.values(this.state.votes) : []
 
-        // states, coast, and gender filter
+        // Filters start
         if (this.state.state !== "All States") { rappers = Object.fromEntries(Object.entries(rappers).filter(([k, rapper]) => rapper.address.state === this.state.state)) }
         if (this.state.coast !== "All Coasts") { rappers = Object.fromEntries(Object.entries(rappers).filter(([k, rapper]) => rapper.address.region === this.state.coast)) }
         if (this.state.gender !== "All Genders") { rappers = Object.fromEntries(Object.entries(rappers).filter(([k, rapper]) => rapper.gender === this.state.gender)) }
+        // Filters end
 
-        // tally user points
+        
+        // Tally points start
         for (let uid in rappers) {
             let rapper = rappers[uid]
             let tally = 0
@@ -191,12 +160,13 @@ class Wordsmiths extends Component {
             })
             let noOfSubmissions = filteredSubmissions.length
             rapper['submissionCount'] = noOfSubmissions
-
-
         }
+        // Tally points end
+
+        
         rappers = rappers ? Object.values(rappers) : []
 
-        // Sort:
+        // Sort start
         rappers = (this.state.rank === "Random") ?
             // random sort
             shuffle(rappers) :
@@ -204,6 +174,7 @@ class Wordsmiths extends Component {
             rappers.sort((rapper_A, rapper_B) => {
                 return (rapper_A.tally < rapper_B.tally) ? 1 : -1
             })
+        // Sort end
 
         // tally city and coast votes
         let cityVotes = {}
