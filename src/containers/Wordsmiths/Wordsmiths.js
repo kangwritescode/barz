@@ -1,5 +1,5 @@
 import 'firebase/firestore'
-import React, { Component } from 'react'
+import React, { Component, useState, useEffect } from 'react'
 import shuffle from 'shuffle-array'
 import joey from '../../assets/videos/joey.m4v'
 import joeyIMG from '../../assets/images/joeyIMG.png'
@@ -12,70 +12,69 @@ import FireApi from '../../Api/FireApi/FireApi'
 
 
 
-class Wordsmiths extends Component {
+const Wordsmiths = (props) => {
 
-
-    state = {
+    const [sortFilterState, setSortFilterState] = useState({
         rank: "Best",
         time: "All Time",
         state: "All States",
         coast: "All Coasts",
         gender: "All Genders",
+    })
+    const [rappers, setRappers] = useState({})
+    const [submissions, setSubmissions] = useState([])
+    const [fetching, setFetching] = useState(true)
+    const [votes, setVotes] = useState([])
 
-        rappers: {},
-        submissions: [],
-        fetching: true,
-        follows: [],
-    }
-    componentDidMount = async () => {
-
+    useEffect(() => {
         try {
 
-            this.toggleFetching(true)
-            let rappers = {}
-            let submissions = await FireApi.fetchPostsOnce()
-            let votes = await FireApi.fetchVotesOnce()
-            let users = await this.fetchUsers()
+            const asyncFunction = async () => {
+                setFetching(true)
+                let rappers = {}
+                let submissions = await FireApi.fetchPostsOnce()
+                let votes = await FireApi.fetchVotesOnce()
+                let users = await fetchUsers()
 
-            // for every single submission
-            submissions.forEach(submission => {
-                console.log(users[submission.uid])
+                // for every single submission
+                submissions.forEach(submission => {
 
-                // find the votes for that submission
-                let filteredVotes = votes.filter(vote => vote.pid === submission.pid)
-                if (!rappers[submission.uid]) {
-                    rappers[submission.uid] = {
-                        uid: submission.uid,
-                        gender: submission.gender,
-                        username: submission.username,
-                        address: submission.address,
-                        votes: filteredVotes,
-                        photoURL: users[submission.uid].photoURL,
-                        blurb: users[submission.uid].blurb,
-                        handles: users[submission.uid].handles
+                    // find the votes for that submission
+                    let filteredVotes = votes.filter(vote => vote.pid === submission.pid)
+                    if (!rappers[submission.uid]) {
+                        rappers[submission.uid] = {
+                            uid: submission.uid,
+                            gender: submission.gender,
+                            username: submission.username,
+                            address: submission.address,
+                            votes: filteredVotes,
+                            photoURL: users[submission.uid].photoURL,
+                            blurb: users[submission.uid].blurb,
+                            handles: users[submission.uid].handles
+                        }
+                    } else {
+                        rappers[submission.uid].votes[submission.createdOn] = filteredVotes
                     }
-                } else {
-                    rappers[submission.uid].votes[submission.createdOn] = filteredVotes
-                }
-            })
+                })
+                setRappers(rappers)
+                setSubmissions(submissions)
+                setFetching(false)
+                setVotes(votes)
+            }
+            asyncFunction()
 
-            this.setState({
-                ...this.state,
-                rappers: rappers,
-                submissions: submissions,
-                fetching: false,
-                votes: votes
-            })
         }
         catch (err) {
-            this.toggleFetching(false)
+            setFetching(false)
             console.log(err)
         }
+        return () => {
+        };
+    }, [])
 
-    }
 
     // fetch ALl votes
-    fetchUsers = async () => {
+    const fetchUsers = async () => {
         let db = firebase.firestore()
         return db.collection("users").get()
             .then((querySnapshot) => {
@@ -90,140 +89,128 @@ class Wordsmiths extends Component {
     }
 
 
-    sortAndFilter(type, parameter) {
+    const sortAndFilter = (type, parameter) => {
         // set appropriate UI
         if (type === 'state' && parameter !== 'All States') {
-            this.setState({
-                ...this.state,
+            setSortFilterState({
+                ...sortFilterState,
                 coast: 'All Coasts',
                 [type]: parameter
             })
         } else if (type === 'coast' && parameter !== 'All Coasts') {
-            this.setState({
-                ...this.state,
+            setSortFilterState({
+                ...sortFilterState,
                 state: 'All States',
                 [type]: parameter
             })
         }
         else {
-            this.setState({
-                ...this.state,
+            setSortFilterState({
+                ...sortFilterState,
                 [type]: parameter
             })
         }
 
     }
 
-    toggleFetching = (bool) => {
-        this.setState({
-            ...this.state,
-            fetching: bool
-        })
-    }
+
+    let displayedRappers = { ...rappers }
+    let allVotes = votes ? Object.values(votes) : []
+
+    // Filters start
+    if (sortFilterState.state !== "All States") { displayedRappers = Object.fromEntries(Object.entries(displayedRappers).filter(([k, rapper]) => rapper.address.state === sortFilterState.state)) }
+    if (sortFilterState.coast !== "All Coasts") { displayedRappers = Object.fromEntries(Object.entries(displayedRappers).filter(([k, rapper]) => rapper.address.region === sortFilterState.coast)) }
+    if (sortFilterState.gender !== "All Genders") { displayedRappers = Object.fromEntries(Object.entries(displayedRappers).filter(([k, rapper]) => rapper.gender === sortFilterState.gender)) }
+    // Filters end
 
 
-
-    render() {
-
-        let rappers = { ...this.state.rappers }
-        let allVotes = this.state.votes ? Object.values(this.state.votes) : []
-
-        // Filters start
-        if (this.state.state !== "All States") { rappers = Object.fromEntries(Object.entries(rappers).filter(([k, rapper]) => rapper.address.state === this.state.state)) }
-        if (this.state.coast !== "All Coasts") { rappers = Object.fromEntries(Object.entries(rappers).filter(([k, rapper]) => rapper.address.region === this.state.coast)) }
-        if (this.state.gender !== "All Genders") { rappers = Object.fromEntries(Object.entries(rappers).filter(([k, rapper]) => rapper.gender === this.state.gender)) }
-        // Filters end
-
-        
-        // Tally points start
-        for (let uid in rappers) {
-            let rapper = rappers[uid]
-            let tally = 0
-            allVotes.forEach((vote) => {
-                let now = new Date()
-                let passedMilliseconds = now - vote.postDate.toDate().getTime()
-                let passedDays = (passedMilliseconds / 1000 / 60 / 60 / 24)
-                // tally if within given time 
-                if (!(passedDays > timeDict[this.state.time]) && uid === vote.receiverID) {
-                    tally += vote.value
-                }
-            })
-            // if amount of votes is negative make zero
-            rapper['tally'] = tally < 0 ? 0 : tally
-
-            // submissionCount
-            let filteredSubmissions = this.state.submissions.filter(submission => {
-                let now = new Date()
-                let passedMilliseconds = now - submission.createdOn.toDate().getTime()
-                let passedDays = (passedMilliseconds / 1000 / 60 / 60 / 24)
-                return !(passedDays > timeDict[this.state.time]) && submission.uid === uid
-            })
-            let noOfSubmissions = filteredSubmissions.length
-            rapper['submissionCount'] = noOfSubmissions
-        }
-        // Tally points end
-
-        
-        rappers = rappers ? Object.values(rappers) : []
-
-        // Sort start
-        rappers = (this.state.rank === "Random") ?
-            // random sort
-            shuffle(rappers) :
-            // best sort
-            rappers.sort((rapper_A, rapper_B) => {
-                return (rapper_A.tally < rapper_B.tally) ? 1 : -1
-            })
-        // Sort end
-
-        // tally city and coast votes
-        let cityVotes = {}
-        let coastVotes = {}
-        rappers.forEach(rapper => {
-            const cityState = `${rapper.address.city}, ${rapper.address.state}`
-            if (rapper.tally > 0) {
-                cityVotes[cityState] = (cityState in cityVotes) ?
-                    cityVotes[cityState] + rapper.tally
-                    : rapper.tally
-                coastVotes[rapper.address.region] = (rapper.address.region in coastVotes) ?
-                    coastVotes[rapper.address.region] + rapper.tally
-                    : rapper.tally
+    // Tally points start
+    for (let uid in displayedRappers) {
+        let rapper = displayedRappers[uid]
+        let tally = 0
+        allVotes.forEach((vote) => {
+            let now = new Date()
+            let passedMilliseconds = now - vote.postDate.toDate().getTime()
+            let passedDays = (passedMilliseconds / 1000 / 60 / 60 / 24)
+            // tally if within given time 
+            if (!(passedDays > timeDict[sortFilterState.time]) && uid === vote.receiverID) {
+                tally += vote.value
             }
         })
+        // if amount of votes is negative make zero
+        rapper['tally'] = tally < 0 ? 0 : tally
 
-        //  Best City and Best Coast reducers
-        let bestCity = Object.keys(cityVotes).length ? Object.keys(cityVotes).reduce((a, b) => cityVotes[a] > cityVotes[b] ? a : b) : 'N/A'
-        let bestCoast = Object.keys(coastVotes).length ? Object.keys(coastVotes).reduce((a, b) => coastVotes[a] > coastVotes[b] ? a : b) : 'N/A'
-
-
-        return (
-            <div className="WordsmithsContainer">
-                <img id="backup-img" src={joeyIMG} alt="" />
-
-                <video id="badass" src={joey} autoPlay={true} loop={true} playsInline={true} muted />
-                <div id="WordSmithsOverlay" />
-                <WordNavBar
-                    rank={this.state.rank}
-                    time={this.state.time}
-                    state={this.state.state}
-                    coast={this.state.coast}
-                    gender={this.state.gender}
-                    sortAndFilter={this.sortAndFilter.bind(this)} />
-                <Rappers
-                    rappers={rappers}
-                    rank={this.state.rank}
-                    time={this.state.time}
-                    state={this.state.state}
-                    coast={this.state.coast}
-                    gender={this.state.gender}
-                    bestCity={bestCity}
-                    bestCoast={bestCoast}
-                    sort={this.state.rank}
-                    fetching={this.state.fetching}
-                    follows={this.state.follows} />
-            </div>
-        )
+        // submissionCount
+        let filteredSubmissions = submissions.filter(submission => {
+            let now = new Date()
+            let passedMilliseconds = now - submission.createdOn.toDate().getTime()
+            let passedDays = (passedMilliseconds / 1000 / 60 / 60 / 24)
+            return !(passedDays > timeDict[sortFilterState.time]) && submission.uid === uid
+        })
+        let noOfSubmissions = filteredSubmissions.length
+        rapper['submissionCount'] = noOfSubmissions
     }
+    // Tally points end
+
+
+    displayedRappers = displayedRappers ? Object.values(displayedRappers) : []
+
+    // Sort start
+    displayedRappers = (sortFilterState.rank === "Random") ?
+        // random sort
+        shuffle(displayedRappers) :
+        // best sort
+        displayedRappers.sort((rapper_A, rapper_B) => {
+            return (rapper_A.tally < rapper_B.tally) ? 1 : -1
+        })
+    // Sort end
+
+    // tally city and coast votes
+    let cityVotes = {}
+    let coastVotes = {}
+    displayedRappers.forEach(rapper => {
+        const cityState = `${rapper.address.city}, ${rapper.address.state}`
+        if (rapper.tally > 0) {
+            cityVotes[cityState] = (cityState in cityVotes) ?
+                cityVotes[cityState] + rapper.tally
+                : rapper.tally
+            coastVotes[rapper.address.region] = (rapper.address.region in coastVotes) ?
+                coastVotes[rapper.address.region] + rapper.tally
+                : rapper.tally
+        }
+    })
+
+    //  Best City and Best Coast reducers
+    let bestCity = Object.keys(cityVotes).length ? Object.keys(cityVotes).reduce((a, b) => cityVotes[a] > cityVotes[b] ? a : b) : 'N/A'
+    let bestCoast = Object.keys(coastVotes).length ? Object.keys(coastVotes).reduce((a, b) => coastVotes[a] > coastVotes[b] ? a : b) : 'N/A'
+
+
+    return (
+        <div className="WordsmithsContainer">
+            <img id="backup-img" src={joeyIMG} alt="" />
+
+            <video id="badass" src={joey} autoPlay={true} loop={true} playsInline={true} muted />
+            <div id="WordSmithsOverlay" />
+            <WordNavBar
+                rank={sortFilterState.rank}
+                time={sortFilterState.time}
+                state={sortFilterState.state}
+                coast={sortFilterState.coast}
+                gender={sortFilterState.gender}
+                sortAndFilter={sortAndFilter} />
+            <Rappers
+                rappers={displayedRappers}
+                rank={sortFilterState.rank}
+                time={sortFilterState.time}
+                state={sortFilterState.state}
+                coast={sortFilterState.coast}
+                gender={sortFilterState.gender}
+                bestCity={bestCity}
+                bestCoast={bestCoast}
+                sort={sortFilterState.rank}
+                fetching={fetching}/>
+        </div>
+    )
 }
 
 export default Wordsmiths
