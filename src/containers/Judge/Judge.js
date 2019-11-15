@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component, useState, useEffect } from 'react'
 import { connect } from 'react-redux'
+import {Redirect} from 'react-router'
 import vinyl2_IMG from '../../assets/images/vinyl2_IMG.png'
 import vinyl2 from '../../assets/videos/vinyl2.mp4'
 import './Judge.css'
@@ -9,81 +10,99 @@ import SingleView from './SingleView/SingleView'
 
 
 
-class Judge extends Component {
+const Judge = props => {
 
-    state = {
+    const [sortFilterState, setSortFilterState] = useState({
         view: 'Explore',
         sort: 'Newest',
         filter: 'All Posts',
         time: 'All Time',
         coast: 'All Coasts',
 
-        // manyView viewed post
-        showPost: false,
-        proRapper: null,
-    }
+    })
+    const [keyPressed, setKeyPressed] = useState(null)
+    useEffect(() => {
+        const assignRedirect = (event) => {
+            switch (event.key) {
+                case '1': return setKeyPressed(1)
+                case '2': return setKeyPressed(2)
+                case '4': return setKeyPressed(4)
+                default: break;
+            }
+        }
+        document.addEventListener('keydown', assignRedirect)
+        return () => {
+            document.removeEventListener('keydown', assignRedirect)
+        };
+    }, [])
 
-    
 
-    updateJudgeState = (newState, value) => {
-        // console.log('boop', newState, value)
-        this.setState({
-            ...this.state,
+    const updateJudgeState = (newState, value) => {
+        setSortFilterState({
+            ...sortFilterState,
             [newState]: value
         })
     }
 
-    toggleModal = (modal, value, pid) => {
+    const toggleModal = (modal, value, pid) => {
         this.setState({
-            ...this.state,
+            ...sortFilterState,
             [modal]: value,
             viewedPost: pid
         })
     }
 
 
-
-    render() {
-
-        let view = (
-            <SingleView
-                uid={this.props.uid}
-                toggleModal={this.toggleModal}
-                sort={this.state.sort}
-                filter={this.state.filter}
-                view={this.state.view} />
-        )
-        if (this.state.view === 'Explore') {
-            view = (
-                <ManyView
-                    sort={this.state.sort}
-                    filter={this.state.filter}
-                    view={this.state.view}
-                    coast={this.state.coast}
-                    time={this.state.time}
-                    toggleModal={this.toggleModal} />
-            )
-        }
-        return (
-            <div>
-                <div className="JudgeContainer">
-
-                    <img id='backup-img' src={vinyl2_IMG} alt=''></img>
-                    <video src={vinyl2} autoPlay={true} loop={true} playsInline={true} muted />
-                    <div id="judgeOverlay" />
-                    <JudgeNavBar
-                        sort={this.state.sort}
-                        filter={this.state.filter}
-                        view={this.state.view}
-                        time={this.state.time}
-                        coast={this.state.coast}
-                        updateJudgeState={this.updateJudgeState} />
-                    {view}
-                </div>
-            </div>
-
+    let view = (
+        <SingleView
+            uid={props.uid}
+            sort={sortFilterState.sort}
+            filter={sortFilterState.filter}
+            view={sortFilterState.view} />
+    )
+    if (sortFilterState.view === 'Explore') {
+        view = (
+            <ManyView
+                sort={sortFilterState.sort}
+                filter={sortFilterState.filter}
+                view={sortFilterState.view}
+                coast={sortFilterState.coast}
+                time={sortFilterState.time}
+                toggleModal={toggleModal} />
         )
     }
+    
+    var content = (
+        <div>
+            <div className="JudgeContainer">
+
+                <img id='backup-img' src={vinyl2_IMG} alt=''></img>
+                <video src={vinyl2} autoPlay={true} loop={true} playsInline={true} muted />
+                <div id="judgeOverlay" />
+                <JudgeNavBar
+                    sort={sortFilterState.sort}
+                    filter={sortFilterState.filter}
+                    view={sortFilterState.view}
+                    time={sortFilterState.time}
+                    coast={sortFilterState.coast}
+                    updateJudgeState={updateJudgeState} />
+                {view}
+            </div>
+        </div>
+
+    )
+
+    switch (keyPressed) {
+        case 1: return content = <Redirect to='/hub'></Redirect>
+        case 2: return content = <Redirect to='/scribble'></Redirect>
+        case 4: return content = <Redirect to='/wordsmiths'></Redirect>
+        default: break;
+
+    }
+
+
+    return content
+
 
 }
 

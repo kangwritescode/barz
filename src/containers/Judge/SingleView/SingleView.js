@@ -279,13 +279,6 @@ class SingleView extends Component {
     }
 
 
-    toggleModal = async (modal, value, pid) => {
-        this.setState({
-            ...this.state,
-            [modal]: value,
-            pid: pid
-        })
-    }
 
 
 
