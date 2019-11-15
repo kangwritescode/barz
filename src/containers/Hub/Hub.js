@@ -4,7 +4,7 @@ import FireApi from '../../Api/FireApi/FireApi'
 import yoxIMG from '../../assets/images/yoxIMG.png'
 import yox from '../../assets/videos/yox.m4v'
 import CircularSpinner from '../../components/CircularSpinner/CircularSpinner'
-import { GenID } from '../../shared/utility'
+import { GenID, updateObject } from '../../shared/utility'
 import Commenter from '../Judge/ManyView/Commenter/Commenter'
 import ManyPost from '../Judge/ManyView/ManyPost/ManyPost'
 import DeleteComment from '../Scribble/MyBars/ViewedBar/DeleteComment/DeleteComment'
@@ -38,9 +38,12 @@ const Hub = (props) => {
     // follows
     const [follows, setFollows] = useState([])
     // posts
-    let [posts, setPosts] = useState([])
-    const [postSelected, setPostSelected] = useState(false);
-    const [selectedPost, setSelectedPost] = useState(null)
+    const [posts, setPosts] = useState([])
+    const [postState, setPostState] = useState({
+        postSelected: false,
+        selectedPost: null,
+        focusedElement: null
+    })
     // comments
     const [comments, setComments] = useState([])
     // feed related
@@ -62,7 +65,11 @@ const Hub = (props) => {
         const toggleCommenter = (event) => {
             closesCommenter.forEach(className => {
                 if (event.target.classList.contains(className)) {
-                    setPostSelected(false)
+                    setPostState({
+                        ...postState,
+                        postSelected: false,
+                        focusedElement: null,
+                    })
                 }
             })
         }
@@ -92,12 +99,37 @@ const Hub = (props) => {
         };
     }, [props.uid, votes])
 
+    // useEffect(() => {
+    //     if (postState.focusedElement) {
+    //         postState.focusedElement.classList.add('focused-many-post')
+    //     }
+    //     return () => {
+            
+    //     };
+    // }, [postState.focusedElement])
 
     const selectPost = (pid) => {
         let post = posts.filter(submission => submission.pid === pid)
         post = post[0]
-        setPostSelected(true)
-        setSelectedPost(post)
+        // if there is a focusedElement, unfocus it
+        // if (postState.focusedElement) {
+        //     postState.focusedElement.classList.remove('focused-many-post')
+        // }
+
+        // focus selected element
+        var myElement = document.querySelector(`#scrollTo${pid}`);
+        // myElement.classList.add('focused-many-post')
+       
+        scrollToPost(myElement)
+        // scroll to selected element
+        setPostState({
+            ...postState,
+            focusedElement: myElement,
+            selectedPost: post,
+            postSelected: true
+        })
+        
+
     }
 
     const sortAndFilter = (type, parameter) => {
@@ -114,12 +146,18 @@ const Hub = (props) => {
         setCommentCID(cid)
         setShowDeleteComment(bool)
     }
+    const scrollToPost = (element) => {
+        var topPos = element.offsetTop;
+        document.getElementById('hub-layout__body-wrapper').scrollTop = topPos - 45;
+        
+    }
 
 
     // render ~~~~~~~~~~~~
 
     // Custom Styles 
-    let manyPostsCustomStyle = {
+
+    var manyPostsCustomStyle = {
         username: {
             fontSize: '1em'
         },
@@ -127,11 +165,11 @@ const Hub = (props) => {
             width: '16em',
             fontSize: '1.4em'
         },
-        body: {
+        whole: {
             backgroundColor: 'rgba(0, 0, 0, 0.81)'
         }
     }
-    let commenterCustomStyle = {
+    const commenterCustomStyle = {
         wrapper: {
             width: '16.5em',
         },
@@ -148,26 +186,35 @@ const Hub = (props) => {
     }
 
     // Post Sorting and Filtering
-
+    var displayedPosts;
     let manyPosts;
     if (feed === 'Personal') {
-        posts = posts.filter(post => props.uid === post.uid)
-        posts = sortByNewest(posts)
+        displayedPosts = posts.filter(post => props.uid === post.uid)
+        displayedPosts = sortByNewest(displayedPosts)
         if (!doneFetching) {
             manyPosts = <CircularSpinner />
         }
-        else if ((posts === undefined) || (posts.length === 0)) {
+        else if ((displayedPosts === undefined) || (displayedPosts.length === 0)) {
             manyPosts = <div className={`middle-column__notification`}>
                 <div className={``}>You haven't posted any barz yet!</div>
             </div>
         } else {
-            manyPosts = posts.map(post => {
-                console.log(post)
+            manyPosts = displayedPosts.map(post => {
+                var style = manyPostsCustomStyle
+                if (postState.selectedPost && post.pid === postState.selectedPost.pid) {
+                    style = {
+                        ...manyPostsCustomStyle,
+                        whole: {
+                            ...manyPostsCustomStyle.whole,
+                            border: '1px solid grey'
+                        }
+                    }
+                }
                 return (
                     <ManyPost
                         comments={comments.filter(comment => comment.pid === post.pid)}
                         key={GenID()}
-                        customStyle={manyPostsCustomStyle}
+                        customStyle={style}
                         selectPost={selectPost}
                         votes={votes.filter(vote => vote.pid === post.pid)}
                         {...post}
@@ -181,17 +228,17 @@ const Hub = (props) => {
         let myFollows = follows.filter(follow => follow.from === props.uid)
         let followingUIDs = new Set()
         myFollows.forEach(follow => { followingUIDs.add(follow.to) })
-        posts = posts.filter(post => followingUIDs.has(post.uid))
-        posts = sortByNewest(posts)
+        displayedPosts = posts.filter(post => followingUIDs.has(post.uid))
+        displayedPosts = sortByNewest(displayedPosts)
         if (!doneFetching) {
             manyPosts = <CircularSpinner />
         }
-        else if ((posts === undefined) || (posts.length === 0)) {
+        else if ((displayedPosts === undefined) || (displayedPosts.length === 0)) {
             manyPosts = <div className={`middle-column__notification`}>
                 <div className={``}>You're not following anyone!</div>
             </div>
         } else {
-            manyPosts = posts.map(post => {
+            manyPosts = displayedPosts.map(post => {
                 return (
                     <ManyPost
                         comments={comments.filter(comment => comment.pid === post.pid)}
@@ -206,7 +253,6 @@ const Hub = (props) => {
         }
 
     }
-
 
 
     return (
@@ -225,7 +271,7 @@ const Hub = (props) => {
             <div id="mv-cred">Year of the Ox - "Mood Control Cypher"</div>
 
             {/* main content */}
-            <div className={`hub-layout__body-wrapper`}>
+            <div className={`hub-layout__body-wrapper`} id='hub-layout__body-wrapper'>
                 <div className='columns-container'>
                     <div className='left-column'>
                         <div className='left-column__profile-box-container'>
@@ -239,9 +285,6 @@ const Hub = (props) => {
                                 isLoading={!doneFetching} />
                         </div>
                         <FollowBox follows={follows} />
-                        <div className={`left-column__turntable-wrapper`}>
-                            {/* <Turntable customStyle={turntableStyle} /> */}
-                        </div>
                     </div>
                     <div className='middle-column'>
                         {manyPosts}
@@ -250,8 +293,8 @@ const Hub = (props) => {
                         <Commenter
                             toggleDeleteCommentModal={toggleDeleteCommentModal}
                             customStyle={commenterCustomStyle}
-                            selectedPost={selectedPost}
-                            postSelected={postSelected}
+                            selectedPost={postState.selectedPost}
+                            postSelected={postState.postSelected}
                             comments={comments} />
                         <div className={`turntable-wrapper`}>
                             <Turntable />

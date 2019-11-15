@@ -36,9 +36,6 @@
       -ms-flex-align: center;
           align-items: center;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-}
-
-.many-post header:hover {
   cursor: pointer;
 }
 
@@ -149,9 +146,6 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-}
-
-.many-post .many-post-body:hover {
   cursor: pointer;
 }
 
@@ -213,5 +207,9 @@
 
 .focused-many-post:hover {
   border: 1px solid rgba(255, 255, 255, 0.397);
+}
+
+.editor-style:hover {
+  border: 1px solid rgba(255, 255, 255, 0.123);
 }
 /*# sourceMappingURL=ManyPost.css.map */

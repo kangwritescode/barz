@@ -91,10 +91,12 @@ const ManyPost = (props) => {
     return (
 
         <div
-            className={`many-post scrollTo${props.pid}`}
+            className={`many-post scrollTo${props.pid} ${props.inEditor ? 'editor-style' : null}`}
             id={`scrollTo${props.pid}`}
-            style={props.customStyle ? props.customStyle.body : null}>
-            <header onClick={() => props.selectPost(props.pid)}>
+            style={props.customStyle ? props.customStyle.whole : null}>
+            <header 
+                onClick={() => props.selectPost(props.pid)}
+                style={props.customStyle ? props.customStyle.header : null}>
                 <div className='many-post-details' id={props.pid}>
                     <img className='many-post-pic' src={props.uid === props.myUID ? props.myPhotoURL : props.photoURL} alt='pic'></img>
                     <div className='many-post-name-date-container'>
@@ -113,7 +115,9 @@ const ManyPost = (props) => {
                 </div>
                 
             </header>
-            <div className='many-post-body' onClick={() => props.selectPost(props.pid)}>
+            <div 
+                className='many-post-body' onClick={() => props.selectPost(props.pid)}
+                style={props.customStyle ? props.customStyle.midSection : null}>
 
                 <p
                     style={props.customStyle ? props.customStyle.paragraph : null}>

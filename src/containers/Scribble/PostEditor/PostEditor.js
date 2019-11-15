@@ -30,13 +30,26 @@ const PostEditor = (props) => {
 
     var content = <CircularSpinner customStyle={{ zIndex: '110' }} />
     if (post) {
+        // ManyPost style for post editor
+        var customStyle = { 
+            paragraph: { 
+                width: '20em' 
+            },
+            midSection: {
+                cursor: 'default'
+            },
+            header: {
+                cursor: 'default'
+            }
+        }
         content = (
             <div className={`editor-layout__content-container`}>
                 <ManyPost
+                    inEditor={true}
                     comments={comments.filter(post => post.pid === props.pid)}
                     selectPost={() => null}
                     votes={votes.filter(vote => vote.pid === props.pid)}
-                    customStyle={{ paragraph: { width: '17em' } }}
+                    customStyle={customStyle}
                     {...post} />
                 <div className={`content-container__edit-comment-container`}>
                     <div
@@ -50,7 +63,7 @@ const PostEditor = (props) => {
                         toggleDeleteCommentModal={(bool, cid) => setCid(cid)}
                         customStyle={{
                             body: {
-                                height: '17.5em',
+                                height: '18.5em',
                                 backgroundColor: 'rgba(255, 255, 255, 0.95)'
                             },
                             header: {

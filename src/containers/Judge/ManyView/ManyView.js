@@ -64,7 +64,9 @@ class ManyView extends Component {
     toggleCommenter = (event) => {
         this.props.closesCommenter.forEach(className => {
             if (event.target.classList.contains(className)) {
-                this.state.focusedElement.classList.remove('focused-many-post')
+                if (this.state.focusedElement) {
+                    this.state.focusedElement.classList.remove('focused-many-post')
+                }
                 this.setState({
                     ...this.state,
                     postSelected: false,
