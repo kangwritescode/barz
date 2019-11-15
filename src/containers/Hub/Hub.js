@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router'
 import FireApi from '../../Api/FireApi/FireApi'
 import yoxIMG from '../../assets/images/yoxIMG.png'
 import yox from '../../assets/videos/yox.m4v'
 import CircularSpinner from '../../components/CircularSpinner/CircularSpinner'
-import { GenID, updateObject } from '../../shared/utility'
+import { GenID } from '../../shared/utility'
 import Commenter from '../Judge/ManyView/Commenter/Commenter'
 import ManyPost from '../Judge/ManyView/ManyPost/ManyPost'
 import DeleteComment from '../Scribble/MyBars/ViewedBar/DeleteComment/DeleteComment'
@@ -20,7 +21,8 @@ import UploadImage from './ProfileBox/UploadImage/UploadImage'
 
 
 const Hub = (props) => {
-
+    // routing 
+    const [keyPressed, setKeyPressed] = useState(null)
     // loader
     const [doneFetching, setDoneFetching] = useState(false)
     // show modals
@@ -59,7 +61,8 @@ const Hub = (props) => {
             'left-column',
             'middle-column',
             'right-column',
-            'yox'
+            'yox',
+            'hub-layout__body-wrapper'
         ]
 
         const toggleCommenter = (event) => {
@@ -87,6 +90,22 @@ const Hub = (props) => {
         }
     }, [])
 
+    // routes
+    useEffect(() => {
+        const assignRedirect = (event) => {
+            switch (event.key) {
+                case '2': return setKeyPressed(2)
+                case '3': return setKeyPressed(3)
+                case '4': return setKeyPressed(4)
+                default: break;
+            }
+        }
+        document.addEventListener('keydown', assignRedirect)
+        return () => {
+            document.removeEventListener('keydown', assignRedirect)
+        };
+    }, [])
+
     useEffect(() => {
         if (votes.length !== 0) {
             setMyPlace(HubTools.myPlaceFinder(votes, props.uid))
@@ -100,7 +119,7 @@ const Hub = (props) => {
     }, [props.uid, votes])
 
     useEffect(() => {
-        
+
         setPostState({
             postSelected: false,
             selectedPost: null,
@@ -255,9 +274,7 @@ const Hub = (props) => {
         }
 
     }
-
-
-    return (
+    var content = (
         <div className="hub-layout">
             <HubNavBar sortAndFilter={sortAndFilter} feed={feed} />
 
@@ -306,6 +323,17 @@ const Hub = (props) => {
             </div>
         </div>
     )
+
+
+    switch (keyPressed) {
+        case 2: return content = <Redirect to='/scribble'></Redirect>
+        case 3: return content = <Redirect to='/judge'></Redirect>
+        case 4: return content = <Redirect to='/wordsmiths'></Redirect>
+        default: break;
+
+    }
+
+    return content
 
 }
 

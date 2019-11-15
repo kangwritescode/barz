@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
-import './Judge.css'
 import { connect } from 'react-redux'
-import * as actionTypes from '../../store/actions/actionsTypes'
-import vinyl2 from '../../assets/videos/vinyl2.mp4'
 import vinyl2_IMG from '../../assets/images/vinyl2_IMG.png'
-import nafla from '../../assets/videos/nafla-blows.m4v'
+import vinyl2 from '../../assets/videos/vinyl2.mp4'
+import './Judge.css'
 import JudgeNavBar from './JudgeNavBar/JudgeNavBar'
 import ManyView from './ManyView/ManyView'
 import SingleView from './SingleView/SingleView'
@@ -22,7 +20,7 @@ class Judge extends Component {
 
         // manyView viewed post
         showPost: false,
-        proRapper: null
+        proRapper: null,
     }
 
     

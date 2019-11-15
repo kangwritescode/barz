@@ -25,7 +25,8 @@ class Wordsmiths extends Component {
         submissions: [],
         fetching: true,
         follows: [],
-        followsRef: null
+        followsRef: null,
+        keyPressed: null
 
     }
     componentDidMount = async () => {
