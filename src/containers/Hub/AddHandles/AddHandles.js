@@ -164,7 +164,7 @@ const AddHandles = (props) => {
             </div>
             <input
                 className={`handle-input ${inputData.input !== inputData.propsValue ? 'staged' : null}`}
-                spellcheck="false"
+                spellCheck="false"
                 value={inputData.input}
                 onChange={(event) => setInput({
                     ...input,

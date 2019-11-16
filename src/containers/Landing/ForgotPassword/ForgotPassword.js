@@ -10,7 +10,7 @@ class ForgotPassword extends Component {
     state = {
         emailInput: '',
         showNotification: false,
-        notificationMsg: '',
+        notificationMsg: 'Initial Notification Message',
         errStyle: null,
         notificationStyle: null,
         processing: false
@@ -55,8 +55,7 @@ class ForgotPassword extends Component {
                     showNotification: true,
                     notificationMsg: msg,
                     processing: false,
-                    errStyle: { border: '1px solid red' },
-                    notificationStyle: { backgroundColor: 'rgba(112, 0, 0, 0.26)' }
+                    notificationStyle: { backgroundColor: 'rgba(112, 0, 0, 0.5)' }
                 })
             })
     }
@@ -74,9 +73,9 @@ class ForgotPassword extends Component {
     render() {
         return (
             <div>
-                <div className="forgot-password-backdrop" onClick={(event) => this.props.toggleModal(event, 'showForgotPassword', false)} />
+                <div className="forgot-password-backdrop" onClick={(event) => this.props.toggleForgotPass(false)} />
                 <form id="forgot-password-modal">
-                    <i className="fa fa-close" id="forgot-pass-x" onClick={(event) => this.props.toggleModal(event, 'showForgotPassword', false)}></i>
+                    <i className="fa fa-close" id="forgot-pass-x" onClick={(event) => this.props.toggleForgotPass(false)}></i>
                     {this.state.processing ? <DotSpinner id={'forgot-pass-dot'} /> : null}
                     {this.state.showNotification ? 
                             <div className="forgot-pass-notification"
@@ -85,9 +84,9 @@ class ForgotPassword extends Component {
                                     {this.state.notificationMsg}
                             </div> : 
                             null}
-                    <img id="pass-icon" src={passIcon} />
+                    <img id="pass-icon" src={passIcon} alt=''/>
                     <h2>Reset Password</h2>
-                    <h5>Don't remember your password? We'll send you a reset link to your email.</h5>
+                    <h5 id='dont-remember'>Don't remember your password? We'll send you a reset link to your email.</h5>
                     <input
                         className="pass-reset-input"
                         type="email"
