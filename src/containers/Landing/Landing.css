@@ -127,28 +127,13 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.575);
   height: 2.2em;
   width: 100%;
-  margin-top: 1em;
+  margin-top: .8em;
   color: rgba(255, 255, 255, 0.877);
+  font-size: .8em;
 }
 
 .landing .landing__auth-frame .auth-frame__login-container input:focus {
   outline: none;
-}
-
-.landing .landing__auth-frame .auth-frame__login-container input::-webkit-input-placeholder {
-  font-size: 1.2em;
-}
-
-.landing .landing__auth-frame .auth-frame__login-container input:-ms-input-placeholder {
-  font-size: 1.2em;
-}
-
-.landing .landing__auth-frame .auth-frame__login-container input::-ms-input-placeholder {
-  font-size: 1.2em;
-}
-
-.landing .landing__auth-frame .auth-frame__login-container input::placeholder {
-  font-size: 1.2em;
 }
 
 .landing .landing__auth-frame .auth-frame__login-container .login-container__forgot-pass-container {

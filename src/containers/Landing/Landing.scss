@@ -71,14 +71,11 @@
                 border-bottom: 1px solid rgba(255, 255, 255, 0.575);
                 height: 2.2em;
                 width: 100%;
-                margin-top: 1em;
+                margin-top: .8em;
                 color: rgba(255, 255, 255, 0.877);
+                font-size: .8em;
                 &:focus {
                     outline: none;
-                }
-                &::placeholder {
-                    font-size: 1.2em;
-                    // letter-spacing: 1px;
                 }
             }
             .login-container__forgot-pass-container {
