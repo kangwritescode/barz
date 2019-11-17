@@ -88,7 +88,7 @@ const Landing = (props) => {
                 <Scroller />
                 <div className={`landing__auth-frame`}>
                     <div className={`auth-frame__logo`}>BARZ</div>
-                    <div className={`auth-frame__sub-text`}>A hub for your inner wordsmith. <br /> Let's see what you got.</div>
+                    <div className={`auth-frame__sub-text`}>The best hub for your <br/> inner wordsmith.</div>
                     <div className={`auth-frame__login-container`}>
                         <input
                             id={`sign-in__email`}

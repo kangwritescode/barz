@@ -54,12 +54,16 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  width: 100%;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
 
 .landing .landing__letter-box-top {
   width: 100vw;
-  height: 4.5em;
-  background: black;
+  height: 4em;
+  background: rgba(0, 0, 0, 0.884);
   position: fixed;
   z-index: 100;
   top: 0em;
@@ -67,8 +71,8 @@
 
 .landing .landing__letter-box-bottom {
   width: 100vw;
-  height: 4.5em;
-  background: black;
+  height: 4em;
+  background: rgba(0, 0, 0, 0.884);
   position: fixed;
   z-index: 100;
   bottom: 0em;

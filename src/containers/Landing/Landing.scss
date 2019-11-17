@@ -23,13 +23,15 @@
     height: 100vh;
     @mixin letterbox() {
         width: 100vw;
-        height: 4.5em;
-        background: rgb(0, 0, 0);
+        height: 4em;
+        background: rgba(0, 0, 0, 0.884);
         position: fixed;
         z-index: 100;
     }
     .landing__hor-flex {
         @include flex-centered(row);
+        width: 100%;
+        justify-content: space-evenly;
 
     }
     .landing__letter-box-top {
