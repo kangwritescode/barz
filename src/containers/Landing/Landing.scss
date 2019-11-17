@@ -28,6 +28,10 @@
         position: fixed;
         z-index: 100;
     }
+    .landing__hor-flex {
+        @include flex-centered(row);
+
+    }
     .landing__letter-box-top {
         @include letterbox();
         top: 0em;

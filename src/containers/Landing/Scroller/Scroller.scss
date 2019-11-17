@@ -1,0 +1,17 @@
+.scroller {
+    position: relative;
+    height: 23em;
+    width: 500px;
+    border: 1px solid white;
+    z-index: 100;
+    margin: 3em;
+    overflow: hidden;
+    .scroller__item-container {
+        position: absolute;
+        display: flex;
+        height: 100%;
+        .item-container__item {
+            width: 500px;
+        }
+    }
+}

@@ -1,0 +1,22 @@
+.scroller {
+  position: relative;
+  height: 23em;
+  width: 500px;
+  border: 1px solid white;
+  z-index: 100;
+  margin: 3em;
+  overflow: hidden;
+}
+
+.scroller .scroller__item-container {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+}
+
+.scroller .scroller__item-container .item-container__item {
+  width: 500px;
+}
+/*# sourceMappingURL=Scroller.css.map */
