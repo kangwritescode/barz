@@ -24,6 +24,7 @@ const Landing = (props) => {
 
 
 
+
     // sign in
     const signIn = async (event) => {
 
@@ -79,9 +80,38 @@ const Landing = (props) => {
 
         <div className='landing'>
             {showForgotPass ? <ForgotPassword toggleForgotPass={toggleForgotPass} /> : null}
-            <div className='splash-video-overlay'></div>
-            <video className="splash-video" src={splashVid} autoPlay={false} loop={true} playsInline={true} muted />
-            
+            <div className='landing__video-overlay'></div>
+            <video className="landing__video" src={splashVid} autoPlay={'false'} loop={true} playsInline={true} muted />
+            <div className={`landing__letter-box-top`}></div>
+            <div className={`landing__auth-frame`}>
+                <div className={`auth-frame__logo`}>BARZ</div>
+                <div className={`auth-frame__sub-text`}>Leave the Youtube comment  <br />  raps at the door.</div>
+                <div className={`auth-frame__login-container`}>
+                    <input
+                        id={`sign-in__email`}
+                        type='email'
+                        placeholder='Email'
+                        value={email}
+                        autoComplete
+                        onChange={event => setEmail(event.target.value)}></input>
+                    <input
+                        placeholder='Password'
+                        type='password'
+                        value={password}
+                        onChange={event => setPassword(event.target.value)}></input>
+                    <div className={`login-container__forgot-pass-container`}>
+                        <button className={`forgot-pass-container__button`}>Forgot your password?</button>
+                    </div>
+                </div>
+                <button className={`auth-frame__login-button`}>Log In</button>
+                <div className={`auth-frame__or`}>or</div>
+                <button className={`auth-frame__facebook-login`}>
+                    <i class="fab fa-facebook-square facebook-login__icon"></i>
+                    <b>Continue with Facebook</b>
+                </button>
+                <div className={`auth-frame__dont-have`}>Don't have an account? &nbsp;<span className={`dont-have__sign-up`}><b>Sign Up</b></span></div>
+            </div>
+            <div className={`landing__letter-box-bottom`}></div>
         </div>
     )
 
