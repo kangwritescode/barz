@@ -223,6 +223,7 @@ const Hub = (props) => {
             </div>
         } else {
             manyPosts = displayedPosts.map(post => {
+                console.log(post)
                 var style = manyPostsCustomStyle
                 if (postState.selectedPost && post.pid === postState.selectedPost.pid) {
                     style = withSelectedPostStyle

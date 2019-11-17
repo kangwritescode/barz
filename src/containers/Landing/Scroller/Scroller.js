@@ -3,22 +3,15 @@ import firebase from 'firebase'
 import 'firebase/firestore'
 import './Scroller.css'
 import { connect } from 'react-redux'
-import ManyPost from '../../Judge/ManyView/ManyPost/ManyPost'
+import manyPost from '../../../assets/images/manyPost.png'
 
 const Scroller = (props) => {
-    const manyPostData = {
-        content: {
-            lineOne: 'helloooo',
-            lineTwo: 'helloooo',
-            lineThree: 'helloooo',
-            lineFour: 'helloooo',
-        }
-    }
+
     return (
         <div className='scroller'>
             <div className={`scroller__item-container`}>
                 <div className={`item-container__item`}>
-                    {/* <ManyPost /> */}
+                    <img className={'item__many-post'} alt='' src={manyPost}></img>
                 </div>
                 <div className={`item-container__item`}>Item 2</div>
                 <div className={`item-container__item`}>Item 3</div>

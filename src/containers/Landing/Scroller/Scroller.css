@@ -19,4 +19,8 @@
 .scroller .scroller__item-container .item-container__item {
   width: 500px;
 }
+
+.scroller .scroller__item-container .item-container__item .item__many-post {
+  height: 20em;
+}
 /*# sourceMappingURL=Scroller.css.map */

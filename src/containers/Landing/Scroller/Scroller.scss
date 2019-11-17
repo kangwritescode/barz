@@ -12,6 +12,9 @@
         height: 100%;
         .item-container__item {
             width: 500px;
+            .item__many-post {
+                height: 20em;
+            }
         }
     }
 }
