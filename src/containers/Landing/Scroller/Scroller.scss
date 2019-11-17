@@ -4,7 +4,7 @@
 
 .scroller {
     position: relative;
-    height: 320px;
+    height: 310px;
     width: 430px;
     z-index: 100;
     margin: 2em;
@@ -13,7 +13,9 @@
         position: absolute;
         display: flex;
         height: 100%;
+        transform: translateX(-430px);
         .item-container__item {
+            position: relative;
             width: 430px;
             display: flex;
             flex-direction: column;
@@ -24,16 +26,19 @@
                 margin-block-end: 0em;
                 text-align: center;
                 color: rgba(255, 255, 255, 0.87);
-                width: 85%;
+                width: 70%;
                 letter-spacing: 1px;
-                font-size: 1.4em;
+                font-size: 1.2em;
                 text-shadow: 1px 2px 1px black;
                 // background: rgba(0, 0, 0, 0.623);
-
-
             }
             .item__many-post {
                 width: 100%;
+            }
+            .item__table {
+                position: relative;
+                width: 100%;
+                border-bottom: 1.2px solid rgba(255, 255, 255, 0.137);
             }
         }
     }

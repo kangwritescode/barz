@@ -4,6 +4,8 @@ import 'firebase/firestore'
 import './Scroller.css'
 import { connect } from 'react-redux'
 import manyPost from '../../../assets/images/manyPost.png'
+import filterBar from '../../../assets/images/filter-bar.png'
+import table from '../../../assets/images/table.png'
 
 const Scroller = (props) => {
 
@@ -12,13 +14,20 @@ const Scroller = (props) => {
             <div className={`scroller__item-container`}>
                 <div className={`item-container__item`}>
                     <p>
-                        <b className='emphasized'>Scribble </b> 
-                        and 
-                        <b className='emphasized'> Post </b> 
+                        <b className='emphasized'>Scribble </b>
+                        and
+                        <b className='emphasized'> Post </b>
                         your best rap barz and <b className='emphasized'>Judge</b> others</p>
                     <img className={'item__many-post'} alt='' src={manyPost}></img>
                 </div>
-                <div className={`item-container__item`}>Item 2</div>
+                <div className={`item-container__item`}>
+                    <p>
+                        <b className='emphasized'>Scribble </b>
+                        and
+                        <b className='emphasized'> Post </b>
+                        your best rap barz and <b className='emphasized'>Judge</b> others</p>
+                    <img className={'item__table'} alt='' src={table}></img>
+                </div>
                 <div className={`item-container__item`}>Item 3</div>
             </div>
         </div>
