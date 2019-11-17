@@ -75,62 +75,13 @@ const Landing = (props) => {
 
 
 
-
-
-
-
-    // header-text 
-    let blurOne = isReg ? 'blurOne' : null
-    let blurTwo = isReg ? 'blurTwo' : null
-    let blurThree = isReg ? 'blurThree' : null
-
-    // register form
-    let registerBody = isReg ? 'expanded' : null
-    let regText = isReg ? 'register-text-hidden' : null
-
-    let regForm = null;
-    if (isReg) {
-        regForm = (
-            <RegForm
-                updateReg={updateReg}
-                setErrMsg={setErrMsg}
-                setShowErr={setShowErr}
-                setErrSentiment={setErrSentiment}
-                setEmail={setEmail}
-                setPassword={setPassword} />
-        )
-    }
-
     return (
 
         <div className='landing'>
-            {showForgotPass ? <ForgotPassword toggleForgotPass={toggleForgotPass}/> : null}
+            {showForgotPass ? <ForgotPassword toggleForgotPass={toggleForgotPass} /> : null}
             <div className='splash-video-overlay'></div>
-            <video className="splash-video" src={splashVid} autoPlay={true} loop={true} playsInline={true} muted />
-            <LandingNav
-                email={email}
-                setEmail={setEmail}
-                password={password}
-                setPassword={setPassword}
-                trySignIn={signIn} 
-                toggleForgotPass={toggleForgotPass}/>
-            <div className='content'>
-                <div className='header-wrapper'>
-                    <div className={`header-text`}>
-                        <span className={`header-word ${blurOne}`}>Scribble. </span>
-                        <span className={`header-word ${blurTwo}`}>Judge. </span>
-                        <span className={`header-word ${blurThree}`}>Compete. </span>
-                    </div>
-                    <div className={`register ${registerBody}`} onClick={() => !isReg ? updateReg(!isReg) : null}>
-                        {showErr && isReg ? <div className={`error-msg ${errSentiment ? 'positive-msg' : null}`} onAnimationEnd={() => { setShowErr(false); setErrSentiment(false); }}>{errMsg}</div> : null}
-                        <span className={regText}>Sign Up</span>
-                        {regForm}
-                    </div>
-                </div>
-                <div className='scribble-tut'>
-                    -Website Under Construction-
-                </div>
-            </div>
+            <video className="splash-video" src={splashVid} autoPlay={false} loop={true} playsInline={true} muted />
+            
         </div>
     )
 
