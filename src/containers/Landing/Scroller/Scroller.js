@@ -21,11 +21,7 @@ const Scroller = (props) => {
                     <img className={'item__many-post'} alt='' src={manyPost}></img>
                 </div>
                 <div className={`item-container__item`}>
-                    <p>
-                        <b className='emphasized'>Scribble </b>
-                        and
-                        <b className='emphasized'> Post </b>
-                        your best rap barz and <b className='emphasized'>Judge</b> others</p>
+                    <p>See where you <b className='emphasized'>Rank</b> among the strongest <b className='emphasized'>Wordsmiths</b> in your area</p>
                     <img className={'item__table'} alt='' src={table}></img>
                 </div>
                 <div className={`item-container__item`}>Item 3</div>
