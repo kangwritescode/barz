@@ -85,7 +85,7 @@ const Landing = (props) => {
             <div className={`landing__letter-box-top`}></div>
             <div className={`landing__auth-frame`}>
                 <div className={`auth-frame__logo`}>BARZ</div>
-                <div className={`auth-frame__sub-text`}>Leave the Youtube comment  <br />  raps at the door.</div>
+                <div className={`auth-frame__sub-text`}>A hub for your inner wordsmith. <br/> Let's see what you got.</div>
                 <div className={`auth-frame__login-container`}>
                     <input
                         id={`sign-in__email`}
