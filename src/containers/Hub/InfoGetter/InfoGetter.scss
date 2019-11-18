@@ -52,6 +52,9 @@
             margin: 0.4em;
             border: 1px solid rgba(255, 255, 255, 0.452);
             color: rgba(255, 255, 255, 0.623);
+            &:focus {
+                outline: 1px solid orange;
+            }
         }
         .valid {
             border: 1px solid rgba(255, 255, 255, 0.979);
@@ -67,12 +70,14 @@
         width: 45%;
         padding: 0.7em 0em;
         padding-bottom: 0.7em;
+        cursor: not-allowed;
     }
     .valid-submit {
         // position: relative;
         z-index: 50;
         color: rgba(255, 255, 255, 0.788);
         border: 1px solid rgba(255, 255, 255, 0.726);
+        
         &:hover {
             color: rgba(255, 255, 255, 0.911);
             border: 1px solid rgba(255, 255, 255, 0.911);
@@ -81,6 +86,9 @@
         &:focus {
             color: rgb(255, 255, 255);
             border: 1px solid rgb(255, 255, 255);
+        }
+        &:focus {
+            outline: 1px solid orange;
         }
         &:before {
             content: "";

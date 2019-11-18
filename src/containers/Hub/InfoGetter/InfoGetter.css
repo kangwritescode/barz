@@ -76,6 +76,10 @@
   color: rgba(255, 255, 255, 0.623);
 }
 
+.info-getter .info-getter__hor-container .hor-container__gender-button:focus {
+  outline: 1px solid orange;
+}
+
 .info-getter .info-getter__hor-container .valid {
   border: 1px solid rgba(255, 255, 255, 0.979);
   color: white;
@@ -90,6 +94,7 @@
   width: 45%;
   padding: 0.7em 0em;
   padding-bottom: 0.7em;
+  cursor: not-allowed;
 }
 
 .info-getter .valid-submit {
@@ -106,6 +111,10 @@
 .info-getter .valid-submit:active, .info-getter .valid-submit:focus {
   color: white;
   border: 1px solid white;
+}
+
+.info-getter .valid-submit:focus {
+  outline: 1px solid orange;
 }
 
 .info-getter .valid-submit:before {

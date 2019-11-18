@@ -12,16 +12,18 @@ class HubNavBar extends Component {
         document.removeEventListener('click', this.toggleDropdown)
     }
     componentDidUpdate = (prevProps, prevState) => {
-        if (!prevProps.needsInfo && this.props.needsInfo) {
+        if (this.props.needsInfo) {
             document.removeEventListener('click', this.toggleDropdown)
-        } else if (prevProps.needsInfo && !this.props.needsInfo) {
+        } else if (!this.props.needsInfo) {
             document.addEventListener('click', this.toggleDropdown)
         }
     }
 
     toggleDropdown(event) {
         const feedDrop = document.getElementById("feed");
-        event.target.classList.contains('feed') ? feedDrop.classList.toggle('show') : feedDrop.classList.remove('show');
+        if (feedDrop) {
+            event.target.classList.contains('feed') ? feedDrop.classList.toggle('show') : feedDrop.classList.remove('show');
+        }
     }
 
 
