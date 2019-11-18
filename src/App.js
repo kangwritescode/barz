@@ -17,11 +17,7 @@ class App extends Component {
 
 
   componentDidMount() {
-    this.props.onTryAutoSignin()
-    FB.getLoginStatus(function(response) {
-      console.log(response)
-  });
-    
+    this.props.onTryAutoSignin()    
   }
 
 

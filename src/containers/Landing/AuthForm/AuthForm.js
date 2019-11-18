@@ -1,4 +1,4 @@
-
+/*global FB*/
 import React, { useState, useEffect } from 'react'
 import firebase from 'firebase'
 import 'firebase/firestore'
@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 import * as actions from '../../../store/actions/index'
 import { regions } from '../../../shared/regions'
 import DotSpinner from '../../../components/DotSpinner/DotSpinner'
-import { fbind } from 'q'
+
 
 const AuthForm = (props) => {
 
@@ -17,6 +17,7 @@ const AuthForm = (props) => {
     const [notification, setNotification] = useState('')
     const [sentiment, setSentiment] = useState(false)
 
+    const [provider, setProvider] = useState(null)
     let [email, setEmail] = useState('')
     let [password, setPassword] = useState('')
 
@@ -28,6 +29,12 @@ const AuthForm = (props) => {
     useEffect(() => {
         fetchMysteryMan()
         document.getElementById('login-container__email-input').focus()
+        var provider = new firebase.auth.FacebookAuthProvider();
+        provider.addScope('email')
+        provider.setCustomParameters({
+            'display': 'popup'
+        })
+        setProvider(provider)
         return () => {
         };
     }, [])
@@ -175,12 +182,40 @@ const AuthForm = (props) => {
     const isValidPassword = password => {
         return password.length >= 6
     }
+
+    const fbLogin = async () => {
+        firebase.auth().signInWithPopup(provider).then(async (result) => {
+            // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+            var token = result.credential.accessToken;
+            // The signed-in user info.
+            var uid = result.user.uid
+            var email = result.additionalUserInfo.profile.email
+            if (result.additionalUserInfo.isNewUser) {
+                const photoURL = await uploadMysteryMan(uid)
+                await createFirebaseUser(email, uid, photoURL)
+                props.getUserData(uid)
+            } else {
+                props.getUserData(uid)
+            }
+
+        }).catch(function (error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // The email of the user's account used.
+            var email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            var credential = error.credential;
+            // ...
+        });
+    }
+
     return (
         <div className={`landing__auth-frame`} style={isRegistering ? { paddingBottom: '2.9em' } : null}>
             {notification ?
                 <p
                     className={`auth-frame__notification`}
-                    style={sentiment ? {background: 'rgba(2, 48, 8, 0.918)'} : null}
+                    style={sentiment ? { background: 'rgba(2, 48, 8, 0.918)' } : null}
                     onAnimationEnd={() => setNotification('')}>
                     {notification}
                 </p>
@@ -222,10 +257,9 @@ const AuthForm = (props) => {
                 {spinner ? <DotSpinner customStyle={{ position: 'absolute', left: '-55px', bottom: '-104px' }} /> : null}
             </button>
             <div className={`auth-frame__or`}>or</div>
-            <button className={`auth-frame__facebook-login`}>
+            <button className={`auth-frame__facebook-login`} onClick={fbLogin}>
                 <i class="fab fa-facebook-square facebook-login__icon"></i>
                 <b>{isRegistering ? 'Sign Up' : 'Continue'} with Facebook</b>
-
             </button>
             {isRegistering ? <div className={`auth-frame__dont-have`} onClick={() => setisRegistering(false)}>Already have an account? &nbsp;<span className={`dont-have__sign-up`}><b>Log In</b></span></div>
                 : <div className={`auth-frame__dont-have`} onClick={() => setisRegistering(true)}>Don't have an account? &nbsp;<span className={`dont-have__sign-up`}><b>Sign Up</b></span></div>
