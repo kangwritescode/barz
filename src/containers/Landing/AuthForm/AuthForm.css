@@ -31,12 +31,12 @@
   position: absolute;
   top: -6em;
   background: rgba(95, 6, 6, 0.671);
-  border-radius: .25em;
-  padding: .8em 1em;
+  border-radius: 0.25em;
+  padding: 0.8em 1em;
   text-align: center;
   -webkit-animation: fade-pop-in-out 4s ease-in-out;
           animation: fade-pop-in-out 4s ease-in-out;
-  font-size: .8em;
+  font-size: 0.8em;
 }
 
 .landing__auth-frame .auth-frame__logo {
@@ -179,6 +179,16 @@
 
 .landing__auth-frame .auth-frame__facebook-login .facebook-login__icon {
   letter-spacing: 7px;
+}
+
+.landing__auth-frame .auth-frame__facebook-login:hover {
+  background: rgba(0, 102, 255, 0.637);
+  color: rgba(255, 255, 255, 0.774);
+}
+
+.landing__auth-frame .auth-frame__facebook-login:active, .landing__auth-frame .auth-frame__facebook-login:focus {
+  background: rgba(0, 102, 255, 0.74);
+  color: rgba(255, 255, 255, 0.836);
 }
 
 .landing__auth-frame .auth-frame__dont-have {

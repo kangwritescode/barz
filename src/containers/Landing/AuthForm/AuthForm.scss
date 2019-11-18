@@ -19,12 +19,11 @@
         position: absolute;
         top: -6em;
         background: rgba(95, 6, 6, 0.671);
-        border-radius: .25em;
-        padding: .8em 1em;
+        border-radius: 0.25em;
+        padding: 0.8em 1em;
         text-align: center;
         animation: fade-pop-in-out 4s ease-in-out;
-        font-size: .8em;
-
+        font-size: 0.8em;
     }
     .auth-frame__logo {
         font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
@@ -127,6 +126,16 @@
 
         text-emphasis-style: bold;
         font-family: Helvetica, Arial, sans-serif;
+
+        &:hover {
+            background: rgba(0, 102, 255, 0.637);
+            color: rgba(255, 255, 255, 0.774);
+        }
+        &:active,
+        &:focus {
+            background: rgba(0, 102, 255, 0.74);
+            color: rgba(255, 255, 255, 0.836);
+        }
     }
     .auth-frame__dont-have {
         margin-top: 0.8em;
