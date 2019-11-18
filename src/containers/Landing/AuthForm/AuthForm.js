@@ -195,8 +195,6 @@ const AuthForm = (props) => {
                 await createFirebaseUser(email, uid, photoURL)
                 props.getUserData(uid)
             } else {
-                const photoURL = await uploadMysteryMan(uid)
-                await createFirebaseUser(email, uid, photoURL)
                 props.getUserData(uid)
             }
 
