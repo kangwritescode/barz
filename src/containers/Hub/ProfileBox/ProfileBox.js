@@ -68,11 +68,7 @@ function ProfileBox(props) {
     }
 
 
-    let blockOneContent = (
-        <div className={`block-one__contents-wrapper`}>
-            <PhotoContainer imgURL={props.photoURL} setShowPhotoModal={props.setShowPhotoModal} />
-        </div>
-    )
+    let blockOneContent = null;
     // <DotSpinner customStyle={{position: 'absolute', top: '-1em'}}/>
     if (props.username) {
         blockOneContent = (
@@ -92,7 +88,7 @@ function ProfileBox(props) {
                     spellCheck={false}
                     maxLength={55}
                     onKeyDown={event => textAreaKeyDown(event)}
-                    onChange={event => setBlurbText(event.target.value)}
+                    onChange={event =>  setBlurbText(event.target.value)}
                     onBlur={event => props.postUserData(props.uid, { blurb: event.target.value })}
                     value={blurbText} />
             </div>
