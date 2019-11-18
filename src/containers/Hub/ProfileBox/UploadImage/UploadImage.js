@@ -80,7 +80,7 @@ class UploadImage extends Component {
                                 doc.ref.update({ photoURL: downloadURL })
                             })
                         })
-                    // only if successful update profile
+                    // set image in reducer
                     this.props.setUserData(downloadURL)
                     this.setState({
                         ...this.state,
