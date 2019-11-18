@@ -27,6 +27,7 @@ const AuthForm = (props) => {
 
     useEffect(() => {
         fetchMysteryMan()
+        document.getElementById('login-container__email-input').focus()
         return () => {
         };
     }, [])
@@ -191,6 +192,7 @@ const AuthForm = (props) => {
             )}
             <div className={`auth-frame__login-container`} style={isRegistering ? { marginTop: '.3em' } : null}>
                 <input
+                    id='login-container__email-input'
                     type='email'
                     placeholder='Email'
                     value={email}
