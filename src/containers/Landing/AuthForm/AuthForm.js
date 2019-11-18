@@ -291,7 +291,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        getUserData: (uid) => dispatch(actions.fetchUserData(uid))
+        getUserData: (uid) => dispatch(actions.fetchUserData(uid)),
+        setUserData: (data) => dispatch(actions.setUserData(data))
     }
 }
 

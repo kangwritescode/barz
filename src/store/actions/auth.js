@@ -29,9 +29,11 @@ export const postUserData = (uid, newInfo, setSpinner) => {
     return dispatch => {
         db.collection("users").doc(uid).update(newInfo)
             .then(function () {
+                console.log('post user data update success')
                 if (setSpinner) {
                     setSpinner(false)
                 }
+                console.log(newInfo)
                 dispatch(setUserData(newInfo))
             })
             .catch(function (error) {

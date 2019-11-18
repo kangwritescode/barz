@@ -335,13 +335,13 @@ const Hub = (props) => {
     )
 
 
-    switch (keyPressed) {
-        case 2: return content = <Redirect to='/scribble'></Redirect>
-        case 3: return content = <Redirect to='/judge'></Redirect>
-        case 4: return content = <Redirect to='/wordsmiths'></Redirect>
-        default: break;
+    // switch (keyPressed) {
+    //     case 2: return content = <Redirect to='/scribble'></Redirect>
+    //     case 3: return content = <Redirect to='/judge'></Redirect>
+    //     case 4: return content = <Redirect to='/wordsmiths'></Redirect>
+    //     default: break;
 
-    }
+    // }
 
     return content
 
