@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './ProfileBox.css'
 import PhotoContainer from './PhotoContainer/PhotoContainer'
-import * as actionTypes from '../../../store/actions/actionsTypes'
 import firebase from 'firebase'
 import { getOrdinal } from '../../../shared/utility'
 import { connect } from 'react-redux'

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import './UploadImage.css'
 import { connect } from 'react-redux'
 import firebase from 'firebase'
-import * as actionTypes from '../../../../store/actions/actionsTypes'
 import * as actions from '../../../../store/actions/index'
 import DotSpinner from '../../../../components/DotSpinner/DotSpinner'
 

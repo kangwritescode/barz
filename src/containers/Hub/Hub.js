@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router'
 import FireApi from '../../Api/FireApi/FireApi'
 import yoxIMG from '../../assets/images/yoxIMG.png'
 import yox from '../../assets/videos/yox.m4v'

@@ -1,9 +1,8 @@
-/*global FB*/
 import React, { Component } from 'react';
 import Navbar from './containers/Navbar/Navbar'
 import Scribble from './containers/Scribble/Scribble'
 import Hub from './containers/Hub/Hub'
-import { Route, Switch, withRouter, red } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import ReactPlayer from 'react-player'
 import { connect } from 'react-redux'
 import Judge from './containers/Judge/Judge'
