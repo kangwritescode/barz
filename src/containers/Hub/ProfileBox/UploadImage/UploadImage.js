@@ -62,14 +62,32 @@ class UploadImage extends Component {
                 notificationMessage: err.message
             })
         }, () => {
-            uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-                this.props.setUserData(downloadURL)
-                this.setState({
-                    ...this.state,
-                    uploading: false,
-                    showNotification: true,
-                    hasChanged: false
-                })
+            uploadTask.snapshot.ref.getDownloadURL().then(async (downloadURL) => {
+                try {
+                    var db = firebase.firestore()
+                    await db.collection('submissions').where('uid', '==', this.props.uid).get()
+                        .then(snapshot => {
+                            snapshot.forEach(doc => {
+                                doc.ref.update({ photoURL: downloadURL })
+                            })
+                        })
+                    await db.collection('postComments').where('uid', '==', this.props.uid).get()
+                        .then(snapshot => {
+                            snapshot.forEach(doc => {
+                                doc.ref.update({ photoURL: downloadURL })
+                            })
+                        })
+                    this.props.setUserData(downloadURL)
+                    this.setState({
+                        ...this.state,
+                        uploading: false,
+                        showNotification: true,
+                        hasChanged: false
+                    })
+                } catch (err) {
+                    console.log(err.message)
+                }
+
             });
         });
 
@@ -103,7 +121,7 @@ class UploadImage extends Component {
                     <div className={`upload-image__header`}>
                         <div>Set Photo</div>
                     </div>
-                    {this.state.uploading ? <DotSpinner customStyle={{position: 'absolute', zIndex: 500, color: 'orange', top: '-10em'}}/> : null}
+                    {this.state.uploading ? <DotSpinner customStyle={{ position: 'absolute', zIndex: 500, color: 'orange', top: '-10em' }} /> : null}
                     {this.state.showNotification ?
                         <div
                             className="upload-photo-success-msg"
@@ -119,11 +137,11 @@ class UploadImage extends Component {
                         {/* <h1>Set Photo</h1> */}
                         {theImage}
                         <input onChange={this.fileSelectedHandler} type="file" id="files" className="hidden" accept="image/x-png, image/jpeg" />
-                            
+
                         <div id="UploadButtons">
                             {!this.state.hasChanged ? <label id="uploadIMG" htmlFor="files">{'Choose File'}</label>
-                            : <button id='uploadIMG' onClick={this.fileUploadHandler}>Confirm</button>}
-                            
+                                : <button id='uploadIMG' onClick={this.fileUploadHandler}>Confirm</button>}
+
                         </div>
                     </div>
 

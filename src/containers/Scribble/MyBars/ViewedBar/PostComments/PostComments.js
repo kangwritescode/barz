@@ -4,6 +4,7 @@ import firebase from 'firebase'
 import 'firebase/firestore'
 import './PostComments.css'
 import PostComment from './PostComment/PostComment'
+import { GenID } from '../../../../../shared/utility'
 
 function PostComments(props) {
 
@@ -19,6 +20,7 @@ function PostComments(props) {
         {comments.map((comment, index) => {
             return (
                 <PostComment
+                    key={GenID()}
                     viewedPost={props.viewedPost}
                     index={index}
                     noOfComments={props.comments.length}
