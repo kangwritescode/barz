@@ -8,6 +8,7 @@ import './Landing.css'
 import LandingNav from './LandingNav/LandingNav'
 import RegForm from './RegForm/RegForm'
 import Scroller from './Scroller/Scroller'
+import landingIMG from '../../assets/images/splash-img.png'
 import validator from 'validator'
 import AuthForm from './AuthForm/AuthForm'
 
@@ -25,6 +26,7 @@ const Landing = (props) => {
         <div className='landing'>
             {showForgotPass ? <ForgotPassword toggleForgotPass={toggleForgotPass} /> : null}
             <div className='landing__video-overlay'></div>
+            <img  className='landing__backup-img' src={landingIMG} alt=''></img>
             <video className="landing__video" src={splashVid} autoPlay={'false'} loop={true} playsInline={true} muted />
             <div className={`landing__letter-box-top`}></div>
             <div className='landing__hor-flex'>
