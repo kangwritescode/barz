@@ -30,9 +30,29 @@
 </head>
 
 <body>
-  <div id="fb-root"></div>
-  <script async defer crossorigin="anonymous"
-    src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0&appId=2691069607611957&autoLogAppEvents=1"></script>
+
+  <script>
+    window.fbAsyncInit = function () {
+      FB.init({
+        appId: '448263955880178',
+        cookie: true,
+        xfbml: true,
+        version: 'v5.0'
+      });
+
+      FB.AppEvents.logPageView();
+
+
+    };
+
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) { return; }
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
   <!-- The core Firebase JS SDK is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-firestore.js"></script>

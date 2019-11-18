@@ -1,3 +1,4 @@
+/*global FB*/
 import React, { Component } from 'react';
 import Navbar from './containers/Navbar/Navbar'
 import Scribble from './containers/Scribble/Scribble'
@@ -17,6 +18,10 @@ class App extends Component {
 
   componentDidMount() {
     this.props.onTryAutoSignin()
+    FB.getLoginStatus(function(response) {
+      console.log(response)
+  });
+    
   }
 
 

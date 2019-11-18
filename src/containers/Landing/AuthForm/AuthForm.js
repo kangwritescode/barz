@@ -8,6 +8,7 @@ import { connect } from 'react-redux'
 import * as actions from '../../../store/actions/index'
 import { regions } from '../../../shared/regions'
 import DotSpinner from '../../../components/DotSpinner/DotSpinner'
+import { fbind } from 'q'
 
 const AuthForm = (props) => {
 
@@ -22,7 +23,6 @@ const AuthForm = (props) => {
     const [mysteryManBlob, setMysteryManBlob] = useState(null)
     // login
     const [spinner, setSpinner] = useState(false)
-
 
 
     useEffect(() => {
