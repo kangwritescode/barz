@@ -186,6 +186,7 @@ const AuthForm = (props) => {
     }
 
     const fbLogin = async () => {
+        setSpinner(true)
         firebase.auth().signInWithPopup(provider).then(async (result) => {
             try {
                 var token = result.credential.accessToken;
@@ -205,16 +206,19 @@ const AuthForm = (props) => {
                     await createFirebaseUser(email, uid, photoURL)
                     
                 }
+                setSpinner(false)
                 props.getUserData(uid)
             } catch (err) {
                 // Handle Errors here.
                 setNotification(err.message)
                 setSentiment(false)
+                setSpinner(false)
             }
         }).catch(function (error) {
             // Handle Errors here.
             setNotification(error.message)
             setSentiment(false)
+            setSpinner(false)
         });
     }
 

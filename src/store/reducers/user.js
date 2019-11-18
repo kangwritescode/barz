@@ -3,7 +3,6 @@
 import { updateObject } from '../../shared/utility';
 import * as actionTypes from '../actions/actionsTypes';
 import firebase from 'firebase'
-import { fbind } from 'q';
 
 const initialState = {
 

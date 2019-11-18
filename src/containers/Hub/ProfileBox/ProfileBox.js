@@ -13,9 +13,7 @@ import * as actions from '../../../store/actions/index'
 function ProfileBox(props) {
 
     const [showDropOptions, toggleDropOptions] = useState(false)
-    const [imgURL, setImgURL] = useState(null)
     const [follows, setFollows] = useState([])
-    const [amFollowing, setAmFollowing] = useState(false)
     const [blurbText, setBlurbText] = useState('')
 
 
