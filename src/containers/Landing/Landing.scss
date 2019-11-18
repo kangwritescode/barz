@@ -32,7 +32,13 @@
         @include flex-centered(row);
         width: 100%;
         justify-content: space-evenly;
-
+        .hor-flex__reg-form-wrapper {
+            position: relative;
+            z-index: 10000;
+            background: rgba(0, 0, 0, 0.863);
+            padding: 3em;
+            border-radius: 1em;
+        }
     }
     .landing__letter-box-top {
         @include letterbox();
@@ -42,104 +48,7 @@
         @include letterbox();
         bottom: 0em;
     }
-    .landing__auth-frame {
-        position: relative;
-        z-index: 10;
-        background: rgba(0, 0, 0, 0.918);
-        border: 1px solid rgba(255, 255, 255, 0.342);
-        border-radius: 0.8em;
-        padding: 3em 1em 2.5em 1em;
-        box-sizing: border-box;
-        width: 25em;
-        @include flex-centered(column);
-        .auth-frame__logo {
-            font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-            font-size: 3em;
-            letter-spacing: 0.04em;
-            margin-bottom: 0.2em;
-        }
-        .auth-frame__sub-text {
-            width: 65%;
-            text-align: center;
-            font-family: "permanent marker";
-            line-height: 18px;
-            font-size: 0.9em;
-        }
-        @include flex-centered(column);
-        .auth-frame__login-container {
-            position: relative;
-            @include flex-centered(column);
-            width: 70%;
-            margin-top: 1em;
-            input {
-                background: rgba(0, 0, 0, 0);
-                border: none;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.575);
-                height: 2.2em;
-                width: 100%;
-                margin-top: .8em;
-                color: rgba(255, 255, 255, 0.877);
-                font-size: .8em;
-                &:focus {
-                    outline: none;
-                }
-            }
-            .login-container__forgot-pass-container {
-                width: 100%;
-                @include flex-centered(column);
-                align-items: flex-end;
-                .forgot-pass-container__button {
-                    background: transparent;
-                    color: rgba(255, 255, 255, 0.616);
-                    padding-top: 6px;
-                    text-align: right;
-                    border: none;
-                    font-size: .3em;
-                }
-            }
-        }
-        @mixin auth-button {
-            width: 60%;
-            font-size: 10pt;
-            padding: 0.6em;
-            border-radius: 0em;
-        }
-        .auth-frame__login-button {
-            @include auth-button();
-            background: transparent;
-            color: rgba(255, 255, 255, 0.74);
-            border: 1px solid rgba(255, 255, 255, 0.575);
-            margin-top: 1em;
-        }
-        .auth-frame__or {
-            margin: .5em;
-            font-size: 12px;
-        }
-        .auth-frame__facebook-login {
-            .facebook-login__icon {
-                letter-spacing: 7px;
-            }
-            @include auth-button();
-            background: rgba(0, 102, 255, 0.555);
-            color: rgba(255, 255, 255, 0.726);
-            border: none;
-            
-            text-emphasis-style: bold;
-            font-family: Helvetica, Arial, sans-serif;
-            
-        }
-        .auth-frame__dont-have {
-            margin-top: .8em;
-            font-size: 9pt;
-            color: rgba(255, 255, 255, 0.589);
-            
-            .dont-have__sign-up {
-                display: inline-block;
-                color: rgba(255, 255, 255, 0.938);
-                cursor: pointer;
-            }
-        }
-    }
+
 }
 
 .landing__video {

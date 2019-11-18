@@ -1,0 +1,167 @@
+@mixin flex-centered($direction) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: $direction;
+}
+
+.landing__auth-frame {
+    position: relative;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.918);
+    border: 1px solid rgba(255, 255, 255, 0.342);
+    border-radius: 0.8em;
+    padding: 3em 1em 2.5em 1em;
+    box-sizing: border-box;
+    width: 25em;
+    @include flex-centered(column);
+    .auth-frame__notification {
+        position: absolute;
+        top: -6em;
+        background: rgba(95, 6, 6, 0.671);
+        border-radius: .25em;
+        padding: .8em 1em;
+        text-align: center;
+        animation: fade-pop-in-out 4s ease-in-out;
+        font-size: .8em;
+
+    }
+    .auth-frame__logo {
+        font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+        font-size: 3em;
+        letter-spacing: 0.04em;
+        margin-bottom: 0.2em;
+    }
+    .auth-frame__sub-text {
+        width: 65%;
+        text-align: center;
+        font-family: "permanent marker";
+        line-height: 18px;
+        font-size: 0.9em;
+    }
+    @include flex-centered(column);
+    .auth-frame__login-container {
+        position: relative;
+        @include flex-centered(column);
+        width: 70%;
+        margin-top: 1em;
+        input {
+            background: rgba(0, 0, 0, 0);
+            border: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.575);
+            height: 2.2em;
+            width: 100%;
+            margin-top: 0.8em;
+            color: rgba(255, 255, 255, 0.877);
+            font-size: 0.8em;
+            &:focus {
+                outline: none;
+            }
+        }
+        .login-container__forgot-pass-container {
+            width: 100%;
+            @include flex-centered(column);
+            align-items: flex-end;
+            .forgot-pass-container__button {
+                background: transparent;
+                color: rgba(255, 255, 255, 0.616);
+                padding-top: 6px;
+                text-align: right;
+                border: none;
+                font-size: 0.3em;
+                &:hover {
+                    color: rgba(255, 255, 255, 0.76);
+                }
+                &:active,
+                &:focus {
+                    color: rgba(255, 255, 255, 0.877);
+                }
+            }
+        }
+    }
+    @mixin auth-button {
+        width: 60%;
+        font-size: 10pt;
+        padding: 0.6em;
+        border-radius: 0em;
+    }
+    .auth-frame__login-button {
+        @include auth-button();
+        position: relative;
+        background: transparent;
+        color: rgba(255, 255, 255, 0.514);
+        border: 1px solid rgba(255, 255, 255, 0.411);
+        margin-top: 1em;
+        cursor: not-allowed;
+    }
+    .auth-frame__login-button--valid {
+        color: rgba(255, 255, 255, 0.685);
+        border: 1px solid rgba(255, 255, 255, 0.637);
+        cursor: pointer;
+
+        &:hover {
+            color: rgba(255, 255, 255, 0.767);
+            border: 1px solid rgba(255, 255, 255, 0.747);
+        }
+        &:active {
+            color: rgba(255, 255, 255, 0.849);
+            border: 1px solid rgba(255, 255, 255, 0.849);
+        }
+        &:focus {
+            color: rgba(255, 255, 255, 0.849);
+            border: 1px solid rgba(255, 255, 255, 0.849);
+        }
+    }
+    .auth-frame__or {
+        margin: 0.5em;
+        font-size: 12px;
+    }
+    .auth-frame__facebook-login {
+        .facebook-login__icon {
+            letter-spacing: 7px;
+        }
+        @include auth-button();
+        background: rgba(0, 102, 255, 0.555);
+        color: rgba(255, 255, 255, 0.726);
+        border: none;
+
+        text-emphasis-style: bold;
+        font-family: Helvetica, Arial, sans-serif;
+    }
+    .auth-frame__dont-have {
+        margin-top: 0.8em;
+        font-size: 9pt;
+        color: rgba(255, 255, 255, 0.589);
+
+        .dont-have__sign-up {
+            display: inline-block;
+            color: rgba(255, 255, 255, 0.938);
+            cursor: pointer;
+        }
+    }
+}
+
+@keyframes fade-pop-in-out {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    8% {
+        transform: scale(1.1);
+    }
+    20% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    90% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    92% {
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+}

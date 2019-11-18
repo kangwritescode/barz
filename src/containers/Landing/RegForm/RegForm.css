@@ -1,4 +1,6 @@
 .reg-form {
+  position: relative;
+  z-index: 1000;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -12,13 +14,14 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  color: rgba(255, 255, 255, 0.87);
+  color: rgba(255, 255, 255, 0.541);
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  height: 100%;
-  width: 100%;
-  opacity: 0;
-  -webkit-animation: fade-in 0.3s ease-in 1.2s forwards;
-          animation: fade-in 0.3s ease-in 1.2s forwards;
+  height: 23.5em;
+  width: 23em;
+  opacity: 1;
+  border: 1px solid rgba(255, 255, 255, 0.39);
+  background: rgba(0, 0, 0, 0.932);
+  border-radius: 1em;
 }
 
 .reg-form #reg-form-close {
@@ -31,7 +34,7 @@
 }
 
 .reg-form .reg-header {
-  font-size: 3.3em;
+  font-size: 2.6em;
   color: rgba(255, 255, 255, 0.904);
   -webkit-margin-before: 0em;
           margin-block-start: 0em;
@@ -51,7 +54,8 @@
       -ms-flex-pack: start;
           justify-content: flex-start;
   letter-spacing: 0.05em;
-  width: 19.7em;
+  width: 15.4em;
+  font-size: .9em;
 }
 
 .reg-form .reg-button {
@@ -228,24 +232,6 @@
 
 .reg-form .zip-input {
   width: 2em;
-}
-
-@-webkit-keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
 }
 
 .reg-form-spinner {
