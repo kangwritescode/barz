@@ -188,17 +188,24 @@ const AuthForm = (props) => {
     const fbLogin = async () => {
         firebase.auth().signInWithPopup(provider).then(async (result) => {
             try {
-                // var token = result.credential.accessToken;
+                var token = result.credential.accessToken;
                 var uid = result.user.uid
                 var email = result.additionalUserInfo.profile.email
+
+                // token
+                let expirationDate = new Date()
+                expirationDate.setHours(expirationDate.getHours() + 100)
+                localStorage.setItem('token', token)
+                localStorage.setItem('expirationDate', expirationDate)
+                localStorage.setItem('uid', uid)
+
                 console.log(result)
                 if (result.additionalUserInfo.isNewUser) {
                     const photoURL = await uploadMysteryMan(uid)
                     await createFirebaseUser(email, uid, photoURL)
-                    props.getUserData(uid)
-                } else {
-                    props.getUserData(uid)
+                    
                 }
+                props.getUserData(uid)
             } catch (err) {
                 // Handle Errors here.
                 setNotification(err.message)
