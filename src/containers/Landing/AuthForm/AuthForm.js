@@ -204,7 +204,9 @@ const AuthForm = (props) => {
                 if (result.additionalUserInfo.isNewUser) {
                     const photoURL = await uploadMysteryMan(uid)
                     await createFirebaseUser(email, uid, photoURL)
-                    
+                    setNotification('Created Account Successfully!')
+                    setSentiment(true)
+
                 }
                 setSpinner(false)
                 props.getUserData(uid)
