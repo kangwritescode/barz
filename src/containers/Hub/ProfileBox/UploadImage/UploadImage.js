@@ -62,21 +62,25 @@ class UploadImage extends Component {
                 notificationMessage: err.message
             })
         }, () => {
+            // first download the URL
             uploadTask.snapshot.ref.getDownloadURL().then(async (downloadURL) => {
                 try {
                     var db = firebase.firestore()
+                    // update submissions
                     await db.collection('submissions').where('uid', '==', this.props.uid).get()
                         .then(snapshot => {
                             snapshot.forEach(doc => {
                                 doc.ref.update({ photoURL: downloadURL })
                             })
                         })
+                    // update comments
                     await db.collection('postComments').where('uid', '==', this.props.uid).get()
                         .then(snapshot => {
                             snapshot.forEach(doc => {
                                 doc.ref.update({ photoURL: downloadURL })
                             })
                         })
+                    // only if successful update profile
                     this.props.setUserData(downloadURL)
                     this.setState({
                         ...this.state,
@@ -86,6 +90,7 @@ class UploadImage extends Component {
                     })
                 } catch (err) {
                     console.log(err.message)
+                    alert('There was an error uploading the new image. Please try again.')
                 }
 
             });
