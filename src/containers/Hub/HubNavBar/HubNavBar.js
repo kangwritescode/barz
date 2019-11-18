@@ -6,12 +6,17 @@ import WordNavItem from '../../Wordsmiths/WordNavBar/WordNavItem/WordNavItem'
 class HubNavBar extends Component {
 
     componentDidMount() {
-        if (!this.props.needsInfo) {
-            document.addEventListener('click', this.toggleDropdown)
-        }
+        document.addEventListener('click', this.toggleDropdown)
     }
     componentWillUnmount() {
         document.removeEventListener('click', this.toggleDropdown)
+    }
+    componentDidUpdate = (prevProps, prevState) => {
+        if (!prevProps.needsInfo && this.props.needsInfo) {
+            document.removeEventListener('click', this.toggleDropdown)
+        } else if (prevProps.needsInfo && !this.props.needsInfo) {
+            document.addEventListener('click', this.toggleDropdown)
+        }
     }
 
     toggleDropdown(event) {

@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import { errorCreater } from '../../../shared/utility'
 import axios from 'axios'
 import {regions} from '../../../shared/regions'
+import DotSpinner from '../../../components/DotSpinner/DotSpinner'
 
 const InfoGetter = (props) => {
 
@@ -14,6 +15,7 @@ const InfoGetter = (props) => {
     const [zipCode, setZipCode] = useState('')
     const [gender, setGender] = useState('')
     const [allUsernames, setAllUsernames] = useState([])
+    const [spinner, setSpinner] = useState(false)
 
     useEffect(() => {
         fetchAllUsernames()
@@ -54,6 +56,7 @@ const InfoGetter = (props) => {
             })
     }
     const submit = async () => {
+        setSpinner(true)
         try {
             if (allUsernames.includes(username)) {
                 throw errorCreater('Sorry, that username is taken')
@@ -62,14 +65,17 @@ const InfoGetter = (props) => {
             let address = await fetchAddressFromZipcode(zipCode)
             var newInfo = {
                 username: username,
-                address: address,
+                address: {
+                    ...address,
+                    region: regions[address["state"]]
+                },
                 needsInfo: false,
                 gender: gender === 'M' ? 'Male': 'Female'
             }
-            console.log(props.myUID)
-            props.postUserData(props.myUID, newInfo)
+            props.postUserData(props.myUID, newInfo, setSpinner)
         }
         catch (err) {
+            setSpinner(false)
             console.log(err.message)
         }
         
@@ -103,10 +109,11 @@ const InfoGetter = (props) => {
                     onClick={() => setGender('F')}>F</button>
             </div>
             <button
-                className={`info-getter__submit ${submitValid ? 'valid-submit' : ''}`}
-                disabled={username < 3 || zipCode.length < 5 || !gender}
+                className={`info-getter__submit ${submitValid && !spinner ? 'valid-submit' : ''}`}
+                disabled={username < 3 || zipCode.length < 5 || !gender || spinner}
                 onClick={submit}>
                 Submit
+                {spinner ? <DotSpinner customStyle={{position: 'absolute', left: '-5em', top: '-9.5em'} } /> : null}
                     </button>
         </div>
     )
@@ -121,7 +128,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        postUserData: (uid, data) => dispatch(actions.postUserData(uid, data))
+        postUserData: (uid, data, spinner) => dispatch(actions.postUserData(uid, data, spinner))
     }
 }
 

@@ -68,7 +68,7 @@ function ProfileBox(props) {
 
     let blockOneContent = null;
     // <DotSpinner customStyle={{position: 'absolute', top: '-1em'}}/>
-    if (!props.needsInfo) {
+    if (!props.needsInfo && !props.isLoading) {
         blockOneContent = (
             <div className={`block-one__contents-wrapper`}>
                 <PhotoContainer imgURL={props.photoURL} setShowPhotoModal={props.setShowPhotoModal} />
@@ -92,7 +92,7 @@ function ProfileBox(props) {
             </div>
         )
     }
-    if (props.needsInfo) {
+    if (props.needsInfo && !props.isLoading) {
         blockOneContent = (
             <div className={`block-one__contents-wrapper`}>
                 <img

@@ -202,7 +202,7 @@ const Hub = (props) => {
             top: '2.5em'
         },
         body: {
-            backgroundColor: 'rgba(255, 255, 255, 0.9)',
+            backgroundColor: 'rgba(255, 255, 255, 0.95)',
         },
         header: {
             backgroundColor: 'rgba(255, 255, 255, 0.9)'

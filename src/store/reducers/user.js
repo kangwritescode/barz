@@ -8,7 +8,7 @@ const initialState = {
 
     // user related,
     loggedIn: false,
-    needsInfo: true,
+    needsInfo: false,
     autoSignInOver: false,
     uid: '',
     email: '',

@@ -14,6 +14,7 @@
     font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
     h1 {
         margin-bottom: 1.1em;
+        color: rgba(255, 255, 255, 0.918)
     }
     input {
         background: transparent;
@@ -21,8 +22,8 @@
         width: 59%;
         padding-bottom: 0.2em;
         font-size: 0.8em;
-        color: rgba(255, 255, 255, 0.815);
-        border-bottom: 1px solid white;
+        color: rgba(255, 255, 255, 0.938);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.836);
     }
 
     .info-getter__username {
@@ -58,6 +59,7 @@
         }
     }
     .info-getter__submit {
+        position: relative;
         background: transparent;
         color: rgba(255, 255, 255, 0.644);
         border: 1px solid rgba(255, 255, 255, 0.438);
@@ -67,7 +69,7 @@
         padding-bottom: 0.7em;
     }
     .valid-submit {
-        position: relative;
+        // position: relative;
         z-index: 50;
         color: rgba(255, 255, 255, 0.788);
         border: 1px solid rgba(255, 255, 255, 0.726);
