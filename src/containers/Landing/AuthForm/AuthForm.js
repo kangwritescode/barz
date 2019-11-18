@@ -146,7 +146,7 @@ const AuthForm = (props) => {
                 youtube: ''
             }
         }
-        return db.collection('users').doc(uid).add(user)
+        return db.collection('users').doc(uid).set(user)
             .then(() => {
                 return true
             })
@@ -191,9 +191,9 @@ const AuthForm = (props) => {
             var uid = result.user.uid
             var email = result.additionalUserInfo.profile.email
             if (result.additionalUserInfo.isNewUser) {
-                // const photoURL = await uploadMysteryMan(uid)
-                // await createFirebaseUser(email, uid, photoURL)
-                // props.getUserData(uid)
+                const photoURL = await uploadMysteryMan(uid)
+                await createFirebaseUser(email, uid, photoURL)
+                props.getUserData(uid)
             } else {
                 const photoURL = await uploadMysteryMan(uid)
                 await createFirebaseUser(email, uid, photoURL)
