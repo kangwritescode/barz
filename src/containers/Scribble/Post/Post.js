@@ -176,6 +176,7 @@ class Post extends Component {
             // auth check 
             if (!this.props.uid) { throw this.createErr('Log in to post!', 405) }
             // limit check
+            if (this.props.needsInfo) { throw this.createErr('Set Profile Info in the HUB to post!', 405) }
             const postsToday = await this.checkPostsLeft()
             // filled out check
             if (!this.state.submission.lineOne || !this.state.submission.lineTwo || !this.state.submission.lineThree || !this.state.submission.lineFour) {
@@ -192,6 +193,10 @@ class Post extends Component {
             this.toggleSpinner(false)
             this.toggleNotification(err.message, true, false)
         }
+    }
+
+    isFilledOut = () => {
+        return this.state.submission.lineOne && this.state.submission.lineTwo &&this.state.submission.lineThree && this.state.submission.lineFour
     }
 
 
@@ -239,8 +244,8 @@ class Post extends Component {
                         )
                     })}
                     <button
-                        className={`submit-post-button`}
-                        disabled={this.state.spinner ? true : false}
+                        className={`submit-post-button ${this.isFilledOut() ? 'submit-post-button--valid' : null}`}
+                        disabled={!this.isFilledOut() || this.state.spinner ? true : false}
                         id={submitPostButtonId}
                         onClick={(event) => this.submit(event)}>
                         Submit

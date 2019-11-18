@@ -20,6 +20,10 @@ var Commenter = (props) => {
 
     // firebase
     const addComment = () => {
+        console.log(props.needsInfo)
+        if (props.needsInfo) {
+            return alert('Set Info in the HUB to comment!')
+        }
         setIsCommenting(true)
         var db = firebase.firestore()
         db.collection('postComments').add({
@@ -94,6 +98,7 @@ const mapStateToProps = state => {
         state: state.user.address.state,
         photoURL: state.user.photoURL,
         handles: state.user.handles,
+        needsInfo: state.user.needsInfo
     }
 }
 

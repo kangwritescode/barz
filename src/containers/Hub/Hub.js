@@ -18,6 +18,7 @@ import HubNavBar from './HubNavBar/HubNavBar'
 import HubTools from './HubTools/HubTools'
 import ProfileBox from './ProfileBox/ProfileBox'
 import UploadImage from './ProfileBox/UploadImage/UploadImage'
+import InfoGetter from './InfoGetter/InfoGetter'
 
 
 const Hub = (props) => {
@@ -275,6 +276,16 @@ const Hub = (props) => {
         }
 
     }
+    var middleColumn = (
+        <div className='middle-column'>
+            {manyPosts}
+        </div>
+    )
+    if (props.needsInfo) {
+        middleColumn = (
+            <InfoGetter />
+        )
+    }
     var content = (
         <div className="hub-layout">
             <HubNavBar sortAndFilter={sortAndFilter} feed={feed} />
@@ -306,9 +317,7 @@ const Hub = (props) => {
                         </div>
                         <FollowBox follows={follows} />
                     </div>
-                    <div className='middle-column'>
-                        {manyPosts}
-                    </div>
+                    {middleColumn}
                     <div className='right-column'>
                         <Commenter
                             toggleDeleteCommentModal={toggleDeleteCommentModal}
@@ -345,7 +354,8 @@ const mapStateToProps = state => {
         username: state.user.username,
         sex: state.user.sex,
         photoURL: state.user.photoURL,
-        uid: state.user.uid
+        uid: state.user.uid,
+        needsInfo: state.user.needsInfo
     }
 }
 

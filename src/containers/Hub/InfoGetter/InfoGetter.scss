@@ -1,0 +1,62 @@
+.info-getter {
+    position: relative;
+    width: 24em;
+    border: 1px solid rgba(255, 255, 255, 0.445);
+    background: rgba(0, 0, 0, 0.863);
+    border-radius: 0.4em;
+    height: 17.5em;
+    margin-right: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    h1 {
+        margin-bottom: 1.1em;
+    }
+    input {
+        background: transparent;
+        border: none;
+        width: 59%;
+        padding-bottom: 0.2em;
+        font-size: 0.8em;
+        color: rgba(255, 255, 255, 0.815);
+        border-bottom: 1px solid white;
+    }
+
+    .info-getter__username {
+        width: 65.5%;
+        margin-bottom: .6em;
+    }
+    .info-getter__hor-container {
+        position: relative;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .hor-container__input {
+            position: relative;
+            top: 4px;
+            font-size: 0.8em;
+            width: 40%;
+            margin-right: .5em;
+        }
+        .hor-container__gender-button {
+            background: transparent;
+            position: relative;
+            left: .4em;
+            color: white;
+            padding: 0.6em 1.2em;
+            margin: .4em;
+        }
+    }
+    .info-getter__submit {
+        background: transparent;
+        color: white;
+        margin-top: 2em;
+        width: 45%;
+        padding: 0.7em 0em;
+        padding-bottom: 0.7em;
+    }
+}

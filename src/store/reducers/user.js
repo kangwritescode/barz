@@ -42,7 +42,11 @@ const setUserData = (state, action) => {
 }
 
 const logOut = (state, action) => {
-    FB.logout()
+    firebase.auth().signOut().then(function () {
+        console.log('auth logout successful')
+    }).catch(function (error) {
+        console.log(error.message)
+    });
     localStorage.removeItem('token')
     localStorage.removeItem('expirationDate')
     localStorage.removeItem('uid')
@@ -50,6 +54,7 @@ const logOut = (state, action) => {
         ...initialState,
         autoSignInOver: true
     })
+
 }
 
 

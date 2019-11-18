@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import './HubNavBar.css'
+import { connect } from 'react-redux'
 import WordNavItem from '../../Wordsmiths/WordNavBar/WordNavItem/WordNavItem'
 
 class HubNavBar extends Component {
 
     componentDidMount() {
-        document.addEventListener('click', this.toggleDropdown)
-
+        if (!this.props.needsInfo) {
+            document.addEventListener('click', this.toggleDropdown)
+        }
     }
     componentWillUnmount() {
         document.removeEventListener('click', this.toggleDropdown)
@@ -21,22 +23,35 @@ class HubNavBar extends Component {
 
     render() {
 
+        var contents = (
+            <div className="HubNavBarSectionContainer">
+                <div className="SortContainer">
+                    <p id="sort">Feed:</p>
+                    <WordNavItem
+                        dropItems={['Personal', 'Following']}
+                        type="feed"
+                        display={this.props.feed}
+                        sortAndFilter={this.props.sortAndFilter} />
+                </div>
+            </div>
+        )
+        if (this.props.needsInfo) {
+            contents = null
+        }
         return (
             <div className="HubNavBar">
-                <div className="HubNavBarSectionContainer">
-                    <div className="SortContainer">
-                        <p id="sort">Feed:</p>
-                        <WordNavItem
-                            dropItems={['Personal', 'Following']}
-                            type="feed"
-                            display={this.props.feed}
-                            sortAndFilter={this.props.sortAndFilter} />
-                    </div>
-                </div>
+                {contents}
             </div>
         )
     }
 
 }
 
-export default HubNavBar;
+const mapStateToProps = state => {
+    return {
+        needsInfo: state.user.needsInfo
+    }
+}
+
+
+export default connect(mapStateToProps, null)(HubNavBar);

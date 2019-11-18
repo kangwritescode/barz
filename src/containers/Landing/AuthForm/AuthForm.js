@@ -140,6 +140,7 @@ const AuthForm = (props) => {
             username: '',
             address: '',
             gender: '',
+            needsInfo: true,
             handles: {
                 facebook: '',
                 instagram: '',
