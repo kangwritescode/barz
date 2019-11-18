@@ -49,6 +49,7 @@ const AuthForm = (props) => {
         }
         catch (err) {
             setSpinner(false)
+            setSentiment(false)
             console.log(err.message)
             switch (err.code) {
                 case 'auth/invalid-email':
@@ -173,6 +174,7 @@ const AuthForm = (props) => {
         catch (err) {
             setSpinner(false)
             setNotification(err.message)
+            setSentiment(false)
         }
     }
 
@@ -185,28 +187,27 @@ const AuthForm = (props) => {
 
     const fbLogin = async () => {
         firebase.auth().signInWithPopup(provider).then(async (result) => {
-            // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-            var token = result.credential.accessToken;
-            // The signed-in user info.
-            var uid = result.user.uid
-            var email = result.additionalUserInfo.profile.email
-            if (result.additionalUserInfo.isNewUser) {
-                const photoURL = await uploadMysteryMan(uid)
-                await createFirebaseUser(email, uid, photoURL)
-                props.getUserData(uid)
-            } else {
-                props.getUserData(uid)
+            try {
+                // var token = result.credential.accessToken;
+                var uid = result.user.uid
+                var email = result.additionalUserInfo.profile.email
+                console.log(result)
+                if (result.additionalUserInfo.isNewUser) {
+                    const photoURL = await uploadMysteryMan(uid)
+                    await createFirebaseUser(email, uid, photoURL)
+                    props.getUserData(uid)
+                } else {
+                    props.getUserData(uid)
+                }
+            } catch (err) {
+                // Handle Errors here.
+                setNotification(err.message)
+                setSentiment(false)
             }
-
         }).catch(function (error) {
             // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // The email of the user's account used.
-            var email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
-            var credential = error.credential;
-            // ...
+            setNotification(error.message)
+            setSentiment(false)
         });
     }
 
@@ -216,7 +217,7 @@ const AuthForm = (props) => {
                 <p
                     className={`auth-frame__notification`}
                     style={sentiment ? { background: 'rgba(2, 48, 8, 0.918)' } : null}
-                    onAnimationEnd={() => setNotification('')}>
+                    onAnimationEnd={() => { setNotification(''); setSentiment(false); }}>
                     {notification}
                 </p>
                 : null}
