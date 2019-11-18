@@ -81,8 +81,6 @@ const InfoGetter = (props) => {
         
     }
     var submitValid = (username.length > 2) && (zipCode.length === 5) && (!!gender)
-    console.log(submitValid)
-    console.log(props.userState)
     return (
         <div className={`info-getter`}>
             <h1>Complete Your Profile</h1>
