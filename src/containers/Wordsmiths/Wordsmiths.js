@@ -1,6 +1,6 @@
 import 'firebase/firestore'
 import React, { Component, useState, useEffect } from 'react'
-import {Redirect} from 'react-router'
+import { Redirect } from 'react-router'
 import shuffle from 'shuffle-array'
 import joey from '../../assets/videos/joey.m4v'
 import joeyIMG from '../../assets/images/joeyIMG.png'
@@ -22,57 +22,56 @@ const Wordsmiths = (props) => {
         coast: "All Coasts",
         gender: "All Genders",
     })
-    const [rappers, setRappers] = useState({})
+    const [users, setUsers] = useState({})
     const [submissions, setSubmissions] = useState([])
     const [fetching, setFetching] = useState(true)
     const [votes, setVotes] = useState([])
-
+    const [rappers, setRappers] = useState({})
     const [keyPressed, setKeyPressed] = useState(null)
 
+
+
     useEffect(() => {
-        try {
-
-            const asyncFunction = async () => {
-                setFetching(true)
-                let rappers = {}
-                let submissions = await FireApi.fetchPostsOnce()
-                let votes = await FireApi.fetchVotesOnce()
-                let users = await fetchUsers()
-
-                // for every single submission
-                submissions.forEach(submission => {
-
-                    // find the votes for that submission
-                    let filteredVotes = votes.filter(vote => vote.pid === submission.pid)
-                    if (!rappers[submission.uid]) {
-                        rappers[submission.uid] = {
-                            uid: submission.uid,
-                            gender: submission.gender,
-                            username: submission.username,
-                            address: submission.address,
-                            votes: filteredVotes,
-                            photoURL: users[submission.uid].photoURL,
-                            blurb: users[submission.uid].blurb,
-                            handles: users[submission.uid].handles
-                        }
-                    } else {
-                        rappers[submission.uid].votes[submission.createdOn] = filteredVotes
-                    }
-                })
-                setRappers(rappers)
-                setSubmissions(submissions)
-                setFetching(false)
-                setVotes(votes)
-            }
-            asyncFunction()
-
-        }
-        catch (err) {
-            setFetching(false)
-        }
+        setFetching(true)
+        let submissionsListener = FireApi.allPostsListener(setSubmissions)
+        let votesListener = FireApi.allVotesListener(setVotes)
+        let usersListener = fetchUsers(setUsers)
         return () => {
+            submissionsListener()
+            votesListener()
+            usersListener()
+            setFetching(false)
         };
     }, [])
+
+    useEffect(() => {
+        let rappers = {}
+        submissions.forEach(submission => {
+
+            // find the votes for that submission
+            let filteredVotes = votes.filter(vote => vote.pid === submission.pid)
+            var user = users[submission.uid]
+            if (!rappers[submission.uid]) {
+                rappers[submission.uid] = {
+                    uid: submission.uid,
+                    gender: submission.gender,
+                    username: submission.username,
+                    address: submission.address,
+                    votes: filteredVotes,
+                    photoURL: submission.photoURL,
+                    blurb: user ? user.blurb : '',
+                    handles: user ? user.handles : ''
+                }
+            } else {
+                rappers[submission.uid].votes[submission.createdOn] = filteredVotes
+            }
+        })
+        setRappers(rappers)
+        return () => {
+            
+        };
+    }, [submissions, users, votes])
+
 
     useEffect(() => {
         const assignRedirect = (event) => {
@@ -91,18 +90,19 @@ const Wordsmiths = (props) => {
 
 
     // fetch ALl votes
-    const fetchUsers = async () => {
+    const fetchUsers = (setter) => {
         let db = firebase.firestore()
-        return db.collection("users").get()
-            .then((querySnapshot) => {
-                let users = {}
-                querySnapshot.forEach((doc) => {
-                    users[doc.id] = { ...doc.data(), uid: doc.id }
-                });
-                return users
+        var listener = db.collection("users").onSnapshot((querySnapshot) => {
+            let users = {}
+            querySnapshot.forEach((doc) => {
+                users[doc.id] = { ...doc.data(), uid: doc.id }
+            });
+            setter(users)
 
-            })
-            .catch(err => { throw err })
+        }, err => {
+            console.log(err.message)
+        })
+        return listener
     }
 
 
@@ -131,7 +131,6 @@ const Wordsmiths = (props) => {
     }
 
 
-    let displayedRappers = { ...rappers }
     let allVotes = votes ? Object.values(votes) : []
 
     // Filters start
@@ -140,6 +139,8 @@ const Wordsmiths = (props) => {
     if (sortFilterState.gender !== "All Genders") { displayedRappers = Object.fromEntries(Object.entries(displayedRappers).filter(([k, rapper]) => rapper.gender === sortFilterState.gender)) }
     // Filters end
 
+
+    var displayedRappers = {...rappers}
 
     // Tally points start
     for (let uid in displayedRappers) {
@@ -228,7 +229,7 @@ const Wordsmiths = (props) => {
                 bestCity={bestCity}
                 bestCoast={bestCoast}
                 sort={sortFilterState.rank}
-                fetching={fetching}/>
+                fetching={fetching} />
         </div>
     )
     // switch (keyPressed) {
