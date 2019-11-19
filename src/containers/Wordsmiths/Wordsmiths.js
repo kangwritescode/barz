@@ -231,13 +231,13 @@ const Wordsmiths = (props) => {
                 fetching={fetching}/>
         </div>
     )
-    switch (keyPressed) {
-        case 1: return content = <Redirect to='/hub'></Redirect>
-        case 2: return content = <Redirect to='/scribble'></Redirect>
-        case 3: return content = <Redirect to='/judge'></Redirect>
-        default: break;
+    // switch (keyPressed) {
+    //     case 1: return content = <Redirect to='/hub'></Redirect>
+    //     case 2: return content = <Redirect to='/scribble'></Redirect>
+    //     case 3: return content = <Redirect to='/judge'></Redirect>
+    //     default: break;
 
-    }
+    // }
     return content
 }
 
