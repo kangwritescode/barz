@@ -21,19 +21,17 @@ class DeleteAccount extends Component {
 
     componentDidMount = () => {
         let user = firebase.auth().currentUser;
-        if (user.providerData[0].providerId === 'password') {
+        if (!user.providerData[0].providerId === 'password') {
             this.setAuthType('password', null)
         } else {
-            let token = localStorage.getItem('token')
-            this.setAuthType('facebook', token)
+            this.setAuthType('facebook')
         }
         
     }
-    setAuthType = (authType, fbToken) => {
+    setAuthType = (authType) => {
         this.setState({
             ...this.state,
             authType: authType,
-            FBtoken: fbToken
         })
 
     }
@@ -65,7 +63,8 @@ class DeleteAccount extends Component {
                     this.state.password
                 );
             } else if (this.state.authType !== 'password') {
-                credentials = firebase.auth.FacebookAuthProvider.credential(this.state.FBtoken);
+                let token = localStorage.getItem('token')
+                credentials = firebase.auth.FacebookAuthProvider.credential(token);
             } else {
                 throw errorCreater('Facebook Auth token has expired. Log out and back in to delete account.')
             }
@@ -158,7 +157,7 @@ class DeleteAccount extends Component {
 
         var deletePrompt;
         if (this.state.authType === 'facebook') {
-            deletePrompt = "Type 'goodbye' and press 'Delete'."
+            deletePrompt = "Type 'goodbye' to confirm"
         }
         else {
             deletePrompt = 'All user data will be deleted forever.'
