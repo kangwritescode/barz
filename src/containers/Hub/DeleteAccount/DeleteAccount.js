@@ -1,3 +1,5 @@
+/*global FB*/
+
 import React, { Component } from 'react'
 import firebase from 'firebase'
 import { connect } from 'react-redux'
@@ -5,11 +7,44 @@ import './DeleteAccount.css'
 import trash from '../../../assets/images/trash.png'
 import * as actionTypes from '../../../store/actions/actionsTypes'
 import * as actions from '../../../store/actions/index'
+import { errorCreater } from '../../../shared/utility'
 
 class DeleteAccount extends Component {
 
     state = {
-        password: ''
+        password: '',
+        spinning: true,
+        FBtoken: null,
+        authType: ''
+    }
+
+    componentDidMount = () => {
+        this.setSpinner(true)
+        FB.getLoginStatus((response) => {
+            if (response.status === 'connected') {
+                var accessToken = response.authResponse.accessToken;
+                this.setAuthType('FB', accessToken)
+            } else if (response.status === 'not_authorized') {
+                this.setAuthType('FB', null)
+            } else {
+                this.setAuthType('PASSWORD', null)
+            }
+            this.setSpinner(false)
+        });
+    }
+    setAuthType = (authType, fbToken) => {
+        this.setState({
+            ...this.state,
+            authType: authType,
+            FBtoken: fbToken
+        })
+
+    }
+    setSpinner = bool => {
+        this.setState({
+            ...this.state,
+            spinning: bool
+        })
     }
 
     onInputHandler = (event) => {
@@ -21,12 +56,26 @@ class DeleteAccount extends Component {
 
 
     deleteAccount = async () => {
-
         let user = firebase.auth().currentUser;
-        let credentials = firebase.auth.EmailAuthProvider.credential(
-            user.email,
-            this.state.password
-        );
+        let credentials = null;
+        // get the appropriate credentials
+        try {
+            if (this.state.authType === 'PASSWORD') {
+                credentials = firebase.auth.EmailAuthProvider.credential(
+                    user.email,
+                    this.state.password
+                );
+            } else if (this.state.FBtoken) {
+                credentials = firebase.auth.FacebookAuthProvider.credential(this.state.FBtoken);
+            } else {
+                throw errorCreater('Facebook Auth token has expired. Log out and back in to delete account.')
+            }
+        } catch (err) {
+            console.log(err.message)
+            this.setSpinner(false)
+            return
+        }
+
         // first reauthenticate
         user.reauthenticateWithCredential(credentials)
             .then(async () => {
@@ -64,7 +113,7 @@ class DeleteAccount extends Component {
                         }
                     })
                 }).catch(err => { throw err })
-                
+
                 // delete post comments
                 await db.collection("postComments").get().then(querySnapshot => {
                     querySnapshot.forEach(doc => {
@@ -108,17 +157,24 @@ class DeleteAccount extends Component {
 
     render() {
 
+        var deletePrompt;
+        if (this.state.authType === 'FB') {
+            deletePrompt = "Type 'goodbye' and press 'Delete'."
+        }
+        else {
+            deletePrompt = 'All user data will be deleted forever.'
+        }
         return (
             <div>
                 <div className="delete-backdrop" onClick={() => this.props.toggleDeleteAcc(false)} />
                 <div id="delete-account-modal">
                     <i className="fa fa-close" id="exit-delete-modal" onClick={() => this.props.toggleDeleteAcc(false)}></i>
-                    <img id="delete-icon" src={trash}></img>
+                    <img id="delete-icon" src={trash} alt=''></img>
                     <div id="are-you-sure">Delete Account</div>
                     <div id="will-be-deleted">
-                        All user data will be deleted forever.
+                        {deletePrompt}
                     </div>
-                    <input type="password" id="delete-pass-input" placeholder="password" onChange={this.onInputHandler}></input>
+                    <input type="password" id="delete-pass-input" placeholder={this.state.authType === 'FB' ? '' : 'password'} onChange={this.onInputHandler}></input>
                     <div id="delete-buttons">
                         <div className="delete-button" id="cancel" onClick={() => this.props.toggleDeleteAcc(false)}>Cancel</div>
                         <div

@@ -253,7 +253,7 @@ const Hub = (props) => {
         }
         else if ((displayedPosts === undefined) || (displayedPosts.length === 0)) {
             manyPosts = <div className={`middle-column__notification`}>
-                <div className={``}>You're not following anyone!</div>
+                <div className={``}>No posts to show!</div>
             </div>
         } else {
             manyPosts = displayedPosts.map(post => {
