@@ -20,18 +20,21 @@ class DeleteAccount extends Component {
 
     componentDidMount = () => {
         this.setSpinner(true)
-        FB.getLoginStatus((response) => {
-            console.log(response)
-            if (response.status === 'connected') {
-                var accessToken = response.authResponse.accessToken;
-                this.setAuthType('FB', accessToken)
-            } else if (response.status === 'not_authorized') {
-                this.setAuthType('FB', null)
-            } else {
-                this.setAuthType('PASSWORD', null)
-            }
-            this.setSpinner(false)
-        });
+        var user = firebase.auth().currentUser
+        console.log(user)
+
+        // FB.getLoginStatus((response) => {
+        //     console.log(response)
+        //     if (response.status === 'connected') {
+        //         var accessToken = response.authResponse.accessToken;
+        //         this.setAuthType('FB', accessToken)
+        //     } else if (response.status === 'not_authorized') {
+        //         this.setAuthType('FB', null)
+        //     } else {
+        //         this.setAuthType('PASSWORD', null)
+        //     }
+        //     this.setSpinner(false)
+        // });
     }
     setAuthType = (authType, fbToken) => {
         this.setState({
