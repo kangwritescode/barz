@@ -21,7 +21,7 @@ class DeleteAccount extends Component {
 
     componentDidMount = () => {
         let user = firebase.auth().currentUser;
-        if (!user.providerData[0].providerId === 'password') {
+        if (user.providerData[0].providerId === 'password') {
             this.setAuthType('password', null)
         } else {
             this.setAuthType('facebook')
