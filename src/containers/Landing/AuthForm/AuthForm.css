@@ -40,10 +40,19 @@
 }
 
 .landing__auth-frame .auth-frame__logo {
+  position: relative;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   font-size: 3em;
   letter-spacing: 0.04em;
   margin-bottom: 0.2em;
+}
+
+.landing__auth-frame .auth-frame__logo .logo__beta {
+  position: absolute;
+  font-size: .25em;
+  color: #b31515;
+  bottom: -4px;
+  right: 0px;
 }
 
 .landing__auth-frame .auth-frame__sub-text {

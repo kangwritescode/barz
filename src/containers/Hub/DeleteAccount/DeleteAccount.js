@@ -5,10 +5,8 @@ import firebase from 'firebase'
 import { connect } from 'react-redux'
 import './DeleteAccount.css'
 import trash from '../../../assets/images/trash.png'
-import * as actionTypes from '../../../store/actions/actionsTypes'
 import * as actions from '../../../store/actions/index'
 import { errorCreater } from '../../../shared/utility'
-import { thisExpression } from '@babel/types'
 
 class DeleteAccount extends Component {
 

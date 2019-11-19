@@ -235,7 +235,14 @@ const AuthForm = (props) => {
                     {notification}
                 </p>
                 : null}
-            <div className={`auth-frame__logo`} style={isRegistering ? { fontSize: '3.2em' } : null}>{isRegistering ? 'Sign Up' : 'BARZ'}</div>
+            <div 
+                className={`auth-frame__logo`} 
+                style={isRegistering ? { fontSize: '3.2em' } : null}>
+                    {isRegistering ? 'Sign Up' : 'BARZ'}
+                    <div className={`logo__beta`}>
+                        BETA
+                    </div>
+            </div>
             {isRegistering ? null : (
                 <div className={`auth-frame__sub-text`}>The best hub for your <br /> inner wordsmith.</div>
 
