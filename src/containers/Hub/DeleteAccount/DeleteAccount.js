@@ -21,6 +21,7 @@ class DeleteAccount extends Component {
     componentDidMount = () => {
         this.setSpinner(true)
         FB.getLoginStatus((response) => {
+            console.log(response)
             if (response.status === 'connected') {
                 var accessToken = response.authResponse.accessToken;
                 this.setAuthType('FB', accessToken)
@@ -56,6 +57,7 @@ class DeleteAccount extends Component {
 
 
     deleteAccount = async () => {
+        console.log(this.state)
         let user = firebase.auth().currentUser;
         let credentials = null;
         // get the appropriate credentials
