@@ -31,19 +31,21 @@ const Wordsmiths = (props) => {
 
 
 
+    // fetch everything on mount
     useEffect(() => {
         setFetching(true)
         let submissionsListener = FireApi.allPostsListener(setSubmissions)
         let votesListener = FireApi.allVotesListener(setVotes)
-        let usersListener = fetchUsers(setUsers)
+        let usersListener = fetchUsers(setUsers, setFetching)
         return () => {
             submissionsListener()
             votesListener()
             usersListener()
-            setFetching(false)
+            
         };
     }, [])
 
+    // whenever there is a change in data, reset the dequed rappers
     useEffect(() => {
         let rappers = {}
         submissions.forEach(submission => {
@@ -73,6 +75,7 @@ const Wordsmiths = (props) => {
     }, [submissions, users, votes])
 
 
+    // redirect keys
     useEffect(() => {
         const assignRedirect = (event) => {
             switch (event.key) {
@@ -89,8 +92,8 @@ const Wordsmiths = (props) => {
     }, [])
 
 
-    // fetch ALl votes
-    const fetchUsers = (setter) => {
+    // fetch users
+    const fetchUsers = (setter, spinner) => {
         let db = firebase.firestore()
         var listener = db.collection("users").onSnapshot((querySnapshot) => {
             let users = {}
@@ -98,6 +101,9 @@ const Wordsmiths = (props) => {
                 users[doc.id] = { ...doc.data(), uid: doc.id }
             });
             setter(users)
+            if (spinner) {
+                spinner(false)
+            }
 
         }, err => {
             console.log(err.message)
@@ -133,6 +139,7 @@ const Wordsmiths = (props) => {
 
     let allVotes = votes ? Object.values(votes) : []
 
+    var displayedRappers = {...rappers}
     // Filters start
     if (sortFilterState.state !== "All States") { displayedRappers = Object.fromEntries(Object.entries(displayedRappers).filter(([k, rapper]) => rapper.address.state === sortFilterState.state)) }
     if (sortFilterState.coast !== "All Coasts") { displayedRappers = Object.fromEntries(Object.entries(displayedRappers).filter(([k, rapper]) => rapper.address.region === sortFilterState.coast)) }
@@ -140,7 +147,7 @@ const Wordsmiths = (props) => {
     // Filters end
 
 
-    var displayedRappers = {...rappers}
+   
 
     // Tally points start
     for (let uid in displayedRappers) {
@@ -169,6 +176,7 @@ const Wordsmiths = (props) => {
         rapper['submissionCount'] = noOfSubmissions
     }
     // Tally points end
+
 
 
     displayedRappers = displayedRappers ? Object.values(displayedRappers) : []
@@ -203,9 +211,6 @@ const Wordsmiths = (props) => {
     let bestCoast = Object.keys(coastVotes).length ? Object.keys(coastVotes).reduce((a, b) => coastVotes[a] > coastVotes[b] ? a : b) : 'N/A'
 
 
-
-
-
     var content = (
         <div className="WordsmithsContainer">
             <img id="backup-img" src={joeyIMG} alt="" />
@@ -237,8 +242,8 @@ const Wordsmiths = (props) => {
     //     case 2: return content = <Redirect to='/scribble'></Redirect>
     //     case 3: return content = <Redirect to='/judge'></Redirect>
     //     default: break;
-
     // }
+
     return content
 }
 

@@ -110,15 +110,11 @@
   position: fixed;
   bottom: 5px;
   right: 10px;
-  opacity: 0;
+  opacity: 1;
   color: white;
   font-family: "permanent marker", cursive;
   font-size: 11px;
   letter-spacing: 2px;
-  -webkit-animation: fade-in-and-out 5s forwards;
-          animation: fade-in-and-out 5s forwards;
-  -webkit-animation-delay: 1s;
-          animation-delay: 1s;
 }
 
 @-webkit-keyframes fade-in-and-out {
