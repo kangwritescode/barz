@@ -8,6 +8,7 @@ import trash from '../../../assets/images/trash.png'
 import * as actionTypes from '../../../store/actions/actionsTypes'
 import * as actions from '../../../store/actions/index'
 import { errorCreater } from '../../../shared/utility'
+import { thisExpression } from '@babel/types'
 
 class DeleteAccount extends Component {
 
@@ -19,22 +20,14 @@ class DeleteAccount extends Component {
     }
 
     componentDidMount = () => {
-        this.setSpinner(true)
-        var user = firebase.auth().currentUser
-        console.log(user)
-
-        // FB.getLoginStatus((response) => {
-        //     console.log(response)
-        //     if (response.status === 'connected') {
-        //         var accessToken = response.authResponse.accessToken;
-        //         this.setAuthType('FB', accessToken)
-        //     } else if (response.status === 'not_authorized') {
-        //         this.setAuthType('FB', null)
-        //     } else {
-        //         this.setAuthType('PASSWORD', null)
-        //     }
-        //     this.setSpinner(false)
-        // });
+        let user = firebase.auth().currentUser;
+        if (user.providerData[0].providerId === 'password') {
+            this.setAuthType('password', null)
+        } else {
+            let token = localStorage.getItem('token')
+            this.setAuthType('facebook', token)
+        }
+        
     }
     setAuthType = (authType, fbToken) => {
         this.setState({
@@ -60,17 +53,18 @@ class DeleteAccount extends Component {
 
 
     deleteAccount = async () => {
-        console.log(this.state)
+
         let user = firebase.auth().currentUser;
         let credentials = null;
+        
         // get the appropriate credentials
         try {
-            if (this.state.authType === 'PASSWORD') {
+            if (this.state.authType === 'password') {
                 credentials = firebase.auth.EmailAuthProvider.credential(
                     user.email,
                     this.state.password
                 );
-            } else if (this.state.FBtoken) {
+            } else if (this.state.authType !== 'password') {
                 credentials = firebase.auth.FacebookAuthProvider.credential(this.state.FBtoken);
             } else {
                 throw errorCreater('Facebook Auth token has expired. Log out and back in to delete account.')
@@ -163,7 +157,7 @@ class DeleteAccount extends Component {
     render() {
 
         var deletePrompt;
-        if (this.state.authType === 'FB') {
+        if (this.state.authType === 'facebook') {
             deletePrompt = "Type 'goodbye' and press 'Delete'."
         }
         else {
@@ -179,7 +173,7 @@ class DeleteAccount extends Component {
                     <div id="will-be-deleted">
                         {deletePrompt}
                     </div>
-                    <input type="password" id="delete-pass-input" placeholder={this.state.authType === 'FB' ? '' : 'password'} onChange={this.onInputHandler}></input>
+                    <input type="password" id="delete-pass-input" placeholder={this.state.authType === 'facebook' ? '' : 'password'} onChange={this.onInputHandler}></input>
                     <div id="delete-buttons">
                         <div className="delete-button" id="cancel" onClick={() => this.props.toggleDeleteAcc(false)}>Cancel</div>
                         <div
