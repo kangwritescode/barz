@@ -6,7 +6,7 @@ import * as actions from '../../../store/actions/index'
 import { connect } from 'react-redux'
 import { errorCreater } from '../../../shared/utility'
 import axios from 'axios'
-import {regions} from '../../../shared/regions'
+import { regions } from '../../../shared/regions'
 import DotSpinner from '../../../components/DotSpinner/DotSpinner'
 
 const InfoGetter = (props) => {
@@ -16,6 +16,7 @@ const InfoGetter = (props) => {
     const [gender, setGender] = useState('')
     const [allUsernames, setAllUsernames] = useState([])
     const [spinner, setSpinner] = useState(false)
+    const [notification, setNotification] = useState('')
 
     useEffect(() => {
         fetchAllUsernames()
@@ -70,19 +71,25 @@ const InfoGetter = (props) => {
                     region: regions[address["state"]]
                 },
                 needsInfo: false,
-                gender: gender === 'M' ? 'Male': 'Female'
+                gender: gender === 'M' ? 'Male' : 'Female'
             }
             props.postUserData(props.myUID, newInfo, setSpinner)
         }
         catch (err) {
             setSpinner(false)
-            console.log(err.message)
+            setNotification(err.message)
         }
-        
+
     }
     var submitValid = (username.length > 2) && (zipCode.length === 5) && (!!gender)
     return (
         <div className={`info-getter`}>
+            {notification
+                ? <div className={`info-getter__notification`}
+                    onAnimationEnd={() => setNotification('')}>
+                    {notification}
+                </div>
+                : null}
             <h1>Complete Your Profile</h1>
             <input
                 className='info-getter__username'
@@ -111,8 +118,8 @@ const InfoGetter = (props) => {
                 disabled={username < 3 || zipCode.length < 5 || !gender || spinner}
                 onClick={submit}>
                 Submit
-                {spinner ? <DotSpinner customStyle={{position: 'absolute', left: '-5em', top: '-9.5em'} } /> : null}
-                    </button>
+                {spinner ? <DotSpinner customStyle={{ position: 'absolute', left: '-5em', top: '-9.5em' }} /> : null}
+            </button>
         </div>
     )
 }
