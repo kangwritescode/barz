@@ -7,9 +7,9 @@ import { connect } from 'react-redux'
 const DevModal = (props) => {
     return (
         <div className={`dev-modal-wrapper`}>
-            <div className='dev-modal-backdrop' onClick={props.togglePopup}></div>
+            <div className='dev-modal-backdrop' onClick={() => props.togglePopup(false)}></div>
             <div className={`dev-modal`}>
-                <i class="fa fa-close dev-modal__close" onClick={props.togglePopup}></i>
+                <i className="fa fa-close dev-modal__close" onClick={() => props.togglePopup(false)}></i>
                 Thanks for checking out this early beta version of BARZ! It’s still in development so expect bugs, weird behavior, and at worst crashes (I’ll work really hard to prevent this), but I hope you can still have fun with the app in the meantime.
                 <br />
                 <br />

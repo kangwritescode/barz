@@ -17,18 +17,22 @@ class App extends Component {
 
 
   state = {
-    showPopup: true
+    showPopup: false
   }
 
 
   componentDidMount() {
     this.props.onTryAutoSignin()    
   }
-
-  togglePopup = () => {
+  componentDidUpdate = (prevProps, prevState) => {
+    if (!prevProps.authenticated && this.props.authenticated) {
+      this.togglePopup(true)
+    }
+  }
+  togglePopup = (bool) => {
     this.setState({
       ...this.state,
-      showPopup: !this.state.showPopup
+      showPopup: bool
     })
   }
 
