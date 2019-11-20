@@ -155,7 +155,7 @@ class DeleteAccount extends Component {
 
         var deletePrompt;
         if (this.state.authType === 'facebook') {
-            deletePrompt = "Type 'goodbye' to confirm"
+            deletePrompt = "Type 'goodbye' to confirm."
         }
         else {
             deletePrompt = 'All user data will be deleted forever.'

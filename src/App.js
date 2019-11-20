@@ -10,16 +10,27 @@ import { fetchUserData, authCheckState } from './store/actions/auth'
 import Wordsmiths from './containers/Wordsmiths/Wordsmiths'
 import './App.css'
 import Landing from './containers/Landing/Landing';
+import DevModal from './components/DevModal/DevModal';
 
 
 class App extends Component {
+
+
+  state = {
+    showPopup: true
+  }
 
 
   componentDidMount() {
     this.props.onTryAutoSignin()    
   }
 
-
+  togglePopup = () => {
+    this.setState({
+      ...this.state,
+      showPopup: !this.state.showPopup
+    })
+  }
 
   render() {
 
@@ -29,6 +40,7 @@ class App extends Component {
 
     return (
       <div className="App">
+        {this.state.showPopup ? <DevModal togglePopup={this.togglePopup}/> : null}
         <Navbar />
         <ReactPlayer
           volume={this.props.volume * 1.0 / 100}

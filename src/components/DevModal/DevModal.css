@@ -1,0 +1,83 @@
+.dev-modal-wrapper {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.dev-modal-backdrop {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.432);
+  z-index: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.dev-modal {
+  position: relative;
+  background: rgba(255, 255, 255, 0.938);
+  color: rgba(0, 0, 0, 0.836);
+  padding: 3.8em 3em 1.8em 3em;
+  border-radius: .5em;
+  font-family: 'permanent marker';
+  max-width: 25em;
+  font-size: 1.1em;
+}
+
+.dev-modal span {
+  display: inline-block;
+  width: 100%;
+  text-align: right;
+}
+
+.dev-modal .dev-modal__close {
+  cursor: pointer;
+  position: absolute;
+  top: 1em;
+  right: 1em;
+}
+
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100;
+  }
+}
+/*# sourceMappingURL=DevModal.css.map */
