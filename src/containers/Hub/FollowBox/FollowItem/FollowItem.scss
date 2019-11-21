@@ -52,6 +52,12 @@
         color: rgba(255, 255, 255, 0.87);
         // box-shadow: 1px 1px 2px rgba(255, 255, 255, 0.158);
 
+        &:hover {
+            background-color: rgb(27, 27, 27);
+        }
+        &:active {
+            background-color: rgb(36, 36, 36);
+        }
         &:active {
             box-shadow: none;
         }
