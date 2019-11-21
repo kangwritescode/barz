@@ -14,7 +14,7 @@ class DeleteAccount extends Component {
         password: '',
         spinning: true,
         FBtoken: null,
-        authType: ''
+        authType: '',
     }
 
     componentDidMount = () => {
@@ -61,6 +61,9 @@ class DeleteAccount extends Component {
                     this.state.password
                 );
             } else if (this.state.authType !== 'password') {
+                if (this.state.password !== 'goodbye') {
+                    throw errorCreater("Please type 'goodbye' to confirm deletion.")
+                }
                 let token = localStorage.getItem('token')
                 credentials = firebase.auth.FacebookAuthProvider.credential(token);
             } else {
@@ -175,7 +178,10 @@ class DeleteAccount extends Component {
                         <div className="delete-button" id="cancel" onClick={() => this.props.toggleDeleteAcc(false)}>Cancel</div>
                         <div
                             className={`delete-button`}
-                            id={this.state.password === '' ? 'delete-disabled' : 'delete'} onClick={this.state.password === '' ? null : this.deleteAccount}>Delete</div>
+                            id={this.state.password === '' ? 'delete-disabled' : 'delete'} 
+                            onClick={this.state.password === '' ? null : this.deleteAccount}>
+                                Delete
+                            </div>
                     </div>
                 </div>
             </div>
