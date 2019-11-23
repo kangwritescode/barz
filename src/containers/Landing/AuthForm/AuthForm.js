@@ -196,20 +196,26 @@ const AuthForm = (props) => {
                 var uid = result.user.uid
                 var email = result.additionalUserInfo.profile.email
 
-                // token
-                let expirationDate = new Date()
-                expirationDate.setHours(expirationDate.getHours() + 100)
-                localStorage.setItem('token', token)
-                localStorage.setItem('expirationDate', expirationDate)
-                localStorage.setItem('uid', uid)
+                const setTokens = () => {
+                    // token
+                    let expirationDate = new Date()
+                    expirationDate.setHours(expirationDate.getHours() + 100)
+                    localStorage.setItem('token', token)
+                    localStorage.setItem('expirationDate', expirationDate)
+                    localStorage.setItem('uid', uid)
+                }
 
                 db.collection('users').doc(uid).get().then(async doc => {
                     if (doc.exists) {
                         setSpinner(false)
+                        setTokens()
                         props.getUserData(uid)
-                    } else  {
+                        
+                    } else {
                         const photoURL = await uploadMysteryMan(uid)
                         await createFirebaseUser(email, uid, photoURL)
+                        setTokens()
+                        props.getUserData(uid)
                         setNotification('Created Account Successfully!')
                         setSentiment(true)
                     }
