@@ -66,7 +66,7 @@ function ProfileBox(props) {
 
 
     let blockOneContent = null;
-    // <DotSpinner customStyle={{position: 'absolute', top: '-1em'}}/>
+    
     if (!props.needsInfo && !props.isLoading) {
         blockOneContent = (
             <div className={`block-one__contents-wrapper`}>

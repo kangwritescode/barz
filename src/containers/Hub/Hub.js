@@ -174,10 +174,9 @@ const Hub = (props) => {
     }
 
 
-    // render ~~~~~~~~~~~~
+    // render ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     // Custom Styles 
-
     var manyPostsCustomStyle = {
         username: {
             fontSize: '1em'
@@ -219,68 +218,41 @@ const Hub = (props) => {
     if (feed === 'Personal') {
         displayedPosts = posts.filter(post => props.uid === post.uid)
         displayedPosts = sortByNewest(displayedPosts)
-        if (!doneFetching) {
-            manyPosts = <CircularSpinner />
-        }
-        else if ((displayedPosts === undefined) || (displayedPosts.length === 0)) {
-            manyPosts = <div className={`middle-column__notification`}>
-                <div className={``}>No posts to show!</div>
-            </div>
-        } else {
-            manyPosts = displayedPosts.map(post => {
-                console.log(post)
-                var style = manyPostsCustomStyle
-                if (postState.selectedPost && post.pid === postState.selectedPost.pid) {
-                    style = withSelectedPostStyle
-                }
-                return (
-                    <ManyPost
-                        comments={comments.filter(comment => comment.pid === post.pid)}
-                        key={GenID()}
-                        customStyle={style}
-                        selectPost={selectPost}
-                        votes={votes.filter(vote => vote.pid === post.pid)}
-                        {...post}
-                    />
-                )
-            })
-        }
-
-    }
-    if (feed === 'Following') {
+    } else if (feed === 'Following') {
         let myFollows = follows.filter(follow => follow.from === props.uid)
         let followingUIDs = new Set()
         myFollows.forEach(follow => { followingUIDs.add(follow.to) })
 
         displayedPosts = posts.filter(post => followingUIDs.has(post.uid))
         displayedPosts = sortByNewest(displayedPosts)
-        if (!doneFetching) {
-            manyPosts = <CircularSpinner />
-        }
-        else if ((displayedPosts === undefined) || (displayedPosts.length === 0)) {
-            manyPosts = <div className={`middle-column__notification`}>
-                <div className={``}>No posts to show!</div>
-            </div>
-        } else {
-            manyPosts = displayedPosts.map(post => {
-                var style = manyPostsCustomStyle
-                if (postState.selectedPost && post.pid === postState.selectedPost.pid) {
-                    style = withSelectedPostStyle
-                }
-                return (
-                    <ManyPost
-                        comments={comments.filter(comment => comment.pid === post.pid)}
-                        key={GenID()}
-                        customStyle={style}
-                        selectPost={selectPost}
-                        votes={votes.filter(vote => vote.pid === post.pid)}
-                        {...post}
-                    />
-                )
-            })
-        }
-
     }
+
+    if (!doneFetching) {
+        manyPosts = <CircularSpinner />
+    }
+    else if ((displayedPosts === undefined) || (displayedPosts.length === 0)) {
+        manyPosts = <div className={`middle-column__notification`}>
+            <div className={``}>No posts to show!</div>
+        </div>
+    } else {
+        manyPosts = displayedPosts.map(post => {
+            var style = manyPostsCustomStyle
+            if (postState.selectedPost && post.pid === postState.selectedPost.pid) {
+                style = withSelectedPostStyle
+            }
+            return (
+                <ManyPost
+                    comments={comments.filter(comment => comment.pid === post.pid)}
+                    key={GenID()}
+                    customStyle={style}
+                    selectPost={selectPost}
+                    votes={votes.filter(vote => vote.pid === post.pid)}
+                    {...post}
+                />
+            )
+        })
+    }
+
     var middleColumn = (
         <div className='middle-column'>
             {manyPosts}
@@ -315,7 +287,6 @@ const Hub = (props) => {
                                 setShowPhotoModal={setShowPhotoModal}
                                 toggleUploadHandles={toggleUploadHandles}
                                 toggleDeleteAcc={toggleDeleteAcc}
-                                wrappedBy='Hub'
                                 myPlace={myPlace}
                                 myPoints={Math.max(myScore, 0)}
                                 isLoading={!doneFetching} />
