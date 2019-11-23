@@ -18,6 +18,7 @@ import HubTools from './HubTools/HubTools'
 import ProfileBox from './ProfileBox/ProfileBox'
 import UploadImage from './ProfileBox/UploadImage/UploadImage'
 import InfoGetter from './InfoGetter/InfoGetter'
+import * as actions from '../../store/actions/ui'
 
 
 const Hub = (props) => {
@@ -49,7 +50,7 @@ const Hub = (props) => {
     // comments
     const [comments, setComments] = useState([])
     // feed related
-    let [feed, setFeed] = useState('Personal')
+    let [feed, setFeed] = useState(props.hubUI.feed)
 
 
     // componentDidMount
@@ -114,9 +115,12 @@ const Hub = (props) => {
             let score = (Math.max(likes.length - dislikes.length, 0))
             setMyScore(score)
         }
+        if (props.hubUI) {
+            setFeed(props.hubUI.feed)
+        }
         return () => {
         };
-    }, [props.uid, votes])
+    }, [props.uid, votes, props.hubUI])
 
     useEffect(() => {
 
@@ -149,7 +153,7 @@ const Hub = (props) => {
     }
 
     const sortAndFilter = (type, parameter) => {
-        setFeed(parameter)
+        props.setHubUI({feed: parameter})
     }
     const sortByNewest = (posts) => {
         return posts.sort((a, b) => {
@@ -341,7 +345,7 @@ const Hub = (props) => {
     //     default: break;
 
     // }
-
+    console.log(props.hubUI)
     return content
 
 }
@@ -354,9 +358,16 @@ const mapStateToProps = state => {
         sex: state.user.sex,
         photoURL: state.user.photoURL,
         uid: state.user.uid,
-        needsInfo: state.user.needsInfo
+        needsInfo: state.user.needsInfo,
+        hubUI: state.ui.hub
     }
 }
 
-export default connect(mapStateToProps, null)(Hub)
+const mapDispatchToProps = dispatch => {
+    return {
+        setHubUI: (newState) => dispatch(actions.updateHubUI(newState))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Hub)
 

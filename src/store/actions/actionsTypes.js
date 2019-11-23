@@ -12,3 +12,6 @@ export const UPDATE_USER_DATA = 'UPDATE_USER_DATA'
 export const LOG_OUT = 'LOG_OUT'
 export const AUTH_CHECK_STATE = 'AUTH_CHECK_STATE'
 export const SET_USER_POSTS = 'SET_USER_POSTS'
+
+//ui
+export const SET_HUB_UI = 'SET_HUB_UI'
