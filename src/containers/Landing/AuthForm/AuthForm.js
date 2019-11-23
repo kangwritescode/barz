@@ -9,8 +9,9 @@ import * as actions from '../../../store/actions/index'
 import { regions } from '../../../shared/regions'
 import DotSpinner from '../../../components/DotSpinner/DotSpinner'
 
-
 const AuthForm = (props) => {
+
+    const db = firebase.firestore()
 
     // ui state
     const [isRegistering, setisRegistering] = useState(false)
@@ -161,6 +162,7 @@ const AuthForm = (props) => {
         setSpinner(true)
         event.preventDefault()
         try {
+
             let [fireEmail, uid] = await createAuthUser(email, inputPass)
             const photoURL = await uploadMysteryMan(uid)
             console.log(photoURL, '<----')
@@ -201,16 +203,19 @@ const AuthForm = (props) => {
                 localStorage.setItem('expirationDate', expirationDate)
                 localStorage.setItem('uid', uid)
 
-                console.log(result)
-                if (result.additionalUserInfo.isNewUser) {
-                    const photoURL = await uploadMysteryMan(uid)
-                    await createFirebaseUser(email, uid, photoURL)
-                    setNotification('Created Account Successfully!')
-                    setSentiment(true)
+                db.collection('users').doc(uid).get().then(async doc => {
+                    if (doc.exists) {
+                        setSpinner(false)
+                        props.getUserData(uid)
+                    } else  {
+                        const photoURL = await uploadMysteryMan(uid)
+                        await createFirebaseUser(email, uid, photoURL)
+                        setNotification('Created Account Successfully!')
+                        setSentiment(true)
+                    }
+                })
 
-                }
-                setSpinner(false)
-                props.getUserData(uid)
+
             } catch (err) {
                 // Handle Errors here.
                 setNotification(err.message)
