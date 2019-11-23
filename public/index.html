@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css?family=Sedgwick+Ave+Display&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
-  <meta name="description" content="Web site created using create-react-app" />
+  <meta name="description" content="Scribble. Judge. Compete." />
   <link rel="apple-touch-icon" href="logo192.png" />
   <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -52,15 +52,31 @@
   <div id="fb-root"></div>
   <script async defer crossorigin="anonymous"
     src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0&appId=448263955880178&autoLogAppEvents=1"></script>
+
   <!-- The core Firebase JS SDK is always required and must be listed first -->
-  <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+
   <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
-  <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-analytics.js"></script>
 
   <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyCAKcTP3ThSZwJtWIZ5BXCCubhMgq-eTpA",
+      authDomain: "barz-86ae0.firebaseapp.com",
+      databaseURL: "https://barz-86ae0.firebaseio.com",
+      projectId: "barz-86ae0",
+      storageBucket: "barz-86ae0.appspot.com",
+      messagingSenderId: "607580458991",
+      appId: "1:607580458991:web:3d68049c04b18cfe17f01a",
+      measurementId: "G-EMWQ4CYWP0"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
   </script>
+
   <div id="root"></div>
 </body>
 
