@@ -83,6 +83,7 @@
           box-shadow: 1px 1px 2px lightgrey;
   border-radius: 5em;
   opacity: 0;
+  pointer-events: painted;
   -webkit-transform: translateY(30%);
           transform: translateY(30%);
   display: -webkit-box;
@@ -142,6 +143,7 @@
   opacity: 1;
   -webkit-transition: all 0.1s ease-in;
   transition: all 0.1s ease-in;
+  pointer-events: painted;
 }
 
 .likes .vote-icon-container .hide {
@@ -152,6 +154,7 @@
   transition: opacity 0.1s ease-in, -webkit-transform .3s ease-in;
   transition: opacity 0.1s ease-in, transform .3s ease-in;
   transition: opacity 0.1s ease-in, transform .3s ease-in, -webkit-transform .3s ease-in;
+  pointer-events: none;
 }
 
 .likes .total-score {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Navbar from './containers/Navbar/Navbar'
 import Scribble from './containers/Scribble/Scribble'
 import Hub from './containers/Hub/Hub'
-import { Route, Switch, withRouter, red } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import ReactPlayer from 'react-player'
 import { connect } from 'react-redux'
 import Judge from './containers/Judge/Judge'
@@ -10,16 +10,31 @@ import { fetchUserData, authCheckState } from './store/actions/auth'
 import Wordsmiths from './containers/Wordsmiths/Wordsmiths'
 import './App.css'
 import Landing from './containers/Landing/Landing';
+import DevModal from './components/DevModal/DevModal';
 
 
 class App extends Component {
 
 
-  componentDidMount() {
-    this.props.onTryAutoSignin()
+  state = {
+    showPopup: false
   }
 
 
+  componentDidMount() {
+    this.props.onTryAutoSignin()    
+  }
+  componentDidUpdate = (prevProps, prevState) => {
+    if (!prevProps.authenticated && this.props.authenticated) {
+      this.togglePopup(true)
+    }
+  }
+  togglePopup = (bool) => {
+    this.setState({
+      ...this.state,
+      showPopup: bool
+    })
+  }
 
   render() {
 
@@ -29,6 +44,7 @@ class App extends Component {
 
     return (
       <div className="App">
+        {this.state.showPopup ? <DevModal togglePopup={this.togglePopup}/> : null}
         <Navbar />
         <ReactPlayer
           volume={this.props.volume * 1.0 / 100}

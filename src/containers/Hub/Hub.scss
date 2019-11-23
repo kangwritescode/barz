@@ -80,13 +80,11 @@
     position: fixed;
     bottom: 5px;
     right: 10px;
-    opacity: 0;
+    opacity: 1;
     color: white;
     font-family: "permanent marker", cursive;
     font-size: 11px;
     letter-spacing: 2px;
-    animation: fade-in-and-out 5s forwards;
-    animation-delay: 1s;
 }
 
 @keyframes fade-in-and-out {

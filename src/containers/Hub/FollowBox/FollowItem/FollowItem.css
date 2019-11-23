@@ -64,6 +64,14 @@
   color: rgba(255, 255, 255, 0.87);
 }
 
+.follow-item .follow-item__follow-button:hover {
+  background-color: #1b1b1b;
+}
+
+.follow-item .follow-item__follow-button:active {
+  background-color: #242424;
+}
+
 .follow-item .follow-item__follow-button:active {
   -webkit-box-shadow: none;
           box-shadow: none;

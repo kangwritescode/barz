@@ -1,11 +1,14 @@
+/*global FB*/
+
 import { updateObject } from '../../shared/utility';
 import * as actionTypes from '../actions/actionsTypes';
+import firebase from 'firebase'
 
 const initialState = {
 
     // user related,
     loggedIn: false,
-    needsInfo: true,
+    needsInfo: false,
     autoSignInOver: false,
     uid: '',
     email: '',
@@ -31,6 +34,7 @@ const authenticate = (state, action) => {
 }
 
 const setUserData = (state, action) => {
+    console.log(action.data)
     return updateObject(state, {
         ...action.data,
         loggedIn: true,
@@ -39,6 +43,11 @@ const setUserData = (state, action) => {
 }
 
 const logOut = (state, action) => {
+    firebase.auth().signOut().then(function () {
+        console.log('auth logout successful')
+    }).catch(function (error) {
+        console.log(error.message)
+    });
     localStorage.removeItem('token')
     localStorage.removeItem('expirationDate')
     localStorage.removeItem('uid')
@@ -46,6 +55,7 @@ const logOut = (state, action) => {
         ...initialState,
         autoSignInOver: true
     })
+
 }
 
 

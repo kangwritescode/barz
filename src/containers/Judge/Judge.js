@@ -86,13 +86,13 @@ const Judge = props => {
 
     )
 
-    switch (keyPressed) {
-        case 1: return content = <Redirect to='/hub'></Redirect>
-        case 2: return content = <Redirect to='/scribble'></Redirect>
-        case 4: return content = <Redirect to='/wordsmiths'></Redirect>
-        default: break;
+    // switch (keyPressed) {
+    //     case 1: return content = <Redirect to='/hub'></Redirect>
+    //     case 2: return content = <Redirect to='/scribble'></Redirect>
+    //     case 4: return content = <Redirect to='/wordsmiths'></Redirect>
+    //     default: break;
 
-    }
+    // }
 
 
     return content

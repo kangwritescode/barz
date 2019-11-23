@@ -6,7 +6,6 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux'
 import { createStore, compose, applyMiddleware, combineReducers } from 'redux' 
-import reducer from './store/reducers/reducer'
 import thunk from 'redux-thunk'
 import musicReducer from './store/reducers/music'
 import userReducer from './store/reducers/user'

@@ -60,13 +60,13 @@ const Scribble = () => {
             </div>
         </div>
     )
-    switch (keyPressed) {
-        case 1: return content = <Redirect to='/hub'></Redirect>
-        case 3: return content = <Redirect to='/judge'></Redirect>
-        case 4: return content = <Redirect to='/wordsmiths'></Redirect>
-        default: break;
+    // switch (keyPressed) {
+    //     case 1: return content = <Redirect to='/hub'></Redirect>
+    //     case 3: return content = <Redirect to='/judge'></Redirect>
+    //     case 4: return content = <Redirect to='/wordsmiths'></Redirect>
+    //     default: break;
 
-    }
+    // }
     return content
 }
 let mapStatetoProps = state => {

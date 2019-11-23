@@ -308,8 +308,8 @@
   width: 10em;
   border-radius: 5em;
   background-color: #151515;
-  -webkit-box-shadow: 2px 2px 2px black;
-          box-shadow: 2px 2px 2px black;
+  -webkit-box-shadow: 1px 1px 1px black;
+          box-shadow: 1px 1px 1px black;
   font-family: "righteous";
   font-size: 6pt;
   border: 1px solid rgba(255, 255, 255, 0.214);
@@ -319,10 +319,11 @@
   cursor: pointer;
 }
 
+.spotlight .spotlight__block-two .follow-button:hover {
+  background-color: #1d1d1d;
+}
+
 .spotlight .spotlight__block-two .follow-button:active {
-  -webkit-box-shadow: 0px 0px 5px black;
-          box-shadow: 0px 0px 5px black;
-  height: 2em;
-  width: 9.8em;
+  background-color: #242424;
 }
 /*# sourceMappingURL=Spotlight.css.map */

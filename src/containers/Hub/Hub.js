@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router'
 import FireApi from '../../Api/FireApi/FireApi'
 import yoxIMG from '../../assets/images/yoxIMG.png'
 import yox from '../../assets/videos/yox.m4v'
@@ -18,6 +17,7 @@ import HubNavBar from './HubNavBar/HubNavBar'
 import HubTools from './HubTools/HubTools'
 import ProfileBox from './ProfileBox/ProfileBox'
 import UploadImage from './ProfileBox/UploadImage/UploadImage'
+import InfoGetter from './InfoGetter/InfoGetter'
 
 
 const Hub = (props) => {
@@ -201,7 +201,7 @@ const Hub = (props) => {
             top: '2.5em'
         },
         body: {
-            backgroundColor: 'rgba(255, 255, 255, 0.9)',
+            backgroundColor: 'rgba(255, 255, 255, 0.95)',
         },
         header: {
             backgroundColor: 'rgba(255, 255, 255, 0.9)'
@@ -223,6 +223,7 @@ const Hub = (props) => {
             </div>
         } else {
             manyPosts = displayedPosts.map(post => {
+                console.log(post)
                 var style = manyPostsCustomStyle
                 if (postState.selectedPost && post.pid === postState.selectedPost.pid) {
                     style = withSelectedPostStyle
@@ -252,7 +253,7 @@ const Hub = (props) => {
         }
         else if ((displayedPosts === undefined) || (displayedPosts.length === 0)) {
             manyPosts = <div className={`middle-column__notification`}>
-                <div className={``}>You're not following anyone!</div>
+                <div className={``}>No posts to show!</div>
             </div>
         } else {
             manyPosts = displayedPosts.map(post => {
@@ -273,6 +274,16 @@ const Hub = (props) => {
             })
         }
 
+    }
+    var middleColumn = (
+        <div className='middle-column'>
+            {manyPosts}
+        </div>
+    )
+    if (props.needsInfo) {
+        middleColumn = (
+            <InfoGetter />
+        )
     }
     var content = (
         <div className="hub-layout">
@@ -305,9 +316,7 @@ const Hub = (props) => {
                         </div>
                         <FollowBox follows={follows} />
                     </div>
-                    <div className='middle-column'>
-                        {manyPosts}
-                    </div>
+                    {middleColumn}
                     <div className='right-column'>
                         <Commenter
                             toggleDeleteCommentModal={toggleDeleteCommentModal}
@@ -325,13 +334,13 @@ const Hub = (props) => {
     )
 
 
-    switch (keyPressed) {
-        case 2: return content = <Redirect to='/scribble'></Redirect>
-        case 3: return content = <Redirect to='/judge'></Redirect>
-        case 4: return content = <Redirect to='/wordsmiths'></Redirect>
-        default: break;
+    // switch (keyPressed) {
+    //     case 2: return content = <Redirect to='/scribble'></Redirect>
+    //     case 3: return content = <Redirect to='/judge'></Redirect>
+    //     case 4: return content = <Redirect to='/wordsmiths'></Redirect>
+    //     default: break;
 
-    }
+    // }
 
     return content
 
@@ -344,7 +353,8 @@ const mapStateToProps = state => {
         username: state.user.username,
         sex: state.user.sex,
         photoURL: state.user.photoURL,
-        uid: state.user.uid
+        uid: state.user.uid,
+        needsInfo: state.user.needsInfo
     }
 }
 

@@ -114,6 +114,7 @@ class Rappers extends Component {
         let placeholder = (
             <div className="Rappers">
                 {tableHeader}
+                {console.log(this.props.rappers)}
                 {this.props.rappers.length === 0 && !this.props.fetching ? <div id='no-rappers'><div id="no-rappers-text">No rappers for that search!</div></div> : <div className="loader" id="rappers-loader">Loading...</div>}
             </div>
         )

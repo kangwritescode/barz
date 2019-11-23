@@ -8,8 +8,8 @@
   border: 0.1em solid rgba(255, 255, 255, 0.055);
   margin-left: 1.5em;
   display: block;
-  -webkit-transition: all .3s;
-  transition: all .3s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
 }
 
 #notepad-compressed {
@@ -107,8 +107,8 @@
 
 #four-lines-compressed {
   opacity: 0;
-  -webkit-transition: opacity .1s;
-  transition: opacity .1s;
+  -webkit-transition: opacity 0.1s;
+  transition: opacity 0.1s;
 }
 
 .input-line {
@@ -149,7 +149,7 @@
   display: flex;
   font-size: 0.7em;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  color: #969696;
+  color: rgba(150, 150, 150, 0.856);
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -160,20 +160,55 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  border: 0.1em solid #a3a3a3;
+  border: 0.1em solid rgba(163, 163, 163, 0.623);
   opacity: 1;
   -webkit-transition: opacity 0.5s;
   transition: opacity 0.5s;
 }
 
-.submit-post-button:hover {
+.submit-post-button--valid {
+  color: #969696;
+  border: 0.1em solid #a3a3a3;
+}
+
+.submit-post-button--valid:before {
+  content: "";
+  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  position: absolute;
+  top: 2px;
+  left: 1px;
+  background-size: 400%;
+  z-index: -1;
+  -webkit-filter: blur(5px);
+          filter: blur(5px);
+  width: calc(98%);
+  height: calc(90%);
+  -webkit-animation: glowing 20s linear infinite;
+          animation: glowing 20s linear infinite;
+  opacity: 1;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.submit-post-button--valid:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #1a1a1a;
+  left: 0;
+  top: 0;
+}
+
+.submit-post-button--valid:hover {
   cursor: pointer;
   color: #c7c7c7;
   border-color: #c7c7c7;
 }
 
-.submit-post-button:active,
-.submit-post-button:focus {
+.submit-post-button--valid:active,
+.submit-post-button--valid:focus {
   color: white;
   border-color: white;
 }
@@ -203,7 +238,7 @@
   position: absolute;
   z-index: 999;
   top: -9.6em;
-  right: -5em;
+  right: 9.5em;
   width: 40px;
   height: 40px;
   margin: 100px auto;
@@ -241,9 +276,9 @@
   bottom: 32%;
   width: auto;
   color: #ededed;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   font-size: 11pt;
-  border-radius: .4em;
+  border-radius: 0.4em;
   padding: 1.1em;
   background-color: rgba(1, 29, 1, 0.637);
   -webkit-animation: fade-pop-in-out 2.3s ease-in-out;

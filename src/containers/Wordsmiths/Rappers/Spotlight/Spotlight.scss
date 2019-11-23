@@ -116,7 +116,6 @@
         }
         .block-one__username {
             font-size: 1.1em;
-
         }
         .block-one__select-a-user {
             position: absolute;
@@ -206,7 +205,7 @@
             width: 10em;
             border-radius: 5em;
             background-color: rgb(21, 21, 21);
-            box-shadow: 2px 2px 2px black;
+            box-shadow: 1px 1px 1px black;
             font-family: "righteous";
             font-size: 6pt;
             border: 1px solid rgba(255, 255, 255, 0.214);
@@ -215,10 +214,11 @@
             z-index: 6;
             cursor: pointer;
 
+            &:hover {
+                background-color: rgb(29, 29, 29);
+            }
             &:active {
-                box-shadow: 0px 0px 5px black;
-                height: 2em;
-                width: 9.8em;
+                background-color: rgb(36, 36, 36);
             }
         }
     }
