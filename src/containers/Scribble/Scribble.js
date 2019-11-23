@@ -1,9 +1,8 @@
 import 'firebase/firestore'
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router'
+
 import vinyl from '../../assets/videos/vinyl.mov'
-import vinyl2 from '../../assets/videos/vinyl2.mp4'
 import vinyIMG from '../../assets/images/vinylIMG.png'
 import * as actions from '../../store/actions/index'
 import MyBars from './MyBars/MyBars'
@@ -12,17 +11,18 @@ import './Scribble.css'
 import Toolkit from './Toolkit/Toolkit'
 import Turntable from './Turntable/Turntable'
 import PostEditor from '../Scribble/PostEditor/PostEditor'
+import { isTSExpressionWithTypeArguments } from '@babel/types'
 
 
 
 
-const Scribble = () => {
+const Scribble = (props) => {
 
-    const [viewFocus, setViewFocus] = useState('Post')
+    const [viewFocus, setViewFocus] = useState(props.scribbleUI.focus)
     const [keyPressed, setKeyPressed] = useState(null)
     const [editedPost, setEditedPost] = useState(null)
     const toggleView = () => {
-        return viewFocus === 'Post' ? setViewFocus('MyBars') : setViewFocus('Post')
+        return viewFocus === 'Post' ? props.setScribbleUI({focus: 'MyBars'}) : props.setScribbleUI({focus: 'Post'})
     }
     const editPost = (pid) => {
         setEditedPost(pid)
@@ -36,11 +36,18 @@ const Scribble = () => {
                 default: break;
             }
         }
-        document.addEventListener('keydown', assignRedirect)
+        // document.addEventListener('keydown', assignRedirect)
         return () => {
-            document.removeEventListener('keydown', assignRedirect)
+            // document.removeEventListener('keydown', afssignRedirect)
         };
     }, [])
+    useEffect(() => {
+        setViewFocus(props.scribbleUI.focus)
+        return () => {
+        };
+    }, [props.scribbleUI])
+
+
     var content = (
         <div className="Scribble">
             <img id='backup-img' src={vinyIMG} alt=''></img>
@@ -69,14 +76,17 @@ const Scribble = () => {
     // }
     return content
 }
+
 let mapStatetoProps = state => {
     return {
         musicURL: state.music.musicURL,
         volume: state.music.volume,
         playing: state.music.playing,
+        scribbleUI: state.ui.scribble,
         allStations: {
             ...state.music.allStations
-        }
+        },
+
     }
 }
 let mapDispatchToProps = dispatch => {
@@ -85,6 +95,7 @@ let mapDispatchToProps = dispatch => {
         stopMusic: () => dispatch(actions.stopMusic()),
         changeURL: (newURL) => dispatch(actions.changeURL(newURL)),
         changeVol: (volume) => dispatch(actions.changeVol(volume)),
+        setScribbleUI: (newState) => dispatch(actions.setScribbleUI(newState))
     }
 }
 

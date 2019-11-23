@@ -5,6 +5,7 @@ import yoxIMG from '../../assets/images/yoxIMG.png'
 import yox from '../../assets/videos/yox.m4v'
 import CircularSpinner from '../../components/CircularSpinner/CircularSpinner'
 import { GenID } from '../../shared/utility'
+import * as actions from '../../store/actions/ui'
 import Commenter from '../Judge/ManyView/Commenter/Commenter'
 import ManyPost from '../Judge/ManyView/ManyPost/ManyPost'
 import DeleteComment from '../Scribble/MyBars/ViewedBar/DeleteComment/DeleteComment'
@@ -15,10 +16,10 @@ import FollowBox from './FollowBox/FollowBox'
 import './Hub.css'
 import HubNavBar from './HubNavBar/HubNavBar'
 import HubTools from './HubTools/HubTools'
+import InfoGetter from './InfoGetter/InfoGetter'
 import ProfileBox from './ProfileBox/ProfileBox'
 import UploadImage from './ProfileBox/UploadImage/UploadImage'
-import InfoGetter from './InfoGetter/InfoGetter'
-import * as actions from '../../store/actions/ui'
+import nafla from '../../assets/videos/nafla-blows.m4v'
 
 
 const Hub = (props) => {
@@ -153,7 +154,7 @@ const Hub = (props) => {
     }
 
     const sortAndFilter = (type, parameter) => {
-        props.setHubUI({feed: parameter})
+        props.setHubUI({ feed: parameter })
     }
     const sortByNewest = (posts) => {
         return posts.sort((a, b) => {
@@ -223,7 +224,7 @@ const Hub = (props) => {
         }
         else if ((displayedPosts === undefined) || (displayedPosts.length === 0)) {
             manyPosts = <div className={`middle-column__notification`}>
-                <div className={``}>You haven't posted any barz yet!</div>
+                <div className={``}>No posts to show!</div>
             </div>
         } else {
             manyPosts = displayedPosts.map(post => {
@@ -250,6 +251,7 @@ const Hub = (props) => {
         let myFollows = follows.filter(follow => follow.from === props.uid)
         let followingUIDs = new Set()
         myFollows.forEach(follow => { followingUIDs.add(follow.to) })
+
         displayedPosts = posts.filter(post => followingUIDs.has(post.uid))
         displayedPosts = sortByNewest(displayedPosts)
         if (!doneFetching) {
@@ -300,7 +302,7 @@ const Hub = (props) => {
             {showDeleteAcc ? <DeleteAccount toggleDeleteAcc={toggleDeleteAcc} /> : null}
 
             <img id="backup-img" src={yoxIMG} alt="" />
-            <video className='yox' id="yox" src={yox} autoPlay={true} loop={true} playsInline={true} muted />
+            <video className='yox' id="yox" src={yox} autoPlay={true} loop playsInline={true} muted />
             <div id="yoxOverlay" />
             <div id="mv-cred">Year of the Ox - "Mood Control Cypher"</div>
 

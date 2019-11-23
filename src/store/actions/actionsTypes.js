@@ -15,3 +15,6 @@ export const SET_USER_POSTS = 'SET_USER_POSTS'
 
 //ui
 export const SET_HUB_UI = 'SET_HUB_UI'
+export const SET_SCRIBBLE_UI = 'SET_SCRIBBLE_UI'
+export const SET_JUDGE_UI = 'SET_JUDGE_UI'
+export const SET_WORDSMITHS_UI = 'SET_WORDSMITHS_UI'

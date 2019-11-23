@@ -12,3 +12,6 @@ export {
     changeVol,
     setSongPointer
 } from './music'
+export {
+    setScribbleUI
+} from './ui'

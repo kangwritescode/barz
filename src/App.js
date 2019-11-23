@@ -26,7 +26,7 @@ class App extends Component {
   }
   componentDidUpdate = (prevProps, prevState) => {
     if (!prevProps.authenticated && this.props.authenticated) {
-      this.togglePopup(true)
+      // this.togglePopup(true)
     }
   }
   togglePopup = (bool) => {
