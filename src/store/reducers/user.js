@@ -34,7 +34,6 @@ const authenticate = (state, action) => {
 }
 
 const setUserData = (state, action) => {
-    console.log(action.data)
     return updateObject(state, {
         ...action.data,
         loggedIn: true,

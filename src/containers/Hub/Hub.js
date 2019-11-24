@@ -13,6 +13,7 @@ import Turntable from '../Scribble/Turntable/Turntable'
 import AddHandles from './AddHandles/AddHandles'
 import DeleteAccount from './DeleteAccount/DeleteAccount'
 import FollowBox from './FollowBox/FollowBox'
+import firebase from 'firebase'
 import './Hub.css'
 import HubNavBar from './HubNavBar/HubNavBar'
 import HubTools from './HubTools/HubTools'
@@ -23,6 +24,9 @@ import nafla from '../../assets/videos/nafla-blows.m4v'
 
 
 const Hub = (props) => {
+
+    const [paramsUser, setParamsUser] = useState(null)
+
     // routing 
     const [keyPressed, setKeyPressed] = useState(null)
     // loader
@@ -91,6 +95,28 @@ const Hub = (props) => {
             document.removeEventListener('click', toggleCommenter)
         }
     }, [])
+    // mounting with params
+
+    useEffect(() => {
+        var username = props.match.params.username
+        if (username) {
+            var db = firebase.firestore()
+            db.collection('users').where('username', '==', username).get()
+                .then(snapshot => {
+                    snapshot.forEach(doc => {
+                        console.log(doc.data())
+                        setParamsUser(doc.data())
+                    })
+                })
+        } else {
+            setParamsUser(null)
+        }
+
+        return () => {
+
+        };
+    }, [props.match.params.username])
+
 
     // routes
     useEffect(() => {
@@ -108,20 +134,25 @@ const Hub = (props) => {
         };
     }, [])
 
+    // updates HubUI, sets score and place
     useEffect(() => {
-        if (votes.length !== 0) {
-            setMyPlace(HubTools.myPlaceFinder(votes, props.uid))
-            let likes = votes.filter(vote => vote.receiverID === props.uid && vote.value === 1)
-            let dislikes = votes.filter(vote => vote.receiverID === props.uid && vote.value === -1)
-            let score = (Math.max(likes.length - dislikes.length, 0))
-            setMyScore(score)
-        }
+        // update the UI on mounting
         if (props.hubUI) {
             setFeed(props.hubUI.feed)
         }
+        var user = paramsUser ? paramsUser : props
+        if (votes.length !== 0) {
+            setMyPlace(HubTools.myPlaceFinder(votes, user.uid))
+            let likes = votes.filter(vote => vote.receiverID === user.uid && vote.value === 1)
+            let dislikes = votes.filter(vote => vote.receiverID === user.uid && vote.value === -1)
+            let score = (Math.max(likes.length - dislikes.length, 0))
+            setMyScore(score)
+        } 
+        
+        
         return () => {
         };
-    }, [props.uid, votes, props.hubUI])
+    }, [props.uid, votes, props.hubUI, paramsUser])
 
     useEffect(() => {
 
@@ -215,7 +246,12 @@ const Hub = (props) => {
     // Post Sorting and Filtering
     var displayedPosts;
     let manyPosts;
-    if (feed === 'Personal') {
+
+    if (paramsUser) {
+        displayedPosts = posts.filter(post => paramsUser.uid === post.uid)
+        displayedPosts = sortByNewest(displayedPosts)
+    }
+    else if (feed === 'Personal') {
         displayedPosts = posts.filter(post => props.uid === post.uid)
         displayedPosts = sortByNewest(displayedPosts)
     } else if (feed === 'Following') {
@@ -265,7 +301,7 @@ const Hub = (props) => {
     }
     var content = (
         <div className="hub-layout">
-            <HubNavBar sortAndFilter={sortAndFilter} feed={feed} />
+            <HubNavBar isLoading={!doneFetching} sortAndFilter={sortAndFilter} feed={feed} paramsUser={paramsUser}/>
 
             {/* modal and ui */}
             {showPhotoModal ? <UploadImage setShowPhotoModal={setShowPhotoModal} setImgURL={setImgURL} /> : null}
@@ -284,6 +320,7 @@ const Hub = (props) => {
                     <div className='left-column'>
                         <div className='left-column__profile-box-container'>
                             <ProfileBox
+                                paramsUser={paramsUser}
                                 setShowPhotoModal={setShowPhotoModal}
                                 toggleUploadHandles={toggleUploadHandles}
                                 toggleDeleteAcc={toggleDeleteAcc}
@@ -318,10 +355,10 @@ const Hub = (props) => {
     //     default: break;
 
     // }
-    console.log(props.hubUI)
     return content
 
 }
+
 
 const mapStateToProps = state => {
     return {

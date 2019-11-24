@@ -58,6 +58,7 @@ class App extends Component {
           <Route path="/judge" component={Judge} ></Route>
           <Route path="/wordsmiths" component={Wordsmiths} ></Route>
           <Route path="/hub" component={Hub} ></Route>
+          <Route path="/:username" component={Hub}></Route>
           <Route path="/" component={Hub}></Route>
         </Switch>
       </div>

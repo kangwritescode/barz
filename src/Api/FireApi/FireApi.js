@@ -5,7 +5,6 @@ const fetchPosts = (setter, setDoneFetching) => {
     const listener = db.collection('submissions').onSnapshot(snapshot => {
         const fetchedPosts = []
         snapshot.forEach(doc => {
-            console.log(doc.data())
             fetchedPosts.push({
                 ...doc.data(),
                 pid: doc.id

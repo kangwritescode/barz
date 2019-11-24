@@ -42,7 +42,7 @@ class HubNavBar extends Component {
                 </div>
             </div>
         )
-        if (this.props.needsInfo) {
+        if (this.props.needsInfo || this.props.paramsUser || this.props.isLoading) {
             contents = null
         }
         return (

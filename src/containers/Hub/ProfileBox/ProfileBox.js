@@ -15,8 +15,6 @@ function ProfileBox(props) {
     const [follows, setFollows] = useState([])
     const [blurbText, setBlurbText] = useState('')
 
-
-
     // componentDidMount
     useEffect(() => {
         document.addEventListener('click', closeDropOptions)
@@ -64,21 +62,37 @@ function ProfileBox(props) {
         }
     }
 
+    var user = props.paramsUser ? props.paramsUser : props
 
     let blockOneContent = null;
-    
-    if (!props.needsInfo && !props.isLoading) {
+    let handles = (
+        <div className='contents-wrapper__handles-container'>
+            <i className="fab fa-facebook-f icon" onClick={() => props.toggleUploadHandles(true)}></i>
+            <i className="fab fa-instagram icon" onClick={() => props.toggleUploadHandles(true)}></i>
+            <i className="fab fa-soundcloud icon" onClick={() => props.toggleUploadHandles(true)}></i>
+            <i className="fab fa-youtube icon" onClick={() => props.toggleUploadHandles(true)}></i>
+        </div>
+    )
+    if (props.paramsUser) {
+        handles = Object.entries(user.handles).map(entry => {
+            if (entry[1] !== "") {
+                return <i className={`fab fa-${entry[0] + (entry[0] === 'facebook' ? '-f' : '')} icon`} onClick={() => props.toggleUploadHandles(true)}></i>
+            }
+        })
+        handles = (
+            <div className='contents-wrapper__handles-container'>
+                {handles}
+            </div>
+        )
+    }
+
+    if (!user.needsInfo && !props.isLoading) {
         blockOneContent = (
             <div className={`block-one__contents-wrapper`}>
-                <PhotoContainer imgURL={props.photoURL} setShowPhotoModal={props.setShowPhotoModal} />
-                <div className='contents-wrapper__username'>{props.username}</div>
-                <div className='contents-wrapper__address-gender'>{props.city}, {props.state} | {props.sex}</div>
-                <div className='contents-wrapper__handles-container'>
-                    <i className="fab fa-facebook-f icon" onClick={() => props.toggleUploadHandles(true)}></i>
-                    <i className="fab fa-instagram icon" onClick={() => props.toggleUploadHandles(true)}></i>
-                    <i className="fab fa-soundcloud icon" onClick={() => props.toggleUploadHandles(true)}></i>
-                    <i className="fab fa-youtube icon" onClick={() => props.toggleUploadHandles(true)}></i>
-                </div>
+                <PhotoContainer imgURL={user.photoURL} setShowPhotoModal={props.setShowPhotoModal} />
+                <div className='contents-wrapper__username'>{user.username}</div>
+                <div className='contents-wrapper__address-gender'>{user.address.city}, {user.address.state} | {user.gender}</div>
+                {handles}
                 <textarea
                     className='contents-wrapper__blurb'
                     placeholder='-Write a blurb-'
