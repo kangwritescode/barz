@@ -8,6 +8,7 @@
     justify-content: center;
 }
 
+
 .spotlight {
     position: relative;
     width: 100%;
@@ -116,7 +117,11 @@
         }
         .block-one__username {
             font-size: 1.1em;
+            .username__link {
+                color: white;
+            }
         }
+        
         .block-one__select-a-user {
             position: absolute;
             font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;

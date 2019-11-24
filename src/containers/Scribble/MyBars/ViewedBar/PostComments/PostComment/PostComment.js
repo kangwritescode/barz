@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import './PostComment.css'
 import firebase from 'firebase'
 import 'firebase/firestore'
+import { Link } from 'react-router-dom'
+
 
 
 function PostComment(props) {
@@ -92,10 +94,12 @@ function PostComment(props) {
             className='posted-comment'
             onMouseLeave={(event) => { closeDropdowns(event) }}>
             <div className='posted-comment__img-container'>
-                <img alt='' src={props.data.photoURL}></img>
+                <Link to={`/${props.data.username}/`}>
+                    <img alt='' src={props.data.photoURL}></img>
+                </Link>
             </div>
             <div className='posted-comment__content'>
-                <b>{data.username}</b> {data.comment} <br />
+                <Link style={{textDecoration: 'none', color: "black"}} to={`/${props.data.username}/`}><b>{data.username}</b></Link> {data.comment} <br />
                 <div className='posted-comment__content__date'>{generateDatePassed()}</div>
             </div>
             {deleteOption}

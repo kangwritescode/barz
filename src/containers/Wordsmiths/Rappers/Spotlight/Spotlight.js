@@ -1,6 +1,7 @@
 import firebase from 'firebase'
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { getOrdinal } from '../../../../shared/utility'
 import { postUserData } from '../../../../store/actions/auth'
 import * as actions from '../../../../store/actions/index'
@@ -88,7 +89,7 @@ function Spotlight(props) {
     }
 
     let username = props.rapper ?
-        <div className='block-one__username'>{props.rapper ? props.rapper.username : null}</div>
+        <div className='block-one__username'><Link style={{ textDecoration: 'none', color: 'white' }} to={"/" + props.rapper.username + "/"}>{props.rapper ? props.rapper.username : null}</Link></div>
         : <h2 className='block-one__select-a-user'>Select a User</h2>
     let addressGender = props.rapper ?
         <div className='block-one__address-gender'>{props.rapper ? props.rapper.city : null}, {props.rapper ? props.rapper.state : null} | {props.rapper ? props.rapper.gender : null}</div>
@@ -96,19 +97,22 @@ function Spotlight(props) {
 
 
     let photo = props.rapper ?
-        <div className='block-one__img-wrapper'>
-            <div>
-                <img alt='' src={props.rapper.photoURL} />
-                {props.rapper.rank === 1 ?
-                    <i class="fas fa-crown crown"></i>
-                    : null}
-                {props.rapper.rank === 2 ?
-                    <i class="fas fa-crown crown" style={{ color: 'silver' }}></i>
-                    : null}
+        <Link
+            style={{ textDecoration: 'none', color: 'white' }}
+            to={"/" + props.rapper.username + "/"}>
+            <div className='block-one__img-wrapper'>
+                <div>
+                    <img alt='' src={props.rapper.photoURL} />
+                    {props.rapper.rank === 1 ?
+                        <i class="fas fa-crown crown"></i>
+                        : null}
+                    {props.rapper.rank === 2 ?
+                        <i class="fas fa-crown crown" style={{ color: 'silver' }}></i>
+                        : null}
+                </div>
 
             </div>
-
-        </div>
+        </Link>
         : null
     let button = <button className='follow-button' onClick={follow}>follow</button>
     if (amFollowing) {

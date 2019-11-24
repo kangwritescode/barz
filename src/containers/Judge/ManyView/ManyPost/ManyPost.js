@@ -3,6 +3,7 @@ import './ManyPost.css'
 import { connect } from 'react-redux'
 import firebase from 'firebase'
 import 'firebase/firestore'
+import { Link } from 'react-router-dom'
 
 
 
@@ -51,14 +52,14 @@ const ManyPost = (props) => {
             db.collection('postVotes').doc(myVote[0].vid)
                 .set(updatedVote)
                 .catch(err => console.log(err))
-                
+
             // cleanup leaked extras ***
             if (myVote.length > 1) {
                 for (let i = 1; i < myVote.length; i++) {
                     db.collection('postVotes').doc(myVote[i].vid)
                         .delete()
                         .then(() => console.log('vote deleted successfully'))
-                        .catch(err => console.log(err))                    
+                        .catch(err => console.log(err))
                 }
             }
         }
@@ -94,13 +95,17 @@ const ManyPost = (props) => {
             className={`many-post scrollTo${props.pid} ${props.inEditor ? 'editor-style' : null}`}
             id={`scrollTo${props.pid}`}
             style={props.customStyle ? props.customStyle.whole : null}>
-            <header 
+            <header
                 onClick={() => props.selectPost(props.pid)}
                 style={props.customStyle ? props.customStyle.header : null}>
                 <div className='many-post-details' id={props.pid}>
-                    <img className='many-post-pic' src={props.uid === props.myUID ? props.myPhotoURL : props.photoURL} alt='pic'></img>
+                    <Link style={{ textDecoration: 'none' }} to={`${props.username}/`}>
+                        <img className='many-post-pic' src={props.uid === props.myUID ? props.myPhotoURL : props.photoURL} alt='pic'></img>
+                    </Link>
                     <div className='many-post-name-date-container'>
-                        <h6 style={props.customStyle ? props.customStyle.username : null}>{props.username}</h6>
+                        <Link style={{ textDecoration: 'none' }} to={`${props.username}/`}>
+                            <h6 style={props.customStyle ? props.customStyle.username : null}>{props.username}</h6>
+                        </Link>
                         <p>{date}</p>
                     </div>
                 </div>
@@ -113,9 +118,9 @@ const ManyPost = (props) => {
                     <i className="fas fa-fire" id='manyFlame' aria-hidden="true"></i>
                     {score.length}
                 </div>
-                
+
             </header>
-            <div 
+            <div
                 className='many-post-body' onClick={() => props.selectPost(props.pid)}
                 style={props.customStyle ? props.customStyle.midSection : null}>
 

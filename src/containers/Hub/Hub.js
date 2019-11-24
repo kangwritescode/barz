@@ -84,7 +84,7 @@ const Hub = (props) => {
         }
         const fetchVotesListener = FireApi.allVotesListener(setVotes)
         const fetchFollowsListener = FireApi.allFollowsListener(setFollows)
-        const fetchPostsListener = FireApi.allPostsListener(setPosts, setDoneFetching)
+        const fetchPostsListener = FireApi.allPostsListener(setPosts)
         const fetchCommentsListener = FireApi.allSubmissionCommentsListener(setComments)
         document.addEventListener('click', toggleCommenter)
         return () => {
@@ -106,10 +106,12 @@ const Hub = (props) => {
                     snapshot.forEach(doc => {
                         console.log(doc.data())
                         setParamsUser(doc.data())
+                        setDoneFetching(true)
                     })
                 })
         } else {
             setParamsUser(null)
+            setDoneFetching(true)
         }
 
         return () => {
@@ -244,17 +246,21 @@ const Hub = (props) => {
     }
 
     // Post Sorting and Filtering
-    var displayedPosts;
+    var displayedPosts = []
     let manyPosts;
 
+    // if we have a user passed through params
     if (paramsUser) {
         displayedPosts = posts.filter(post => paramsUser.uid === post.uid)
         displayedPosts = sortByNewest(displayedPosts)
     }
+    // if the feed is set to Personal
     else if (feed === 'Personal') {
         displayedPosts = posts.filter(post => props.uid === post.uid)
         displayedPosts = sortByNewest(displayedPosts)
-    } else if (feed === 'Following') {
+    }
+    // if the feed is set to Following 
+    else if (feed === 'Following') {
         let myFollows = follows.filter(follow => follow.from === props.uid)
         let followingUIDs = new Set()
         myFollows.forEach(follow => { followingUIDs.add(follow.to) })

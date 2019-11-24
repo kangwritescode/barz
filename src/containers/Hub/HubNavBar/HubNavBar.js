@@ -3,6 +3,7 @@ import './HubNavBar.css'
 import { connect } from 'react-redux'
 import WordNavItem from '../../Wordsmiths/WordNavBar/WordNavItem/WordNavItem'
 
+
 class HubNavBar extends Component {
 
     componentDidMount() {
@@ -27,7 +28,6 @@ class HubNavBar extends Component {
     }
 
 
-
     render() {
 
         var contents = (
@@ -42,6 +42,7 @@ class HubNavBar extends Component {
                 </div>
             </div>
         )
+        console.log(this.props.isLoading)
         if (this.props.needsInfo || this.props.paramsUser || this.props.isLoading) {
             contents = null
         }
