@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import FireApi from '../../Api/FireApi/FireApi'
 import yoxIMG from '../../assets/images/yoxIMG.png'
 import yox from '../../assets/videos/yox.m4v'
+import hubUserIMG from '../../assets/images/hubUserBG.jpg'
 import CircularSpinner from '../../components/CircularSpinner/CircularSpinner'
 import { GenID } from '../../shared/utility'
 import * as actions from '../../store/actions/ui'
@@ -31,6 +32,9 @@ const Hub = (props) => {
     const [keyPressed, setKeyPressed] = useState(null)
     // loader
     const [doneFetching, setDoneFetching] = useState(false)
+    // UI related
+    const backgroundVideo = props.match.params.username ? yox : yox
+    const backgroundPhoto = props.match.params.username ? yoxIMG : yoxIMG
     // show modals
     const [showPhotoModal, setShowPhotoModal] = useState(false)
     const [showUploadHandles, toggleUploadHandles] = useState(false)
@@ -315,8 +319,8 @@ const Hub = (props) => {
             {showDeleteComment ? <DeleteComment cid={commentCID} toggleDeleteCommentModal={toggleDeleteCommentModal} /> : null}
             {showDeleteAcc ? <DeleteAccount toggleDeleteAcc={toggleDeleteAcc} /> : null}
 
-            <img id="backup-img" src={yoxIMG} alt="" />
-            <video className='yox' id="yox" src={yox} autoPlay={true} loop playsInline={true} muted />
+            <img id="backup-img" src={backgroundPhoto} alt="" />
+            <video className='yox' id="yox" src={backgroundVideo} autoPlay={true} loop playsInline={true} muted />
             <div id="yoxOverlay" />
             <div id="mv-cred">Year of the Ox - "Mood Control Cypher"</div>
 

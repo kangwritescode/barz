@@ -104,17 +104,20 @@ function ProfileBox(props) {
                 <div className='contents-wrapper__username'>{user.username}</div>
                 <div className='contents-wrapper__address-gender'>{user.address.city}, {user.address.state} | {user.gender}</div>
                 {handles}
-                <textarea
-                    className='contents-wrapper__blurb'
-                    placeholder={props.paramsUser ? null : '-Write a blurb-'}
-                    spellCheck={false}
-                    maxLength={55}
-                    style={props.paramsUser ? {cursor: 'default'} : null}
-                    onKeyDown={event => textAreaKeyDown(event)}
-                    onChange={event => setBlurbText(event.target.value)}
-                    onBlur={event => props.postUserData(props.uid, { blurb: event.target.value })}
-                    disabled={!!props.paramsUser}
-                    value={props.paramsUser ? user.blurb : blurbText} />
+                {!props.paramsUser ?
+                    (<textarea
+                        className='contents-wrapper__blurb'
+                        placeholder={props.paramsUser ? null : '-Write a blurb-'}
+                        spellCheck={false}
+                        maxLength={55}
+                        style={props.paramsUser ? { cursor: 'default' } : null}
+                        onKeyDown={event => textAreaKeyDown(event)}
+                        onChange={event => setBlurbText(event.target.value)}
+                        onBlur={event => props.postUserData(props.uid, { blurb: event.target.value })}
+                        disabled={!!props.paramsUser}
+                        value={props.paramsUser ? user.blurb : blurbText} />)
+                : <div className='contents-wrapper__blurb' style={{cursor: 'default'}}>{props.paramsUser.blurb}</div> }
+
             </div>
         )
     }
