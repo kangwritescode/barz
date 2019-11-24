@@ -52,7 +52,7 @@ function FollowBox(props) {
             setfollowingCount(followingCount)
             setfollows(props.follows)
         }
-    }, [props.uid, followersCount, followingCount, props.follows, props.paramsUser])
+    }, [props.uid, followersCount, followingCount, props.follows, props.paramsUser, props])
 
 
     // fetch followerUsers and followingUsers
@@ -80,11 +80,14 @@ function FollowBox(props) {
         })
     }
 
+    // RENDER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    var user = props.paramsUser ? props.paramsUser : props
     // returns array of 
     const myFollowersUIDs = (follows) => {
         const myFollowsFrom = []
         follows.forEach(follow => {
-            if (follow.to === props.uid) {
+            if (follow.to === user.uid) {
                 myFollowsFrom.push(follow.from)
             }
         })
@@ -93,7 +96,7 @@ function FollowBox(props) {
     const myFollowingUIDs = (follows) => {
         const myFollowsTo = []
         follows.forEach(follow => {
-            if (follow.from === props.uid) {
+            if (follow.from === user.uid) {
                 myFollowsTo.push(follow.to)
             }
         })

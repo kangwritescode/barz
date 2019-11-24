@@ -11,9 +11,10 @@ export const fetchUserData = (uid) => {
             if (doc.exists) {
                 dispatch(setUserData(doc.data()))
             } else {
-                console.log("No such document!");
+                dispatch(logOut())
             }
         }).catch(function (error) {
+            dispatch(logOut())
             console.log("Error getting document:", error);
         });
     }

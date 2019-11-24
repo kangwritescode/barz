@@ -45,8 +45,23 @@ const AuthForm = (props) => {
         if (event) { event.preventDefault() }
         try {
             const uid = await authenticate(email, password)
-            setSpinner(false)
-            props.getUserData(uid)
+
+            var db = firebase.firestore()
+            // check if database user exists
+            db.collection('users').doc(uid).get().then(async doc => {
+                // normal login
+                if (doc.exists) {
+                    props.getUserData(uid)
+                }
+                else {
+                    // create firebase user and then login 
+                    const photoURL = await uploadMysteryMan(uid)
+                    await createFirebaseUser(email, uid, photoURL)
+                    props.getUserData(uid)
+                }
+            })
+
+
         }
         catch (err) {
             setSpinner(false)
@@ -75,13 +90,17 @@ const AuthForm = (props) => {
 
         return await firebase.auth().signInWithEmailAndPassword(email, password)
             .then(successObj => {
-                // now's date
+
+                var uid = successObj.user.uid
+                var refreshToken = successObj.user.refreshToken
                 let expirationDate = new Date()
-                // now's date + 1 hour
                 expirationDate.setHours(expirationDate.getHours() + 100)
-                localStorage.setItem('token', successObj.user.refreshToken)
+
+
+
+                localStorage.setItem('token', refreshToken)
                 localStorage.setItem('expirationDate', expirationDate)
-                localStorage.setItem('uid', successObj.user.uid)
+                localStorage.setItem('uid', uid)
                 return successObj.user.uid
 
             })
@@ -210,7 +229,7 @@ const AuthForm = (props) => {
                         setSpinner(false)
                         setTokens()
                         props.getUserData(uid)
-                        
+
                     } else {
                         const photoURL = await uploadMysteryMan(uid)
                         await createFirebaseUser(email, uid, photoURL)

@@ -37,7 +37,7 @@ class App extends Component {
   }
 
   render() {
-
+    
     if (this.props.autoSignInOver && !this.props.authenticated) {
       return <Landing />
     }
