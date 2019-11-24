@@ -328,7 +328,7 @@ const Hub = (props) => {
                                 myPoints={Math.max(myScore, 0)}
                                 isLoading={!doneFetching} />
                         </div>
-                        <FollowBox follows={follows} />
+                        <FollowBox paramsUser={paramsUser} follows={follows} />
                     </div>
                     {middleColumn}
                     <div className='right-column'>

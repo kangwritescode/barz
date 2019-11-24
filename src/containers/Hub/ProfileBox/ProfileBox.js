@@ -106,7 +106,7 @@ function ProfileBox(props) {
                 {handles}
                 <textarea
                     className='contents-wrapper__blurb'
-                    placeholder='-Write a blurb-'
+                    placeholder={props.paramsUser ? null : '-Write a blurb-'}
                     spellCheck={false}
                     maxLength={55}
                     style={props.paramsUser ? {cursor: 'default'} : null}

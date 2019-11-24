@@ -34,15 +34,16 @@ function FollowBox(props) {
 
     // attach listeners for users, following, followers
     useEffect(() => {
+        var user = props.paramsUser ? props.paramsUser : props
         if (props.follows) {
             let followersCount = 0;
             let followingCount = 0;
             let arr = []
             props.follows.forEach(follow => {
-                if (follow.from === props.uid) {
+                if (follow.from === user.uid) {
                     followingCount += 1
                 }
-                if (follow.to === props.uid) {
+                if (follow.to === user.uid) {
                     followersCount += 1
                 }
                 arr.push(follow)
@@ -51,7 +52,7 @@ function FollowBox(props) {
             setfollowingCount(followingCount)
             setfollows(props.follows)
         }
-    }, [props.uid, followersCount, followingCount, props.follows])
+    }, [props.uid, followersCount, followingCount, props.follows, props.paramsUser])
 
 
     // fetch followerUsers and followingUsers
