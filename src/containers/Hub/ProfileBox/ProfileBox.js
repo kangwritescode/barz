@@ -61,6 +61,13 @@ function ProfileBox(props) {
             event.target.blur()
         }
     }
+    const addhttp = (url) => {
+        if (!/^(?:f|ht)tps?\:\/\//.test(url)) {
+            url = "http://" + url;
+        }
+        return url;
+    }
+
 
     var user = props.paramsUser ? props.paramsUser : props
 
@@ -76,8 +83,9 @@ function ProfileBox(props) {
     if (props.paramsUser) {
         handles = Object.entries(user.handles).map(entry => {
             if (entry[1] !== "") {
-                return <i className={`fab fa-${entry[0] + (entry[0] === 'facebook' ? '-f' : '')} icon`} onClick={() => props.toggleUploadHandles(true)}></i>
+                return <i className={`fab fa-${entry[0] + (entry[0] === 'facebook' ? '-f' : '')} icon`} onClick={() => window.open(addhttp(entry[1]))}></i>
             }
+            return null
         })
         handles = (
             <div className='contents-wrapper__handles-container'>
@@ -89,7 +97,10 @@ function ProfileBox(props) {
     if (!user.needsInfo && !props.isLoading) {
         blockOneContent = (
             <div className={`block-one__contents-wrapper`}>
-                <PhotoContainer imgURL={user.photoURL} setShowPhotoModal={props.setShowPhotoModal} />
+                {props.paramsUser ? <img className='contents-wrapper__params-photo' src={props.paramsUser.photoURL} alt=''></img> : (
+                    <PhotoContainer imgURL={user.photoURL} setShowPhotoModal={props.setShowPhotoModal} />
+                )}
+
                 <div className='contents-wrapper__username'>{user.username}</div>
                 <div className='contents-wrapper__address-gender'>{user.address.city}, {user.address.state} | {user.gender}</div>
                 {handles}
@@ -98,10 +109,12 @@ function ProfileBox(props) {
                     placeholder='-Write a blurb-'
                     spellCheck={false}
                     maxLength={55}
+                    style={props.paramsUser ? {cursor: 'default'} : null}
                     onKeyDown={event => textAreaKeyDown(event)}
                     onChange={event => setBlurbText(event.target.value)}
                     onBlur={event => props.postUserData(props.uid, { blurb: event.target.value })}
-                    value={blurbText} />
+                    disabled={!!props.paramsUser}
+                    value={props.paramsUser ? user.blurb : blurbText} />
             </div>
         )
     }
@@ -132,21 +145,30 @@ function ProfileBox(props) {
         )
     }
 
+    let editOptions;
+    if (props.paramsUser || props.isLoading) {
+        editOptions = null;
+    } else {
+        editOptions = (
+            <div>
+                <div className='hub-profile-box__three-dots' onClick={() => toggleDropOptions(!showDropOptions)}>
+                    <div className='dot' />
+                    <div className='dot' />
+                    <div className='dot' />
+                </div>
+                {showDropOptions ?
+                    <div className='hub-profile-box__drop-options'>
+                        <div className='drop-options__log-out' onClick={props.logout}>Log Out</div>
+                    </div> : null}
+
+                <i className="fas fa-cog hub-profile-box__settings" onClick={() => props.toggleDeleteAcc(true)}></i>
+            </div>
+        )
+    }
+
     return (<div className='hub-profile-box' >
 
-        <div>
-            <div className='hub-profile-box__three-dots' onClick={() => toggleDropOptions(!showDropOptions)}>
-                <div className='dot' />
-                <div className='dot' />
-                <div className='dot' />
-            </div>
-            {showDropOptions ?
-                <div className='hub-profile-box__drop-options'>
-                    <div className='drop-options__log-out' onClick={props.logout}>Log Out</div>
-                </div> : null}
-
-            <i className="fas fa-cog hub-profile-box__settings" onClick={() => props.toggleDeleteAcc(true)}></i>
-        </div>
+        {editOptions}
         <div className='hub-profile-box__block-one'>
             {blockOneContent}
         </div>

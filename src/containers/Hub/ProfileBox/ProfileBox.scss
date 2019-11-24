@@ -109,6 +109,16 @@
             }
 
             $margin-space: 0.3rem;
+
+            .contents-wrapper__params-photo {
+                height: 50px;
+                width: 50px;
+                border-radius: 50%;
+                background: rgb(0, 0, 0);
+                opacity: 0;
+                animation: gentle-fade-in 0.3s ease-in forwards;
+                border: 1px solid rgba(255, 255, 255, 0.199);
+            }
             .contents-wrapper__dummy-img {
                 height: 50px;
                 border-radius: 50%;

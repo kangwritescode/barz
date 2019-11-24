@@ -177,6 +177,17 @@
   font-family: "righteous";
 }
 
+.hub-profile-box .hub-profile-box__block-one .block-one__contents-wrapper .contents-wrapper__params-photo {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background: black;
+  opacity: 0;
+  -webkit-animation: gentle-fade-in 0.3s ease-in forwards;
+          animation: gentle-fade-in 0.3s ease-in forwards;
+  border: 1px solid rgba(255, 255, 255, 0.199);
+}
+
 .hub-profile-box .hub-profile-box__block-one .block-one__contents-wrapper .contents-wrapper__dummy-img {
   height: 50px;
   border-radius: 50%;
