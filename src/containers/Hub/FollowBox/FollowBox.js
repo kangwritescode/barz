@@ -54,6 +54,12 @@ function FollowBox(props) {
         }
     }, [props.uid, followersCount, followingCount, props.follows, props.paramsUser, props])
 
+    useEffect(() => {
+        setFocusOn('')
+        return () => {
+            
+        };
+    }, [props.paramsUser])
 
     // fetch followerUsers and followingUsers
     useEffect(() => {

@@ -6,6 +6,7 @@ import { getOrdinal } from '../../../shared/utility'
 import { connect } from 'react-redux'
 import { postUserData } from '../../../store/actions/auth'
 import * as actions from '../../../store/actions/index'
+import FireApi from '../../../Api/FireApi/FireApi'
 
 
 
@@ -18,9 +19,11 @@ function ProfileBox(props) {
     // componentDidMount
     useEffect(() => {
         document.addEventListener('click', closeDropOptions)
-        fetchFollows()
+        var followsListener = FireApi.allFollowsListener(setFollows)
+
         return () => {
             document.removeEventListener('click', closeDropOptions)
+            followsListener()
         };
     }, [])
 
@@ -31,22 +34,6 @@ function ProfileBox(props) {
             setBlurbText(props.blurb)
         }
     }, [props.photoRef, props.rapper, follows, props.uid, props.blurb])
-
-    const fetchFollows = async () => {
-        let db = firebase.firestore()
-        let follows = await db.collection("follows").get().then(((querySnapshot) => {
-            let fetchedFollows = []
-            querySnapshot.forEach(doc => {
-                fetchedFollows.push({
-                    ...doc.data(),
-                    fid: doc.id
-                })
-            })
-            return fetchedFollows
-        }))
-        setFollows(follows)
-
-    }
 
 
     const closeDropOptions = (event) => {
@@ -68,10 +55,13 @@ function ProfileBox(props) {
         return url;
     }
 
+    // RENDER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`
+
 
     var user = props.paramsUser ? props.paramsUser : props
 
     let blockOneContent = null;
+
     let handles = (
         <div className='contents-wrapper__handles-container'>
             <i className="fab fa-facebook-f icon" onClick={() => props.toggleUploadHandles(true)}></i>
@@ -80,6 +70,7 @@ function ProfileBox(props) {
             <i className="fab fa-youtube icon" onClick={() => props.toggleUploadHandles(true)}></i>
         </div>
     )
+
     if (props.paramsUser) {
         handles = Object.entries(user.handles).map(entry => {
             if (entry[1] !== "") {
@@ -102,7 +93,7 @@ function ProfileBox(props) {
                 )}
 
                 <div className='contents-wrapper__username'>{user.username}</div>
-                <div className='contents-wrapper__address-gender'>{user.address.city}, {user.address.state} | {user.gender}</div>
+                <div className='contents-wrapper__address-gender'>{user.address.city}, {user.address.state} | {user.sex ? user.sex : user.gender}</div>
                 {handles}
                 {!props.paramsUser ?
                     (<textarea
@@ -116,7 +107,7 @@ function ProfileBox(props) {
                         onBlur={event => props.postUserData(props.uid, { blurb: event.target.value })}
                         disabled={!!props.paramsUser}
                         value={props.paramsUser ? user.blurb : blurbText} />)
-                : <div className='contents-wrapper__blurb' style={{cursor: 'default'}}>{props.paramsUser.blurb}</div> }
+                    : <div className='contents-wrapper__blurb' style={{ cursor: 'default' }}>{props.paramsUser.blurb}</div>}
 
             </div>
         )
@@ -133,10 +124,10 @@ function ProfileBox(props) {
         )
     }
 
-    let blockTwoContent = null;
+    let detailsContainer = null;
 
     if (!props.isLoading) {
-        blockTwoContent = (
+        detailsContainer = (
             <div className={'block-two__place-point-container'}>
                 <div>
                     {props.myPlace + getOrdinal(props.myPlace) + " place"}
@@ -168,17 +159,29 @@ function ProfileBox(props) {
             </div>
         )
     }
+    var myFollow = null;
+    if (props.paramsUser) {
+        myFollow = follows.filter(follow => (follow.from === props.uid && follow.to === props.paramsUser.uid))
 
-    return (<div className='hub-profile-box' >
+    }
+    console.log(myFollow);
 
-        {editOptions}
-        <div className='hub-profile-box__block-one'>
-            {blockOneContent}
+
+    return (
+        <div className='hub-profile-box' >
+            {editOptions}
+            <div className='hub-profile-box__block-one'>
+                {blockOneContent}
+            </div>
+            <div className='hub-profile-box__block-two'>
+                {props.paramsUser ?
+                    <div className='block-two__follow-button'>
+                        {myFollow.length === 0 ? 'follow' : 'following'}
+                    </div>
+                    : null}
+                {detailsContainer}
+            </div>
         </div>
-        <div className='hub-profile-box__block-two'>
-            {blockTwoContent}
-        </div>
-    </div>
     )
 }
 

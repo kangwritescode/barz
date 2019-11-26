@@ -99,11 +99,11 @@ const ManyPost = (props) => {
                 onClick={() => props.selectPost(props.pid)}
                 style={props.customStyle ? props.customStyle.header : null}>
                 <div className='many-post-details' id={props.pid}>
-                    <Link style={{ textDecoration: 'none' }} to={`${props.username}/`}>
+                    <Link style={{ textDecoration: 'none' }} to={`/${props.username}/`} >
                         <img className='many-post-pic' src={props.uid === props.myUID ? props.myPhotoURL : props.photoURL} alt='pic'></img>
                     </Link>
                     <div className='many-post-name-date-container'>
-                        <Link style={{ textDecoration: 'none' }} to={`${props.username}/`}>
+                        <Link style={{ textDecoration: 'none' }} to={`/${props.username}/`} >
                             <h6 style={props.customStyle ? props.customStyle.username : null}>{props.username}</h6>
                         </Link>
                         <p>{date}</p>

@@ -220,6 +220,27 @@
         width: 100%;
         @include flex-centered(row);
         justify-content: space-evenly;
+
+        .block-two__follow-button {
+            position: absolute;
+            top: 0em;
+            z-index: 50;
+            transform: translateY(-50%);
+            background: rgb(14, 14, 14);
+            font-size: .6em;
+            color: rgba(255, 255, 255, 0.89);
+            border: 1px solid rgba(255, 255, 255, 0.171);
+            border-radius: 3em;
+            padding: .2em 2em;
+            cursor: pointer;
+            &:hover {
+                background: rgb(22, 22, 22);
+            }
+            &:active {
+                background: rgb(29, 29, 29);
+            }
+        }
+
         .block-two__place-point-container {
             width: 100%;
             @include flex-centered(row);

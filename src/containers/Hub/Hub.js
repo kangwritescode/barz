@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import FireApi from '../../Api/FireApi/FireApi'
 import yoxIMG from '../../assets/images/yoxIMG.png'
 import yox from '../../assets/videos/yox.m4v'
-import hubUserIMG from '../../assets/images/hubUserBG.jpg'
+import studio from '../../assets/images/studio.jpg'
+import { Redirect } from 'react-router-dom'
 import CircularSpinner from '../../components/CircularSpinner/CircularSpinner'
 import { GenID } from '../../shared/utility'
 import * as actions from '../../store/actions/ui'
@@ -33,8 +34,8 @@ const Hub = (props) => {
     // loader
     const [doneFetching, setDoneFetching] = useState(false)
     // UI related
-    const backgroundVideo = props.match.params.username ? yox : yox
-    const backgroundPhoto = props.match.params.username ? yoxIMG : yoxIMG
+    const [backgroundVideo, setbackgroundVideo] = useState(props.match.params.username ? null : yox)
+    const [backgroundPhoto, setbackgroundPhoto] = useState(props.match.params.username ? studio : yoxIMG)
     // show modals
     const [showPhotoModal, setShowPhotoModal] = useState(false)
     const [showUploadHandles, toggleUploadHandles] = useState(false)
@@ -91,6 +92,7 @@ const Hub = (props) => {
         const fetchPostsListener = FireApi.allPostsListener(setPosts)
         const fetchCommentsListener = FireApi.allSubmissionCommentsListener(setComments)
         document.addEventListener('click', toggleCommenter)
+
         return () => {
             fetchVotesListener()
             fetchFollowsListener()
@@ -113,15 +115,23 @@ const Hub = (props) => {
                         setDoneFetching(true)
                     })
                 })
+            console.log('changedddd');
+            
+            setbackgroundPhoto(studio)
+            setbackgroundVideo(null)
         } else {
+            console.log('changedddd');
             setParamsUser(null)
             setDoneFetching(true)
+            //ui
+            setbackgroundPhoto(yoxIMG)
+            setbackgroundVideo(yox)
         }
 
         return () => {
 
         };
-    }, [props.match.params.username])
+    }, [props.match.params.username, props.username])
 
 
     // routes
@@ -153,9 +163,9 @@ const Hub = (props) => {
             let dislikes = votes.filter(vote => vote.receiverID === user.uid && vote.value === -1)
             let score = (Math.max(likes.length - dislikes.length, 0))
             setMyScore(score)
-        } 
-        
-        
+        }
+
+
         return () => {
         };
     }, [props.uid, votes, props.hubUI, paramsUser])
@@ -311,7 +321,7 @@ const Hub = (props) => {
     }
     var content = (
         <div className="hub-layout">
-            <HubNavBar isLoading={!doneFetching} sortAndFilter={sortAndFilter} feed={feed} paramsUser={paramsUser}/>
+            <HubNavBar isLoading={!doneFetching} sortAndFilter={sortAndFilter} feed={feed} paramsUser={paramsUser} />
 
             {/* modal and ui */}
             {showPhotoModal ? <UploadImage setShowPhotoModal={setShowPhotoModal} setImgURL={setImgURL} /> : null}
@@ -319,10 +329,12 @@ const Hub = (props) => {
             {showDeleteComment ? <DeleteComment cid={commentCID} toggleDeleteCommentModal={toggleDeleteCommentModal} /> : null}
             {showDeleteAcc ? <DeleteAccount toggleDeleteAcc={toggleDeleteAcc} /> : null}
 
+            {/* <img id="backup-img" src={backgroundPhoto} alt="" /> */}
             <img id="backup-img" src={backgroundPhoto} alt="" />
-            <video className='yox' id="yox" src={backgroundVideo} autoPlay={true} loop playsInline={true} muted />
+            {props.match.params.username ? null : <video className={`yox`} id="yox" src={backgroundVideo} autoPlay={true} loop playsInline={true} muted />}
+            
             <div id="yoxOverlay" />
-            <div id="mv-cred">Year of the Ox - "Mood Control Cypher"</div>
+            {props.match.params.username ? null : <div id="mv-cred">Year of the Ox - "Mood Control Cypher"</div>}
 
             {/* main content */}
             <div className={`hub-layout__body-wrapper`} id='hub-layout__body-wrapper'>

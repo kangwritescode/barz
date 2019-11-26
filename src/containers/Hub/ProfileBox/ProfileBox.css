@@ -343,6 +343,29 @@
           justify-content: space-evenly;
 }
 
+.hub-profile-box .hub-profile-box__block-two .block-two__follow-button {
+  position: absolute;
+  top: 0em;
+  z-index: 50;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  background: #0e0e0e;
+  font-size: .6em;
+  color: rgba(255, 255, 255, 0.89);
+  border: 1px solid rgba(255, 255, 255, 0.171);
+  border-radius: 3em;
+  padding: .2em 2em;
+  cursor: pointer;
+}
+
+.hub-profile-box .hub-profile-box__block-two .block-two__follow-button:hover {
+  background: #161616;
+}
+
+.hub-profile-box .hub-profile-box__block-two .block-two__follow-button:active {
+  background: #1d1d1d;
+}
+
 .hub-profile-box .hub-profile-box__block-two .block-two__place-point-container {
   width: 100%;
   display: -webkit-box;

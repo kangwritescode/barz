@@ -168,6 +168,10 @@
   font-size: 1.1em;
 }
 
+.spotlight .spotlight__block-one .block-one__username .username__link {
+  color: white;
+}
+
 .spotlight .spotlight__block-one .block-one__select-a-user {
   position: absolute;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
