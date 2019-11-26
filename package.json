@@ -8,6 +8,7 @@
     "axios": "^0.19.0",
     "clipboard-copy": "^3.1.0",
     "cors-anywhere": "^0.4.1",
+    "dotenv": "^8.2.0",
     "easy-scroll": "^0.6.0",
     "email-deep-validator": "^3.3.0",
     "firebase": "^7.1.0",
