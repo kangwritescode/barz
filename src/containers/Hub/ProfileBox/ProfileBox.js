@@ -55,6 +55,30 @@ function ProfileBox(props) {
         return url;
     }
 
+    const follow = () => {
+        let db = firebase.firestore()
+        db.collection('follows').add({
+            from: props.uid,
+            to: props.paramsUser.uid
+        })
+            .then(() => console.log('follow set successfully'))
+            .catch(err => console.log(err.message))
+    }
+
+    const unfollow = () => {
+        let db = firebase.firestore()
+        console.log(props.uid, props.user)
+        db.collection('follows')
+            .where('from', '==', props.uid)
+            .where('to', '==', props.paramsUser.uid)
+            .get()
+            .then(snap => {
+                snap.forEach(doc => {
+                    doc.ref.delete()
+                })
+            })
+            .catch(err => console.log(err))
+    }
     // RENDER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`
 
 
@@ -175,7 +199,9 @@ function ProfileBox(props) {
             </div>
             <div className='hub-profile-box__block-two'>
                 {props.paramsUser ?
-                    <div className='block-two__follow-button'>
+                    <div
+                        className='block-two__follow-button'
+                        onClick={myFollow.length === 0 ? () => follow() : () => unfollow()}>
                         {myFollow.length === 0 ? 'follow' : 'following'}
                     </div>
                     : null}
