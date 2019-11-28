@@ -38,7 +38,7 @@ const InfoGetter = (props) => {
         }
     }
     const fetchAddressFromZipcode = async (zipcode) => {
-        return axios.get('https://www.zipcodeapi.com/rest/' + process.env.REACT_APP_ZIP_KEY +  '/info.json/' + zipcode + '/degrees')
+        return axios.get('https://cors-anywhere.herokuapp.com/' + 'https://www.zipcodeapi.com/rest/' + process.env.REACT_APP_ZIP_KEY +  '/info.json/' + zipcode + '/degrees')
             .then(res => { return res.data })
             .catch(err => {
                 throw errorCreater("Sorry, we're having trouble processing that ZIP Code.")
