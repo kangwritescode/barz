@@ -1,6 +1,4 @@
-
-@import url('https://fonts.googleapis.com/css?family=Knewave&display=swap');
-
+@import url("https://fonts.googleapis.com/css?family=Knewave&display=swap");
 
 .scroller {
     position: relative;
@@ -10,6 +8,7 @@
     align-items: center;
     height: 100vh;
     overflow: hidden;
+    
     .scroller__item-container {
         position: absolute;
         display: flex;
@@ -39,7 +38,6 @@
             .item__table {
                 position: relative;
                 width: 100%;
-
             }
             .item__filter-bar {
                 position: relative;
@@ -48,10 +46,16 @@
             .item__ajiashi {
                 width: 60%;
             }
-        
         }
     }
+    
 }
 .emphasized {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+
+@media only screen and (max-width: 600px) {
+    .scroller {
+        display: none;
+    }
 }

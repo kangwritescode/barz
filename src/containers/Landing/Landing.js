@@ -14,7 +14,7 @@ import AuthForm from './AuthForm/AuthForm'
 
 const Landing = (props) => {
 
-    
+
 
     let [showForgotPass, toggleForgotPass] = useState(false)
 
@@ -26,12 +26,12 @@ const Landing = (props) => {
         <div className='landing'>
             {showForgotPass ? <ForgotPassword toggleForgotPass={toggleForgotPass} /> : null}
             <div className='landing__video-overlay'></div>
-            <img  className='landing__backup-img' src={landingIMG} alt=''></img>
+            <img className='landing__backup-img' src={landingIMG} alt=''></img>
             <video className="landing__video" src={splashVid} autoPlay={'false'} loop={true} playsInline={true} muted />
             <div className={`landing__letter-box-top`}></div>
-            <div className='landing__hor-flex'>
+            <div className='landing__flex'>
                 <Scroller />
-                <AuthForm toggleForgotPass={toggleForgotPass}/>
+                <AuthForm toggleForgotPass={toggleForgotPass} />
             </div>
             <div className={`landing__letter-box-bottom`}></div>
         </div>

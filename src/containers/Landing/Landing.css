@@ -40,7 +40,7 @@
   height: 100vh;
 }
 
-.landing .landing__hor-flex {
+.landing .landing__flex {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -60,7 +60,7 @@
           justify-content: space-evenly;
 }
 
-.landing .landing__hor-flex .hor-flex__reg-form-wrapper {
+.landing .landing__flex .hor-flex__reg-form-wrapper {
   position: relative;
   z-index: 10000;
   background: rgba(0, 0, 0, 0.863);
