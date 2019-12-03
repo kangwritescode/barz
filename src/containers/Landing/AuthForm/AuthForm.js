@@ -6,7 +6,6 @@ import validator from 'validator'
 import './AuthForm.css'
 import { connect } from 'react-redux'
 import * as actions from '../../../store/actions/index'
-import { regions } from '../../../shared/regions'
 import DotSpinner from '../../../components/DotSpinner/DotSpinner'
 
 const AuthForm = (props) => {

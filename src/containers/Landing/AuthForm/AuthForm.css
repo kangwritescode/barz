@@ -303,4 +303,12 @@
             transform: scale(0);
   }
 }
+
+@media only screen and (max-width: 520px) {
+  .landing__auth-frame {
+    width: 100em;
+    height: 100em;
+    border: none;
+  }
+}
 /*# sourceMappingURL=AuthForm.css.map */

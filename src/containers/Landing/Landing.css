@@ -73,7 +73,7 @@
   height: 4em;
   background: rgba(0, 0, 0, 0.884);
   position: fixed;
-  z-index: 100;
+  z-index: 5;
   top: 0em;
 }
 
@@ -82,7 +82,7 @@
   height: 4em;
   background: rgba(0, 0, 0, 0.884);
   position: fixed;
-  z-index: 100;
+  z-index: 5;
   bottom: 0em;
 }
 
