@@ -20,7 +20,6 @@ function ProfileBox(props) {
     useEffect(() => {
         document.addEventListener('click', closeDropOptions)
         var followsListener = FireApi.allFollowsListener(setFollows)
-
         return () => {
             document.removeEventListener('click', closeDropOptions)
             followsListener()

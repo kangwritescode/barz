@@ -93,6 +93,7 @@ const Hub = (props) => {
         const fetchCommentsListener = FireApi.allSubmissionCommentsListener(setComments)
         document.addEventListener('click', toggleCommenter)
 
+
         return () => {
             fetchVotesListener()
             fetchFollowsListener()
@@ -116,7 +117,7 @@ const Hub = (props) => {
                     })
                 })
             console.log('changedddd');
-            
+
             setbackgroundPhoto(studio)
             setbackgroundVideo(null)
         } else {
@@ -127,6 +128,7 @@ const Hub = (props) => {
             setbackgroundPhoto(yoxIMG)
             setbackgroundVideo(yox)
         }
+
 
         return () => {
 
@@ -332,7 +334,7 @@ const Hub = (props) => {
             {/* <img id="backup-img" src={backgroundPhoto} alt="" /> */}
             <img id="backup-img" src={backgroundPhoto} alt="" />
             {props.match.params.username ? null : <video className={`yox`} id="yox" src={backgroundVideo} autoPlay={true} loop playsInline={true} muted />}
-            
+
             <div id="yoxOverlay" />
             {props.match.params.username ? null : <div id="mv-cred">Year of the Ox - "Mood Control Cypher"</div>}
 
