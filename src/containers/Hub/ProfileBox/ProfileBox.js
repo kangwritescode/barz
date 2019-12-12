@@ -108,7 +108,7 @@ function ProfileBox(props) {
         )
     }
 
-    if (!user.needsInfo && !props.isLoading) {
+    if (!user.needsInfo && !props.isLoading && props.username) {
         blockOneContent = (
             <div className={`block-one__contents-wrapper`}>
                 {props.paramsUser ? <img className='contents-wrapper__params-photo' src={props.paramsUser.photoURL} alt=''></img> : (
