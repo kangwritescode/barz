@@ -38,7 +38,7 @@
     "scroll-to-element": "^2.0.3",
     "shuffle-array": "^1.0.1",
     "smooth-scroll": "^16.1.0",
-    "validator": "^11.1.0"
+    "validator": "^13.7.0"
   },
   "scripts": {
     "start": "react-scripts start",
